@@ -1,0 +1,37 @@
+# skyman200.github.io — 김강훈 · 부산 근골격계 물리치료 교수 / AI·교육혁신 전문가
+# 호스트 루트 robots — 네이버(Yeti)·구글·다음·AI 크롤러 전면 허용
+
+User-agent: *
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Daum
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://skyman200.github.io/sitemap.xml
