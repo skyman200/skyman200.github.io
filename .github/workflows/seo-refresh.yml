@@ -1,0 +1,45 @@
+name: SEO Refresh (IndexNow + Monitor)
+
+# 자동화 원칙:
+# - "매일 가짜 갱신"은 검색엔진에 스팸 취급 → 역효과. 그래서 주 1회(월요일)만.
+# - 하는 일: sitemap lastmod 실행일 갱신 → 커밋(=legacy Pages 자동 재배포) →
+#   네이버·빙에 IndexNow 핑 → 상태 점검 리포트.
+# - 배포는 GitHub Pages의 legacy(브랜치 push) 방식이 자동 처리하므로 여기선 배포 스텝 없음.
+# - 콘텐츠를 바꾼 직후엔 Actions 탭에서 "Run workflow"로 즉시 수동 실행 가능.
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # 매주 월요일 09:00 KST (00:00 UTC)
+  workflow_dispatch:       # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: sitemap lastmod 갱신
+        run: node scripts/update-sitemap.mjs
+
+      - name: 변경 시 커밋 (→ Pages 자동 재배포)
+        run: |
+          if ! git diff --quiet sitemap.xml; then
+            git config user.name "seo-bot"
+            git config user.email "cdi3477@dit.ac.kr"
+            git add sitemap.xml
+            git commit -m "chore(seo): sitemap lastmod 자동 갱신"
+            git push
+            echo "sitemap 갱신·푸시 완료 — Pages 재배포 대기(약 1분)"
+            sleep 60
+          else
+            echo "sitemap 변경 없음"
+          fi
+
+      - name: IndexNow 핑 (네이버·빙)
+        run: node scripts/indexnow-ping.mjs
+
+      - name: SEO 상태 점검
+        run: node scripts/monitor.mjs
