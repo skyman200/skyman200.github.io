@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>DIT 국시실</title>
+<script>
+  // 짧은 주소(skyman200.github.io/dphysio) → 긴 국시실 exec 주소로 즉시 이동
+  var EXEC = "https://script.google.com/macros/s/AKfycbz4iT-GM-0By8tW9Dw_U1aIwzA2oxrSkTlUdadge3uhIUbqC7osd721g3pIfOWMJeS6mA/exec";
+  var TARGET = EXEC + "?page=prof";
+  try {
+    var qs = window.location.search;
+    if (qs && qs.length > 1) {
+      // ?to=... 로 다른 페이지 지정 가능 (예: /dphysio/?to=?page=admin%26key=skyman200)
+      var m = /[?&]to=([^&]+)/.exec(qs);
+      if (m) { TARGET = EXEC + decodeURIComponent(m[1]); }
+    }
+  } catch (e) {}
+  window.location.replace(TARGET);
+</script>
+<meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbz4iT-GM-0By8tW9Dw_U1aIwzA2oxrSkTlUdadge3uhIUbqC7osd721g3pIfOWMJeS6mA/exec?page=prof">
+<style>body{font-family:-apple-system,'Apple SD Gothic Neo',sans-serif;text-align:center;margin-top:80px;color:#334155}a{color:#2563eb}</style>
+</head>
+<body>
+<p>DIT 국시실로 이동 중입니다…</p>
+<p><a href="https://script.google.com/macros/s/AKfycbz4iT-GM-0By8tW9Dw_U1aIwzA2oxrSkTlUdadge3uhIUbqC7osd721g3pIfOWMJeS6mA/exec?page=prof">자동 이동이 안 되면 여기를 누르세요</a></p>
+</body>
+</html>
