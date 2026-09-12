@@ -1,6 +1,7 @@
 {
   "enabled": true,
   "worker_url": "https://dns-gate.physiocbt.workers.dev",
+  "player": "proxy",
   "title": "DNS 강의 아카이브",
   "subtitle": "수강생 전용 · 열람 승인이 필요합니다",
   "note": "이름과 연락처로 신청하면 관리자 승인 후 입장할 수 있습니다."

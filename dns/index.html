@@ -206,6 +206,11 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
 .frameWrap{flex:none;background:#000;display:grid;place-items:center;width:100%}
 .frame{position:relative;aspect-ratio:16/9;height:46vh;max-width:100%;background:#000}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.frame video{position:absolute;inset:0;width:100%;height:100%;background:#000;object-fit:contain}
+.vspin{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.vspin-i{width:44px;height:44px;border-radius:50%;border:3px solid rgba(255,255,255,.25);
+  border-top-color:#fff;animation:vspin .9s linear infinite}
+@keyframes vspin{to{transform:rotate(360deg)}}
 /* transcript panel (below the video) */
 .tx{flex:1;min-height:20vh;border-top:1px solid var(--line);background:var(--bg-2);
   display:none;flex-direction:column}
@@ -397,7 +402,11 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
     </div>
     <div class="body">
       <div class="frameWrap">
-        <div class="frame"><iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+        <div class="frame">
+          <video id="mvideo" controls playsinline preload="metadata" controlslist="nodownload" style="display:none"></video>
+          <iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          <div class="vspin" id="mvspin" style="display:none"><div class="vspin-i"></div></div>
+        </div>
       </div>
       <section class="tx" id="mtx">
         <div class="tx-head">
@@ -421,6 +430,7 @@ const OPEN    = id => `https://drive.google.com/file/d/${id}/view`;
 const THUMB   = id => `https://drive.google.com/thumbnail?id=${id}&sz=w640`;
 const $ = s => document.querySelector(s);
 let DATA=null, activeCourse=0, query="";
+let SESSION=null, WORKER_URL="", USE_PROXY=false;   // 자체 플레이어(프록시) 사용 여부
 
 /* ---- transcripts (lazy) ---- */
 let TX=null, TXloading=null, curTxId=null;
@@ -593,15 +603,55 @@ function grid(vids){
   return g;
 }
 
+/* ---- player: 자체 video(프록시) 우선, 실패 시 iframe 폴백 ---- */
+async function getTicket(vid){
+  if(!USE_PROXY||!SESSION||!WORKER_URL) return null;
+  try{
+    const r=await fetch(WORKER_URL.replace(/\/+$/,"")+"/ticket",{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({token:SESSION,did:deviceId(),vid})});
+    if(!r.ok) return null;
+    const d=await r.json();
+    return d.ok?d.ticket:null;
+  }catch{return null;}
+}
+function useIframe(v){
+  $("#mvideo").style.display="none";$("#mvideo").removeAttribute("src");
+  $("#mvspin").style.display="none";
+  $("#mframe").style.display="";$("#mframe").src=PREVIEW(v.id);
+}
+async function loadPlayer(v){
+  const vid=v.id;
+  if(USE_PROXY&&SESSION&&WORKER_URL){
+    $("#mframe").style.display="none";$("#mframe").removeAttribute("src");
+    $("#mvspin").style.display="grid";
+    const ticket=await getTicket(vid);
+    if(curTxId!==vid) return;                 // 다른 영상으로 바뀜
+    if(ticket){
+      const vel=$("#mvideo");
+      vel.src=WORKER_URL.replace(/\/+$/,"")+"/video?id="+encodeURIComponent(vid)+"&t="+encodeURIComponent(ticket);
+      vel.style.display="";
+      const onErr=()=>{vel.removeEventListener("error",onErr);useIframe(v);};
+      vel.addEventListener("error",onErr,{once:true});
+      vel.addEventListener("loadeddata",()=>{$("#mvspin").style.display="none";},{once:true});
+      vel.load();
+      return;
+    }
+    // 티켓 실패 -> iframe 폴백
+  }
+  useIframe(v);
+}
 /* ---- modal ---- */
 function openModal(v){
   const {topic}=parse(v.name);
   curTxId=v.id;
   $("#mttl").textContent=topic||v.name;
-  $("#mframe").src=PREVIEW(v.id);
+  // 이전 재생 정리
+  $("#mvideo").pause?.();$("#mvideo").removeAttribute("src");
   $("#mopen").href=OPEN(v.id);
   $("#mtxDrive").href=OPEN(v.id);
   $("#modal").classList.add("open");document.body.style.overflow="hidden";
+  loadPlayer(v);
   // transcript: reset panel, reveal toggle only if available
   $("#mbox").classList.remove("tx-open");$("#mbox").classList.remove("wide");
   $("#mtxToggle").classList.remove("on");$("#mtxToggle").setAttribute("aria-pressed","false");
@@ -617,7 +667,10 @@ function openModal(v){
   });
 }
 function closeModal(){
-  $("#modal").classList.remove("open");$("#mframe").src="";document.body.style.overflow="";
+  $("#modal").classList.remove("open");document.body.style.overflow="";
+  $("#mframe").src="";
+  const vel=$("#mvideo");try{vel.pause();}catch{}vel.removeAttribute("src");vel.load?.();
+  $("#mvspin").style.display="none";
   curTxId=null;
 }
 let txExpanded=false;                 // 대본 전체 펼침 상태
@@ -743,6 +796,7 @@ async function verify(tok){
   }catch{return localValid(tok);}  // 워커 불통 시 로컬 만료검사 폴백
 }
 function pass(tok){localStorage.setItem(GKEY,tok);localStorage.removeItem(AKEY);
+  SESSION=tok;   // 티켓 발급에 사용
   if(pollT)clearInterval(pollT);gEl("gate").classList.remove("show");bootApp();}
 function showForm(cfg,err){
   gEl("gate").classList.add("show");
@@ -804,8 +858,11 @@ let GATECFG=null;
 async function initGate(){
   try{GATECFG=await fetch("gate.json?v="+Date.now()).then(r=>r.ok?r.json():null);}catch{}
   const cfg=GATECFG;
-  // 비활성/미설정 -> 공개
-  if(!cfg||!cfg.enabled||!cfg.worker_url){bootApp();return;}
+  // player 설정: gate.json 의 player=="proxy" 이고 worker_url 있으면 자체 플레이어 사용
+  WORKER_URL=cfg&&cfg.worker_url?cfg.worker_url:"";
+  USE_PROXY=!!(cfg&&cfg.player==="proxy"&&WORKER_URL);
+  // 비활성/미설정 -> 공개 (단 프록시 재생은 세션 토큰 필요 → 게이트 off면 iframe)
+  if(!cfg||!cfg.enabled||!cfg.worker_url){USE_PROXY=false;bootApp();return;}
   WORKER=cfg.worker_url;
 
   // 1) 기존 세션
@@ -813,7 +870,7 @@ async function initGate(){
   if(saved){
     if(localValid(saved)){
       const ok=await verify(saved);
-      if(ok){bootApp();return;}
+      if(ok){SESSION=saved;bootApp();return;}
     }
     localStorage.removeItem(GKEY);
   }
