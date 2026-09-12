@@ -236,6 +236,29 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:29;display:none}
 .scrim.show{display:block}
 
+/* ---------- auth gate ---------- */
+.gate{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:24px;
+  background:radial-gradient(1200px 600px at 50% -10%,var(--surface-2),var(--bg));}
+.gate.show{display:grid}
+.gate .card{width:min(420px,94vw);background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-xl);padding:38px 32px 30px;box-shadow:var(--shadow-lg);text-align:center}
+.gate .mark{width:56px;height:56px;border-radius:16px;margin:0 auto 18px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-ink));display:grid;place-items:center;
+  color:#fff;font-weight:800;font-size:20px;letter-spacing:-.5px;box-shadow:0 8px 24px rgba(15,157,143,.4)}
+.gate h1{margin:0 0 8px;font-size:22px;font-weight:800;letter-spacing:-.4px}
+.gate p{margin:0 0 6px;color:var(--tx-2);font-size:14px;line-height:1.6}
+.gate .note{color:var(--tx-3);font-size:12.5px;margin:14px 0 24px}
+.gate .dbtn{width:100%;height:50px;border:0;border-radius:13px;font-size:15px;font-weight:700;
+  color:#fff;background:#5865F2;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:filter .15s,transform .1s}
+.gate .dbtn:hover{filter:brightness(1.08)}
+.gate .dbtn:active{transform:translateY(1px)}
+.gate .dbtn svg{width:22px;height:22px;fill:#fff;flex:none}
+.gate .err{margin-top:16px;font-size:13px;color:#ff8080;min-height:18px}
+.gate .who{margin-top:18px;font-size:12px;color:var(--tx-3)}
+.gate .who a{color:var(--brand);cursor:pointer}
+.gate .spin{margin-top:16px;font-size:13px;color:var(--tx-3)}
+
 /* ---------- responsive ---------- */
 @media (max-width:860px){
   .app{grid-template-columns:1fr}
@@ -268,6 +291,22 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
 </style>
 </head>
 <body>
+<!-- AUTH GATE (hidden unless gate.json enabled) -->
+<div class="gate" id="gate">
+  <div class="card">
+    <div class="mark">DNS</div>
+    <h1 id="gateTitle">DNS 강의 아카이브</h1>
+    <p id="gateSub">수강생 전용 · 디스코드 인증이 필요합니다</p>
+    <div class="note" id="gateNote"></div>
+    <button class="dbtn" id="gateLogin">
+      <svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.24.5c1.6.38 2.9.97 4.13 1.77-2.2-1.02-4.4-1.53-6.79-1.53s-4.6.51-6.79 1.53C7.02 4.47 8.32 3.88 9.9 3.5L9.66 3A19.8 19.8 0 0 0 4.7 4.4C1.6 9 .77 13.5 1.18 17.9a19.9 19.9 0 0 0 6.06 3.06l.73-1.02c-1.02-.38-1.98-.87-2.86-1.5.24.17.53.34.79.5 2.02.94 4.15 1.4 6.35 1.4s4.33-.46 6.35-1.4c.26-.16.55-.33.79-.5-.88.63-1.84 1.12-2.86 1.5l.73 1.02a19.9 19.9 0 0 0 6.06-3.06c.48-5.09-.85-9.55-3.7-13.5ZM8.53 15.4c-1.18 0-2.15-1.09-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.33-.96 2.42-2.15 2.42Zm6.94 0c-1.18 0-2.15-1.09-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.33-.95 2.42-2.15 2.42Z"/></svg>
+      Discord로 로그인
+    </button>
+    <div class="err" id="gateErr"></div>
+    <div class="spin" id="gateSpin" style="display:none">인증 확인 중…</div>
+  </div>
+</div>
+
 <div class="app">
   <!-- SIDEBAR -->
   <aside class="side" id="side">
@@ -563,20 +602,89 @@ function skeleton(){
   for(let i=0;i<8;i++)h+='<div class="sk"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div></div>';
   v.innerHTML=h+'</div>';
 }
-skeleton();
 
-fetch("manifest.json?v="+Date.now()).then(r=>{
-  if(!r.ok)throw new Error("manifest "+r.status);return r.json();
-}).then(d=>{
-  DATA=d;
-  // default to first non-empty course
-  const fi=d.courses.findIndex(c=>c.video_count>0);
-  activeCourse=fi>=0?fi:0;
-  render();
-}).catch(e=>{
-  $("#view").innerHTML=`<div class="empty"><div class="big">⚠️</div>
-    목록을 불러오지 못했습니다.<br><small style="color:var(--tx-3)">${e.message}</small></div>`;
-});
+/* ---- app boot (called only after gate passes / gate disabled) ---- */
+let booted=false;
+function bootApp(){
+  if(booted) return; booted=true;
+  skeleton();
+  fetch("manifest.json?v="+Date.now()).then(r=>{
+    if(!r.ok)throw new Error("manifest "+r.status);return r.json();
+  }).then(d=>{
+    DATA=d;
+    const fi=d.courses.findIndex(c=>c.video_count>0);
+    activeCourse=fi>=0?fi:0;
+    render();
+  }).catch(e=>{
+    $("#view").innerHTML=`<div class="empty"><div class="big">⚠️</div>
+      목록을 불러오지 못했습니다.<br><small style="color:var(--tx-3)">${e.message}</small></div>`;
+  });
+}
+
+/* ---- auth gate ---------------------------------------------------------
+   gate.json 이 없거나 enabled=false / worker_url 비어있으면 -> 바로 공개.
+   활성 시: URL #dns_auth=<token> 캡처 -> localStorage 저장, Worker /verify 로
+   재검증(위조 방지, 네트워크 실패 시 로컬 exp 폴백). 미인증이면 오버레이 노출. */
+const GKEY="dns-session";
+const gEl=id=>document.getElementById(id);
+function parseHash(){
+  const h=location.hash.replace(/^#/,"");if(!h)return{};
+  const p=new URLSearchParams(h);const o={};
+  for(const[k,v]of p)o[k]=v;return o;
+}
+function clearHash(){history.replaceState(null,"",location.pathname+location.search);}
+function localValid(tok){
+  try{const b=tok.split(".")[0].replace(/-/g,"+").replace(/_/g,"/");
+    const j=JSON.parse(decodeURIComponent(escape(atob(b))));
+    return j.exp&&j.exp>Date.now()?j:null;}catch{return null;}
+}
+async function verify(worker,tok){
+  try{const r=await fetch(worker.replace(/\/+$/,"")+"/verify",{method:"POST",
+    headers:{"Content-Type":"application/json"},body:JSON.stringify({token:tok})});
+    if(!r.ok)return null;const d=await r.json();return d.ok?d.payload:null;
+  }catch{return localValid(tok);}  // 워커 불통 시 로컬 만료검사로 폴백
+}
+function showGate(cfg,err){
+  const g=gEl("gate");g.classList.add("show");
+  if(cfg.title)gEl("gateTitle").textContent=cfg.title;
+  if(cfg.subtitle)gEl("gateSub").textContent=cfg.subtitle;
+  gEl("gateNote").textContent=cfg.note||"";
+  gEl("gateErr").textContent=err||"";
+  gEl("gateSpin").style.display="none";
+  gEl("gateLogin").onclick=()=>{
+    const ret=encodeURIComponent(location.origin+location.pathname);
+    location.href=cfg.worker_url.replace(/\/+$/,"")+"/login?return="+ret;
+  };
+}
+const ERRTXT={not_member:"디스코드 서버 멤버가 아닙니다. 수강 등록 후 초대받은 서버에 가입해주세요.",
+  token_fail:"인증 교환에 실패했습니다. 다시 시도해주세요."};
+async function initGate(){
+  let cfg=null;
+  try{cfg=await fetch("gate.json?v="+Date.now()).then(r=>r.ok?r.json():null);}catch{}
+  // 게이트 비활성/미설정 -> 공개
+  if(!cfg||!cfg.enabled||!cfg.worker_url){bootApp();return;}
+
+  const hash=parseHash();
+  if(hash.dns_err){clearHash();showGate(cfg,ERRTXT[hash.dns_err]||"인증 실패");return;}
+  if(hash.dns_auth){                       // OAuth 콜백 복귀
+    const tok=hash.dns_auth;clearHash();
+    gEl("gate").classList.add("show");gEl("gateSpin").style.display="block";
+    const ok=await verify(cfg.worker_url,tok);
+    if(ok){localStorage.setItem(GKEY,tok);gEl("gate").classList.remove("show");bootApp();return;}
+    showGate(cfg,"세션 검증에 실패했습니다. 다시 로그인해주세요.");return;
+  }
+  // 기존 세션 확인
+  const saved=localStorage.getItem(GKEY);
+  if(saved){
+    if(!localValid(saved)){localStorage.removeItem(GKEY);showGate(cfg);return;}
+    gEl("gate").classList.add("show");gEl("gateSpin").style.display="block";
+    const ok=await verify(cfg.worker_url,saved);
+    if(ok){gEl("gate").classList.remove("show");bootApp();return;}
+    localStorage.removeItem(GKEY);showGate(cfg);return;
+  }
+  showGate(cfg);
+}
+initGate();
 </script>
 </body>
 </html>
