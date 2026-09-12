@@ -1,0 +1,2807 @@
+{
+ "root_id": "1r3uE32kMXz72gpot2FbQt5OjTMniV8m_",
+ "total_videos": 307,
+ "courses": [
+  {
+   "name": "00_시작안내_학생필독",
+   "path": "00_시작안내_학생필독",
+   "children": [],
+   "files": [
+    {
+     "name": "학생_업로드_안내.md",
+     "id": "1pzniK_l0xphOH03ybO99Rxts2nVHaKoe",
+     "size": 967,
+     "kind": "other"
+    }
+   ],
+   "video_count": 0
+  },
+  {
+   "name": "01_공통이론(DNS_기초)",
+   "path": "01_공통이론(DNS_기초)",
+   "children": [
+    {
+     "name": "기능검사(Functional_Tests)",
+     "path": "01_공통이론(DNS_기초)/기능검사(Functional_Tests)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "발달운동학(Developmental_Kinesiology)",
+     "path": "01_공통이론(DNS_기초)/발달운동학(Developmental_Kinesiology)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "발달자세(3·4.5·6·7.5·9개월)",
+     "path": "01_공통이론(DNS_기초)/발달자세(3·4.5·6·7.5·9개월)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "복강내압·횡격막(IAP·Diaphragm)",
+     "path": "01_공통이론(DNS_기초)/복강내압·횡격막(IAP·Diaphragm)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "척추안정화시스템(ISSS)",
+     "path": "01_공통이론(DNS_기초)/척추안정화시스템(ISSS)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "02_임상코스_A(Basic_A)",
+   "path": "02_임상코스_A(Basic_A)",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "02_임상코스_A(Basic_A)/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "02_임상코스_A(Basic_A)/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "02_임상코스_A(Basic_A)/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "02_임상코스_A(Basic_A)/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "02_임상코스_A(Basic_A)/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1X5ZF_7PiHlWhpxBLaqaQ_fhLiSNiL3yy",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "03_임상코스_B(Basic_B)",
+   "path": "03_임상코스_B(Basic_B)",
+   "children": [
+    {
+     "name": "1일차",
+     "path": "03_임상코스_B(Basic_B)/1일차",
+     "children": [],
+     "files": [
+      {
+       "name": "1_코어_센트레이션.mp4",
+       "id": "1MyNL2TAdfBfGoLcZiCEkbJOGmLlMff3Y",
+       "size": 12256196,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_112021_견갑대.mp4",
+       "id": "1oW1z0QUXk53fXJcdf7sXiYM7JuwO4dya",
+       "size": 270183294,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_112540_호흡_골반고관절.mp4",
+       "id": "1yXW_xT-sKBDaiPzEVLD_08DUyoANrVoe",
+       "size": 145601569,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_115309_요추.mp4",
+       "id": "1q_WdFBKWPWiJyHQzub0qyhPvuccFmMS2",
+       "size": 23842324,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_120208_요추_데드리프트.mp4",
+       "id": "1eQfO96BeP29OC9oBdGtyK72-0ve8dy60",
+       "size": 138358263,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_120447_근막이완_큐잉.mp4",
+       "id": "1u4hlHAXFGFOA1tInlo11VE7-N1ghPozQ",
+       "size": 79164994,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_121045.mp4",
+       "id": "1qQpM5VVb5yn4dBk2OFBPxd1l9vLN-rD0",
+       "size": 32695696,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_135153_발달자세_호흡.mp4",
+       "id": "18BZ8bd4Ggzp34wpfn688p_2w9LnbPMt6",
+       "size": 286887003,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_135707.jpg",
+       "id": "1xmYsKuVkHHn0UAMIoxDyRVSWRcOKA7Rm",
+       "size": 852852,
+       "kind": "image"
+      },
+      {
+       "name": "20251210_140349_발달자세_호흡_골반고관절.mp4",
+       "id": "1pIaSou4vOqrjVlOkawAsapoMk9nFEz96",
+       "size": 472803576,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_142605_발달자세_호흡.mp4",
+       "id": "1eDJ2anpjvcJFQrjkTw0LpjBNwhse7dVa",
+       "size": 105676876,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_142904_회전_골반고관절.mp4",
+       "id": "1gcHX5mTUhZMQyeO-AMSMvlnK6vdCGMfx",
+       "size": 79530604,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_143043_호흡_요추.mp4",
+       "id": "1YK2uqtaKctTPrDxyxcSlQVu96I76q8rl",
+       "size": 40730675,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_143136.mp4",
+       "id": "1R2cBksUDtLNg2pK4rt6eGI2eKjAFSKtz",
+       "size": 124364900,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_144200_회전.mp4",
+       "id": "1Ih_Bo5SY__X9aofn6fvwavcdhkqnzinY",
+       "size": 15150281,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_144418_발달자세_복강내압_호흡.mp4",
+       "id": "1i-In36Zf7Akjxg8DJIol9E28KDPSq-WJ",
+       "size": 186382059,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_144851_호흡_발달자세.mp4",
+       "id": "1Sw5Ewl-28U5w9maUglrssXROe_ftlBdl",
+       "size": 36910614,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_144942_호흡_골반고관절.mp4",
+       "id": "1LMCZDMA0qJtlq_YQliXmaFqNqNAZZxVo",
+       "size": 88457752,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_145924_복강내압_척추안정화.mp4",
+       "id": "1FPPSIOPS-dh_jWIPeKA76gpJKEhtZhHm",
+       "size": 38158799,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_150133_호흡_복강내압_코어.mp4",
+       "id": "1K5yd9vCVNTwP0_pRbOtHqs_xmIrXj0tx",
+       "size": 285747395,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_150713_호흡_발달자세.mp4",
+       "id": "1wRkRWJ36NjY5ATAniqyF_YhRnDa2URsm",
+       "size": 232608373,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_151142.mp4",
+       "id": "1pe0YTfZutqxFGJpuvPjXSe5HpexKIQnH",
+       "size": 77316743,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_153310_발달자세_호흡.mp4",
+       "id": "1bjaSIQHnWY3j-syX6_duVu3SA0EjTE2X",
+       "size": 91500585,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_153726_호흡.mp4",
+       "id": "1TXjCn1enu2fnMP3gaPRsLUdllJDckxez",
+       "size": 114176889,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_153934_호흡_요추.mp4",
+       "id": "1FpdUVPy5VFybE2TtdrS4QFrfG9cG4GEn",
+       "size": 231178190,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_154541.mp4",
+       "id": "19ux12RAot0l9iASQFvQC9zWrr2EgtUSk",
+       "size": 38345875,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_154628_호흡_발달자세.mp4",
+       "id": "1hodHSzAwf1oQ9FLGvyZgExjsp3ytGaS4",
+       "size": 44316754,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_154728_척추안정화_발달자세.mp4",
+       "id": "14-Ka0FTfVT5bW0pSXveLV7BmpxzGoyO9",
+       "size": 10195966,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_155308.mp4",
+       "id": "1bo8WqVZUqQJmYXAbilx9McC-CP3p5hQT",
+       "size": 25063554,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_155648_평가테스트.mp4",
+       "id": "1LxWgGvbibefhxYiek_knieYc_xvwN9En",
+       "size": 12697671,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_155712.mp4",
+       "id": "11cJfdtVCm4FyjcNiHeu6H-b7rzD-nz1k",
+       "size": 2818192,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_155718_호흡_근막이완_골반고관절.mp4",
+       "id": "1BqAtOX10iefCpATDGVD9xnTVeFs7DMpA",
+       "size": 372914486,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_160607.mp4",
+       "id": "1AHQU_8aQVc2FAUfUEwiFj5dd2kC9Zhg1",
+       "size": 189291304,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_161000_호흡_발달자세.mp4",
+       "id": "1zQIKOdvNEddMUOTzXAXXushge4NwbB-s",
+       "size": 66546829,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_161116_견갑대_호흡_발달자세.mp4",
+       "id": "10GK4_gNOKylDnuYAbAqeo7N7-8yqJxUo",
+       "size": 130599214,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_161344_발달자세.mp4",
+       "id": "1lddr2N8YwCU1JU453UlG5t55yNKgOHfu",
+       "size": 58737932,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_162441.mp4",
+       "id": "1iWFrY9DRUkU6NQxEaKoBYhedvGhH5sZQ",
+       "size": 14363238,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_162554_견갑대.mp4",
+       "id": "1KyogiAAVBYFO-r5h88Ofs0_58-pXIhxW",
+       "size": 95307676,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_162750_호흡.mp4",
+       "id": "1-A8slUMZu0ZGwNLk9h3rSKJyqPEbVM5q",
+       "size": 57700301,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_162930_견갑대_호흡.mp4",
+       "id": "1ZiZ1mXLTYw2B6pFmze3iX0fpPv7BMyXq",
+       "size": 86098600,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_163151_요추.mp4",
+       "id": "1-ciWADNgrAnuvmh5vgNy10XEUqgrd3vo",
+       "size": 29938573,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_163320_호흡_회전.mp4",
+       "id": "1bGtWqvmP3YVjZBUs4vVuaqmRqrbjvx36",
+       "size": 166142999,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_163648_복강내압.mp4",
+       "id": "1_LbFaq_6kXM8IX0FQm6cX9G8dQ4TVM38",
+       "size": 80589044,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_163836_복강내압_척추안정화.mp4",
+       "id": "1-JRYMyhl7npUxsBkwB7_-6XPAGfEef9g",
+       "size": 54988375,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_163947_호흡_근막이완.mp4",
+       "id": "1dYe0kJrWBRkfS7c5pPzmp4Xq2KsnGaaB",
+       "size": 55048269,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_164144_호흡_골반고관절.mp4",
+       "id": "1zQGgppnVUF35gi8F3JrK3C0bouRg_Ju_",
+       "size": 213967934,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_164545_호흡_흉추_발달자세.mp4",
+       "id": "1c1NxF8s2LT55k5gXwoDTFpoH6YYeu1DL",
+       "size": 125957683,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_164806_근막이완_발달자세.mp4",
+       "id": "1XJrw2xhTWPoKa5jB_GYAmfc-FgtMTMxW",
+       "size": 58557280,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_165413_호흡_골반고관절.mp4",
+       "id": "1MNGiIoUeEKWvM8AV0glIcazokYc9lk9k",
+       "size": 244509507,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_165848_골반고관절_발달자세.mp4",
+       "id": "18Fm9ocTCukvmrKjTkklfEfEcPuX05O61",
+       "size": 227155762,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_170306_발달자세_호흡.mp4",
+       "id": "1cclaZyg7xFB61t6D1PE-EkyIlXLrUfr_",
+       "size": 219824830,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_171121_발달자세_회전.mp4",
+       "id": "1f7teGMta5kPuG9ErV4SHrpJ9PwyYoZZZ",
+       "size": 43057776,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_171344_센트레이션_견갑대.mp4",
+       "id": "1AcVt872jPA5i3_qgnKsvXW8ImS7yUqmx",
+       "size": 13344666,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_172132.mp4",
+       "id": "1gUuKTlWhTZo_OH9bH1M-I6DpyMd0R9km",
+       "size": 23951937,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_172313.mp4",
+       "id": "1K2vkGBILBrzV28zK3dXq4eCFbccaocAJ",
+       "size": 81542152,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_172534.mp4",
+       "id": "1D2F_gnTVALE4_3Qi6LB-F4R1ZXo0UOZO",
+       "size": 40161718,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_172928_호흡_발달자세.mp4",
+       "id": "1RjkLwG4eGmv_Kw9SeQ5Ew8q3UOKk8KCl",
+       "size": 29381682,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_173003_요추_견갑대.mp4",
+       "id": "1v5Tpzd-irpZxwWu1X25uIZZE9mY7Enoj",
+       "size": 218407570,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_173919_호흡_골반고관절.mp4",
+       "id": "1T5IKFModGWCjm3XsgO_bt5VJzpfjPUuB",
+       "size": 222441137,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_174402_호흡_스쿼트.mp4",
+       "id": "1vmahVs7GOB1dv7s_RhIvOZdDBUc8By46",
+       "size": 102090547,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_174602_골반고관절_스쿼트.mp4",
+       "id": "1MwdCe75E1ARwMafCs2ftM7sV09h6P204",
+       "size": 261037257,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_175322_요추.mp4",
+       "id": "1_dm8gIDsLyWGeiFPptqstEB_HeHIDV7Y",
+       "size": 23488220,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_175441_호흡_골반고관절.mp4",
+       "id": "1srpHK7sW--WvZbBnga52amBSo1o_iFBv",
+       "size": 148184086,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_175753.mp4",
+       "id": "1q4ylJHQwRxfuWstzyieHH3EILfo8bOGM",
+       "size": 41315633,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_180035_스쿼트_골반고관절_평가테스트.mp4",
+       "id": "1pqUjYpXwe4C7w-0y9iSRp4TjFpBo5T7p",
+       "size": 520080319,
+       "kind": "video"
+      },
+      {
+       "name": "20251210_181011.mp4",
+       "id": "1VTbsk4oCw49SXcKCRDD80sE5--Sd1UH1",
+       "size": 694070,
+       "kind": "video"
+      }
+     ],
+     "video_count": 65
+    },
+    {
+     "name": "2일차",
+     "path": "03_임상코스_B(Basic_B)/2일차",
+     "children": [],
+     "files": [
+      {
+       "name": "20251211_101539.mp4",
+       "id": "1K5xUpXmtfXrt7Ng9wULot3CUsHwmeJwj",
+       "size": 143600925,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_101905.mp4",
+       "id": "1dHjaXR1aj_Jci6g5lMMtpmLVeW-9Y5Bu",
+       "size": 45040725,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_102128.mp4",
+       "id": "1hUD7NNFWCYjbg9PW1_YSDbUZNVJsaknI",
+       "size": 33835019,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_102236.mp4",
+       "id": "18s2gBhnt95I9rO4qwtj8Al4TAwfBbclP",
+       "size": 81303933,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_102439.mp4",
+       "id": "1Vn_azx2_NxPV4Vqr-y2VqOlcckqme6FJ",
+       "size": 23569329,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_102546_호흡_발달자세.mp4",
+       "id": "1GQCAXJIRu-4Gwwqo9y_dMjfSmXwNXLa-",
+       "size": 227437737,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_103019_호흡_발달자세.mp4",
+       "id": "1GrKaGQPcUM7-lqXixWZZAU5VHor4OogK",
+       "size": 435838981,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_103900.mp4",
+       "id": "1u1JMdP8Gq6Ki9pw2hSV8bd5Xozg5TPdd",
+       "size": 48469427,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_103955.mp4",
+       "id": "1cUxHKmrPJ86YO5AkGhnLxu4Dk4OCFBDE",
+       "size": 95878168,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_105024.mp4",
+       "id": "1dw1ST2pnONMLPdj6XEg_JIlbrtnapwbr",
+       "size": 40246053,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_105436.mp4",
+       "id": "1aH5gwUJo32Dlhn8ZKD0xnX1sS15w2lZJ",
+       "size": 8958707,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_105531_킨네틱체인_단계별동작.mp4",
+       "id": "1d5xgNAGRE0L4e1hAwF7lEh8iUGpqKqB7",
+       "size": 140488816,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_110423.mp4",
+       "id": "1zKkXbRjBWSbnHVEC9NqxgXgM-4xuxqwP",
+       "size": 3244965,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_110506_발달자세.mp4",
+       "id": "1jPvAZBcl-Wz4U5IcWSf9187qX7lvI_e2",
+       "size": 34300154,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_110903_발달자세.mp4",
+       "id": "12nYksmAPh1W3LqY82znLsl97KNEAM5a2",
+       "size": 16812143,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_110941.mp4",
+       "id": "16Rg2OrhDFsMnnLwsGrf9w6Cj-jXz0Hid",
+       "size": 47342809,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_111048.mp4",
+       "id": "1atczuSh30bmOtPC5gOx5qS1Ze9ATcxO4",
+       "size": 110195634,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_111632_견갑대.mp4",
+       "id": "19zHvVrqksyetGEgBbEzPpCw686oOlNMK",
+       "size": 46594921,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_114925_발달자세.mp4",
+       "id": "158tX-MzG4cNNzbfA_bkZgoveXM5gsGRU",
+       "size": 45817421,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_115231_발달자세_평가테스트_견갑대.mp4",
+       "id": "1RakO016WTUkSOG0l9hrCVVbAsgqIiG9P",
+       "size": 320794961,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_122235.mp4",
+       "id": "1BUADCzpVABg_Z-lg-wl6ULg3dP0Xr_Nv",
+       "size": 32120116,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_134357.mp4",
+       "id": "1Jgz9jsbUoOe28zx39C-xqDo2WxRybsVv",
+       "size": 27781425,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_134625_골반고관절_견갑대.mp4",
+       "id": "1Oz4rlArlVFjaTWFd0mBdnTq6EZ75yIk8",
+       "size": 127458722,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_134921_평가테스트_시연.mp4",
+       "id": "1_ngg4Ny5YCYeMeNcG9tUp3yYnu9q--Eu",
+       "size": 197470427,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_135938.mp4",
+       "id": "1jWwUPVJ-sf9-gjHBZrMOqGHuuXbxPGfq",
+       "size": 29930745,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_140329.mp4",
+       "id": "1-gUmqqw-As6-SNK6_DWtNFVKq2QeLwAz",
+       "size": 22935785,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_140403_견갑대_큐잉.mp4",
+       "id": "16DavfsNCHnnXoasxdt5bNuQXTtMdQlOj",
+       "size": 46859372,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_140503_회전.mp4",
+       "id": "1x7GXSOiQLXr9fAp57lFu9EmN42-Zc011",
+       "size": 42056109,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_141314_골반고관절_호흡.mp4",
+       "id": "1o1hdGz03eT3UCTVDYSzrKI_zae6cnWfW",
+       "size": 403542743,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_142112_회전_골반고관절.mp4",
+       "id": "1mZ_DYSk2HDVWZ3IU-VnzPomKPeIyqRSo",
+       "size": 162074571,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_142545.mp4",
+       "id": "1TeUeva9e9eZcWUqk7t64bHYUTAGjrjec",
+       "size": 20552549,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_142737_발달자세_복강내압_호흡.mp4",
+       "id": "1Np9qgXGsJpSoRnhqqIVIq156c7ssZ6bP",
+       "size": 236065087,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_143350_호흡_골반고관절.mp4",
+       "id": "17MljgxfQtruFvhpGz3IbAPAGsbLtMeBj",
+       "size": 86241456,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_143706.mp4",
+       "id": "1l53gebBU-iyOr2_y13U8OeKx72wMB3GQ",
+       "size": 64128459,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_143850.mp4",
+       "id": "1vT62pWKzvDZmh0TOroASdC49ezwRHDtg",
+       "size": 140142453,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_144655.mp4",
+       "id": "1sLXms4b7oTJQdCnDIgmt9oS6x0lcW7tf",
+       "size": 22048034,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_145244_요추_호흡_근막이완.mp4",
+       "id": "1Vh5ZzRx25OfLXWS2KYMf0Qu3wDFPovcW",
+       "size": 180009373,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_145606.mp4",
+       "id": "1a3kJlPuLmy0JK0L7sdEVXGvsWBsp_Yhr",
+       "size": 25601912,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_145703_치료테크닉_호흡.mp4",
+       "id": "1RMTeOu7WZGjpVqOpUeVgm2QuT5QLS5rQ",
+       "size": 203849022,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_151732_견갑대_회전_골반고관절.mp4",
+       "id": "1RK4nQIwdMv5n0uDaMQEeh8y05YOiIOwy",
+       "size": 286565046,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_152257_회전.mp4",
+       "id": "1a7EvXNATYvtwvI74RQI4msa-jS4JfUqB",
+       "size": 42949326,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_152421.mp4",
+       "id": "1r7tHi6NMOb8zfH1TLm88pOMViclhPr94",
+       "size": 51177419,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_153139.mp4",
+       "id": "1Rbk0uiav8JwVnZ1V0Ie2I1koBYvyU1i_",
+       "size": 29633942,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_153220_시연.mp4",
+       "id": "1AiKI49p67xoSvuI8xexsDlrCJbe3zdp5",
+       "size": 56143603,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_153348_코어.mp4",
+       "id": "1RKEwi3oierIGRpipUehxYy1zculFr44l",
+       "size": 84642893,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_153652_근막이완_회전.mp4",
+       "id": "1RkZvnLA85hdTV3BY5Fb4XR4ru4O0rehj",
+       "size": 349594449,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_154447_요추.mp4",
+       "id": "1lURX7fLIdp-2DbXR3yk1G-KreIPJeVXh",
+       "size": 76609231,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_154726_회전_시연.mp4",
+       "id": "1K_0EXgH7NDkiKzCDyuvK0Sv_U2eNAh0W",
+       "size": 91076892,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_155359_견갑대_발달자세.mp4",
+       "id": "15VxX4odKwNlHIiRtwbekDbNsgrk6oEPQ",
+       "size": 63814991,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_155553_골반고관절_견갑대_회전.mp4",
+       "id": "1CPtjKoiBCGG-tjpR6m3VDOIeb0SDRMRd",
+       "size": 197391206,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_155939_회전.mp4",
+       "id": "1E-JBBISTTSFcNo0-7syJQMp24e8FFjap",
+       "size": 39345735,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_160255.mp4",
+       "id": "1aYW5dcXXX_YHE1cuzWYx89lTZIOE2-T_",
+       "size": 10161783,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_160437.mp4",
+       "id": "1dhcoxSilMC0ZKotS9YXoLFC5emfHiviD",
+       "size": 50376518,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_160539_코어_평가테스트.mp4",
+       "id": "1a-mtWa9ZX75GXmTnajb_kZBXwY3TdK2c",
+       "size": 49129713,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_160659_근막이완_센트레이션_골반고관절.mp4",
+       "id": "1Ozv_FOb6YTas0f5RkjwkpHWRYb1XPK-3",
+       "size": 186257761,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_161310.mp4",
+       "id": "128RHRtM9vY9a8Qf355q7SvmDYiQDlRri",
+       "size": 14841127,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_161515_호흡_발달자세.mp4",
+       "id": "1od-ccjei47wVZ47kkeqJlbyIZcHc5dAj",
+       "size": 144804276,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_162421_코어.mp4",
+       "id": "1-PX_DHwl4F4VqzEl7K_7RKRQNAreEVgt",
+       "size": 44980029,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_162901_견갑대_호흡.mp4",
+       "id": "137h1o0bXCwaS5G53m1gcqPghIsu1veYo",
+       "size": 231275608,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_163651.mp4",
+       "id": "1CFXQqFiIHG-HF72mrzH20sVBczjyosd3",
+       "size": 53388604,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_163810_견갑대.mp4",
+       "id": "10dZ1zmgwFn7CubdTU_8rc_VNHq2hqAfU",
+       "size": 22676563,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_163837.mp4",
+       "id": "1Dw5kv1w-asv17V_1lzjJfwvfLeRsHaES",
+       "size": 2014806,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_163858.mp4",
+       "id": "1Rtzp4q6Q5A5_xMH8gznQis8tghtXEVKx",
+       "size": 27151711,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_164042_회전.mp4",
+       "id": "1kr9fmePBwrGDJBvfBHkxBmPWCatErpQU",
+       "size": 76719451,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_165909_회전_발달자세.mp4",
+       "id": "1OlY9t0Pkcip0iE2bJHI7IyDGELoyJiAb",
+       "size": 74312517,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_170449_견갑대_요추.mp4",
+       "id": "159nY0sXWUSawLGlZcFhPBk8tUT9Q4moB",
+       "size": 256512511,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_171447.mp4",
+       "id": "1swgR0_SiZF3meLG7Ro4Yl81eZwBaJt2Z",
+       "size": 8575245,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_171738_호흡_골반고관절.mp4",
+       "id": "1bPv-A2AE0zzilJRFNBUbpkGeUp1FSefB",
+       "size": 67512867,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_171858_호흡_회전.mp4",
+       "id": "18A-SEKXqvRe98ye-75tiTgCCiYZi_DKY",
+       "size": 99500734,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_172113_호흡.mp4",
+       "id": "1NV1P1B1mP7-hVWXtZXIM8aUb9X35u8LT",
+       "size": 74722483,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_172352.mp4",
+       "id": "1BRr9NvQPdUFsPbZ6z15XxRzqntwg3qv-",
+       "size": 248106863,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_172857.mp4",
+       "id": "1Hcgf3vIi4UX2C_EA0yCTUq5BYml4B3MM",
+       "size": 85264375,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_173602_척추안정화.mp4",
+       "id": "1O9BlV_QzRzX_AIuEIijKE44Zm4G1_JMh",
+       "size": 37752848,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_173703_발달자세_스쿼트.mp4",
+       "id": "1cDPr9f8mFYw7GGg2TrbdO7aNyKXbS74q",
+       "size": 122377092,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_174043_요추_센트레이션_척추안정화.mp4",
+       "id": "1gcak16qrFYE7TA6ZkF0HzCcVa_NnUpkQ",
+       "size": 208277261,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_175415_견갑대_킨네틱체인.mp4",
+       "id": "1icUmcGmpLkEHVf_Mx_RnOTSK2N3JXEZB",
+       "size": 85385792,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_175614_견갑대_골반고관절.mp4",
+       "id": "1eVvhoYFH99XIjQdopefBUdpYG72ZUaNv",
+       "size": 98477902,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_180220.mp4",
+       "id": "1PkV5P0OB48cYw3fSCSE7kyx7Q4-URxvK",
+       "size": 14051644,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_180247.mp4",
+       "id": "1yCcrymrL7PwzGr6rclXBGBl1KQcenIEf",
+       "size": 19212863,
+       "kind": "video"
+      },
+      {
+       "name": "20251211_180500.mp4",
+       "id": "1AamiW8UNjZwk0ODur_-WWGtHhuo_qRMJ",
+       "size": 126142236,
+       "kind": "video"
+      }
+     ],
+     "video_count": 80
+    },
+    {
+     "name": "3일차",
+     "path": "03_임상코스_B(Basic_B)/3일차",
+     "children": [],
+     "files": [
+      {
+       "name": "20251212_101043_회전_골반고관절.mp4",
+       "id": "1lfRZwi-wBOhFhwnkrPEIJNujvDslKkB4",
+       "size": 57025690,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_101248.mp4",
+       "id": "1Q4Bv6Dpqlb_9zjRzJA7R9-wuvDPC41Aa",
+       "size": 58590499,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_101502_호흡_벤치프레스.mp4",
+       "id": "1HBOn2IUbpEbLm7zzIAaLoqtAQP8gtj_a",
+       "size": 80877071,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_101738.mp4",
+       "id": "1FgJ8go7VxXGYtkFwPm21sfEd_zhuMRHU",
+       "size": 58756317,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_101907_척추안정화_발달자세.mp4",
+       "id": "1yY0vQcv1ZxWOBIVi0COqHR3g6z1PJGO8",
+       "size": 61288225,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_102019_호흡_코어.mp4",
+       "id": "16pCWcUjaWmZ83HAEHjxlOgqPs89hoETP",
+       "size": 24908263,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_102229.mp4",
+       "id": "1yBBFuSAct9R6SMmTx4ZCJKmNgHrS9KYi",
+       "size": 1581728,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_102557_호흡_발달자세.mp4",
+       "id": "1OUC1atYtZhiZox9HN3YBehfaYkTvuIsq",
+       "size": 92448979,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_102744.mp4",
+       "id": "1pYYtrJadjaChsajXheXoerCkonSRwflj",
+       "size": 7067703,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_102754_회전_흉추.mp4",
+       "id": "1HDN75KUQKZhVbnHNaG6UFikvCirPWjPr",
+       "size": 193438394,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_103134_호흡_스쿼트.mp4",
+       "id": "1JTHCP-nuRlA6ZZHbCfLGo0uMro28Rixm",
+       "size": 115763159,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_103724_발달자세.mp4",
+       "id": "1gfmmwUrKpufbA4ydJehi30mSt25KkNV-",
+       "size": 76057708,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_104621_발달자세_호흡.mp4",
+       "id": "1ZDk1m0jt0qfuOJmMAjyh-JZaHgr2kcZm",
+       "size": 115335793,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_104843_발달자세.mp4",
+       "id": "1A8iLywcdPYrXTUySX0imT_e2cDE-GKjr",
+       "size": 119069559,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_105137.mp4",
+       "id": "1IHKVpuW9ILIE3n20GCXydpyKAxKV_wCk",
+       "size": 28588478,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_105223_발달자세.mp4",
+       "id": "1mbSHXEKGdKIT3Aj2T_AnKciAdqpAZSPG",
+       "size": 113771041,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_105441.mp4",
+       "id": "173Yl9gLBZMy_uMzprJOk1fJluEc0rDtc",
+       "size": 30309732,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_112934_평가테스트_단계별동작.mp4",
+       "id": "1l548k1pvMXcqRQzlEFmOATgZTUbd2ahm",
+       "size": 42821887,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_113131_단계별동작.mp4",
+       "id": "1CrldmfbEzlHF7uXGQsJhjF-10Ufdx1G7",
+       "size": 122552491,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_113727_골반고관절.mp4",
+       "id": "1v2oPdSm2RkK8QMzBhh8r-C4cAGv3GbDB",
+       "size": 91620839,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_113927_평가테스트.mp4",
+       "id": "1b6R1pQ9oQnAlVHD7ANHNFMcVsBn5IabG",
+       "size": 37726978,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_114020_단계별동작_평가테스트.mp4",
+       "id": "1X55UxB43VSVdv0NAjIl0a6a-Dihg-o1-",
+       "size": 68278575,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_114329_호흡_회전.mp4",
+       "id": "1kLq7CPhzmxzHBH2ammfm3W3d_gy9eUpj",
+       "size": 220037740,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_114907_골반고관절_평가테스트_견갑대.mp4",
+       "id": "13OkRibfdC1_ew1GrqnVmG_BAGug5j7Tx",
+       "size": 530346139,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_115932_발달자세_시연.mp4",
+       "id": "1VBuhJ6JHn1jGTfuSAkL5QgG64X7QnR65",
+       "size": 21102326,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_120001_척추안정화_견갑대.mp4",
+       "id": "1eZgeCN162eBftIE-N1B_bm7G7BcckyVD",
+       "size": 121242117,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_120921_호흡_골반고관절.mp4",
+       "id": "1HfInHS9gikbNuoKRgkztd8wpeZzhM3Wf",
+       "size": 191063995,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_122516_호흡_평가테스트.mp4",
+       "id": "1peS_jKZwSp3q1QpAQJ7vj27rdi5yVTyz",
+       "size": 168877137,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_122941.mp4",
+       "id": "1CmKnjM7-YGlknFwOYadq_NCNRHlc-cCN",
+       "size": 109342837,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_135305.mp4",
+       "id": "1p3qG6Akbk7vt_Q-2VhP5vfDC4Rzh7v8c",
+       "size": 2458870,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_135337_골반고관절_견갑대.mp4",
+       "id": "1I7v12praP9qzkmfdUxOc4gW4k77MY4EX",
+       "size": 175591127,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_135944_견갑대_회전.mp4",
+       "id": "12V09b2Hom74Ppv7hAUzQMl5uVYoEY0kJ",
+       "size": 134588972,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_140323_견갑대.mp4",
+       "id": "14KmqK59FnN0VQjjYTHlf09tD2asCdTwd",
+       "size": 52797922,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_140639_회전.mp4",
+       "id": "1UJzPKnXhGmhgp-q1-SNyf42d75wmfFP8",
+       "size": 129830362,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_140953_근막이완_단계별동작.mp4",
+       "id": "1M1EwLKSmnDCMZOJ0CYWphfAVX7L60rTo",
+       "size": 155933944,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_141522_호흡_견갑대_발달자세.mp4",
+       "id": "1kMP9f9WApz_wVq4dyOigjPLC7NnAq0pM",
+       "size": 349568884,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_142217.mp4",
+       "id": "1XdrDiNO87MZ-lu7D-GgBy8PTrQq8yBid",
+       "size": 39518902,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_142327.mp4",
+       "id": "1tFQx2BYx3L3NvDQ4gBYBDs2YJ9-yUcHO",
+       "size": 10448080,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_143235.mp4",
+       "id": "1-luza0Bw98675ILzhmAMHlhfY77Zl8dk",
+       "size": 173689474,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_143758.mp4",
+       "id": "19B6nDz1uu0GqHCz94Ww-tOPJEh0YMNNz",
+       "size": 16060100,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_143838_호흡.mp4",
+       "id": "1VXAlU2PdOU-CRAF_0THOG2sVq-quzGG1",
+       "size": 22380096,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_144150_호흡.mp4",
+       "id": "1l4zaCXylja2I8LL5KGYFYBG1LLQRqFM2",
+       "size": 34316386,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_144257.heic",
+       "id": "1Kpf1j-19ru7hbvwmBPfYuGmGX-3dDdg_",
+       "size": 481323,
+       "kind": "image"
+      },
+      {
+       "name": "20251212_144301.heic",
+       "id": "1OjYQSHrq6jdyy3kA33fF-JkGSp5vXhiv",
+       "size": 481624,
+       "kind": "image"
+      },
+      {
+       "name": "20251212_144310.mp4",
+       "id": "1WTX8Jhfi_eJoq33934m-qcsEOvnG5u-7",
+       "size": 6706858,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_144608_호흡.mp4",
+       "id": "16RKUW8VYuQl_M0gwEX_Zt7sJGR2xINBw",
+       "size": 30111225,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_145102_골반고관절_견갑대.mp4",
+       "id": "1Bw4Lc3XSDwUfNJi_AvtDiPUvpra6hiJq",
+       "size": 148973178,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_145408.mp4",
+       "id": "1d53HpUED9i2POTOobsYkLisEMzqCBviZ",
+       "size": 95066595,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_150309_견갑대.mp4",
+       "id": "1k802I7KwXb8tSOx4w_aqPMSp_sGZEtAm",
+       "size": 44776852,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_150456.mp4",
+       "id": "1A7C43OcLWHPTz8X27nU-BMB9_VYmgRUh",
+       "size": 29199710,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_150844.mp4",
+       "id": "1F8pjOdIIydoqpeI9HPqswwzU8AOw2PLl",
+       "size": 12347572,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_151020.mp4",
+       "id": "1Orzwj92MwZFSXJLHwzuF4vFtxUY52Lcp",
+       "size": 9860253,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_151058.mp4",
+       "id": "16RndTxlzokmr0U6ouptra-VB6UgNEOEu",
+       "size": 4488504,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_151157.mp4",
+       "id": "1YcJpiT6Fh--jccVI_XoGNzJB8EATKVgc",
+       "size": 37899262,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_151255.mp4",
+       "id": "1pRYOIMoo7Xuhw0Rhni01KFdMXmlPsnTb",
+       "size": 16317400,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_153038_호흡.mp4",
+       "id": "1lAnSqqwhFZHYoAXX4PZmivmD4IobeBqr",
+       "size": 18397171,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_153121.mp4",
+       "id": "1ZHAOfB-YAHkDk6rYR7ADPWlXx315N-JU",
+       "size": 8085414,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_153140.mp4",
+       "id": "1n1dyTPXT3ZSrMoaBLG0SyunLyPys9qr7",
+       "size": 24564845,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_153533_골반고관절.mp4",
+       "id": "1OEcArI4x2NgyUZfZS4N2vvx8B2-wLfel",
+       "size": 43225053,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_153943_회전_요추_발달자세.mp4",
+       "id": "1xOLz0u4CTwtspPj5DQtbYx8k6by96xWl",
+       "size": 307753540,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_154525.mp4",
+       "id": "1Iv7NRQ6462ghvY5MiB-Lij-hAoRZLEbY",
+       "size": 43888825,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_155444_요추_발달자세.mp4",
+       "id": "1J2YAZYF2IajT6DnVoY5zEfIoDdpd3WOI",
+       "size": 91479281,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_155843_골반고관절_평가테스트.mp4",
+       "id": "1PSzkNHrz7jIHGeam84zNz4W-vgooyp37",
+       "size": 10074921,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_155857_코어.mp4",
+       "id": "1oaKY9VNvffa2zRqxaaqcXN99c0LhuI4S",
+       "size": 81124887,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_160216_회전_킨네틱체인.mp4",
+       "id": "1hMvuEoqDHRaik4k-gVQ_fXBI6zkbWbq1",
+       "size": 28629627,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_160641_파워리프팅.mp4",
+       "id": "1g0FmQn6kDDrVSB2Xdi2hJD30E51P1i6y",
+       "size": 84169995,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_160824_호흡_발달자세.mp4",
+       "id": "1lmX1MncXCdHTqiqMZWAoUPz8iaNkXH4Y",
+       "size": 252776084,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_161305.mp4",
+       "id": "1oPxrfitJT5akBq1jxkKqP8QkiP85LJnX",
+       "size": 45590609,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_161417_호흡_발달자세.mp4",
+       "id": "1GnHBQeW0wSyn4W9S1SH1Y1S4u1RCZKf3",
+       "size": 106126379,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_161820_스쿼트.mp4",
+       "id": "1u-O3dOoghqkDlcnuvj7BU0snj6HrhQc2",
+       "size": 6211000,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_161856.mp4",
+       "id": "1GH10tQzALCRzjwRRfi447c_HK2NEkYvV",
+       "size": 4106861,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_162020.mp4",
+       "id": "15GkNC-AaWDXJ29I12snQmQtOg8m5deI0",
+       "size": 16948644,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_162435.heic",
+       "id": "1152gkq-5M4ZfkGpybUCktorFJO6X3IvK",
+       "size": 1462605,
+       "kind": "image"
+      },
+      {
+       "name": "20251212_162439_회전.mp4",
+       "id": "157ANlbX5BSywCvToHNupxPQ1YIIpJs5E",
+       "size": 15767994,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_162511.mp4",
+       "id": "1VK1cUDO555Bi8zzVByMgGtzODMHfRK4Z",
+       "size": 48620044,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_162616_벤치프레스.mp4",
+       "id": "1LkKPeq9wy6W6yCnq4KxCU-x0bqPicuWO",
+       "size": 17777970,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_162739_회전_견갑대.mp4",
+       "id": "1mD9hxPhikRSR8lZR8tePLqWmCmo7HTP7",
+       "size": 57818969,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_163023.mp4",
+       "id": "1mxXdMD0oRUzBFZbXx8iDuSa9Mh5pgXz7",
+       "size": 13047086,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_163047.mp4",
+       "id": "1x0ck-RMK5SV538zEFpcFxX7q-BcDw6T5",
+       "size": 26774135,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_163204.mp4",
+       "id": "1eJJtO60lfjBCJuugp0-Z5CKMEJmCypmc",
+       "size": 13433559,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_163221.mp4",
+       "id": "1J5DB8UPTnfmJAlm1nc4wA92SOGqANyMD",
+       "size": 4104831,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_163415.mp4",
+       "id": "1JSWjk1Fk_2JzBJx9mjKkoAxeZjab0bkp",
+       "size": 56498698,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_163636_스쿼트.mp4",
+       "id": "1LLKwGE2jCKCm7naEoSLZohlDEKCWZswu",
+       "size": 116489331,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_164244_골반고관절_단계별동작.mp4",
+       "id": "1SJzOmnIFoyieunARivLJwaCgDO840RPL",
+       "size": 284976576,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_165213_근막이완.mp4",
+       "id": "1bRbJnrs_eOoA1Jnb5nMxiC26w2t_HoF3",
+       "size": 36921523,
+       "kind": "video"
+      },
+      {
+       "name": "20251212_165259.mp4",
+       "id": "1svq0eDRDSk6o95NU7ZMo31WHH--EL0Z7",
+       "size": 5001453,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_20251212_153106615.mp4",
+       "id": "1eGaT5qUqpmeL6tcREkh7gAPCNcYgH0TQ",
+       "size": 5994001,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_20251212_155743037_발달자세.mp4",
+       "id": "1Ko187APM0Ap3vjYNyU0-YfSJ7XX1nNgq",
+       "size": 23368646,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_20251212_161940708.mp4",
+       "id": "1VtmWlLZOZzzGenkoEJ7YzZqBjafTqTfZ",
+       "size": 4711387,
+       "kind": "video"
+      }
+     ],
+     "video_count": 86
+    },
+    {
+     "name": "DNS B 코스북",
+     "path": "03_임상코스_B(Basic_B)/DNS B 코스북",
+     "children": [],
+     "files": [
+      {
+       "name": "1_DNS_B_Ontogenesis.pdf",
+       "id": "1_IkoK-zJ4r6o78lsI1jdUvXZPqW4PIsh",
+       "size": 2153889,
+       "kind": "doc"
+      },
+      {
+       "name": "2_DNS_B_Assessment.pdf",
+       "id": "1EmsAQ4ymXvbujR286KjoduxkEGeFWAK-",
+       "size": 3362102,
+       "kind": "doc"
+      },
+      {
+       "name": "3_DNS_B_Therapy.pdf",
+       "id": "1QJD9V0QqUrCJ3txbzlXu05Raz12TyIHz",
+       "size": 3213497,
+       "kind": "doc"
+      },
+      {
+       "name": "4_DNS_B_Applications.pdf",
+       "id": "1NS9vpPXR24YipkbQPN0dfrcQtmb6Wr88",
+       "size": 4216678,
+       "kind": "doc"
+      },
+      {
+       "name": "Course_information.pdf",
+       "id": "1Vm2AVtLubwXGEbj_MOxaGBU15_PhC5S1",
+       "size": 1711763,
+       "kind": "doc"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 231
+  },
+  {
+   "name": "04_임상코스_C(Intermediate_C)",
+   "path": "04_임상코스_C(Intermediate_C)",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "04_임상코스_C(Intermediate_C)/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "04_임상코스_C(Intermediate_C)/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "04_임상코스_C(Intermediate_C)/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "04_임상코스_C(Intermediate_C)/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "04_임상코스_C(Intermediate_C)/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "10_VB9t_GD-XEkIhVPuvkvXi-ImpZxGxw",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "05_임상코스_D(Clinical_D_인증)",
+   "path": "05_임상코스_D(Clinical_D_인증)",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "05_임상코스_D(Clinical_D_인증)/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "05_임상코스_D(Clinical_D_인증)/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "05_임상코스_D(Clinical_D_인증)/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "05_임상코스_D(Clinical_D_인증)/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "05_임상코스_D(Clinical_D_인증)/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1cAXw3n3WU2P8-S_GFnvAoii7Lcvf2-Ue",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "06_Exercise_Course_PartI",
+   "path": "06_Exercise_Course_PartI",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "06_Exercise_Course_PartI/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "06_Exercise_Course_PartI/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "06_Exercise_Course_PartI/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "06_Exercise_Course_PartI/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "06_Exercise_Course_PartI/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1SVHybbPm17sIjcWgknaaVwfCpz_gEDHi",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "07_Exercise_Course_PartII",
+   "path": "07_Exercise_Course_PartII",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "07_Exercise_Course_PartII/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "07_Exercise_Course_PartII/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "07_Exercise_Course_PartII/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "07_Exercise_Course_PartII/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "07_Exercise_Course_PartII/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1vUnTrOQ86l_WD9rJxCrTlTzelGknjTVY",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "08_Exercise_Course_PartIII",
+   "path": "08_Exercise_Course_PartIII",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "08_Exercise_Course_PartIII/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "08_Exercise_Course_PartIII/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "08_Exercise_Course_PartIII/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "08_Exercise_Course_PartIII/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "08_Exercise_Course_PartIII/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "13vg0ggGxyOKjk93wMbTcVtTRPti_ApHf",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "09_Strength_Training_PartI",
+   "path": "09_Strength_Training_PartI",
+   "children": [
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "09_Strength_Training_PartI/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "1일차",
+     "path": "09_Strength_Training_PartI/1일차",
+     "children": [],
+     "files": [
+      {
+       "name": "20260106_122922_호흡_발달자세_평가테스트.mp4",
+       "id": "1QNFg2mlnuVpbuBenFDPy7TnikTqNn9Rf",
+       "size": 944802023,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_125640_호흡_근막이완_벤치프레스.mp4",
+       "id": "1moJ11qKWELs5BeRmIGOK-1Wpgnm-rydG",
+       "size": 517416196,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_142251_평가테스트_단계별동작_발달자세.mp4",
+       "id": "1FGNbf0RoIGzkiS65Cz4l5sdhGXHHtjxV",
+       "size": 1395198526,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_145757_호흡_척추안정화.mp4",
+       "id": "1vDqZbV_S4B7dmx0xGp6p69J4icfAxvqI",
+       "size": 517256642,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_150733.mp4",
+       "id": "1D7o_xJDWz7Cn1LJOPB2Hamzuw98zrrvo",
+       "size": 113348785,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_151813_발달자세_호흡_골반고관절.mp4",
+       "id": "1D9NnUQVxkqAKfgcZSwLNgtkm651vE9kf",
+       "size": 683088040,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_154126_벤치프레스_발달자세_견갑대.mp4",
+       "id": "1LTv_nbBo6_8jFqkA7fc6FiI0mVOP2lWL",
+       "size": 600784294,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_155245_파워리프팅_발달자세_호흡.mp4",
+       "id": "18vn3YRhSTUbhuYyKjdOnZSfRYc0I5eUs",
+       "size": 611008912,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_161836_벤치프레스_견갑대_치료테크닉.mp4",
+       "id": "1ficM8yd0WlFrQSU31Oj9owaCO16Y9cMs",
+       "size": 1726546524,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_165021_호흡_요추_데드리프트.mp4",
+       "id": "1DSFadai33e0a0EkZHJmra6Dfy2CWSxei",
+       "size": 532807606,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_170941_견갑대_벤치프레스.mp4",
+       "id": "1jXULv9zECbhUI_acj5HnRapyGXak1gVh",
+       "size": 413492015,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_171723_견갑대.mp4",
+       "id": "1JkDr4juEo62eIrliho81W3MUY80MPrEi",
+       "size": 85718807,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_172446_견갑대_요추_호흡.mp4",
+       "id": "1DsMo6KRKX0wab8R2w-sRSqAyFReUfkUR",
+       "size": 316300750,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_173050_벤치프레스_척추안정화.mp4",
+       "id": "1DCHoWUdWET3ldm3X68LzZ5HKqPr1-Cw7",
+       "size": 254138245,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_174335_견갑대_발달자세.mp4",
+       "id": "1an_U9MtSbrCRtFEbOhXpvaMID-ba1oGy",
+       "size": 182187381,
+       "kind": "video"
+      },
+      {
+       "name": "20260106_174711_견갑대_벤치프레스_발달자세.mp4",
+       "id": "1BLYcLXECQDmVkxHqLM041ykcCdIK9QpD",
+       "size": 445155835,
+       "kind": "video"
+      }
+     ],
+     "video_count": 16
+    },
+    {
+     "name": "2일차",
+     "path": "09_Strength_Training_PartI/2일차",
+     "children": [],
+     "files": [
+      {
+       "name": "20260107_110244_벤치프레스_호흡.mp4",
+       "id": "13BIgIKitp7Z0Ht2Gtji2lvJTk3k3I7aT",
+       "size": 52195747,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_115826.heic",
+       "id": "1Vp1fOhatn27qoJYuTrRQwV47UFt4cAjs",
+       "size": 861568,
+       "kind": "image"
+      },
+      {
+       "name": "20260107_115829.heic",
+       "id": "1l4ygtAxgIHwxZWsCE5g2x9Au_U7Vh08n",
+       "size": 752436,
+       "kind": "image"
+      },
+      {
+       "name": "20260107_122606.heic",
+       "id": "1Jhd0VLffJTyfYKGV6EgtyTSaKKSGaVp-",
+       "size": 486206,
+       "kind": "image"
+      },
+      {
+       "name": "20260107_141814_복강내압_요추_발달자세.mp4",
+       "id": "1WH7d8drLzkwmmijHsD2DfXCmDHp0RX6y",
+       "size": 734180241,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_143407_견갑대_회전_발달자세.mp4",
+       "id": "1JN_wJ-UqbahhVITJE-fxhIpxcvrHuwLi",
+       "size": 571379959,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_145256_호흡_견갑대.mp4",
+       "id": "1zEwqAW1eMcEuXDXbEW2o4HL4zkqCHiW_",
+       "size": 708931310,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_150804_발달자세_호흡_골반고관절.mp4",
+       "id": "1ZsfVMx1JVbbNjeETAYq9mFFpa34xPjr2",
+       "size": 933183797,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_153229_발달자세_센트레이션_근막이완.mp4",
+       "id": "11aO9ndnzxL6JohoYR52Q5Bto8XpwWlFJ",
+       "size": 475595261,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_154134_발달자세_견갑대_흉추.mp4",
+       "id": "1y-jep02wXtaCup2fsvKeRdteQF4A41NG",
+       "size": 360372394,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_155427_호흡_견갑대_발달자세.mp4",
+       "id": "13JBHVtBUe-esN3_Yw_WYIsoeI93ABOzF",
+       "size": 336201518,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_161413_발달자세_골반고관절_데드리프트.mp4",
+       "id": "1Zn-eT3zMzy262mG5IlG1nioMH9Oa-VUb",
+       "size": 440453844,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_162242.mp4",
+       "id": "16_4sQw0iVtUb1HqSef3Qa3lxCn5JUxAU",
+       "size": 123068681,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_163243_호흡_데드리프트_시연.mp4",
+       "id": "1mRP6kUoXigGJCFzymulIql7wSUrR77vt",
+       "size": 1056555560,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_170027_호흡_골반고관절_근막이완.mp4",
+       "id": "1sme373UwixfEf9p8WRBR2xgMkKlhNRaW",
+       "size": 575462866,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_171132_호흡_파워리프팅_킨네틱체인.mp4",
+       "id": "1YXl_Q0G49i0y1h4I46fo_TFbthafW5MU",
+       "size": 540477983,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_172954_호흡_데드리프트_킨네틱체인.mp4",
+       "id": "1QNedJ7LAvvY2N-RpMx0--8mPOQBQA582",
+       "size": 414678998,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_173737_골반고관절_복강내압_호흡.mp4",
+       "id": "1hzqgqSXVMQ0biTdouJ3i7gnsd3pHiVGW",
+       "size": 307605495,
+       "kind": "video"
+      },
+      {
+       "name": "20260107_175049_스쿼트_요추.mp4",
+       "id": "1maLvDR4q9T5cufg9UEAmBWkdLJ3DRQ4X",
+       "size": 151759062,
+       "kind": "video"
+      }
+     ],
+     "video_count": 16
+    },
+    {
+     "name": "3일차",
+     "path": "09_Strength_Training_PartI/3일차",
+     "children": [],
+     "files": [
+      {
+       "name": "20260108_091008_호흡_치료테크닉_복강내압.mp4",
+       "id": "13j2vhzAWMnGME30E16ByGrRi5CN1uD87",
+       "size": 775049391,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_092548_호흡_근막이완_횡격막호흡.mp4",
+       "id": "1Qm2TIrNfxKfefmuXEw3lV030AFKooFt4",
+       "size": 351483397,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_093249_호흡_스쿼트_벤치프레스.mp4",
+       "id": "1F9Omt9oykeGLh2lA5PcjMxXiFNOXmOk4",
+       "size": 298114852,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_093832_발달자세_견갑대_회전.mp4",
+       "id": "1Vi_geRxrc9UeP_p6IIXNsbZ5ToqWWP0V",
+       "size": 471916607,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_095928_견갑대_호흡_척추안정화.mp4",
+       "id": "1znP3ieQGoYrvooSmVw0FMBNveDZw3JqN",
+       "size": 731053153,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_102153_큐잉_견갑대_발달자세.mp4",
+       "id": "1KLgZSmGDxAzyXaTQg8HNypHyQY_F9nFT",
+       "size": 286820319,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_102717_발달자세.mp4",
+       "id": "1qwc82oRoMoVyrYxeNo6LxdCEYWKSc67f",
+       "size": 64302034,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_103848_스쿼트_벤치프레스_발달자세.mp4",
+       "id": "1t4FfyrIz3NRiW4AI7-UKv1fCcHknyScg",
+       "size": 139185531,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_104214_호흡_척추안정화_골반고관절.mp4",
+       "id": "1eSPIKWbIZ2gsde-XO5WWM4xOI642grgN",
+       "size": 1468530663,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_111754_골반고관절_발달자세_스쿼트.mp4",
+       "id": "1xg7v__JNuqiIm_-TsXJbFxNlEinkRoEe",
+       "size": 695228868,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_113555_골반고관절_호흡.mp4",
+       "id": "1tYkGhMsVavTU5Qk-BMIY_vICb3-_o0kI",
+       "size": 1011759588,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_115520.mp4",
+       "id": "1UFpZ7vnEcFHkSSeMLZkYUf8nIqZ_FVBo",
+       "size": 4853790,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_120709_골반고관절_스쿼트_파워리프팅.mp4",
+       "id": "1fmdK6Uh6rLpl3Wbx54M8wu7QptatwPoM",
+       "size": 118860889,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_122705_견갑대_평가테스트_회전.mp4",
+       "id": "1j3vTzPX5lQm1m7Yvle0kmi97IYd_cnhA",
+       "size": 457140211,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_123531.mp4",
+       "id": "1GsyyHQYnWdhG1Yn4wD6-py-WD2azIcmz",
+       "size": 3229728,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_124036_회전_골반고관절_견갑대.mp4",
+       "id": "1uYoD45f7z19A1MXHEQJpaCAiTbYQF4ke",
+       "size": 404485655,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_125459_발달자세_견갑대_호흡.mp4",
+       "id": "1pc1I68eiEGw6Efx3MCyMzVDZFqVRtK8j",
+       "size": 257619126,
+       "kind": "video"
+      },
+      {
+       "name": "20260108_130104_호흡_스쿼트_벤치프레스.mp4",
+       "id": "1hbf8Pf3gUZLA5rGQ25_giSlmNNCXoD0r",
+       "size": 227077837,
+       "kind": "video"
+      }
+     ],
+     "video_count": 18
+    },
+    {
+     "name": "DNS ST 코스북",
+     "path": "09_Strength_Training_PartI/DNS ST 코스북",
+     "children": [],
+     "files": [
+      {
+       "name": "Course_information.pdf",
+       "id": "1w6QNUyy3iT0nRmM5wF_mPGnyQGWDvLRm",
+       "size": 998254,
+       "kind": "doc"
+      },
+      {
+       "name": "DNS_Strength_Training_1_JN.pdf",
+       "id": "1URMi_jPdUN0o0X6CoEppIeVph3Zw8ll2",
+       "size": 37127367,
+       "kind": "doc"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 50
+  },
+  {
+   "name": "10_Strength_Training_PartII",
+   "path": "10_Strength_Training_PartII",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "10_Strength_Training_PartII/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "10_Strength_Training_PartII/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "10_Strength_Training_PartII/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "10_Strength_Training_PartII/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "10_Strength_Training_PartII/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1tZ22OumezDcPC6LKjBotF7z3rdItE8og",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "11_Strength_Training_PartIII",
+   "path": "11_Strength_Training_PartIII",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "11_Strength_Training_PartIII/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "11_Strength_Training_PartIII/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "11_Strength_Training_PartIII/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "11_Strength_Training_PartIII/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "11_Strength_Training_PartIII/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "10HsyreAJ5IMhJ__z7uQkUWaUy0WsgZ_i",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "12_Pediatric_Course_Part1",
+   "path": "12_Pediatric_Course_Part1",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "12_Pediatric_Course_Part1/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "12_Pediatric_Course_Part1/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "12_Pediatric_Course_Part1/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "12_Pediatric_Course_Part1/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "12_Pediatric_Course_Part1/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1le-7eZ3sRLwKafkJegoGEI3Vv2-ozhA_",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "13_Pediatric_Course_Part2",
+   "path": "13_Pediatric_Course_Part2",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "13_Pediatric_Course_Part2/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "13_Pediatric_Course_Part2/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "13_Pediatric_Course_Part2/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "13_Pediatric_Course_Part2/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "13_Pediatric_Course_Part2/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1iIbizwuQmyuEW37ZY7PJWZnrv-fk-utT",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "14_Pediatric_Course_Part3",
+   "path": "14_Pediatric_Course_Part3",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "14_Pediatric_Course_Part3/01_강의영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "14_Pediatric_Course_Part3/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "14_Pediatric_Course_Part3/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "14_Pediatric_Course_Part3/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "14_Pediatric_Course_Part3/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1F30AATm0PsvXIZamA-Hp-Qgw1-9dTYoE",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "15_Skill·Special_코스",
+   "path": "15_Skill·Special_코스",
+   "children": [
+    {
+     "name": "FIT_KID",
+     "path": "15_Skill·Special_코스/FIT_KID",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Foot·Gait(족부·보행)",
+     "path": "15_Skill·Special_코스/Foot·Gait(족부·보행)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Lumbar_Spine(요추)",
+     "path": "15_Skill·Special_코스/Lumbar_Spine(요추)",
+     "children": [],
+     "files": [
+      {
+       "name": "IMG_6524_발달자세_견갑대_호흡.MOV",
+       "id": "1hzFPB3PIuAMQZlid3Jtx1D-uLmh46dzx",
+       "size": 854918176,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6525_치료테크닉_벤치프레스_시연.MOV",
+       "id": "1zj9QYssVf-SkgNaLp9YqWNZlvyAcTflV",
+       "size": 9460957,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6526_회전_견갑대_늑골.MOV",
+       "id": "1YFl9TCWC3uoACiLb_gOgoZ5qOsgxFi9x",
+       "size": 1013766077,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6527_근막이완_센트레이션_큐잉.MOV",
+       "id": "1AxtweH-50dVd1xb7jumeGzkv1pnW2cOj",
+       "size": 220612035,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6529_회전_발달자세_큐잉.MOV",
+       "id": "1-vrTX2yXEOhIrVBmxqsTAz_aZQNR0vsQ",
+       "size": 887353766,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6533.MOV",
+       "id": "1bsNA9Eo9E4TVcHkelpTdOZzAx3Pp3R3c",
+       "size": 53130194,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6534_골반고관절_회전_발달자세.MOV",
+       "id": "1neqSKr5F8RTQ4mikj6mcGdAQg5b9bIU1",
+       "size": 752141169,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6536_회전.MOV",
+       "id": "1Rdfu6YrHEto6bnBJHl1bY_A1iDcEQg8I",
+       "size": 130209334,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6538_회전.MOV",
+       "id": "1tpHZfyP21dBNvU13R47oplvuKfNEGWUB",
+       "size": 192624411,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_6539_회전_단계별동작.MOV",
+       "id": "15WjJJgd1-A5YruYnk8fhgnaCIp7Vl9wO",
+       "size": 221160768,
+       "kind": "video"
+      }
+     ],
+     "video_count": 10
+    },
+    {
+     "name": "Manual_Therapy(도수치료)",
+     "path": "15_Skill·Special_코스/Manual_Therapy(도수치료)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Neurological_Patients(신경계)",
+     "path": "15_Skill·Special_코스/Neurological_Patients(신경계)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Pelvic_Health(골반)",
+     "path": "15_Skill·Special_코스/Pelvic_Health(골반)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Perinatal(임신·출산)",
+     "path": "15_Skill·Special_코스/Perinatal(임신·출산)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Scoliosis(척추측만)",
+     "path": "15_Skill·Special_코스/Scoliosis(척추측만)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Shoulder_Girdle(견갑대)",
+     "path": "15_Skill·Special_코스/Shoulder_Girdle(견갑대)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Sport_Specific(Running·Baseball·Surf·Golf 등)",
+     "path": "15_Skill·Special_코스/Sport_Specific(Running·Baseball·Surf·Golf 등)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 10
+  },
+  {
+   "name": "15b_DNS_Golf_Course(스포츠특화)",
+   "path": "15b_DNS_Golf_Course(스포츠특화)",
+   "children": [
+    {
+     "name": "01_강의영상",
+     "path": "15b_DNS_Golf_Course(스포츠특화)/01_강의영상",
+     "children": [],
+     "files": [
+      {
+       "name": "20260819_144347.MP4",
+       "id": "1KypFGLQNrzi6ZZ1mfGpKV3ryPytPsQiP",
+       "size": 10850662,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_7479.MOV",
+       "id": "1myspd1G5loI1Og2fZYKfL1HiQbqIkgrs",
+       "size": 37468083,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_7488.MOV",
+       "id": "1VLMoQZs34ddnC7tiFaEn_mNBjsiFdjAX",
+       "size": 10538460,
+       "kind": "video"
+      },
+      {
+       "name": "IMG_7490.MOV",
+       "id": "1pfj6LDIz6h_PqMYl75nip9vtQDDhvAFl",
+       "size": 11675582,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz7bE85Uua_N59M8HNttBTvQ4k0zhYwWK_talkv_high.MP4",
+       "id": "1DkrENAycqAcIwBRak2FqTVP9jXqkNmx-",
+       "size": 12003341,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz7bbTFTti_9W0kYlN6K7XOj9jCmMK991_talkv_high.MP4",
+       "id": "1HY1Er8MubuS8MgG-wwYCJdCJalH6AUoT",
+       "size": 15239813,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz7dU46pPv_f569455j15Wlr19YFsTFck_talkv_high_복강내압_척추안정화.MP4",
+       "id": "1pQrRN_KAgN5ImpAtDpetBMqsTbEp2STM",
+       "size": 4582263,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8EciMNuG_hQm5uCNMRKlYIrKt2C5FG0_talkv_high.MP4",
+       "id": "1J0BQGGsBrpxv4z-2imzXjAi0Q8IEyN83",
+       "size": 9552201,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8KEfAjLF_rFtLtIPRGcJMCZNoGGiXq0_talkv_high.MP4",
+       "id": "13rcTnRDXFioYc7qURS3Ht-OCZluAO98b",
+       "size": 18025161,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8Pwn1ZWq_5PK3PxFKLlKIQia3JIkwo1_talkv_high.MP4",
+       "id": "1IhW5IDbNj9nHZLCAREzqWA9XAJGZIVHQ",
+       "size": 27215276,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8S90vT5Z_57lnFzptzcgErumC8qwlV0_talkv_high.MP4",
+       "id": "1NRtvZwpKRPnhzpIUJ1GTffS-YGk2IcKq",
+       "size": 7054847,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8Tp3jEr3_RxPSl4DsvAlQ1UjkGuEr51_talkv_high.MP4",
+       "id": "1NJiQcNoFiWt_tjAENFFFKztBwxIcj1Z0",
+       "size": 5710470,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8VnK6fn6_bnr2vij4m15aL6km6zvsj0_talkv_high_발달자세.MP4",
+       "id": "1UrF883c_gME8ol8Fof63Vv0wDBCrZyfg",
+       "size": 5105981,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8rs0Tclm_vlchzNXpvkQoDBdabSzEYK_talkv_high.MP4",
+       "id": "1fmrztqjbjm3KfKPmmldPVCBUAo_GBfZS",
+       "size": 4452212,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8v28JyST_ljNvZjFIlKxzNwFXt6S66k_talkv_high.MP4",
+       "id": "1c-Ctfh13GqUknb-_jrUhUWZwr_d3xzuz",
+       "size": 7463351,
+       "kind": "video"
+      },
+      {
+       "name": "_talkv_wz8yXMXh1G_BHKtjv5gAizSFbkracHwHK_talkv_high.MP4",
+       "id": "1SrlnYPN48Cv79ETCdPkDiOVmAcgcaqxV",
+       "size": 8549503,
+       "kind": "video"
+      }
+     ],
+     "video_count": 16
+    },
+    {
+     "name": "02_강의자료(슬라이드·PDF)",
+     "path": "15b_DNS_Golf_Course(스포츠특화)/02_강의자료(슬라이드·PDF)",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "03_실습·데모영상",
+     "path": "15b_DNS_Golf_Course(스포츠특화)/03_실습·데모영상",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "04_핸드아웃·논문",
+     "path": "15b_DNS_Golf_Course(스포츠특화)/04_핸드아웃·논문",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "05_학생제출",
+     "path": "15b_DNS_Golf_Course(스포츠특화)/05_학생제출",
+     "children": [],
+     "files": [
+      {
+       "name": "여기에_제출.txt",
+       "id": "1IwaFMRV0mbnMrJ-mtjB7JvwDap0z_ijB",
+       "size": 128,
+       "kind": "other"
+      }
+     ],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 16
+  },
+  {
+   "name": "16_인증·시험안내(Certification)",
+   "path": "16_인증·시험안내(Certification)",
+   "children": [
+    {
+     "name": "Exercise_Trainer",
+     "path": "16_인증·시험안내(Certification)/Exercise_Trainer",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Pediatric_Practitioner",
+     "path": "16_인증·시험안내(Certification)/Pediatric_Practitioner",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Practitioner_시험요건",
+     "path": "16_인증·시험안내(Certification)/Practitioner_시험요건",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    },
+    {
+     "name": "Strength_Coach",
+     "path": "16_인증·시험안내(Certification)/Strength_Coach",
+     "children": [],
+     "files": [],
+     "video_count": 0
+    }
+   ],
+   "files": [],
+   "video_count": 0
+  },
+  {
+   "name": "99_참고자료_원서·논문",
+   "path": "99_참고자료_원서·논문",
+   "children": [],
+   "files": [],
+   "video_count": 0
+  }
+ ],
+ "root_files": [
+  {
+   "name": "README_먼저읽기.md",
+   "id": "1W8gVR-keExP5NosqV7pd_gtM0GnGL0m4",
+   "size": 1645,
+   "kind": "other"
+  }
+ ]
+}
