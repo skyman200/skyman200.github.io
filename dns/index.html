@@ -188,7 +188,7 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
 .modal.open{display:flex;animation:fade .18s ease}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
-  width:min(940px,96vw);max-height:92vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+  width:min(940px,96vw);max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
 .box .bar{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line)}
 .box .bar .ttl{flex:1;font-size:14.5px;font-weight:700;letter-spacing:-.2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -229,6 +229,8 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
   font-size:11.5px;color:var(--tx-3);line-height:1.6}
 .tx-empty{padding:36px 18px;text-align:center;color:var(--tx-3);font-size:13px}
 .tx-empty .big{font-size:32px;opacity:.4;margin-bottom:10px}
+.tx-driveopen{display:none;flex:none;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line);color:var(--brand);font-size:13.5px;font-weight:700;text-align:center;background:var(--bg-2)}
 .card .thumb .cc{position:absolute;left:8px;bottom:8px;background:rgba(15,157,143,.92);color:#fff;
   font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;letter-spacing:.02em;display:flex;align-items:center;gap:3px}
 
@@ -284,12 +286,23 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
   .tag{font-size:10px;padding:2px 7px}
   .topbar{padding:0 12px;gap:8px}
   .content{padding-top:14px}
-  .modal{padding:0;align-items:flex-end}
-  .box{width:100vw;max-height:100vh;height:100vh;border-radius:0}
-  .frame{height:auto;width:100%}
-  .box.tx-open .frame{height:auto}
-  .tx-body{padding:14px 16px 22px;font-size:14px;max-width:100%}
-  .box .bar .tx-toggle{padding:6px 9px}
+  .modal{padding:0;align-items:stretch;justify-content:stretch}
+  .box{width:100vw;max-width:100vw;height:100vh;height:100dvh;max-height:100dvh;border-radius:0}
+  .box .body{flex:1;min-height:0}
+  /* 영상: 화면 폭 기준 16:9, 세로 화면의 절반 이하로 제한 -> 대본 공간 확보 */
+  .frameWrap{flex:none}
+  .frame{height:auto;width:100%;max-height:42vh}
+  .box.tx-open .frame{height:auto;max-height:38vh}
+  /* 대본: 나머지 세로 공간을 채우고 스크롤 */
+  .tx{min-height:0}
+  .tx-body{padding:14px 16px calc(20px + env(safe-area-inset-bottom));font-size:14.5px;max-width:100%}
+  .box .bar{padding:11px 12px;gap:8px}
+  .box .bar .ttl{font-size:13.5px}
+  .box .bar a.ext{display:none}          /* 좁은 화면에선 숨김(모달 안에 Drive열기 버튼 별도) */
+  .box .bar .tx-toggle{padding:7px 12px;font-size:13px;display:inline-block}
+  .tx-find{width:100%;order:3}
+  .tx-head{gap:8px 10px}
+  .tx-driveopen{display:block}     /* 모바일: bar의 Drive열기를 숨겼으니 대본 하단에 표시 */
 }
 @media (max-width:420px){
   .grid{grid-template-columns:1fr 1fr;gap:10px}
@@ -382,6 +395,7 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
             <input id="mtxFind" type="search" placeholder="대본 내 찾기" autocomplete="off" /></div>
         </div>
         <div class="tx-body" id="mtxBody"></div>
+        <a class="tx-driveopen" id="mtxDrive" href="#" target="_blank" rel="noopener">Drive에서 영상 열기 ↗</a>
       </section>
     </div>
   </div>
@@ -561,17 +575,19 @@ function openModal(v){
   $("#mttl").textContent=topic||v.name;
   $("#mframe").src=PREVIEW(v.id);
   $("#mopen").href=OPEN(v.id);
+  $("#mtxDrive").href=OPEN(v.id);
   $("#modal").classList.add("open");document.body.style.overflow="hidden";
   // transcript: reset panel, reveal toggle only if available
   $("#mbox").classList.remove("tx-open");
   $("#mtxToggle").classList.remove("on");$("#mtxToggle").setAttribute("aria-pressed","false");
   $("#mtxFind").value="";
   const tog=$("#mtxToggle");
+  const isMobile=matchMedia("(max-width:860px)").matches;
   loadTx().then(()=>{
     if(curTxId!==v.id) return;            // modal changed while loading
     tog.style.display=hasTx(v.id)?"inline-block":"none";
-    // auto-open transcript if a text query is active (came from a transcript hit)
-    if(hasTx(v.id) && query.trim()) toggleTx(true);
+    // 대본이 있으면: 검색 중이거나 모바일이면 자동으로 펼쳐 보여줌
+    if(hasTx(v.id) && (query.trim() || isMobile)) toggleTx(true);
   });
 }
 function closeModal(){
