@@ -444,37 +444,32 @@ const $ = s => document.querySelector(s);
 let DATA=null, activeCourse=0, query="";
 let SESSION=null, WORKER_URL="", USE_PROXY=false;   // 자체 플레이어(프록시) 사용 여부
 
-/* ---- transcripts (lazy) ---- */
-let TX=null, TXloading=null, curTxId=null;
-function loadTx(){
-  if(TX) return Promise.resolve(TX);
-  if(TXloading) return TXloading;
-  TXloading=fetch("transcripts.json?v="+Date.now())
+/* ---- durations (재생시간, lazy) ---- */
+let DUR=null, DURloading=null, curVidId=null;
+function fmtTime(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");}
+function loadDur(){
+  if(DUR) return Promise.resolve(DUR);
+  if(DURloading) return DURloading;
+  DURloading=fetch("durations.json?v="+Date.now())
     .then(r=>r.ok?r.json():{by_id:{}})
-    .then(d=>{TX=d.by_id||{};paintTxBadges();return TX;})
-    .catch(()=>{TX={};return TX;});
-  return TXloading;
+    .then(d=>{DUR=d.by_id||{};paintDurBadges();return DUR;})
+    .catch(()=>{DUR={};return DUR;});
+  return DURloading;
 }
-// TX 로드 후 현재 화면 카드에 대본 배지를 입힌다(그리드 재렌더 없이)
-function paintTxBadges(){
-  if(!TX) return;
+// duration 로드 후 현재 화면 카드에 재생시간 배지를 입힌다
+function paintDurBadges(){
+  if(!DUR) return;
   document.querySelectorAll(".card[data-vid]").forEach(card=>{
-    if(card.querySelector(".cc")) return;
-    if(TX[card.dataset.vid]){
+    if(card.querySelector(".dur")) return;
+    const d=DUR[card.dataset.vid];
+    if(d>0){
       const thumb=card.querySelector(".thumb");
-      if(thumb){const b=document.createElement("div");b.className="cc";b.innerHTML="📝 대본";thumb.appendChild(b);}
+      if(thumb){const b=document.createElement("div");b.className="dur";b.textContent=fmtTime(d);thumb.appendChild(b);}
     }
   });
 }
-const hasTx = id => !!(TX && TX[id]);
+const hasDur = id => !!(DUR && DUR[id]>0);
 function escHtml(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
-function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
-
-/* ---- subtitles: 비활성화됨 (자막 전면 제거) ---- */
-let SUBS={}, SUBSloading=null, curSeg=-1;
-function loadSubs(){ return Promise.resolve(SUBS); }  // 자막 로드 안 함
-const hasSub = id => false;                            // 자막 항상 없음 → 캡션/세그먼트 렌더 우회
-function fmtTime(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");}
 
 /* ---- theme ---- */
 (function(){
@@ -575,19 +570,14 @@ function render(){
   view.innerHTML="";view.appendChild(frag);
 }
 function renderSearch(view){
-  const q=query.trim().toLowerCase();const hits=[];let inTx=0;
+  const q=query.trim().toLowerCase();const hits=[];
   DATA.courses.forEach(c=>allVideos(c).forEach(v=>{
-    const nameHit=v.name.toLowerCase().includes(q);
-    const rec=TX&&TX[v.id];
-    const txHit=!!(rec&&rec.t.toLowerCase().includes(q));
-    if(nameHit||txHit){hits.push({...v,_course:c.name,_txHit:txHit&&!nameHit});if(txHit)inTx++;}
+    if(v.name.toLowerCase().includes(q)) hits.push({...v,_course:c.name});
   }));
   const frag=document.createDocumentFragment();
   const head=document.createElement("div");head.className="chead";
   head.innerHTML=`<div class="eyebrow">⌕ 검색</div><h1>“${query}”</h1>
-    <div class="sub"><span><b>${hits.length}</b> 영상</span>
-    ${inTx?`<span>대본에서 <b>${inTx}</b>건</span>`:""}
-    ${!TX?`<span style="color:var(--tx-3)">대본 불러오는 중…</span>`:""}</div>`;
+    <div class="sub"><span><b>${hits.length}</b> 영상</span></div>`;
   frag.appendChild(head);
   if(hits.length) frag.appendChild(grid(hits));
   else{const e=document.createElement("div");e.className="empty";
@@ -603,17 +593,18 @@ function grid(vids){
   const g=document.createElement("div");g.className="grid";
   vids.forEach(v=>{
     const {topic,tags}=parse(v.name);
+    const dsec=(DUR&&DUR[v.id])||0;
     const card=document.createElement("div");card.className="card";card.dataset.vid=v.id;
     card.innerHTML=`
       <div class="thumb">
         <div class="ph">🎬</div>
         <img loading="lazy" src="${THUMB(v.id)}" alt="" onload="this.previousElementSibling.style.display='none'" onerror="this.remove()"/>
         <div class="play"><i></i></div>
-        ${hasTx(v.id)?`<div class="cc">📝 대본</div>`:""}
+        ${dsec>0?`<div class="dur">${fmtTime(dsec)}</div>`:""}
       </div>
       <div class="meta">
         <div class="t">${topic||v.name}</div>
-        ${v._txHit?`<div class="tags"><span class="tag">대본 일치</span></div>`:tags.length?`<div class="tags">${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>`:""}
+        ${tags.length?`<div class="tags">${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>`:""}
       </div>`;
     card.onclick=()=>openModal(v);
     g.appendChild(card);
@@ -644,8 +635,9 @@ async function loadPlayer(v){
     $("#mframe").style.display="none";$("#mframe").removeAttribute("src");
     $("#mvspin").style.display="grid";
     const ticket=await getTicket(vid);
-    if(curTxId!==vid) return;                 // 다른 영상으로 바뀜
+    if(curVidId!==vid) return;                 // 다른 영상으로 바뀜
     if(ticket){
+      if(curVidId!==vid) return;
       const vel=$("#mvideo");
       vel.src=WORKER_URL.replace(/\/+$/,"")+"/video?id="+encodeURIComponent(vid)+"&t="+encodeURIComponent(ticket);
       vel.style.display="";
@@ -662,11 +654,10 @@ async function loadPlayer(v){
 /* ---- modal ---- */
 function openModal(v){
   const {topic}=parse(v.name);
-  curTxId=v.id;
+  curVidId=v.id;
   $("#mttl").textContent=topic||v.name;
   // 이전 재생 정리
   $("#mvideo").pause?.();$("#mvideo").removeAttribute("src");
-  curSeg=-1;
   $("#mopen").href=OPEN(v.id);
   $("#modal").classList.add("open");document.body.style.overflow="hidden";
   loadPlayer(v);
@@ -676,7 +667,7 @@ function closeModal(){
   $("#mframe").src="";
   const vel=$("#mvideo");try{vel.pause();}catch{}vel.removeAttribute("src");vel.load?.();
   $("#mvspin").style.display="none";
-  curTxId=null;
+  curVidId=null;
 }
 $("#mx").onclick=closeModal;
 $("#modal").onclick=e=>{if(e.target.id==="modal")closeModal();};
@@ -690,7 +681,6 @@ $("#burger").onclick=openDrawer;$("#scrim").onclick=closeDrawer;
 /* ---- search ---- */
 let sT;$("#q").addEventListener("input",e=>{
   query=e.target.value;clearTimeout(sT);
-  if(query.trim()&&!TX) loadTx().then(()=>{if(query.trim())render();});  // full-text search needs transcripts
   sT=setTimeout(render,140);
 });
 
@@ -713,7 +703,7 @@ function bootApp(){
     const fi=d.courses.findIndex(c=>c.video_count>0);
     activeCourse=fi>=0?fi:0;
     render();
-    loadTx();   // 대본 미리 로드 → 카드에 대본 배지 표시 + 전문검색 준비
+    loadDur();   // 재생시간 미리 로드 → 카드에 시간 배지 표시
   }).catch(e=>{
     $("#view").innerHTML=`<div class="empty"><div class="big">⚠️</div>
       목록을 불러오지 못했습니다.<br><small style="color:var(--tx-3)">${e.message}</small></div>`;
