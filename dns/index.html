@@ -421,31 +421,17 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
   <div class="box" id="mbox">
     <div class="bar">
       <div class="ttl" id="mttl"></div>
-      <button class="tx-toggle" id="mWide" aria-pressed="false" title="넓게 보기">⇔ 넓게</button>
-      <button class="tx-toggle" id="mtxToggle" aria-pressed="false">📝 대본</button>
       <a class="ext" id="mopen" href="#" target="_blank" rel="noopener">Drive에서 열기 ↗</a>
       <button class="x" id="mx" aria-label="닫기">×</button>
     </div>
     <div class="body">
       <div class="frameWrap">
         <div class="frame">
-          <video id="mvideo" controls playsinline preload="metadata" controlslist="nodownload" style="display:none"></video>
+          <video id="mvideo" controls playsinline preload="auto" controlslist="nodownload" style="display:none"></video>
           <iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
           <div class="vspin" id="mvspin" style="display:none"><div class="vspin-i"></div></div>
         </div>
       </div>
-      <section class="tx" id="mtx">
-        <div class="tx-head">
-          <b>대본</b>
-          <span class="badge" id="mtxBadge" style="display:none">요약</span>
-          <span class="cnt" id="mtxCnt"></span>
-          <span class="sp"></span>
-          <div class="tx-find"><span class="ic">⌕</span>
-            <input id="mtxFind" type="search" placeholder="대본 내 찾기" autocomplete="off" /></div>
-        </div>
-        <div class="tx-body" id="mtxBody"></div>
-        <a class="tx-driveopen" id="mtxDrive" href="#" target="_blank" rel="noopener">Drive에서 영상 열기 ↗</a>
-      </section>
     </div>
   </div>
 </div>
@@ -682,24 +668,8 @@ function openModal(v){
   $("#mvideo").pause?.();$("#mvideo").removeAttribute("src");
   curSeg=-1;
   $("#mopen").href=OPEN(v.id);
-  $("#mtxDrive").href=OPEN(v.id);
   $("#modal").classList.add("open");document.body.style.overflow="hidden";
   loadPlayer(v);
-  // transcript: reset panel, reveal toggle only if available
-  $("#mbox").classList.remove("tx-open");$("#mbox").classList.remove("wide");
-  $("#mtxToggle").classList.remove("on");$("#mtxToggle").setAttribute("aria-pressed","false");
-  const wb=$("#mWide");if(wb){wb.classList.remove("on");wb.setAttribute("aria-pressed","false");}
-  $("#mtxFind").value="";txExpanded=false;
-  const tog=$("#mtxToggle");
-  const isMobile=matchMedia("(max-width:860px)").matches;
-  // 자막(싱크)과 대본을 함께 로드
-  loadTx().then(()=>{
-    if(curTxId!==v.id) return;            // modal changed while loading
-    tog.style.display=hasTx(v.id)?"inline-block":"none";
-    tog.textContent="📝 대본";
-    // 대본이 있으면: 검색 중이거나 모바일이면 자동으로 펼쳐 보여줌
-    if(hasTx(v.id) && (query.trim() || isMobile)) toggleTx(true);
-  });
 }
 function closeModal(){
   $("#modal").classList.remove("open");document.body.style.overflow="";
@@ -708,59 +678,6 @@ function closeModal(){
   $("#mvspin").style.display="none";
   curTxId=null;
 }
-let txExpanded=false;                 // 대본 전체 펼침 상태
-const TX_PREVIEW=260;                  // 접은 상태에서 보여줄 글자 수
-function splitSentences(t){
-  // 문장 끝(. ? ! 그리고 줄바꿈) 기준으로 나누어 문단처럼 가독성 확보
-  return t.replace(/([.?!…])\s+/g,"$1\n").split(/\n+/).map(s=>s.trim()).filter(Boolean);
-}
-function renderTxBody(){
-  const rec=TX&&TX[curTxId];const body=$("#mtxBody");
-  if(!rec){body.innerHTML='<div class="tx-empty"><div class="big">📝</div>이 영상은 아직 대본이 없습니다.</div>';return;}
-  const find=$("#mtxFind").value.trim();
-  const full=rec.t;
-  // 검색 중이면 전체 표시(하이라이트), 아니면 접기/더보기
-  const searching=!!find;
-  let shown = (searching||txExpanded) ? full : full.slice(0, TX_PREVIEW);
-  let html=escHtml(shown);
-  if(searching){
-    const re=new RegExp(escRe(find),"gi");
-    html=html.replace(re,m=>`<mark>${m}</mark>`);
-  }else{
-    // 문장 단위 줄바꿈으로 보기 편하게
-    html=splitSentences(shown).join("\n");
-  }
-  let moreBtn="";
-  if(!searching && full.length>TX_PREVIEW){
-    if(!txExpanded){html+="…";moreBtn='<button class="tx-more" id="txMore">대본 더보기 ▾</button>';}
-    else{moreBtn='<button class="tx-more" id="txMore">접기 ▴</button>';}
-  }
-  const note=rec.p
-    ? '<div class="tx-note">⚠️ 긴 영상은 구간별로 모아 전사한 “요약 대본”입니다. AI 자동 전사라 오타가 있을 수 있어요.</div>'
-    : '<div class="tx-note">AI(Whisper) 자동 전사 대본입니다. 오타가 있을 수 있어요.</div>';
-  body.innerHTML=`<div class="tx-text">${html}</div>${moreBtn}${note}`;
-  const mb=$("#txMore");if(mb)mb.onclick=()=>{txExpanded=!txExpanded;renderTxBody();
-    if(!txExpanded)$("#mtxBody").scrollTop=0;};
-  $("#mtxBadge").style.display=rec.p?"inline-block":"none";
-  const secs=rec.d?Math.round(rec.d):0;
-  $("#mtxCnt").textContent=(secs?`${Math.floor(secs/60)}:${String(secs%60).padStart(2,"0")} · `:"")+`${full.length.toLocaleString()}자`;
-}
-function toggleTx(force){
-  const box=$("#mbox"),tog=$("#mtxToggle");
-  const open=force!==undefined?force:!box.classList.contains("tx-open");
-  box.classList.toggle("tx-open",open);
-  tog.classList.toggle("on",open);tog.setAttribute("aria-pressed",String(open));
-  if(open) renderTxBody();
-}
-function toggleWide(){                // 가로로 넓게 보기
-  const box=$("#mbox"),b=$("#mWide");
-  const on=!box.classList.contains("wide");
-  box.classList.toggle("wide",on);
-  if(b){b.classList.toggle("on",on);b.setAttribute("aria-pressed",String(on));}
-}
-$("#mtxToggle").onclick=()=>toggleTx();
-$("#mWide").onclick=toggleWide;
-let txfT;$("#mtxFind").addEventListener("input",()=>{clearTimeout(txfT);txfT=setTimeout(renderTxBody,120);});
 $("#mx").onclick=closeModal;
 $("#modal").onclick=e=>{if(e.target.id==="modal")closeModal();};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
