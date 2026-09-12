@@ -211,6 +211,20 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
 .vspin-i{width:44px;height:44px;border-radius:50%;border:3px solid rgba(255,255,255,.25);
   border-top-color:#fff;animation:vspin .9s linear infinite}
 @keyframes vspin{to{transform:rotate(360deg)}}
+/* 영상 위 한 줄 캐션(자막) 오버레이 */
+.caption{position:absolute;left:0;right:0;bottom:9%;display:flex;justify-content:center;
+  pointer-events:none;padding:0 5%;z-index:3;transition:bottom .2s}
+.caption span{display:inline;max-width:92%;font-size:clamp(15px,2.4vw,22px);font-weight:700;
+  line-height:1.45;color:#fff;text-align:center;
+  background:rgba(0,0,0,.66);padding:4px 12px;border-radius:8px;
+  text-shadow:0 1px 3px rgba(0,0,0,.9);white-space:pre-wrap;word-break:break-word}
+.caption:empty,.caption span:empty{display:none}
+.caption.off{display:none}
+.cap-toggle{position:absolute;right:10px;top:10px;z-index:4;width:38px;height:28px;
+  border:1px solid rgba(255,255,255,.4);border-radius:6px;background:rgba(0,0,0,.55);
+  color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;display:grid;place-items:center}
+.cap-toggle.off{opacity:.5;text-decoration:line-through}
+.cap-toggle:hover{background:rgba(0,0,0,.8)}
 /* transcript panel (below the video) */
 .tx{flex:1;min-height:20vh;border-top:1px solid var(--line);background:var(--bg-2);
   display:none;flex-direction:column}
@@ -418,6 +432,8 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
           <video id="mvideo" controls playsinline preload="metadata" controlslist="nodownload" style="display:none"></video>
           <iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
           <div class="vspin" id="mvspin" style="display:none"><div class="vspin-i"></div></div>
+          <div class="caption" id="mcap"><span id="mcapText"></span></div>
+          <button class="cap-toggle" id="mcapToggle" title="자막 켜기/끄기" style="display:none">CC</button>
         </div>
       </div>
       <section class="tx" id="mtx">
@@ -644,6 +660,7 @@ async function getTicket(vid){
 function useIframe(v){
   $("#mvideo").style.display="none";$("#mvideo").removeAttribute("src");
   $("#mvspin").style.display="none";
+  $("#mcapToggle").style.display="none";$("#mcapText").textContent="";  // iframe엔 캐션 없음
   $("#mframe").style.display="";$("#mframe").src=PREVIEW(v.id);
 }
 async function loadPlayer(v){
@@ -660,7 +677,10 @@ async function loadPlayer(v){
       const onErr=()=>{vel.removeEventListener("error",onErr);useIframe(v);};
       vel.addEventListener("error",onErr,{once:true});
       vel.addEventListener("loadeddata",()=>{$("#mvspin").style.display="none";},{once:true});
-      vel.ontimeupdate=syncSubs;   // 싱크 자막 동기
+      vel.ontimeupdate=syncSubs;   // 싱크 자막 동기(캐션+패널)
+      // 자막 있는 영상이면 CC 버튼 표시
+      $("#mcapToggle").style.display=hasSub(vid)?"grid":"none";
+      applyCapUI();
       vel.load();
       return;
     }
@@ -675,6 +695,7 @@ function openModal(v){
   $("#mttl").textContent=topic||v.name;
   // 이전 재생 정리
   $("#mvideo").pause?.();$("#mvideo").removeAttribute("src");
+  $("#mcapText").textContent="";curSeg=-1;   // 캡션 초기화
   $("#mopen").href=OPEN(v.id);
   $("#mtxDrive").href=OPEN(v.id);
   $("#modal").classList.add("open");document.body.style.overflow="hidden";
@@ -731,6 +752,7 @@ function renderSubs(){
   $("#mtxCnt").textContent=(secs?fmtTime(secs)+" · ":"")+segs.length+"구간";
   $("#mtxBadge").style.display="none";
 }
+let capOn=(localStorage.getItem("dns-cap")!=="0");   // 캐션 켜기 기본
 function syncSubs(){
   const sub=SUBS&&SUBS[curTxId];if(!sub)return;
   const v=$("#mvideo");if(!v||!v.src)return;
@@ -738,6 +760,11 @@ function syncSubs(){
   let idx=-1;
   for(let i=0;i<segs.length;i++){ if(t>=segs[i][0]&&t<segs[i][1]){idx=i;break;} if(t<segs[i][0])break; }
   if(idx===curSeg)return;
+  curSeg=idx;
+  // 1) 영상 위 한 줄 캐션 갱신
+  const capText=$("#mcapText");
+  if(capText) capText.textContent=(idx>=0&&capOn)?segs[idx][2]:"";
+  // 2) 대본 패널이 열려있으면 해당 줄 하이라이트+자동스크롤
   const list=$("#subsList");if(!list)return;
   const prev=list.querySelector(".seg.on");if(prev)prev.classList.remove("on");
   if(idx>=0){
@@ -747,8 +774,16 @@ function syncSubs(){
       if(er.top<br.top+40||er.bottom>br.bottom-40) box.scrollTop+=er.top-br.top-box.clientHeight/2+el.clientHeight;
     }
   }
-  curSeg=idx;
 }
+// 캐션 on/off
+function applyCapUI(){
+  const t=$("#mcapToggle"), cap=$("#mcap");
+  if(t) t.classList.toggle("off",!capOn);
+  if(cap) cap.classList.toggle("off",!capOn);
+  if(!capOn){const ct=$("#mcapText");if(ct)ct.textContent="";}
+}
+function toggleCap(){capOn=!capOn;localStorage.setItem("dns-cap",capOn?"1":"0");applyCapUI();
+  if(capOn){curSeg=-2;syncSubs();}}
 function renderTxBody(){
   // 싱크 자막이 있으면 자막 모드 우선
   if(hasSub(curTxId)){renderSubs();return;}
@@ -797,6 +832,7 @@ function toggleWide(){                // 가로로 넓게 보기
 }
 $("#mtxToggle").onclick=()=>toggleTx();
 $("#mWide").onclick=toggleWide;
+$("#mcapToggle").onclick=toggleCap;
 let txfT;$("#mtxFind").addEventListener("input",()=>{clearTimeout(txfT);txfT=setTimeout(renderTxBody,120);});
 $("#mx").onclick=closeModal;
 $("#modal").onclick=e=>{if(e.target.id==="modal")closeModal();};
