@@ -237,6 +237,18 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
 .tx-driveopen{display:none;flex:none;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
   border-top:1px solid var(--line);color:var(--brand);font-size:13.5px;font-weight:700;text-align:center;background:var(--bg-2)}
 .tx-text{white-space:pre-wrap}
+/* 싱크 자막 */
+.subs{display:flex;flex-direction:column;gap:2px}
+.seg{display:flex;gap:10px;padding:7px 9px;border-radius:8px;cursor:pointer;
+  transition:background .12s;align-items:baseline}
+.seg:hover{background:var(--surface)}
+.seg.on{background:var(--brand-soft)}
+.seg.on .seg-x{color:var(--tx);font-weight:600}
+.seg-t{flex:none;font-size:11px;font-weight:700;color:var(--tx-3);font-variant-numeric:tabular-nums;
+  min-width:38px;padding-top:2px}
+.seg.on .seg-t{color:var(--brand)}
+.seg-x{flex:1;font-size:14px;line-height:1.7;color:var(--tx-2)}
+.seg-x mark{background:var(--accent);color:#3a2a06;border-radius:3px;padding:0 2px}
 .tx-more{margin-top:12px;padding:8px 16px;border:1px solid var(--line);border-radius:9px;
   background:var(--surface-2);color:var(--brand);font-size:13px;font-weight:700;display:inline-block}
 .tx-more:hover{border-color:var(--brand)}
@@ -458,6 +470,20 @@ const hasTx = id => !!(TX && TX[id]);
 function escHtml(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
 function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
 
+/* ---- subtitles (싱크 자막, lazy) ---- */
+let SUBS=null, SUBSloading=null, curSeg=-1;
+function loadSubs(){
+  if(SUBS) return Promise.resolve(SUBS);
+  if(SUBSloading) return SUBSloading;
+  SUBSloading=fetch("subtitles.json?v="+Date.now())
+    .then(r=>r.ok?r.json():{by_id:{}})
+    .then(d=>{SUBS=d.by_id||{};return SUBS;})
+    .catch(()=>{SUBS={};return SUBS;});
+  return SUBSloading;
+}
+const hasSub = id => !!(SUBS && SUBS[id] && SUBS[id].segs && SUBS[id].segs.length);
+function fmtTime(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");}
+
 /* ---- theme ---- */
 (function(){
   const saved=localStorage.getItem("dns-theme");
@@ -634,6 +660,7 @@ async function loadPlayer(v){
       const onErr=()=>{vel.removeEventListener("error",onErr);useIframe(v);};
       vel.addEventListener("error",onErr,{once:true});
       vel.addEventListener("loadeddata",()=>{$("#mvspin").style.display="none";},{once:true});
+      vel.ontimeupdate=syncSubs;   // 싱크 자막 동기
       vel.load();
       return;
     }
@@ -659,11 +686,14 @@ function openModal(v){
   $("#mtxFind").value="";txExpanded=false;
   const tog=$("#mtxToggle");
   const isMobile=matchMedia("(max-width:860px)").matches;
-  loadTx().then(()=>{
+  // 자막(싱크)과 대본을 함께 로드
+  Promise.all([loadTx(), loadSubs()]).then(()=>{
     if(curTxId!==v.id) return;            // modal changed while loading
-    tog.style.display=hasTx(v.id)?"inline-block":"none";
-    // 대본이 있으면: 검색 중이거나 모바일이면 자동으로 펼쳐 보여줌
-    if(hasTx(v.id) && (query.trim() || isMobile)) toggleTx(true);
+    const avail=hasSub(v.id)||hasTx(v.id);
+    tog.style.display=avail?"inline-block":"none";
+    tog.textContent=hasSub(v.id)?"💬 자막":"📝 대본";
+    // 자막/대본이 있으면: 검색 중이거나 모바일이면 자동으로 펼쳐 보여줌
+    if(avail && (query.trim() || isMobile)) toggleTx(true);
   });
 }
 function closeModal(){
@@ -679,7 +709,49 @@ function splitSentences(t){
   // 문장 끝(. ? ! 그리고 줄바꿈) 기준으로 나누어 문단처럼 가독성 확보
   return t.replace(/([.?!…])\s+/g,"$1\n").split(/\n+/).map(s=>s.trim()).filter(Boolean);
 }
+// 싱크 자막 렌더
+function renderSubs(){
+  const sub=SUBS&&SUBS[curTxId];const body=$("#mtxBody");
+  if(!sub){renderTxBody();return;}
+  const find=$("#mtxFind").value.trim();
+  const segs=sub.segs;
+  let html='<div class="subs" id="subsList">';
+  segs.forEach((s,i)=>{
+    let txt=escHtml(s[2]);
+    if(find){const re=new RegExp(escRe(find),"gi");txt=txt.replace(re,m=>`<mark>${m}</mark>`);}
+    html+=`<div class="seg" data-i="${i}" data-t="${s[0]}"><span class="seg-t">${fmtTime(s[0])}</span><span class="seg-x">${txt}</span></div>`;
+  });
+  html+='</div><div class="tx-note">AI(Whisper) 자동 자막 · 문장을 누르면 그 장면으로 이동합니다.</div>';
+  body.innerHTML=html;
+  body.querySelectorAll(".seg").forEach(el=>{
+    el.onclick=()=>{const v=$("#mvideo");if(v&&v.src){v.currentTime=parseFloat(el.dataset.t)+0.05;v.play&&v.play();}};
+  });
+  curSeg=-1;
+  const secs=sub.d?Math.round(sub.d):0;
+  $("#mtxCnt").textContent=(secs?fmtTime(secs)+" · ":"")+segs.length+"구간";
+  $("#mtxBadge").style.display="none";
+}
+function syncSubs(){
+  const sub=SUBS&&SUBS[curTxId];if(!sub)return;
+  const v=$("#mvideo");if(!v||!v.src)return;
+  const t=v.currentTime, segs=sub.segs;
+  let idx=-1;
+  for(let i=0;i<segs.length;i++){ if(t>=segs[i][0]&&t<segs[i][1]){idx=i;break;} if(t<segs[i][0])break; }
+  if(idx===curSeg)return;
+  const list=$("#subsList");if(!list)return;
+  const prev=list.querySelector(".seg.on");if(prev)prev.classList.remove("on");
+  if(idx>=0){
+    const el=list.querySelector('.seg[data-i="'+idx+'"]');
+    if(el){el.classList.add("on");
+      const box=$("#mtxBody");const er=el.getBoundingClientRect(),br=box.getBoundingClientRect();
+      if(er.top<br.top+40||er.bottom>br.bottom-40) box.scrollTop+=er.top-br.top-box.clientHeight/2+el.clientHeight;
+    }
+  }
+  curSeg=idx;
+}
 function renderTxBody(){
+  // 싱크 자막이 있으면 자막 모드 우선
+  if(hasSub(curTxId)){renderSubs();return;}
   const rec=TX&&TX[curTxId];const body=$("#mtxBody");
   if(!rec){body.innerHTML='<div class="tx-empty"><div class="big">📝</div>이 영상은 아직 대본이 없습니다.</div>';return;}
   const find=$("#mtxFind").value.trim();
