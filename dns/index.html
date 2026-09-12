@@ -194,6 +194,15 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .box .bar a.ext{font-size:12.5px;color:var(--tx-2);white-space:nowrap}
 .box .bar a.ext:hover{color:var(--brand)}
+.box .bar .fsbtn{font-size:12.5px;font-weight:600;color:var(--tx-2);white-space:nowrap;
+  padding:6px 11px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2)}
+.box .bar .fsbtn:hover{color:var(--tx);border-color:var(--brand)}
+/* CSS 유사 전체화면 폴백(iOS 등 element fullscreen 미지원 시) */
+.frameWrap.fs-fallback{position:fixed;inset:0;z-index:200;background:#000}
+/* 네이티브 전체화면 시 iframe이 꿉 차게 */
+.frameWrap:fullscreen{width:100vw;height:100vh;background:#000}
+.frameWrap:-webkit-full-screen{width:100vw;height:100vh;background:#000}
+.frameWrap:fullscreen .frame,.frameWrap:-webkit-full-screen .frame{position:absolute;inset:0}
 .box .bar .tx-toggle{font-size:12.5px;font-weight:600;color:var(--tx-2);white-space:nowrap;
   padding:6px 11px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);display:none}
 .box .bar .tx-toggle.on{color:var(--brand);border-color:var(--brand)}
@@ -411,11 +420,12 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
   <div class="box" id="mbox">
     <div class="bar">
       <div class="ttl" id="mttl"></div>
+      <button class="fsbtn" id="mfs" aria-label="전체화면" title="전체화면">⛶ 전체화면</button>
       <a class="ext" id="mopen" href="#" target="_blank" rel="noopener">Drive에서 열기 ↗</a>
       <button class="x" id="mx" aria-label="닫기">×</button>
     </div>
     <div class="body">
-      <div class="frameWrap">
+      <div class="frameWrap" id="frameWrap">
         <div class="frame">
           <video id="mvideo" controls playsinline preload="auto" controlslist="nodownload" style="display:none"></video>
           <iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -652,16 +662,45 @@ function openModal(v){
   $("#modal").classList.add("open");document.body.style.overflow="hidden";
   loadPlayer(v);
 }
+function exitFsIfAny(){
+  const w=$("#frameWrap")||document.querySelector(".frameWrap");
+  if(document.fullscreenElement){document.exitFullscreen?.();}
+  else if(document.webkitFullscreenElement){document.webkitExitFullscreen?.();}
+  if(w)w.classList.remove("fs-fallback");
+}
 function closeModal(){
+  exitFsIfAny();
   $("#modal").classList.remove("open");document.body.style.overflow="";
   $("#mframe").src="";
   const vel=$("#mvideo");try{vel.pause();}catch{}vel.removeAttribute("src");vel.load?.();
   $("#mvspin").style.display="none";
   curVidId=null;
 }
+// 전체화면 토글: frameWrap을 전체화면으로(iframe이 그 안 100%). iOS는 CSS 폴백.
+function toggleFullscreen(){
+  const w=document.querySelector(".frameWrap");
+  if(!w) return;
+  const isFs=document.fullscreenElement||document.webkitFullscreenElement||w.classList.contains("fs-fallback");
+  if(isFs){
+    if(document.fullscreenElement){document.exitFullscreen?.();}
+    else if(document.webkitFullscreenElement){document.webkitExitFullscreen?.();}
+    w.classList.remove("fs-fallback");
+    return;
+  }
+  if(w.requestFullscreen){w.requestFullscreen().catch(()=>{w.classList.add("fs-fallback");});}
+  else if(w.webkitRequestFullscreen){try{w.webkitRequestFullscreen();}catch{w.classList.add("fs-fallback");}}
+  else{w.classList.add("fs-fallback");}  // iOS Safari 등
+}
+$("#mfs").onclick=toggleFullscreen;
 $("#mx").onclick=closeModal;
 $("#modal").onclick=e=>{if(e.target.id==="modal")closeModal();};
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    const w=document.querySelector(".frameWrap");
+    if(w&&w.classList.contains("fs-fallback")){w.classList.remove("fs-fallback");return;}
+    if(!document.fullscreenElement&&!document.webkitFullscreenElement) closeModal();
+  }
+});
 
 /* ---- drawer (mobile) ---- */
 function openDrawer(){$("#side").classList.add("open");$("#scrim").classList.add("show");}
