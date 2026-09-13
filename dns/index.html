@@ -427,7 +427,7 @@ html[data-theme="light"] .tag{color:var(--brand-ink)}
     <div class="body">
       <div class="frameWrap" id="frameWrap">
         <div class="frame">
-          <video id="mvideo" controls playsinline preload="auto" controlslist="nodownload" style="display:none"></video>
+          <video id="mvideo" controls playsinline webkit-playsinline preload="auto" controlslist="nodownload noplaybackrate" disablepictureinpicture style="display:none"></video>
           <iframe id="mframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
           <div class="vspin" id="mvspin" style="display:none"><div class="vspin-i"></div></div>
         </div>
@@ -676,20 +676,27 @@ function closeModal(){
   $("#mvspin").style.display="none";
   curVidId=null;
 }
-// 전체화면 토글: frameWrap을 전체화면으로(iframe이 그 안 100%). iOS는 CSS 폴백.
+// 전체화면 토글.
+//  - 자체 <video> 재생 중: video 네이티브 전체화면(iOS는 자동 가로회전 + 컴트롤 자동숨김 + 꿉 채움)
+//  - iframe 폴백: frameWrap 전체화면
 function toggleFullscreen(){
-  const w=document.querySelector(".frameWrap");
-  if(!w) return;
-  const isFs=document.fullscreenElement||document.webkitFullscreenElement||w.classList.contains("fs-fallback");
-  if(isFs){
-    if(document.fullscreenElement){document.exitFullscreen?.();}
-    else if(document.webkitFullscreenElement){document.webkitExitFullscreen?.();}
-    w.classList.remove("fs-fallback");
-    return;
+  const vel=$("#mvideo"), w=document.querySelector(".frameWrap");
+  const videoActive = vel && vel.style.display!=="none" && vel.getAttribute("src");
+  // 이미 전체화면이면 해제
+  if(document.fullscreenElement||document.webkitFullscreenElement){
+    (document.exitFullscreen||document.webkitExitFullscreen).call(document); return;
   }
-  if(w.requestFullscreen){w.requestFullscreen().catch(()=>{w.classList.add("fs-fallback");});}
-  else if(w.webkitRequestFullscreen){try{w.webkitRequestFullscreen();}catch{w.classList.add("fs-fallback");}}
-  else{w.classList.add("fs-fallback");}  // iOS Safari 등
+  if(w&&w.classList.contains("fs-fallback")){w.classList.remove("fs-fallback");return;}
+  if(videoActive){
+    // iOS Safari: video 전용 전체화면 API (가로회전 + 네이티브 컨트롤 자동숨김)
+    if(vel.webkitEnterFullscreen){ try{ vel.webkitEnterFullscreen(); return; }catch{} }
+    if(vel.requestFullscreen){ vel.requestFullscreen().catch(()=>{ if(w)w.classList.add("fs-fallback"); }); return; }
+    if(vel.webkitRequestFullscreen){ try{ vel.webkitRequestFullscreen(); return; }catch{} }
+  }
+  // iframe 경우
+  if(w&&w.requestFullscreen){w.requestFullscreen().catch(()=>{w.classList.add("fs-fallback");});}
+  else if(w&&w.webkitRequestFullscreen){try{w.webkitRequestFullscreen();}catch{w.classList.add("fs-fallback");}}
+  else if(w){w.classList.add("fs-fallback");}
 }
 $("#mfs").onclick=toggleFullscreen;
 $("#mx").onclick=closeModal;
