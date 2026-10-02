@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>CTL 학습 도우미</title>
+<noscript><meta http-equiv="refresh" content="2;url=https://ctl-learning.vercel.app/"></noscript>
+<style>
+  html { background: #faf9f7; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; font: 16px/1.6 -apple-system, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif; color: #1c1b19; }
+  main { padding: 24px; max-width: 360px; }
+  .brand { margin: 0; font-size: 14px; font-weight: 600; color: #1f6b4c; }
+  h1 { margin: 10px 0 8px; font-size: 22px; letter-spacing: -0.01em; }
+  p { margin: 0 0 8px; color: #6b665e; }
+  a { color: #175c40; }
+</style>
+</head>
+<body>
+<main>
+  <p class="brand">CTL</p>
+  <h1>학습 도우미로 이동합니다</h1>
+  <p>잠시만 기다려 주세요. 자동으로 넘어가지 않으면 아래 주소를 눌러 주세요.</p>
+  <p><a id="go" href="https://ctl-learning.vercel.app/">학습 도우미 열기</a></p>
+</main>
+<script>
+(function () {
+  var APP = "https://ctl-learning.vercel.app";
+  var j = (new URLSearchParams(location.search).get("j") || "").trim();
+  // QR 의 열쇠: 분반 등록 코드(영문·숫자 6자) 또는 과목 id(uuid). 그 밖의 값은 무시하고 첫 화면으로 보낸다(임의 주소로 보내지 않음).
+  var ok = /^[A-Za-z0-9]{6}$/.test(j) || /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(j);
+  var to = ok ? APP + "/join/" + encodeURIComponent(j) : APP + "/";
+  document.getElementById("go").href = to;
+  location.replace(to);
+})();
+</script>
+</body>
+</html>
