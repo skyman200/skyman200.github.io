@@ -1,6 +1,6 @@
 {
  "root_id": "1r3uE32kMXz72gpot2FbQt5OjTMniV8m_",
- "total_videos": 307,
+ "total_videos": 317,
  "courses": [
   {
    "name": "00_시작안내_학생필독",
@@ -1597,14 +1597,100 @@
      "name": "01_강의영상",
      "path": "04_임상코스_C(Intermediate_C)/01_강의영상",
      "children": [],
-     "files": [],
-     "video_count": 0
+     "files": [
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-13-17.mp4",
+       "id": "18ns1zs5ONEgDg9E2cxYNPrXnEeWiNSQX",
+       "size": 15802893,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-13-51.mp4",
+       "id": "1Ful7Fx3maksf8mZWAsc3PAbEo9Hx7Rp5",
+       "size": 49781388,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-14-41.mp4",
+       "id": "1mQ5llRc8bOJuOiz_kg-KEvSlQ4wgCmrG",
+       "size": 47086386,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-14-49.mp4",
+       "id": "1jZG6o2gXqdCLtOIY9CwU9CZiJBoy1zqK",
+       "size": 10957951,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-15-01.mp4",
+       "id": "1eRhUnYVfJS5zjqz5xmT9vBbg7myfCpvG",
+       "size": 71834273,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-15-12.mp4",
+       "id": "1UwgVBWGDLv6frDM7nm8usbz9BwZVhYJk",
+       "size": 30843306,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-15-21.mp4",
+       "id": "1JrRJL6e1PWDVZg6QEk8jbi-1Gg9x0n5P",
+       "size": 12582822,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-15-30.mp4",
+       "id": "1bE0g2Bbl_U5e_rQ_C0CfoCBZisRXh9PI",
+       "size": 14160573,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-15-44.mp4",
+       "id": "16_wM7hpXgOA1t-QeW6Gpzeu2SMXtTggw",
+       "size": 74803315,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-15-53.mp4",
+       "id": "1rk14qJEPVg57HWpPhOi29iy-_P8MxnPz",
+       "size": 18151676,
+       "kind": "video"
+      }
+     ],
+     "video_count": 10
     },
     {
      "name": "02_강의자료(슬라이드·PDF)",
      "path": "04_임상코스_C(Intermediate_C)/02_강의자료(슬라이드·PDF)",
      "children": [],
-     "files": [],
+     "files": [
+      {
+       "name": "1. C_Hip.pdf",
+       "id": "1W2v00FQIJWOCbzLAVHDPwdM_l1_t3y1P",
+       "size": 6046432,
+       "kind": "doc"
+      },
+      {
+       "name": "2. C_Pelvic Floor.pdf",
+       "id": "1dXi0nINLk-PnYPWPOLipzCjxfsYAkhIO",
+       "size": 4089560,
+       "kind": "doc"
+      },
+      {
+       "name": "3. C_Scoliosis.pdf",
+       "id": "157rjGZwllTwc8d5efE6p2at41VDFj9sQ",
+       "size": 6098709,
+       "kind": "doc"
+      },
+      {
+       "name": "4. C_Shoulder.pdf",
+       "id": "1DJkVZyoPKu1zBfyVKkgk-mfMxKiPD-0m",
+       "size": 4433815,
+       "kind": "doc"
+      }
+     ],
      "video_count": 0
     },
     {
@@ -1634,10 +1720,102 @@
       }
      ],
      "video_count": 0
+    },
+    {
+     "name": "06_현장사진",
+     "path": "04_임상코스_C(Intermediate_C)/06_현장사진",
+     "children": [],
+     "files": [
+      {
+       "name": "20261009_123347.jpeg",
+       "id": "1JLwxG2FlO7XQE6ITbOy8vTQTfPUTjj3Q",
+       "size": 3113350,
+       "kind": "image"
+      },
+      {
+       "name": "20261009_123359.jpeg",
+       "id": "1w5Y_IuPFqyaxVXf66_uAA1KR7Q3NjWgG",
+       "size": 3073126,
+       "kind": "image"
+      },
+      {
+       "name": "20261009_131447.jpeg",
+       "id": "1Gjw2Ocz052LALwltsiFuby9iF08lojDV",
+       "size": 2717591,
+       "kind": "image"
+      },
+      {
+       "name": "20261009_173255.jpeg",
+       "id": "118P0mE8d9uK7TY2EuJEF8v506NPJkKS7",
+       "size": 1910748,
+       "kind": "image"
+      },
+      {
+       "name": "20261009_175144.jpeg",
+       "id": "1uI_hM0x35YmDD0sDb1wJtqBIM2TRTsCW",
+       "size": 4658168,
+       "kind": "image"
+      },
+      {
+       "name": "20261009_175624.jpeg",
+       "id": "1xP6632_i3B1D2aNp_GivsHLoR93VUdm_",
+       "size": 5013624,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_113949.jpeg",
+       "id": "1qPsrASoKmfCmgWbsAVsHEAF9h1kvEHk9",
+       "size": 3038516,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_155919.jpeg",
+       "id": "1wAK7YHWRWyOSLQlaA1F4QkcNlCm6c4j8",
+       "size": 2013004,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_165234.jpeg",
+       "id": "1dvgR-LGmPTbMA4FdfYLJ2kQ-zeDXaJGz",
+       "size": 2199187,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_165236.jpeg",
+       "id": "1CGi2D78Y9QTJ1ip-ZohhpPopkQsnCOax",
+       "size": 3571068,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_165238.jpeg",
+       "id": "1_VXGhnry-MiU-mXhVZ6nHU80Ct6I-1pl",
+       "size": 2239265,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_165307.jpeg",
+       "id": "1lv65EiZyJy5SO4ZyxeVwy_0P96OILPL3",
+       "size": 2479865,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_165307_2.jpeg",
+       "id": "1KhkD17u8DurrWBfOeRRrrpdluSQUvlYN",
+       "size": 3714278,
+       "kind": "image"
+      },
+      {
+       "name": "20261010_165311.jpeg",
+       "id": "1zdshTpj-XArW58hEYX9WIT5Wukbu3zBc",
+       "size": 2456195,
+       "kind": "image"
+      }
+     ],
+     "video_count": 0
     }
    ],
    "files": [],
-   "video_count": 0
+   "video_count": 10
   },
   {
    "name": "05_임상코스_D(Clinical_D_인증)",
