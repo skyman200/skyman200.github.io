@@ -1,6 +1,6 @@
 {
  "root_id": "1r3uE32kMXz72gpot2FbQt5OjTMniV8m_",
- "total_videos": 317,
+ "total_videos": 319,
  "courses": [
   {
    "name": "00_시작안내_학생필독",
@@ -1657,9 +1657,21 @@
        "id": "1rk14qJEPVg57HWpPhOi29iy-_P8MxnPz",
        "size": 18151676,
        "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-16-31.mp4",
+       "id": "1GFN7Ew8cZEYfz4l5mjtplY0rw7wuJ8EQ",
+       "size": 147842384,
+       "kind": "video"
+      },
+      {
+       "name": "KakaoTalk_Video_2026-10-11-21-16-40.mp4",
+       "id": "1PhZXCX4UwOmxx8ozadDdZsDNreSlNF9h",
+       "size": 12953295,
+       "kind": "video"
       }
      ],
-     "video_count": 10
+     "video_count": 12
     },
     {
      "name": "02_강의자료(슬라이드·PDF)",
@@ -1815,7 +1827,7 @@
     }
    ],
    "files": [],
-   "video_count": 10
+   "video_count": 12
   },
   {
    "name": "05_임상코스_D(Clinical_D_인증)",
