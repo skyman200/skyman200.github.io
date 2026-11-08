@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩' 실전기 | 김강훈 교수</title>
+    <meta name="description" content="코딩을 몰라도 시스템을 만든다 — 부산 동의과학대학교 물리치료과 김강훈 교수가 말하는 AI 시대 교육·행정의 재활과 바이브 코딩(Vibe Coding) 실전 노하우." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, 김강훈, 김강훈 교수, 동의과학대학교, AI 교육혁신, 생성형 AI, Claude, Cursor, 에듀테크, 학사행정 자동화" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩' 실전기" />
+    <meta property="og:description" content="코딩을 몰라도 시스템을 만든다 — 부산 동의과학대학교 물리치료과 김강훈 교수가 말하는 AI 시대 교육·행정의 재활." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩(Vibe Coding)' 실전기",
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/"
+      },
+      "datePublished": "2026-11-08",
+      "publisher": {
+        "@type": "CollegeOrUniversity",
+        "name": "동의과학대학교",
+        "url": "https://www.dit.ac.kr/"
+      },
+      "description": "생성형 AI와 바이브코딩을 활용하여 교육 및 행정 병목을 해결하고 22종의 시스템을 구축한 실전기."
+    }
+    </script>
+
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #0a0a0a; color: #ecf1fa;
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 60px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 760px; width: 100%; }
+      .nav-back { display: inline-block; margin-bottom: 32px; color: rgba(157,183,255,.8); text-decoration: none; font-size: 0.95rem; }
+      .nav-back:hover { color: #fff; }
+      .badge { display: inline-block; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9db7ff; font-weight: 700; margin-bottom: 16px; background: rgba(157,183,255,.1); padding: 4px 12px; border-radius: 6px; }
+      h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800; line-height: 1.3; margin-bottom: 20px; letter-spacing: -0.02em; }
+      .subhead { font-size: 1.15rem; color: rgba(236,241,250,.7); margin-bottom: 32px; line-height: 1.6; }
+      .meta { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(236,241,250,.12); border-bottom: 1px solid rgba(236,241,250,.12); margin-bottom: 48px; font-size: 0.92rem; color: rgba(236,241,250,.65); flex-wrap: wrap; }
+      .meta strong { color: #ecf1fa; }
+      h2 { font-size: 1.55rem; font-weight: 700; margin: 56px 0 20px; color: #9db7ff; border-left: 3px solid #9db7ff; padding-left: 14px; }
+      h3 { font-size: 1.25rem; font-weight: 700; margin: 32px 0 14px; color: #ecf1fa; }
+      p { margin-bottom: 22px; font-size: 1.05rem; color: rgba(236,241,250,.88); word-break: keep-all; }
+      blockquote { margin: 32px 0; padding: 20px 24px; background: rgba(157,183,255,.07); border-left: 4px solid #9db7ff; border-radius: 4px; font-size: 1.1rem; font-style: italic; color: #ecf1fa; }
+      ul { margin: 0 0 26px 24px; color: rgba(236,241,250,.85); }
+      li { margin-bottom: 10px; font-size: 1.02rem; }
+      strong { color: #fff; font-weight: 700; }
+      a { color: #9db7ff; text-decoration: underline; text-underline-offset: 4px; }
+      a:hover { color: #bfd3ff; }
+      .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 22px; margin-bottom: 24px; }
+      .card h4 { font-size: 1.12rem; margin-bottom: 10px; color: #fff; display: flex; justify-content: space-between; align-items: baseline; }
+      .card h4 a { font-size: 0.9rem; text-decoration: none; border: 1px solid rgba(157,183,255,.4); padding: 3px 8px; border-radius: 4px; }
+      .card p { margin-bottom: 0; font-size: 0.98rem; color: rgba(236,241,250,.78); }
+      .author-bio { margin-top: 64px; padding: 32px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.2rem; }
+      .author-bio p { font-size: 0.95rem; margin-bottom: 10px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+      .tags span { font-size: 0.8rem; background: rgba(255,255,255,.06); color: rgba(236,241,250,.6); padding: 5px 12px; border-radius: 999px; }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <a href="../" class="nav-back">← 메인 페이지로 돌아가기</a>
+      <div class="badge">AI · VIBE CODING ESSAY</div>
+      <h1>현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩' 실전기</h1>
+      <p class="subhead">코딩을 몰라도 시스템을 만든다 — 부산 동의과학대학교 물리치료과 김강훈 교수가 말하는 AI 시대 교육·행정의 재활</p>
+
+      <div class="meta">
+        <div><strong>작성자:</strong> 김강훈 교수 (동의과학대학교 물리치료과 학과장 / AID HUB 센터 팀장)</div>
+        <div><strong>발행일:</strong> 2026년 11월 8일</div>
+      </div>
+
+      <h2>1. 프롤로그: 환자의 몸을 고치던 손으로, 대학의 병목을 치료하다</h2>
+      <p>저는 부산 동의과학대학교에서 근골격계 물리치료(요통, 도수치료, DNS)를 가르치고 연구하는 교수입니다.</p>
+      <p>병원에서 환자를 보고 학생들에게 도수치료 테크닉을 가르치던 제가, 지난 1년 동안 14종의 웹앱과 8건의 자동화 파이프라인 등 <strong>총 22종의 실제 소프트웨어 시스템</strong>을 혼자서 직접 만들어 대학 현장에 배포했습니다.</p>
+      <p>주변에서는 종종 묻습니다.<br>
+      <em>"교수님, 개발 외주 업체를 쓰셨나요?"</em><br>
+      <em>"컴퓨터공학과 복수전공이라도 하셨습니까?"</em></p>
+      <p>답은 둘 다 아닙니다. 저는 복잡한 프로그래밍 언어를 깊게 공부한 적도 없고, 개발자를 고용하지도 않았습니다. 단 한 줄의 코드도 직접 타이핑하지 않는, 이른바 <strong>'바이브 코딩(Vibe Coding)'</strong>으로 이 모든 시스템을 만들었습니다.</p>
+
+      <h2>2. '바이브 코딩'이란 무엇인가? — 기술이 아니라 '병목의 정의'다</h2>
+      <p>테슬라의 전 AI 디렉터 안드레이 카파시(Andrej Karpathy)는 <em>"가장 핫한 새로운 프로그래밍 언어는 영어(자연어)다"</em>라고 말하며 '바이브 코딩'이라는 개념을 제시했습니다. 문법을 외우고 코드를 직접 타이핑하는 시대는 끝났고, <strong>원하는 결과물의 맥락과 흐름(Vibe)을 AI에게 지시하고 검증하는 방식</strong>으로 소프트웨어를 만드는 시대가 온 것입니다.</p>
+      <blockquote>
+        "몸이든 시스템이든, 치료의 원리는 하나다. 막힌 곳(병목)을 찾아 움직이게 하는 것."
+      </blockquote>
+      <p>대학 현장은 병목투성이입니다.</p>
+      <ul>
+        <li>학생들은 국가고시 공부를 하면서 어떤 영역이 취약한지 실시간으로 피드백받지 못합니다.</li>
+        <li>교원들은 37개 학과 수백 개 강좌의 강의계획서에 AI 관련 교육 내용이 제대로 반영되었는지 며칠 밤을 새워 눈으로 검토합니다.</li>
+        <li>교내 해커톤을 열면 참가 신청서 취합, 한글(HWP) 공문 양식 변환, 코드 제출 확인을 수작업으로 처리하느라 정작 교육에 쏟을 에너지를 잃어버립니다.</li>
+      </ul>
+      <p>저는 AI에게 코딩을 맡기고, 제 본업인 <strong>'현장의 병목을 정의하는 일'</strong>에만 집중했습니다. 그 결과 1년 만에 캠퍼스에서 다음과 같은 시스템들이 실제로 돌아가기 시작했습니다.</p>
+
+      <h2>3. 현장에 배포해 실제로 굴리고 있는 대표 시스템 5선</h2>
+
+      <div class="card">
+        <h4>① DIT 바이브코딩 해커톤 올인원 플랫폼 <a href="https://skyman200.github.io/vibe/" target="_blank">사이트 바로가기 ↗</a></h4>
+        <p><strong>해결한 병목:</strong> 대회 공지, 4인 팀 빌딩, 참가 신청서(한글 HWP·PDF) 자동 생성, 48시간 예선 과제 제출, 14팀 42회에 달하는 AI 다면 코드 심사(Lighthouse 및 익명 채점), 대면 발표 심사까지 <strong>단 하나의 URL</strong>에서 전 과정을 자동화했습니다.</p>
+      </div>
+
+      <div class="card">
+        <h4>② 37개 학과 강의계획서 AI 체크 시스템 <a href="https://dit-ai4-check.pages.dev/" target="_blank">사이트 바로가기 ↗</a></h4>
+        <p><strong>해결한 병목:</strong> 교육부 AID 사업에 따라 전 학과 강의계획서에 AI 내용이 4주 이상 반영되었는지를 클릭 한 번으로 판정합니다. 미비한 과목은 AI가 즉시 개선안을 제안하고, 교수가 확정 버튼을 누르면 확정 PDF가 생성되어 구글 드라이브에 자동 적재됩니다.</p>
+      </div>
+
+      <div class="card">
+        <h4>③ DIT 국시실 스마트 출결 & 합격 예측 시스템</h4>
+        <p><strong>해결한 병목:</strong> 물리치료과 국가고시 준비실의 입실을 학생 개인 QR과 위치 기반으로 통제합니다. 단순히 출석만 찍는 것이 아니라, 입실 시 본인의 취약 영역 5문항 퀴즈를 통과해야 문이 열립니다. 자습 시간이 누적되며 합격 위험도 대시보드가 교수에게 실시간 공유됩니다.</p>
+      </div>
+
+      <div class="card">
+        <h4>④ 학회 최우수상을 수상한 국시 학습 웹앱 '물탱크'</h4>
+        <p><strong>성숙한 학생 지도:</strong> 제가 직접 코딩을 가르친 학부생 팀(홍예은 외)이 국가고시 기출 1,139문항을 데이터베이스화한 웹앱 '물탱크'를 개발했습니다. 이 프로젝트는 4년제 대학들을 제치고 <strong>2026 대한지역사회물리치료학회 추계학술대회 최우수상</strong>을 수상하며 언론에 대대적으로 보도되었습니다.</p>
+      </div>
+
+      <div class="card">
+        <h4>⑤ 전국 대학 교원 대상 'AI Class Lab' <a href="https://kimcook-edu.pages.dev/" target="_blank">사이트 바로가기 ↗</a></h4>
+        <p><strong>AI 교육 확산:</strong> 전문대를 넘어 4년제 대학(부산외국어대학교 등) 교원들을 대상으로 90분 만에 AI 수업 설계를 끝내는 실습 웹앱입니다. 교과목 정보를 입력하면 STEP 1~5 실습 프롬프트가 자동 완성되고, 연수 종료 시 정식 강의계획서 워드(DOCX) 파일로 즉시 출력됩니다.</p>
+      </div>
+
+      <h2>4. 비개발자·교육자를 위한 바이브 코딩 실전 3대 원칙</h2>
+      
+      <h3>원칙 1. "AI가 초안을 쓰고, 사람이 결정한다"</h3>
+      <p>AI는 완벽한 개발자가 아닙니다. 그러나 세계에서 가장 성실한 초안 작성자입니다. 아키텍처와 비즈니스 로직의 결정권은 반드시 사람이 쥐고 있어야 합니다. AI에게 모든 것을 맡기는 것이 아니라, 명확한 제약 조건(Constraints)과 평가 기준(Rubric)을 제시할 때 비로소 운영 가능한 시스템이 나옵니다.</p>
+
+      <h3>원칙 2. "복잡한 인프라 대신, 가장 가벼운 배포(Ship)부터"</h3>
+      <p>서버 구축이나 백엔드 프레임워크에 얽매이지 마세요. 저는 GitHub Pages, Cloudflare Pages, Vercel 같은 모던 서버리스 환경을 적극 활용했습니다. 학생과 교직원이 지금 당장 모바일과 PC 웹브라우저로 접속해 쓸 수 있는 '동작하는 소프트웨어'를 하루 만에 세상에 내놓는 것이 핵심입니다.</p>
+
+      <h3>원칙 3. "당신의 전공 지식(Domain Knowledge)이 최고의 프롬프트다"</h3>
+      <p>코딩 기술은 AI가 1초 만에 만들어냅니다. 하지만 <strong>"임상 실습에서 SOAP 노트가 왜 중요한지"</strong>, <strong>"강의계획서 점검에서 교무처가 무엇을 검증해야 하는지"</strong>는 현장의 전문가만이 압니다. 도메인 지식의 깊이가 곧 AI가 산출하는 소프트웨어의 품질을 결정합니다.</p>
+
+      <h2>5. 에필로그: 교수의 시간을 다시 학생에게로</h2>
+      <p>AI의 등장을 두고 교직이나 행정 인력이 사라질 것이라 걱정하는 목소리가 많습니다. 하지만 지난 1년간 제가 목격한 진실은 정반대였습니다.</p>
+      <blockquote>
+        "AI는 교수를 대체하지 않습니다. AI를 다루는 교수가, 그렇지 못한 시스템을 혁신할 뿐입니다."
+      </blockquote>
+      <p>반복적인 채점, 공문 취합, 출결 관리 같은 행정적 병목을 바이브 코딩으로 걷어내자, 비로소 교수에게 가장 소중한 자산인 <strong>'학생과 눈을 맞추고 상담하는 시간'</strong>이 돌아왔습니다.</p>
+      <p>이제 대학의 경쟁력은 건물의 크기가 아니라, 구성원들이 얼마나 빠르게 AI를 손발처럼 부려 현장의 문제를 해결하느냐에 달려 있습니다. 코딩을 전혀 몰라도 상관없습니다. 현장의 문제를 누구보다 잘 알고 있는 당신이, 바로 다음 시스템의 기획자이자 개발자입니다.</p>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 조교수 및 학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 전국 전문대학 법인협의회 및 대학 교직원 대상 AI 활용 특강 강사</p>
+        <p>• 강의·자문 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#인공지능</span><span>#바이브코딩</span><span>#VibeCoding</span><span>#생성형AI</span>
+        <span>#대학혁신</span><span>#에듀테크</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+      </div>
+    </main>
+  </body>
+</html>
