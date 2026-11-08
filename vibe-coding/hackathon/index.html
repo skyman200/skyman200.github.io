@@ -98,7 +98,7 @@
       .tldr ul { margin: 0 0 0 18px; }
       .tldr li { font-size: .95rem; color: rgba(236,241,250,.82); margin-bottom: 7px; }
 
-      .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 30px 0 40px; }
+      .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px; margin: 30px 0 40px; }
       .stat { background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.09); border-radius: 10px; padding: 16px 18px; }
       .stat b { display: block; font-size: 1.38rem; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: -.01em; }
       .stat span { display: block; margin-top: 6px; font-size: .8rem; color: rgba(236,241,250,.55); }
@@ -121,6 +121,7 @@
       td { color: rgba(236,241,250,.82); }
 
       pre { background: #101216; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 18px 20px; overflow-x: auto; margin: 22px 0 30px; }
+      pre.wrap code { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
       code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .86rem; line-height: 1.7; color: #cfd9f5; }
       p code, li code, td code { background: rgba(157,183,255,.12); padding: 2px 6px; border-radius: 4px; font-size: .86em; color: #cfd9f5; }
       .code-label { display: inline-block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(157,183,255,.8); font-weight: 700; margin-bottom: -12px; }
@@ -151,6 +152,9 @@
         .meta { gap: 8px 16px; }
         table { font-size: .86rem; }
         th, td { padding: 8px 10px; }
+        pre { padding: 14px 14px; }
+        pre code { font-size: .78rem; }
+        .stat b { font-size: 1.2rem; }
       }
     </style>
   </head>
@@ -520,7 +524,7 @@ export const MAX_WAIT_MS = 8000;</code></pre>
       <h2>9. 실제 사용한 통합 프롬프트 전문</h2>
       <p>이 프로젝트는 대화형으로 조금씩 고친 것이 아니라, <strong>하나의 통합 프롬프트로 뼈대를 세우고</strong> 행사 단계가 늘어날 때마다 확장 블록을 덧붙이는 방식으로 진행했습니다. 아래는 실제로 사용한 전문입니다. 대괄호 <code>[ ]</code> 부분만 우리 행사 값으로 바꿔 넣었습니다.</p>
       <span class="code-label">Prompt 1 — 뼈대</span>
-      <pre><code>[공지 파일 경로] 이 공지를 기반으로 [행사 이름] 참가 신청·심사 웹앱을 만들어라.
+      <pre class="wrap"><code>[공지 파일 경로] 이 공지를 기반으로 [행사 이름] 참가 신청·심사 웹앱을 만들어라.
 - 신청은 온라인으로만, 팀 단위 [4]명. [4]명이 아니면 제출이 안 된다. 팀장이 팀명을 정하고 초대 링크로 팀원을 모은다.
 - 팀원마다 학과·학번·성명·연락처·이메일·[티셔츠 사이즈]를 본인이 직접 넣고 본인이 개인정보 동의를 한다. 개인정보·법적 문제가 없게 동의문을 갖춰라.
 - 학과는 [학사시스템]의 실제 학과 목록에서 고르게 한다.
@@ -537,7 +541,7 @@ export const MAX_WAIT_MS = 8000;</code></pre>
 
       <p>행사 운영(의무 교육·예선·본선)까지 맡길 때 덧붙인 확장 블록입니다. 접수를 받은 뒤 일정에 맞춰 2차로 붙였습니다.</p>
       <span class="code-label">Prompt 2 — 행사 운영 확장</span>
-      <pre><code>- 의무 교육은 [90]분, 강사 혼자 진행한다. 강사가 버튼으로 진행하는 화면과 학생이 따라 하는 화면, 인쇄용 진행 지침서를 만들어라. 진행표·대본·요청 글의 원본은 한 곳에 두고 화면과 지침서가 같이 쓰게 해라.
+      <pre class="wrap"><code>- 의무 교육은 [90]분, 강사 혼자 진행한다. 강사가 버튼으로 진행하는 화면과 학생이 따라 하는 화면, 인쇄용 진행 지침서를 만들어라. 진행표·대본·요청 글의 원본은 한 곳에 두고 화면과 지침서가 같이 쓰게 해라.
 - 교육 끝에 강사가 띄운 세션 코드로 팀이 예선을 시작한다. 과제는 미리 만든 [24]개 중 무작위로 하나, 제한 시간 [48]시간. 마감까지 앱 주소나 공개 GitHub 주소 + 앱 소개·만든 과정을 받고, 서버가 그 주소를 직접 열어 남이 로그인 없이 볼 수 있는지 확인해라. 한 번도 내지 않은 팀은 탈락이다.
 - 예선·본선 채점은 서버가 아니라 운영 담당 컴퓨터에서 한다. 개인정보는 서버에서 가리고 무작위 심사 번호만 내려보내라. 같은 팀을 [3]번 채점해 평균을 쓰고 근거를 남겨라. 학생 코드는 격리된 곳에서만 실행하고, 채점 브라우저는 팀마다 새로 띄워라.
 - 대회 중에는 멘토링 요청 화면과 행사장 TV 현황판을 띄우고, 마감 당일 팀원 전원이 만족도 조사에 답해야 최종 제출이 되게 해라.
