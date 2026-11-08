@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브 코딩 실전기 3편] AI로 짠 티(Slop) 10초 만에 벗겨내기 — B2B 엔터프라이즈급 UI를 만드는 9단계 디자인 하네스 | 김강훈 교수</title>
+    <meta name="description" content="보라색 네온, 이모지 남발, 어긋난 마진을 넘어 실리콘밸리 테크 프로덕트 수준의 시각적 완성도(Craft)를 입히는 실전 오픈소스 Unslop 분석과 9단계 리팩토링 체크리스트." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, Unslop, 언슬롭, UIUX, 디자인시스템, Claude Code, 클로드코드, 김강훈, 김강훈 교수, 동의과학대학교, DIT AI 허브센터" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/unslop/" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/unslop/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브 코딩 실전기 3편] AI로 짠 티(Slop) 10초 만에 벗겨내기 — B2B 엔터프라이즈급 UI를 만드는 9단계 디자인 하네스" />
+    <meta property="og:description" content="보라색 네온, 이모지 남발, 어긋난 마진을 넘어 실리콘밸리 프로덕트 수준의 Craft를 입히는 실전 오픈소스 Unslop 분석과 체크리스트." />
+    <meta property="og:image" content="https://skyman200.github.io/vibe-coding/unslop/assets/before_after_comparison_kr.png" />
+    <meta property="article:published_time" content="2026-11-09" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브 코딩 실전기 3편] AI로 짠 티(Slop) 10초 만에 벗겨내기" />
+    <meta name="twitter:description" content="흔한 AI 양산형 UI를 B2B 엔터프라이즈급으로 승화시키는 9단계 디자인 리팩토링 체계." />
+    <meta name="twitter:image" content="https://skyman200.github.io/vibe-coding/unslop/assets/before_after_comparison_kr.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "[바이브 코딩 실전기 3편] AI로 짠 티(Slop) 10초 만에 벗겨내기: B2B 엔터프라이즈급 UI를 만드는 9단계 디자인 하네스",
+      "alternativeHeadline": "보라색 네온, 이모지 남발, 어긋난 마진을 넘어 실리콘밸리 테크 프로덕트 수준의 시각적 완성도를 입히는 실전 오픈소스 Unslop 분석과 체크리스트",
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "alternateName": "KIM KANG-HOON",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0004-5083-406X",
+          "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+          "https://www.linkedin.com/in/prof-kimkanghoon"
+        ]
+      },
+      "datePublished": "2026-11-09",
+      "dateModified": "2026-11-09",
+      "inLanguage": "ko",
+      "articleSection": "바이브 코딩 실전기",
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "name": "바이브 코딩(Vibe Coding) 실전기",
+        "url": "https://skyman200.github.io/vibe-coding/"
+      },
+      "publisher": {
+        "@type": "CollegeOrUniversity",
+        "name": "동의과학대학교",
+        "url": "https://www.dit.ac.kr/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://skyman200.github.io/vibe-coding/unslop/"
+      },
+      "description": "바이브코딩의 최대 병목인 AI 슬롭(보라색 네온, 이모지, 임의 마진)을 걷어내고 실무 엔터프라이즈급 UI로 다듬는 Unslop 오픈소스의 9단계 리팩토링 체계 분석.",
+      "keywords": "바이브코딩, Vibe Coding, Unslop, 언슬롭, UIUX, Claude Code, 김강훈"
+    }
+    </script>
+
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #0a0a0a; color: #ecf1fa;
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 60px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 820px; width: 100%; }
+      .nav-links { display: flex; gap: 14px; margin-bottom: 32px; font-size: 0.92rem; }
+      .nav-links a { color: rgba(157,183,255,.8); text-decoration: none; }
+      .nav-links a:hover { color: #fff; }
+      .badge { display: inline-block; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #10b981; font-weight: 700; margin-bottom: 16px; background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); padding: 4px 12px; border-radius: 6px; }
+      h1 { font-size: clamp(1.8rem, 5vw, 2.45rem); font-weight: 800; line-height: 1.35; margin-bottom: 20px; letter-spacing: -0.02em; }
+      .subhead { font-size: 1.15rem; color: rgba(236,241,250,.72); margin-bottom: 32px; line-height: 1.65; word-break: keep-all; }
+      .meta { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(236,241,250,.12); border-bottom: 1px solid rgba(236,241,250,.12); margin-bottom: 48px; font-size: 0.92rem; color: rgba(236,241,250,.65); flex-wrap: wrap; }
+      .meta strong { color: #ecf1fa; }
+      h2 { font-size: 1.55rem; font-weight: 700; margin: 60px 0 20px; color: #9db7ff; border-left: 3px solid #10b981; padding-left: 14px; }
+      h3 { font-size: 1.25rem; font-weight: 700; margin: 34px 0 14px; color: #ecf1fa; }
+      p { margin-bottom: 22px; font-size: 1.05rem; color: rgba(236,241,250,.88); word-break: keep-all; }
+      blockquote { margin: 32px 0; padding: 20px 24px; background: rgba(16,185,129,.06); border-left: 4px solid #10b981; border-radius: 4px; font-size: 1.08rem; color: #ecf1fa; }
+      ul, ol { margin: 0 0 26px 24px; color: rgba(236,241,250,.85); }
+      li { margin-bottom: 10px; font-size: 1.02rem; word-break: keep-all; }
+      strong { color: #fff; font-weight: 700; }
+      a { color: #9db7ff; text-decoration: underline; text-underline-offset: 4px; }
+      a:hover { color: #bfd3ff; }
+      
+      .table-box { overflow-x: auto; margin: 28px 0 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,.12); }
+      table { width: 100%; border-collapse: collapse; font-size: 0.94rem; text-align: left; background: rgba(255,255,255,.02); }
+      th { background: rgba(255,255,255,.06); color: #ecf1fa; font-weight: 600; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.12); }
+      td { padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,.07); color: rgba(236,241,250,.85); }
+      tr:last-child td { border-bottom: none; }
+
+      .img-card { margin: 36px 0; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; overflow: hidden; }
+      .img-card img { width: 100%; height: auto; display: block; }
+      .img-card figcaption { padding: 14px 18px; font-size: 0.88rem; color: rgba(236,241,250,.65); background: rgba(0,0,0,.3); border-top: 1px solid rgba(255,255,255,.08); text-align: center; }
+
+      pre { background: #121316; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: 18px; margin: 24px 0; overflow-x: auto; font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; }
+      code { font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 4px; color: #10b981; }
+      pre code { background: none; padding: 0; color: inherit; }
+
+      .author-bio { margin-top: 72px; padding: 32px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.2rem; }
+      .author-bio p { font-size: 0.95rem; margin-bottom: 10px; color: rgba(236,241,250,.8); }
+      .author-links { display: flex; gap: 14px; margin-top: 16px; font-size: 0.9rem; }
+
+      .series-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+      @media(max-width: 640px) { .series-nav { grid-template-columns: 1fr; } }
+      .series-card { display: block; padding: 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; text-decoration: none; transition: all .2s ease; }
+      .series-card:hover { background: rgba(255,255,255,.08); border-color: rgba(157,183,255,.4); }
+      .series-card .k { font-size: 0.74rem; text-transform: uppercase; color: #9db7ff; font-weight: 700; display: block; margin-bottom: 6px; }
+      .series-card .t { font-size: 1rem; font-weight: 700; color: #ecf1fa; line-height: 1.45; }
+    </style>
+  </head>
+  <body>
+    <div class="article-wrap">
+      
+      <div class="nav-links">
+        <a href="https://skyman200.github.io/">← 연구실 홈</a>
+        <span>·</span>
+        <a href="../">바이브 코딩 연재 홈</a>
+        <span>·</span>
+        <a href="../hackathon/">2편: 해커톤 플랫폼</a>
+      </div>
+
+      <span class="badge">Vibe Coding Series · Ep.3</span>
+      <h1>[바이브 코딩 실전기 3편] AI로 짠 티(Slop) 10초 만에 벗겨내기: B2B 엔터프라이즈급 UI를 만드는 9단계 디자인 하네스</h1>
+      <p class="subhead">보라색 네온, 이모지 남발, 어긋난 마진을 넘어 실리콘밸리 테크 프로덕트 수준의 시각적 완성도(Craft)를 입히는 실전 오픈소스 Unslop 분석과 체크리스트</p>
+
+      <div class="meta">
+        <div>작성자 <strong>김강훈</strong> (동의과학대 물리치료과 학과장 / DIT AI 허브센터 팀장)</div>
+        <div>게시일 <strong>2026-11-09</strong></div>
+        <div>분야 <strong>UI/UX 엔지니어링 · 바이브코딩</strong></div>
+      </div>
+
+      <h2>1. 프롤로그: 바이브코딩의 가장 아픈 아킬레스건, 'AI Slop'</h2>
+      <p>요즘 대학가와 개발 현장에서 클로드 코드(Claude Code), v0, 볼트(Bolt) 등을 활용한 <strong>바이브코딩(Vibe Coding)</strong> 열풍이 거셉니다. 자연어로 몇 마디 던지면 단 10분 만에 데이터베이스가 붙고 인증이 돌아가는 풀스택 웹 애플리케이션이 완성됩니다. 저 역시 지난 1년간 대학 행정 시스템 22종을 직접 배포했고, 얼마 전 교내 해커톤 올인원 플랫폼(3만 줄 풀스택)을 단 하나의 URL로 구현해 냈습니다.</p>
+      
+      <p>하지만 바이브코딩을 시도해 본 사람이라면 누구나 한 번쯤 마주하는 뼈아픈 장벽이 있습니다. 바로 <strong>"누가 봐도 AI가 대충 짜준 티가 나는 화면"</strong>, 이른바 <strong>'AI 슬롭(AI Slop)'</strong> 문제입니다.</p>
+      
+      <p>화면을 띄우자마자 시선을 강탈하는 요소들이 있습니다:</p>
+      <ul>
+        <li>배경마다 어김없이 깔리는 <strong>보라색·보라-블루 네온 그라데이션</strong></li>
+        <li>버튼과 카드 테두리마다 과하게 번지는 <strong>발광(Glow) 효과</strong></li>
+        <li>메뉴와 라벨마다 덕지덕지 붙은 <strong>이모지(✨, 🚀, 🔥, 🏠, 💰)</strong></li>
+        <li>맥락 없는 허세형 영문 카피 (<code>Supercharge your AI workflow!!</code>, <code>Welcome back, Boss! 👋</code>)</li>
+        <li>4px 배수 원칙을 무시하고 눈대중으로 들어간 <strong>중구난방 마진(<code>mt-[13px]</code>, <code>px-[22px]</code>)</strong></li>
+      </ul>
+
+      <p>기능은 완벽하게 돌아가는데, 겉모습이 흔해 빠진 'AI 양산형 토이 프로젝트'처럼 보이기 때문에 실무 도입이나 보직자 보고, 엔터프라이즈 납품 단계에서 번번이 "신뢰감이 떨어진다"는 평가를 받게 됩니다. 기능의 바이브코딩을 넘어 <strong>'감(Craft)의 바이브코딩'</strong>으로 넘어가기 위해 반드시 풀어야 할 숙제였습니다.</p>
+
+      <h2>2. Unslop이란 무엇인가: AI에게 '디자이너의 레드라인'을 쥐어주다</h2>
+      <p>이 문제를 가장 우아하고 기술적인 방식으로 정면 돌파한 오픈소스가 등장했습니다. 바로 디자이너 다미르 소콜로프스키(Damir Sokolovsky, <a href="https://x.com/heydamir" target="_blank" rel="noopener">@heydamir</a>)가 공개한 <strong>Unslop(언슬롭)</strong> 프로젝트(<code>github.com/heydamir/unslop</code>)입니다. 공개 직후 글로벌 개발자 커뮤니티와 X에서 폭발적인 반응을 얻으며 순식간에 1만 2천 개 이상의 스타(Stars)를 기록했습니다.</p>
+
+      <blockquote>
+        "슬롭(Slop)을 걷어내는 것은 절반일 뿐이다. 진정한 크래프트(Craft)는 크롬(배경·버튼·테두리)을 극도로 차분하게 가라앉히고, 프로덕트 본연의 콘텐츠 한두 곳에만 시각적 무게를 싣는 데서 온다."
+      </blockquote>
+
+      <p>Unslop은 단순히 테마 색상만 바꾸는 라이브러리가 아닙니다. <strong>60여 개에 달하는 AI 슬롭 감지 체크리스트</strong>를 바탕으로, 실무 수석 디자이너가 주니어의 시안 위에 빨간 펜으로 레드라인(Redline)을 긋듯 코드를 <strong>9단계 순서대로 직접 뜯어고쳐 주는 디자인 하네스(Design Harness)</strong>입니다.</p>
+
+      <h2>3. Unslop의 9단계 실전 리팩토링 패스 (The 9 Passes)</h2>
+      <p>Unslop이 화면을 재구성할 때 거치는 9단계 순서는 디자인 엔지니어링의 정수입니다. 순서가 뒤섞이면 안 됩니다. 리듬(간격)이 잡혀야 글자가 읽히고, 문구(길이)가 정해져야 타이포와 배치가 결정되기 때문입니다.</p>
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 12%;">순서</th>
+              <th style="width: 24%;">패스 (Pass)</th>
+              <th style="width: 32%;">Before (흔한 AI Slop)</th>
+              <th style="width: 32%;">After (Unslop 리팩토링 후)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td><strong>간격 (Spacing)</strong></td>
+              <td><code>13px</code>, <code>26px</code>, <code>44px</code> 임의 마진</td>
+              <td><strong>4px 그리드 배수</strong>(8, 12, 16, 24, 32px)로 통일</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td><strong>색상 (Color)</strong></td>
+              <td>보라색 배경, 네온 글로우, 과도한 색채</td>
+              <td>차분한 <strong>그라파이트 서피스</strong> + <strong>단일 엑센트</strong></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td><strong>아이콘 (Icons)</strong></td>
+              <td>메뉴·카드마다 붙은 이모지(✨, 🚀)</td>
+              <td>16~18px 통일 규격의 <strong>라인 아이콘(SVG)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td><strong>문구 (Copy)</strong></td>
+              <td>"Welcome back! 👋", "!!", "Search..."</td>
+              <td>문맥형 타이틀 ("October 2026"), 명확한 기준</td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td><strong>타이포 (Type)</strong></td>
+              <td>800~900 과도한 볼드, 대문자 트래킹</td>
+              <td>400~500 굵기, Sentence case, <strong><code>tabular-nums</code></strong></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td><strong>배치 (Layout)</strong></td>
+              <td>좁은 박스에 어색하게 갇힌 화면</td>
+              <td>실제 데스크톱 비율 (260px 사이드바 + 넓은 본문)</td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td><strong>디테일 (Details)</strong></td>
+              <td>무지개색 막대 차트, 네온 테두리</td>
+              <td>6~10% 헤어라인 테두리, 정밀 SVG 스플라인 곡선</td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td><strong>시각요소 (Visuals)</strong></td>
+              <td>의미 없는 3D 구체(Glossy Orb)</td>
+              <td>실제 서비스 데이터(결제 카드, 지표) 오브젝트화</td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td><strong>모션 (Motion)</strong></td>
+              <td>깜빡이는 <code>animate-pulse</code>, 과한 바운스</td>
+              <td>목적이 있는 부드러운 호버 트랜지션만 허용</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>4. 실전 샘플 분석: 비포 & 애프터의 극적인 대비</h2>
+      <p>실제 Unslop의 표준 테스트 대시보드(EmberAI)를 9단계 룰에 따라 리팩토링한 샘플을 통해 전후 차이를 정밀 비교해 보았습니다.</p>
+
+      <h3>4.1 핵심 화면 비교 (Before vs After)</h3>
+      <div class="img-card">
+        <img src="assets/before_after_comparison_kr.png" alt="Unslop Before and After 핵심 비교" />
+        <figcaption>[그림 1] 좌측: 흔한 AI 슬롭 대시보드 / 우측: Unslop 9단계 리팩토링 적용 후</figcaption>
+      </div>
+
+      <p><strong>Before 화면의 문제점:</strong></p>
+      <ul>
+        <li>눈이 찌릿할 정도로 강렬한 보라색 배경(<code>bg-gradient-to-b from-[#5b34b8]</code>) 때문에 장시간 업무를 볼 수 없습니다.</li>
+        <li>검색창 라벨부터 내비게이션까지 불필요한 이모지와 캡슐형 뱃지가 도배되어 신뢰감을 떨어뜨립니다.</li>
+        <li>마진 값이 제각각이라 사이드바와 메인 카드의 시각적 정렬선이 삐뚤빼뚤합니다.</li>
+      </ul>
+
+      <p><strong>After 화면의 변화:</strong></p>
+      <ul>
+        <li>배경이 깊이 있는 그라파이트 다크 톤(<code>#0b0c0e</code>)으로 정리되고, 카드는 1px 헤어라인 테두리(<code>border: 1px solid rgba(255,255,255,0.07)</code>)로 정돈되었습니다.</li>
+        <li>이모지가 전면 제거되고 16px 단색 라인 아이콘으로 대체되었습니다.</li>
+        <li><code>EmberAI PRO</code>라는 거창한 로고 대신 <code>Ember Operations</code>라는 정갈한 실무 타이틀이 자리 잡았습니다.</li>
+      </ul>
+
+      <h3>4.2 10초 트랜지션 타임라인 (단계별 모핑 과정)</h3>
+      <p>Unslop의 가장 놀라운 지점은 코드가 뚝딱 바뀌는 것이 아니라, 각 패스가 순차적으로 적용되며 화면이 변하는 과정을 Playwright와 ffmpeg를 통해 10초짜리 영상으로 생성해 준다는 점입니다.</p>
+
+      <div class="img-card">
+        <img src="assets/unslop_step_by_step_kr.png" alt="Unslop 9단계 실전 프로세스 타임라인" />
+        <figcaption>[그림 2] 8개 프레임으로 보는 Unslop 10초 트랜지션 타임라인</figcaption>
+      </div>
+
+      <ol>
+        <li><strong>1단계 (Redline):</strong> 어긋난 마진(<code>13px</code>, <code>26px</code>, <code>44px</code>)을 빨간선으로 측정합니다.</li>
+        <li><strong>2단계 (Spacing):</strong> 4px 배수로 정렬선을 맞춥니다.</li>
+        <li><strong>3단계 (Color):</strong> 보라색 네온이 빠져나가고 차분한 그라파이트 서피스가 내려앉습니다.</li>
+        <li><strong>4단계 (Icons & Type):</strong> 이모지가 떨어져 나가고 라인 아이콘과 문맥형 타이포가 적용됩니다.</li>
+        <li><strong>5단계 (Details & Chart):</strong> 난잡한 막대 그래프가 단일 엑센트(에메랄드) 중심의 유려한 스플라인 곡선 차트로 거듭납니다.</li>
+      </ol>
+
+      <h2>5. 내 프로젝트에 1분 만에 적용하는 법</h2>
+      <p>클로드 코드(Claude Code)를 사용하고 있다면 세팅은 1분도 걸리지 않습니다:</p>
+
+      <pre><code># 1. Unslop 오픈소스 클론 및 스킬 폴더 등록
+git clone https://github.com/heydamir/unslop
+mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/
+
+# 2. 클로드 코드 실행 후 원하는 화면에 명령어 실행
+claude
+> /unslop this dashboard
+> /unslop my landing page and make the story video</code></pre>
+
+      <p>만약 CLI 도구를 직접 설치하기 어려운 환경이라면, Unslop의 <strong>핵심 룰셋(Signs of Slop)</strong>을 복사하여 시스템 프롬프트나 프롬프트 하네스에 한 줄만 추가해도 AI의 산출물 퀄리티가 완전히 달라집니다:</p>
+
+      <blockquote>
+        "보라색 그라데이션, 네온 글로우, 이모지 라벨, 감탄사(!!)를 일절 배제하라. 4px 배수 그리드와 차분한 그라파이트 서피스(#131417), 16px 라인 아이콘, 그리고 하나의 엑센트 컬러만 사용하는 B2B 엔터프라이즈 디자인 원칙을 엄격히 적용하라."
+      </blockquote>
+
+      <h2>6. 에필로그: '기능 구현'을 넘어 '신뢰의 프로덕트'로</h2>
+      <p>대학에서 교원 연수를 진행하거나 학생들에게 바이브코딩을 가르칠 때, 저는 늘 이렇게 강조합니다.</p>
+
+      <blockquote>
+        "소프트웨어의 기능은 코드가 증명하지만, 소프트웨어의 신뢰는 첫 화면의 디테일(Craft)이 결정한다."
+      </blockquote>
+
+      <p>사용자가 화면을 열었을 때 "아, 이거 AI가 만든 거구나"라고 느끼는 순간, 그 뒤에 돌아가는 3만 줄의 정교한 백엔드와 데이터 파이프라인조차 가볍게 여겨질 수 있습니다. 반대로, 절제된 레이아웃과 차분한 컬러, 칼같이 정렬된 폰트와 여백을 마주하면 사용자는 비로소 시스템을 믿고 자신의 데이터를 맡기게 됩니다.</p>
+
+      <p>Unslop은 AI 시대에 코딩을 시작한 모든 비개발자와 교수, 1인 창업가들에게 '디자이너의 감각'을 무기화해 주는 훌륭한 나침반입니다. 오는 11월 13일 부산외국어대학교 교수 연수에서도 이 'AI 슬롭 제거 실전 팁'을 핵심 시연으로 선보일 예정입니다.</p>
+
+      <p>바이브코딩의 진정한 힘은 '빨리 만드는 것'에 그치지 않고, <strong>'누구보다 완성도 높게 끝까지 책임지는 것'</strong>에 있습니다.</p>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>동의과학대학교 물리치료과 교수 및 학과장이자, 교내 DIT AI 허브센터 팀장으로 재직 중입니다. 비개발자 출신으로 생성형 AI를 결합한 바이브 코딩(Vibe Coding)을 통해 1년간 22종의 대학 행정·교육 시스템을 배포하고 교내 해커톤 올인원 플랫폼을 구축했습니다. 대학 보건의료 교육과 학사행정의 AI 혁신을 이끌고 있습니다.</p>
+        <div class="author-links">
+          <a href="https://skyman200.github.io/">연구실 홈페이지</a>
+          <span>·</span>
+          <a href="https://www.linkedin.com/in/prof-kimkanghoon" target="_blank" rel="noopener">LinkedIn 프로필</a>
+          <span>·</span>
+          <a href="https://orcid.org/0009-0004-5083-406X" target="_blank" rel="noopener">ORCID</a>
+        </div>
+      </div>
+
+      <div class="series-nav">
+        <a href="../" class="series-card">
+          <span class="k">Episode 1</span>
+          <span class="t">현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩' 실전기</span>
+        </a>
+        <a href="../hackathon/" class="series-card">
+          <span class="k">Episode 2</span>
+          <span class="t">단 하나의 URL로 끝낸 교내 해커톤: 3만 줄 풀스택과 42회 AI 코드 심사 파이프라인</span>
+        </a>
+      </div>
+
+    </div>
+  </body>
+</html>
