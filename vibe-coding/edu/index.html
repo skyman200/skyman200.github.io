@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브 코딩 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결: Cloudflare Pages와 AI ONE으로 구축한 'AI Class Lab' 플랫폼 아키텍처 | 김강훈 교수</title>
+    <meta name="description" content="DIT AI-ONE 지능형 라우팅, 샌드박스 자가치유 스튜디오, 실시간 D1 참여판으로 완성한 교수자 실전 연수 시스템. 부산외대 PSC 연수를 위해 비전공 교수가 직접 구축한 AI Class Lab(kimcook-edu.pages.dev) 아키텍처 기록." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, AI Class Lab, Cloudflare Pages, Cloudflare D1, DIT AI-ONE, 교수자 연수, AI 교육, 구글 앱스 스크립트, GAS, 김강훈, 김강훈 교수, 동의과학대학교, 부산외국어대학교 PSC" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/edu/" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/edu/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브 코딩 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결: AI Class Lab 플랫폼 아키텍처" />
+    <meta property="og:description" content="DIT AI-ONE 지능형 라우팅, 샌드박스 자가치유 스튜디오, 실시간 D1 참여판으로 완성한 교수자 실전 연수 시스템." />
+    <meta property="og:image" content="https://skyman200.github.io/vibe-coding/edu/assets/og.jpg" />
+    <meta property="article:published_time" content="2026-11-11" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브 코딩 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결" />
+    <meta name="twitter:description" content="Cloudflare Pages와 AI ONE으로 구축한 AI Class Lab 플랫폼 아키텍처." />
+    <meta name="twitter:image" content="https://skyman200.github.io/vibe-coding/edu/assets/og.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "[바이브 코딩 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결: Cloudflare Pages와 AI ONE으로 구축한 'AI Class Lab' 플랫폼 아키텍처",
+      "alternativeHeadline": "DIT AI-ONE 지능형 라우팅 · 샌드박스 자가치유 스튜디오 · 실시간 D1 참여판으로 완성한 교수자 실전 연수 시스템",
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "alternateName": "KIM KANG-HOON",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0004-5083-406X",
+          "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+          "https://www.linkedin.com/in/prof-kimkanghoon"
+        ]
+      },
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "inLanguage": "ko",
+      "articleSection": "바이브 코딩 실전기",
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "name": "바이브 코딩(Vibe Coding) 실전기",
+        "url": "https://skyman200.github.io/vibe-coding/"
+      },
+      "publisher": {
+        "@type": "CollegeOrUniversity",
+        "name": "동의과학대학교",
+        "url": "https://www.dit.ac.kr/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://skyman200.github.io/vibe-coding/edu/"
+      },
+      "description": "부산외국어대학교 PSC 교수자 AI 활용 맞춤형 연수(2026-11-13)를 위해 비전공 교수가 직접 구축한 실습 플랫폼 AI Class Lab의 설계 기록. Cloudflare Pages Functions 기반 AI 게이트웨이, 샌드박스 실행 칸의 자가치유 루프, Cloudflare D1 참여판, GAS 혼자 쓰는 판과 PDF 키트.",
+      "keywords": "바이브코딩, Vibe Coding, AI Class Lab, Cloudflare Pages, Cloudflare D1, AI ONE, 교수자 연수, 대학 AI 교육, 김강훈교수, 동의과학대학교"
+    }
+    </script>
+
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #0a0a0a; color: #ecf1fa;
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 60px 24px 120px; display: flex; justify-content: center;
+      }
+      .progress-bar {
+        position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #b09cff, #7dd3fc);
+        width: 0%; z-index: 100; transition: width .1s ease-out;
+      }
+      .article-wrap { max-width: 820px; width: 100%; }
+      .nav-links { display: flex; gap: 14px; margin-bottom: 32px; font-size: 0.92rem; flex-wrap: wrap; }
+      .nav-links a { color: rgba(157,183,255,.8); text-decoration: none; }
+      .nav-links a:hover { color: #fff; }
+      .badge { display: inline-block; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #b09cff; font-weight: 700; margin-bottom: 16px; background: rgba(176,156,255,.12); border: 1px solid rgba(176,156,255,.3); padding: 4px 12px; border-radius: 6px; }
+      h1 { font-size: clamp(1.8rem, 5vw, 2.45rem); font-weight: 800; line-height: 1.35; margin-bottom: 20px; letter-spacing: -0.02em; }
+      .subhead { font-size: 1.15rem; color: rgba(236,241,250,.72); margin-bottom: 32px; line-height: 1.65; word-break: keep-all; }
+      .meta { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(236,241,250,.12); border-bottom: 1px solid rgba(236,241,250,.12); margin-bottom: 48px; font-size: 0.92rem; color: rgba(236,241,250,.65); flex-wrap: wrap; }
+      .meta strong { color: #ecf1fa; }
+      h2 { font-size: 1.55rem; font-weight: 700; margin: 60px 0 20px; color: #9db7ff; border-left: 3px solid #b09cff; padding-left: 14px; }
+      h3 { font-size: 1.25rem; font-weight: 700; margin: 34px 0 14px; color: #ecf1fa; }
+      p { margin-bottom: 22px; font-size: 1.05rem; color: rgba(236,241,250,.88); word-break: keep-all; }
+      blockquote { margin: 32px 0; padding: 20px 24px; background: rgba(176,156,255,.08); border-left: 4px solid #b09cff; border-radius: 4px; font-size: 1.08rem; color: #ecf1fa; }
+      ul, ol { margin: 0 0 26px 24px; color: rgba(236,241,250,.85); }
+      li { margin-bottom: 10px; font-size: 1.02rem; word-break: keep-all; }
+      strong { color: #fff; font-weight: 700; }
+      a { color: #9db7ff; text-decoration: underline; text-underline-offset: 4px; }
+      a:hover { color: #bfd3ff; }
+
+      .system-badge-link { display: inline-flex; align-items: center; gap: 8px; margin: 24px 0 36px; padding: 12px 20px; background: rgba(176,156,255,.12); border: 1px solid rgba(176,156,255,.35); border-radius: 8px; text-decoration: none; font-weight: 600; color: #cfc4ff; font-size: 0.96rem; transition: all .2s ease; }
+      .system-badge-link:hover { background: rgba(176,156,255,.22); border-color: #b09cff; color: #fff; }
+
+      .img-card { margin: 36px 0; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; overflow: hidden; }
+      .img-card img { width: 100%; height: auto; display: block; }
+      .img-card figcaption { padding: 14px 18px; font-size: 0.88rem; color: rgba(236,241,250,.65); background: rgba(0,0,0,.3); border-top: 1px solid rgba(255,255,255,.08); text-align: center; }
+
+      pre { background: #121316; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: 18px; margin: 24px 0; overflow-x: auto; font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.86rem; line-height: 1.6; color: #a1a1aa; white-space: pre; }
+      code { font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 4px; color: #cfc4ff; }
+      pre code { background: none; padding: 0; color: inherit; }
+
+      table { width: 100%; border-collapse: collapse; margin: 26px 0; font-size: 0.95rem; }
+      th, td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.12); text-align: left; vertical-align: top; color: rgba(236,241,250,.85); }
+      th { color: #cfc4ff; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; border-bottom: 1px solid rgba(176,156,255,.4); }
+      @media(max-width: 640px) { table { font-size: 0.85rem; } th, td { padding: 8px 8px; } }
+
+      .author-bio { margin-top: 72px; padding: 32px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.2rem; }
+      .author-bio p { font-size: 0.95rem; margin-bottom: 10px; color: rgba(236,241,250,.8); }
+      .author-links { display: flex; gap: 14px; margin-top: 16px; font-size: 0.9rem; flex-wrap: wrap; }
+
+      .next-ep { display: block; margin-top: 40px; padding: 22px 24px; background: rgba(157,183,255,.07); border: 1px solid rgba(157,183,255,.28); border-radius: 10px; text-decoration: none; transition: background .2s ease, border-color .2s ease; }
+      .next-ep:hover { background: rgba(157,183,255,.12); border-color: rgba(157,183,255,.5); }
+      .next-ep .k { display: block; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9db7ff; font-weight: 700; margin-bottom: 8px; }
+      .next-ep .t { display: block; font-size: 1.05rem; font-weight: 700; color: #ecf1fa; line-height: 1.5; }
+      .next-ep .d { display: block; margin-top: 6px; font-size: 0.9rem; color: rgba(236,241,250,.65); }
+
+      .series-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 48px; }
+      @media(max-width: 768px) { .series-nav { grid-template-columns: 1fr; } }
+      .series-card { display: block; padding: 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; text-decoration: none; transition: all .2s ease; }
+      .series-card:hover { background: rgba(255,255,255,.08); border-color: rgba(157,183,255,.4); }
+      .series-card .k { font-size: 0.74rem; text-transform: uppercase; color: #9db7ff; font-weight: 700; display: block; margin-bottom: 6px; }
+      .series-card .t { font-size: 0.96rem; font-weight: 700; color: #ecf1fa; line-height: 1.45; }
+    </style>
+  </head>
+  <body>
+    <div class="progress-bar" id="progress"></div>
+    <div class="article-wrap">
+
+      <div class="nav-links">
+        <a href="https://skyman200.github.io/">← 연구실 홈</a>
+        <span>·</span>
+        <a href="../">바이브 코딩 연재 홈</a>
+        <span>·</span>
+        <a href="../syllabus/">4편: 강의계획서 AI 체크</a>
+      </div>
+
+      <span class="badge">Vibe Coding Series · Ep.5</span>
+      <h1>[바이브 코딩 실전기 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결: Cloudflare Pages와 AI ONE으로 구축한 'AI Class Lab' 플랫폼 아키텍처</h1>
+      <p class="subhead">DIT AI-ONE 지능형 라우팅 · 샌드박스 자가치유 스튜디오 · 실시간 D1 참여판으로 완성한 교수자 실전 연수 시스템</p>
+
+      <div class="meta">
+        <div>작성자 <strong>김강훈</strong> (동의과학대학교 물리치료과 학과장 · DIT AI 허브센터 팀장)</div>
+        <div>게시일 <strong>2026-11-11</strong></div>
+      </div>
+
+      <a href="https://kimcook-edu.pages.dev/" target="_blank" rel="noopener" class="system-badge-link">
+        🚀 실시간 시스템 바로가기: kimcook-edu.pages.dev ↗
+      </a>
+
+      <div class="img-card">
+        <img src="assets/og.jpg" alt="AI Class Lab 실습 페이지 첫 화면 — 두 개의 미션과 오늘의 시간표" />
+        <figcaption>▲ 부산외대 PSC 연수용으로 배포된 'AI Class Lab' 첫 화면 (kimcook-edu.pages.dev) — 오늘 할 일 두 개와 90분 시간표만 남겼다.</figcaption>
+      </div>
+
+      <h2>1. 들어가며: 잘 만든 강의안이 아니라 '손에 남는 것'이 문제였다</h2>
+      <p>지난 1년 동안 저는 전국 전문대학 법인협의회와 여러 대학 교직원을 대상으로 AI 활용 특강을 다녔습니다. 강의실 반응은 늘 좋았습니다. 문제는 그다음이었습니다.</p>
+      <ul>
+        <li>강의가 끝나면 교수님들은 <strong>"정말 좋은데, 내일부터 뭘 해야 하나"</strong>에서 멈췄습니다.</li>
+        <li>화면을 캡처한 사진과 손글씨 메모가 남고, 일주일 뒤에는 그마저도 사라졌습니다.</li>
+        <li>AI 사용법을 가르친 강의인데, 정작 <strong>강사인 제가 매번 같은 설명을 반복</strong>하고 있었습니다.</li>
+      </ul>
+      <p>일방적으로 듣는 특강은 '이해'는 만들지만 '습관'은 만들지 못합니다. 90분짜리 강의에서 바꿔야 할 것은 지식의 양이 아니라 <strong>강의가 끝난 순간 교수님 손에 남아 있는 것</strong>입니다. 그래서 설계 원칙을 한 줄로 다시 세웠습니다.</p>
+      <blockquote>"오늘 90분 안에, 각자가 자기 교과목용 웹앱 하나를 만들어 학생에게 배포한다."</blockquote>
+      <p>2026년 11월 13일 금요일 10:00~12:00, 부산외국어대학교 PSC교수학습기술센터의 '교수자 AI 활용 맞춤형 연수'가 그 첫 무대입니다. 이 글은 그 연수를 위해 직접 만들고 배포한 실습 플랫폼 <strong>AI Class Lab(<code>kimcook-edu.pages.dev</code>)</strong>의 설계 기록입니다. 코딩을 전혀 모르는 교수 60명이 같은 강의장에서 동시에 접속해, 설치도 회원가입도 없이 30분 만에 자기 앱을 띄우고 학생용 링크까지 받아 가는 구조입니다.</p>
+
+      <h2>2. 연수 설계: 두 개의 미션, 90분</h2>
+      <p>플랫폼은 강의안이 아니라 <strong>시간표</strong>입니다. 첫 화면에 오늘 할 일 두 개만 남겼습니다.</p>
+
+      <table>
+        <thead><tr><th>시간</th><th>구간</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>10:00</td><td>열기</td><td>학생이 돼 보기 · 휴대폰 QR</td></tr>
+          <tr><td>10:10</td><td>원리</td><td>AI에게 일을 맡기는 법</td></tr>
+          <tr><td>10:20</td><td><strong>미션 1 (25분)</strong></td><td>내 과제, AI가 풀면 몇 점?</td></tr>
+          <tr><td>10:45</td><td>나누기</td><td>점수 공개 · 짝과 이야기</td></tr>
+          <tr><td>10:55</td><td>쉬는 시간</td><td>5분</td></tr>
+          <tr><td>11:00</td><td><strong>미션 2 (30분)</strong></td><td>다음 주 수업에 쓸 앱, 말로 만듭니다</td></tr>
+          <tr><td>11:30</td><td>바꿔 쓰기</td><td>옆 교수님이 학생이 되어</td></tr>
+          <tr><td>11:40</td><td>전시</td><td>오늘의 앱 · 강사 시연</td></tr>
+          <tr><td>11:50</td><td>정리</td><td>다음 학기 한 가지 · 질문</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>미션 1</strong>은 AI가 학생인 척 내 과제를 풀게 하고, 교수가 평소 기준으로 채점합니다. 점수는 이름 없이 강의장 화면에 모여 분포가 되고, 그 분포를 보며 "AI 시대에도 배움이 남는 과제"로 다시 설계합니다. <strong>미션 2</strong>는 기획서를 한 문장씩 채우면 AI가 HTML 앱 하나를 만들어 주고, 그 자리에서 실행해 보고, 옆 교수에게 써 보게 하고, 전시판에 올려 학생용 링크를 받습니다.</p>
+      <p>90분 안에 이 흐름이 끊기지 않으려면 기술적으로 네 개의 병목을 먼저 치워야 했습니다. 이 글의 나머지는 그 네 개를 어떻게 뚫었는지에 대한 기록입니다.</p>
+
+      <div class="img-card">
+        <img src="assets/mission2.jpg" alt="미션 2 기획 화면 — 예시 앱 9종과 기획서, BUILD PROMPT" />
+        <figcaption>▲ 미션 2의 01 기획 화면. 예시 앱 9종 중 하나를 고르면 기획서가 채워지고, 그대로 프롬프트가 된다.</figcaption>
+      </div>
+
+      <h2>3. 병목 1 — "AI 구독이 없습니다", "API 키가 뭡니까"</h2>
+      <h3>문제</h3>
+      <p>연수 첫 시간에 가장 많이 나오는 말은 "저는 유료 결제를 안 했습니다"입니다. 참가자 전원에게 ChatGPT Plus나 Claude Pro를 사 오라고 할 수는 없습니다. 그렇다고 제 API 키를 화면에 띄워 드릴 수도 없습니다. 키 하나가 새면 그날 연수 전체가 끝납니다.</p>
+
+      <h3>해결: 키는 서버에만, 브라우저에는 '수업 코드'만</h3>
+      <p>구조는 단순합니다. 정적 페이지는 Cloudflare Pages가, AI 호출은 같은 프로젝트의 Pages Function(<code>functions/api/ai.js</code>)이 맡습니다. 브라우저는 우리 서버에만 말을 걸고, 진짜 API 키(<code>AI_GATEWAY_API_KEY</code>)는 Cloudflare의 비밀값 저장소에만 있습니다. <strong>개발자 도구를 다 열어 봐도 키는 한 글자도 나오지 않습니다.</strong></p>
+      <p>참가자에게는 '수업 코드' 한 개만 알려 줍니다. 강의장 화면에 크게 띄우고, QR 링크(<code>/?c=코드</code>)로 들어오면 자동 입력됩니다. 이 코드는</p>
+      <ul>
+        <li>서버 환경변수에만 저장하고,</li>
+        <li>입력값을 <strong>SHA-256으로 해시해</strong> 저장된 해시들과 <strong>타이밍 세이프(timing-safe)</strong> 비교를 하며,</li>
+        <li>맞으면 그 해시 앞 8바이트를 '코드 식별자'로 써서 사람별 사용량을 셉니다. 즉 서버는 코드 원문을 메모리에 남기지 않고도 "누가 얼마나 썼는지"를 압니다.</li>
+      </ul>
+
+      <h3>AI ONE 게이트웨이: 모델을 사람이 아니라 '실습'이 고른다</h3>
+      <p>참가자는 모델 이름을 모릅니다. 알 필요도 없습니다. 서버가 실습 ID를 보고 모델을 고릅니다.</p>
+
+      <pre><code>실습 ID              tier        모델                     상한 토큰
+m1-1 ~ m1-3          balanced    Claude Sonnet 5.5        6,000 ~ 8,000
+s1-1 (짧은 요약)      fast        Claude Haiku 5.5         1,500
+s4-4 (Apps Script)   strong      Claude Opus 5.5         12,000
+vibe (수업 앱)        strong      Claude Opus 5.5         12,000
+gas-fix2 (재수정)     strong      Claude Opus 5.5         12,000</code></pre>
+
+      <p>각 tier에는 폴백 체인이 붙어 있습니다(예: <code>Opus 5.5 → Sonnet 5.5 → Sonnet 5</code>). 게이트웨이가 429를 내면 잠깐 기다렸다 같은 모델을 두 번 더 시도하고, 그래도 안 되면 다음 모델로 내려갑니다. 답 위에는 <strong>"자동 선택 · Claude Opus 5.5 — 코드 한 파일을 끝까지 틀리지 않게 써야 해서"</strong>처럼 고른 모델과 이유가 표시됩니다. 참가자는 이 한 줄에서 "모델마다 잘하는 일이 다르다"는 원리를 배웁니다. 강의 내용이 UI 안에 들어 있는 셈입니다.</p>
+
+      <h3>60명이 한 IP로 몰려도 버티게</h3>
+      <p>연수장은 공유기 하나를 60명이 나눠 씁니다. 실제로는 IP 하나에 요청 60개가 몰리는 구조라, 사람별 한도만 걸면 아무 의미가 없습니다. 그래서 한도를 5겹으로 겹쳤습니다.</p>
+
+      <pre><code>IP·10분        1,500회   (연수장 전체 한도로 동작)
+동시 처리        150개    (브라우저를 닫으면 즉시 반납)
+수업 코드·하루  2,500회
+전체·하루       3,000회
+전체·분당         100회   (게이트웨이 자체 한도 120/분의 안전선)</code></pre>
+
+      <p>숫자는 코드가 아니라 <strong>환경변수</strong>로 뺐습니다. 다음 연수가 30명이면 재배포 없이 숫자만 바꿉니다. 여기에 잘못된 코드를 10분에 1,000번 넣으면 그 IP를 잠그는 장치를 따로 뒀습니다. 오타가 잦은 현장이라 한도는 넉넉하게, 대신 잠기면 <strong>올바른 코드를 넣어도</strong> 응답하지 않습니다. 잠금 중에 정답 여부를 알려 주면 그것 자체가 코드를 맞혀 가는 힌트가 되기 때문입니다.</p>
+      <p>요청 자체의 상한도 분명히 뒀습니다. 한 번에 12,000자, 대화 전체 40,000자, 24턴, 본문 6MB, 첨부 파일 3개(10만 자/15만 자), 이미지 4장. 답이 길어져 잘리면 서버가 이어쓰기를 요청하고(<code>cont</code>), 첫 글자까지 100초·글자 사이 60초·전체 600초에서 스트림을 끊습니다. 강의 중에 화면이 무한 로딩으로 멈추는 것이 가장 나쁜 실패라, <strong>끊기더라도 이유를 한국어로 말해 주도록</strong> 했습니다.</p>
+
+      <h3>파일은 올리지 않고 '글자'만 보낸다</h3>
+      <p>"내 강의계획서를 읽고 정리해 줘" 같은 실습을 위해 PDF·워드·PPT·한글(HWPX)·엑셀·이미지에서 글자를 뽑는데, 이 일은 <strong>브라우저 안에서</strong> 합니다(<code>doc-reader.js</code>). 서버로 올라가는 것은 원본 파일이 아니라 추출된 글자뿐입니다. 개인정보 안내를 한 장 더 붙이는 것보다, 구조적으로 파일이 서버에 남지 않게 만드는 편이 정직합니다.</p>
+
+      <h2>4. 병목 2 — 첫 에러에서 무너지는 60명</h2>
+      <h3>문제</h3>
+      <p>비전공자가 바이브코딩에서 멈추는 지점은 딱 하나입니다. <strong>빨간 오류 문구</strong>입니다. 코드가 틀린 것이 아니라, 오류를 'AI에게 물어볼 문장'으로 바꾸는 방법을 모르는 것입니다. 60명 중 한 명이 여기서 멈추면 강사 한 명이 그 자리로 걸어가야 하고, 그 3분 동안 나머지 59명이 흐트러집니다.</p>
+
+      <h3>해결 1: 실행 칸을 '분리'한다</h3>
+      <p>앱을 페이지 안에서 그대로 실행하면, 참가자가 만든 코드가 실습 페이지 자체를 깨뜨릴 수 있습니다. 그래서 실행은 <code>iframe</code>에 <code>srcdoc</code>으로 넣고, <code>sandbox="allow-scripts allow-forms allow-modals allow-downloads allow-popups"</code>만 엽니다. <strong><code>allow-same-origin</code>은 주지 않습니다.</strong> 실행 칸은 우리 페이지의 쿠키도, 저장소도, DOM도 볼 수 없는 다른 세계가 됩니다. 여기에 <code>localStorage</code>가 막힌 환경에서도 앱이 죽지 않도록 메모리 기반 대체 저장소를 미리 심어 둡니다.</p>
+
+      <h3>해결 2: 오류를 '줄 번호'까지 잡아 문장으로 바꾼다</h3>
+      <p>실행 칸 안에는 작은 감시 스크립트를 자동으로 끼워 넣습니다. 이 스크립트가 <code>error</code> 이벤트(파일명·줄 번호·메시지)와 <code>unhandledrejection</code>, 그리고 정상 로드를 부모 창에 <code>postMessage</code>로 알립니다. 화면에는 이렇게 뜹니다.</p>
+
+      <pre><code>오류 1개: Cannot read properties of null (reading 'value') (줄 42)
+[ 오류를 AI에게 물어볼 글 복사 ]</code></pre>
+
+      <p>이 버튼을 누르면 <strong>3초 안에</strong> 클립보드에 이런 글이 담깁니다.</p>
+
+      <pre><code>이 웹앱을 실행하니 아래 오류가 났어.
+- Cannot read properties of null (reading 'value') (줄 42)
+원인을 한 줄로 설명하고, 고친 곳만 아래 형식으로 알려 줘.
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; 찾기
+(지금 코드에서 바꿀 부분을 한 글자도 틀리지 않게, 3줄 안팎으로)
+=======
+(바꾼 내용)
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 바꾸기
+
+[지금 코드]
+(현재 HTML 코드 전문)</code></pre>
+
+      <p>참가자가 하는 일은 붙여 넣기와 다시 받기, 두 번의 클릭입니다. 강사가 달려갈 필요가 없습니다. 이것이 이 플랫폼에서 말하는 <strong>자가치유(Self-Healing) 루프</strong>입니다. 오류를 고쳐 주는 AI가 아니라, <strong>오류를 설명 가능한 문장으로 바꿔 주는 장치</strong>가 핵심입니다.</p>
+
+      <div class="img-card">
+        <img src="assets/studio-run.jpg" alt="바이브코딩 스튜디오 실행 화면 — 코드 편집기와 iframe 실행 칸, '실행했습니다. 오류 없음' 상태" />
+        <figcaption>▲ 실행 칸(오른쪽)은 페이지와 분리된 샌드박스 iframe이다. 위쪽 상태줄이 오류 개수와 첫 오류 줄 번호를 바로 알려 준다.</figcaption>
+      </div>
+
+      <h3>해결 3: '바뀐 곳만' 받는 형식</h3>
+      <p>전체 코드를 다시 받으면 답이 길고 느리고 비쌉니다. 그래서 시스템 프롬프트에 위의 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; 찾기 / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; 바꾸기</code> 형식을 강제하고, 화면이 그 블록만 골라 코드에 끼워 넣습니다(<code>vibe/patch.js</code>).</p>
+      <ul>
+        <li>찾는 글은 코드 안에서 <strong>정확히 한 곳</strong>이어야 바꿉니다. 여러 곳이면 "어디인지 알 수 없다"고 알리고 <strong>코드는 그대로</strong> 둡니다.</li>
+        <li>들여쓰기가 달라도 줄 내용이 같으면 찾습니다. 바꾼 내용은 원래 들여쓰기를 물려받습니다.</li>
+        <li>한 답에 블록이 여러 개면 순서대로 적용하고, 하나라도 실패하면 전체를 적용하지 않습니다. 부분 적용으로 코드가 반쯤 망가지는 것이 가장 나쁜 결과이기 때문입니다.</li>
+        <li>AI가 전체 코드를 줘 버리면 그것도 알아서 감지해 통째로 반영합니다.</li>
+      </ul>
+      <p>여기에 '되돌리기'를 붙였습니다. 비전공자에게 가장 필요한 기능은 실행이 아니라 <strong>되돌리기</strong>입니다. 되돌릴 수 있다는 것을 알면 실험을 두려워하지 않습니다.</p>
+
+      <h2>5. 병목 3 — 조용한 강의실을 깨는 '참여판'</h2>
+      <h3>문제</h3>
+      <p>실습형 연수의 진짜 적은 기술이 아니라 <strong>침묵</strong>입니다. 60명이 각자 노트북을 보고 있으면 강사는 아무것도 모릅니다. 손을 들게 하면 아무도 들지 않습니다.</p>
+
+      <h3>해결: 휴대폰으로 들어오는 익명 참여판</h3>
+      <p>강의장 큰 화면에 띄우는 <code>/live</code>는 Cloudflare D1(서버리스 SQLite) 위에서 돕니다. 네 개의 화면을 숫자 키 <code>1~4</code>로 넘깁니다.</p>
+      <ol>
+        <li><strong>걱정</strong> — QR로 휴대폰에서 한 줄을 익명으로 올립니다. 비슷한 걱정은 AI가 묶어서 정리합니다("AI로 묶어 보기"). 강사는 60개의 문장을 읽지 않고 5개의 주제를 읽습니다.</li>
+        <li><strong>AI 답안 점수</strong> — 미션 1에서 교수들이 매긴 점수가 이름 없이 모입니다. 평균·분포·AI 답안과 학생 답안의 비교가 실시간으로 그려집니다.</li>
+        <li><strong>전시</strong> — 미션 2에서 올라온 앱을 큰 화면에서 바로 열고, QR로 휴대폰 링크를 보여 주고, 하나를 뽑습니다.</li>
+        <li><strong>다음 학기 한 가지</strong> — 오늘 가져갈 한 문장을 모읍니다.</li>
+      </ol>
+
+      <h3>저장 구조와 '학생 링크'의 비밀</h3>
+      <p>D1 테이블 하나(<code>posts</code>)에 방(room), 종류(kind), 익명 클라이언트 ID, 토큰, 제목·본문·점수·메타·HTML을 담습니다. 테이블은 첫 요청 때 코드가 스스로 만듭니다(<code>ensureSchema</code>). 운영자가 SQL을 미리 돌릴 필요가 없습니다.</p>
+      <p>재미있는 부분은 <strong>학생용 앱 링크</strong>입니다. 교수자가 앱을 전시판에 올리면 서버가 8~32자의 토큰을 만들고, <code>?app=&lt;토큰&gt;</code> 주소를 돌려줍니다. 이 주소는 <strong>수업 코드 없이</strong> 열립니다. 학생에게 "수업 코드를 입력하세요"라고 할 수는 없으니까요. 대신</p>
+      <ul>
+        <li>쓰기(올리기·수정·내리기)는 전부 수업 코드가 필요하고,</li>
+        <li>남이 올린 앱은 건드릴 수 없습니다(올린 브라우저에 준 편집 키가 있어야 수정·삭제).</li>
+        <li>앱 코드는 40만 자, 방마다 300개까지로 상한을 뒀습니다. 한 명이 실수로 큰 사진을 넣어도 전시판 전체가 멈추지 않게요.</li>
+      </ul>
+
+      <h3>강사와 학생의 화면을 분리한다</h3>
+      <p>같은 실습 페이지라도 로그인은 없습니다. 대신 <strong>키가 다릅니다</strong>. 학생은 학생용 주소만 받고, 교수 화면은 4자리 PIN을 따로 누릅니다. 24시간 수업 조교(<code>ta.html</code>)는 여기서 한 걸음 더 갑니다. 학생 질문에 자료로 답할 수 있는지는 판정 모델 Jev가 먼저 판단하고, 자료에 근거가 없으면 <strong>AI가 지어내지 않고 교수 문답함에 쌓아 둡니다.</strong> "모르면 모른다고 말하는 조교"가 신뢰를 만듭니다.</p>
+
+      <h2>6. 병목 4 — 연수가 끝난 다음 날</h2>
+      <h3>문제</h3>
+      <p>연수는 하루로 끝나지만 수업은 15주입니다. 현장에서 만든 앱과 자동화가 <strong>다음 주에 혼자서도 돌아가야</strong> 연수가 성과가 됩니다. 그런데 강사 서버(제 AI ONE 키)는 영원히 열려 있을 수 없습니다.</p>
+
+      <h3>해결: '혼자 쓰는 판'으로 갈아 끼우기</h3>
+      <p>Apps Script 작업실(<code>/gas</code>)에는 레시피 6개와 빈 종이가 들어 있습니다.</p>
+      <ol>
+        <li>실시간 교실 반응판 — 참석자 폰 → 큰 화면</li>
+        <li>24시간 수업 조교 — 학생 질문 → 자동 답변 또는 교수에게</li>
+        <li>소크라테스 튜터와 대화록 제출 — 정답 대신 되묻는 AI</li>
+        <li>미래의 나에게 — 학기 초 편지 → 학기말 도착</li>
+        <li>칠판 사진이 수업 노트로 — 폰 사진 → 구글 문서 + 복습 퀴즈</li>
+        <li>수업 후 설문 즉석 분석 — 폼 제출 → 감정·키워드·건의 → 내 메일</li>
+      </ol>
+      <p>문제는 이 코드들이 강사 서버를 부른다는 점입니다. 그래서 공통 도우미(<code>gas/00-common.gs</code>)에서 <strong>서버를 부르는 구간만 표시</strong>해 두고, 빌드할 때 그 구간을 '내 Gemini 키로 직접 부르는 판'(<code>gas/solo.gs</code>)으로 치환합니다.</p>
+
+      <pre><code>// &lt;&lt;SERVER  … 연수 현장: 강사 서버(수업 코드) …
+// SERVER&gt;&gt;</code></pre>
+
+      <p>치환된 코드는 레시피마다 <code>soloCode</code>로 함께 보관되고, PDF 키트에 담길 때 자동으로 혼자 쓰는 판이 됩니다. 참가자는 무료 Gemini 키(<code>aistudio.google.com/apikey</code>) 하나만 스크립트 속성에 넣으면, 연수가 끝난 뒤에도 비용 없이 같은 자동화를 돌립니다. 코드에 키를 직접 쓰지 않고 속성에서 읽게 하고, 키 모양(<code>AIza…</code>)을 검사하고, 저장 즉시 연결 확인까지 합니다.</p>
+
+      <h3>해결: 한 권의 PDF로 '가지고 가는 것'을 만든다</h3>
+      <p>앱 코드, 내가 AI에게 했던 말(기획 프롬프트와 수정 요청), 학생 링크, GAS 자동화 결과물을 한 권의 A4 PDF로 묶습니다(<code>/kit</code>). 인쇄 창에서 'PDF로 저장'을 고르면 끝입니다.</p>
+      <ul>
+        <li>기본은 <strong>코드 전문 포함</strong>이고, 끄면 쪽수가 줄어듭니다.</li>
+        <li>PDF에 담기기 전에 수업 코드(<code>EMBEDDED_CODE</code>) 줄을 지웁니다. 남의 PDF에 내 수업 코드가 찍혀 나가면 안 되니까요.</li>
+        <li>치환 후에도 강사 서버를 부르는 줄이 남아 있으면 PDF에 <strong>경고를 적습니다.</strong> 조용히 실패하는 것보다 낫습니다.</li>
+        <li>브라우저 저장소에만 담고 서버로는 아무것도 보내지 않습니다.</li>
+      </ul>
+
+      <h2>7. 전체 아키텍처</h2>
+      <pre><code>[참가자 브라우저]
+  ├─ 실습실 index.html (정적, 빌드 도구 없음)
+  │    ├─ 내 수업 정보 → localStorage (서버 전송 0)
+  │    ├─ 실행 칸 iframe srcdoc (sandbox, same-origin 없음)
+  │    │     └─ 감시 스크립트 → error/줄번호 → postMessage
+  │    ├─ 바뀐 곳만 패치 (VibePatch) + 되돌리기
+  │    └─ 내 결과물 → PDF 키트(kit.html) → 인쇄 → PDF
+  │
+  ├─ /live  참여판 (강의장 큰 화면)
+  ├─ /ta    학생 질문 → Jev 판정 → 근거 답변 또는 교수 문답함
+  ├─ /gas   Apps Script 레시피 6 + 빈 종이
+  └─ /check 접속 점검 (사이트·AI ONE·참여판·구글·음성) + 전산 요청문
+
+[Cloudflare Pages]
+  ├─ 정적 자산 (index/live/ta/gas/kit/check/studio + vendor)
+  ├─ Functions
+  │    ├─ /api/ai    AI ONE 게이트웨이 프록시 (키는 서버에만)
+  │    │     ├─ 실습별 모델 라우팅 + 폴백 + 이어쓰기
+  │    │     ├─ 수업 코드 SHA-256 대조 + 5중 한도
+  │    │     └─ SSE 스트리밍 (첫 글자 100s·유휴 60s·전체 600s)
+  │    ├─ /api/live  참여판 (D1, 토큰 기반 학생 링크)
+  │    ├─ /api/ta    24시간 조교 (D1, 자료 10만 자)
+  │    └─ /api/jev   판정 모델 (예/아니오·택일·단계 점수)
+  └─ D1  kimcook-edu-live  (posts 테이블 자동 생성)
+
+[GitHub Pages]  skyman200.github.io/edu  ← 예비 주소(같은 파일, Functions 없음 → pages.dev/api/ai 호출)
+[Google]        Apps Script(시트·드라이브·폼·메일) + Gemini(혼자 쓰는 판)</code></pre>
+
+      <p>배포는 <code>./deploy.sh</code> 한 번입니다. 이 스크립트가 하는 일이 하나 더 있습니다. wrangler는 <code>functions/</code>를 <strong>현재 폴더</strong>에서 찾기 때문에 <code>wrangler pages deploy .</code>로 올리면 README와 <code>.dev.vars</code>(키 파일)까지 공개될 수 있습니다. 그래서 스크립트는 공개할 파일만 임시 폴더에 모아 그 폴더를 올립니다. 사고는 늘 급할 때 나므로, <strong>사고가 날 수 없는 배포 명령 하나</strong>를 만들어 두는 것이 맞습니다.</p>
+
+      <h2>8. 그대로 따라 만드는 바이브코딩 실전 프롬프트</h2>
+      <p>같은 플랫폼을 만들고 싶은 교육자·개발자를 위해, 실제로 AI에게 준 프롬프트의 구조를 공개합니다.</p>
+
+      <h3>① 수업용 웹앱 생성 (미션 2)</h3>
+      <pre><code>수업에서 쓸 웹앱을 아래 기획서대로 만들어 줘.
+[기획서]
+- 앱 이름: (예: 발음 듣기 단어 카드)
+- 쓰는 사람과 상황: (교수자가 수업 중 화면에 띄워 씀 / 학생이 각자 휴대폰으로 씀)
+- 하는 일: (한 문장)
+- 화면 구성: (위에서 아래로)
+- 꼭 있어야 할 기능: (한 줄에 하나)
+- 넣을 내용: (내 과목의 실제 내용 8~12개)
+[만드는 규칙]
+- HTML 파일 하나에 CSS와 JavaScript를 모두 넣어 줘. 외부 라이브러리·서버·로그인 없이 동작하게.
+- 저장이 필요하면 브라우저(localStorage)에만. 학생 실명이나 학번 대신 번호를 쓰게.
+- 프로젝터와 휴대폰 화면 모두에서 보기 좋게, 글자는 크게.
+- 디자인: 밝은 종이색 배경(#F2F2F2), 거의 검은 글씨(#1A1A1A), 강조색 하나(#E54536), 경계는 얇은 선.
+  그라데이션, 이모지, 둥근 그림자 카드는 쓰지 마.
+- 소리는 브라우저 내장 음성(speechSynthesis)만. getVoices로 언어 목소리를 고르고, 늦게 오면 voiceschanged를 기다리고,
+  없으면 화면에 안내. 버튼을 눌렀을 때만 소리가 나게.
+- 처음 쓰는 사람도 알 수 있게 사용법을 한 줄 넣어 줘.
+[답하는 방법]
+- 전체 코드를 html 코드 블록 하나로 한 번에 줘. 설명은 세 줄 이하.
+- 내가 고칠 점을 말하면 전체 코드를 다시 쓰지 말고, 바뀐 곳만
+  "&lt;&lt;&lt;&lt;&lt;&lt;&lt; 찾기 / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; 바꾸기" 형식으로 줘. 찾을 글은 코드에서 한 곳이어야 해.</code></pre>
+
+      <h3>② 서버·키를 숨기는 AI 게이트웨이</h3>
+      <pre><code>Cloudflare Pages Function 하나로 AI 프록시를 만들어라.
+- 브라우저는 프록시에만 요청한다. API 키는 환경변수에서만 읽고 응답·로그·에러 메시지에 절대 넣지 않는다.
+- 요청에는 수업 코드와 실습 ID가 들어온다. 코드는 SHA-256 해시로 저장된 값과 타이밍 세이프 비교한다.
+- 실습 ID별로 모델과 최대 토큰을 표에서 고른다. 실패 시 폴백 체인을 순서대로 시도하고, 429면 같은 모델을 두 번까지 재시도한다.
+- 한도: IP·10분, 동시 처리, 코드·하루, 전체·하루, 전체·분당. 모두 환경변수로 덮어쓸 수 있게 한다.
+- 응답은 SSE로 흐른다. 첫 글자까지 100초, 글자 사이 60초, 전체 600초에서 끊고, 이유를 한국어로 알린다.
+- 클라이언트가 보낸 model·system·tools·max_tokens는 무시한다. 역할과 글자만 통과시킨다.
+- 잘못된 코드가 반복되면 IP를 잠근다. 잠금 중에는 올바른 코드에도 응답하지 않는다.</code></pre>
+
+      <h3>③ 오류를 문장으로 바꾸는 자가치유 루프</h3>
+      <pre><code>실행 칸 iframe에 감시 스크립트를 자동 삽입해라.
+- sandbox는 allow-scripts allow-forms allow-modals allow-downloads allow-popups만. allow-same-origin은 주지 마.
+- error와 unhandledrejection을 잡아 메시지와 줄 번호를 부모 창에 postMessage로 보낸다.
+- 부모는 오류 목록을 보여 주고, "오류를 AI에게 물어볼 글 복사" 버튼 하나로
+  [오류 목록 + 원인 설명 요청 + 바뀐 곳만 달라는 형식 + 지금 코드]를 클립보드에 넣는다.
+- AI 답에서 "&lt;&lt;&lt;&lt;&lt;&lt;&lt; 찾기 / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; 바꾸기" 블록을 찾아 코드에 끼워 넣는다.
+  찾는 글이 코드에 한 곳만 있을 때만 바꾸고, 하나라도 실패하면 전체를 적용하지 않고 코드를 그대로 둔다.
+- 적용 전 상태를 스택에 쌓아 '되돌리기'를 제공한다.</code></pre>
+
+      <h2>9. 숫자로 본 플랫폼</h2>
+      <table>
+        <thead><tr><th>항목</th><th>값</th></tr></thead>
+        <tbody>
+          <tr><td>실습 프롬프트</td><td>30종 (미션 1~2, STEP 1~4, PLUS 4, GAS 작업실 4)</td></tr>
+          <tr><td>예시 앱</td><td>9종 (발표 순서, 발음 카드, 받아쓰기, 역할극, 짝 맞추기, 퀴즈, 조 편성, 토론 타이머, 루브릭 계산기)</td></tr>
+          <tr><td>Apps Script 레시피</td><td>6종 + 빈 종이</td></tr>
+          <tr><td>강의 자료</td><td>59쪽 PDF</td></tr>
+          <tr><td>참여판 화면</td><td>4개 (걱정 · 점수 · 전시 · 다음 학기)</td></tr>
+          <tr><td>AI 한도</td><td>5중 (IP·동시·코드·전체·분당)</td></tr>
+          <tr><td>배포</td><td>Cloudflare Pages(주소) + GitHub Pages(예비) + D1 + Apps Script</td></tr>
+        </tbody>
+      </table>
+
+      <h2>10. 마치며: 좋은 연수는 '설명'이 아니라 '구조'다</h2>
+      <p>이 플랫폼을 만들면서 가장 많이 바꾼 것은 기능이 아니라 <strong>실패했을 때의 모습</strong>이었습니다.</p>
+      <ul>
+        <li>AI가 바쁘면 "AI ONE 서버가 바쁩니다. 잠시 후 다시 시도해 주세요"라고 말하게 했습니다.</li>
+        <li>코드가 틀리면 고쳐 주는 대신, <strong>고칠 수 있는 문장</strong>을 쥐여 줬습니다.</li>
+        <li>수업 코드가 틀리면 추측할 거리를 주지 않고 잠갔습니다.</li>
+        <li>배포 명령은 사람이 실수할 수 없게 파일 목록을 고정했습니다.</li>
+      </ul>
+      <p>비전공 교수 60명이 한 강의장에서 90분 동안 앱을 만들고 배포하는 일은, 강사의 설명이 좋아서 되는 것이 아닙니다. <strong>참가자가 넘어질 자리를 미리 없애 두었기 때문에</strong> 됩니다. 바이브 코딩의 실력은 프롬프트 문장력이 아니라, 이렇게 <strong>실패의 모양을 설계하는 능력</strong>입니다.</p>
+      <p>11월 13일 부산외대 연수에서 이 구조가 실제로 어떻게 작동하는지 확인하고, 다음 글에서 그 현장 기록을 정리하겠습니다. 코딩을 몰라도 괜찮습니다. 현장을 가장 잘 아는 사람이 가장 좋은 플랫폼을 만듭니다.</p>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 1년간 대학 교육·행정 시스템 22종 자체 구축 및 전국 대학 교직원 AI 특강</p>
+        <p>• 강의·자문 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <div class="author-links">
+          <a href="https://skyman200.github.io/">연구실 홈</a>
+          <span>·</span>
+          <a href="https://www.linkedin.com/in/prof-kimkanghoon" target="_blank" rel="noopener">LinkedIn 프로필</a>
+          <span>·</span>
+          <a href="https://orcid.org/0009-0004-5083-406X" target="_blank" rel="noopener">ORCID</a>
+          <span>·</span>
+          <a href="https://scholar.google.com/citations?user=TOfGLNYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+      </div>
+
+      <a class="next-ep" href="../">
+        <span class="k">연재 허브로</span>
+        <span class="t">바이브 코딩 실전기 전체 보기</span>
+        <span class="d">1편 22종 시스템 · 2편 해커톤 플랫폼 · 3편 Unslop 디자인 · 4편 강의계획서 AI 체크</span>
+      </a>
+
+      <div class="series-nav">
+        <a href="../" class="series-card">
+          <span class="k">Episode 1</span>
+          <span class="t">현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩' 실전기</span>
+        </a>
+        <a href="../hackathon/" class="series-card">
+          <span class="k">Episode 2</span>
+          <span class="t">단 하나의 URL로 끝낸 교내 해커톤: 3만 줄 풀스택과 42회 AI 코드 심사</span>
+        </a>
+        <a href="../unslop/" class="series-card">
+          <span class="k">Episode 3</span>
+          <span class="t">AI로 짠 티(Slop) 10초 만에 벗겨내기: B2B 엔터프라이즈급 UI 9단계 디자인 하네스</span>
+        </a>
+        <a href="../syllabus/" class="series-card">
+          <span class="k">Episode 4</span>
+          <span class="t">37개 학과 759개 과목을 5일 만에 바꾼 비결: 강의계획서 AI 4주 적용 1초 체크 시스템</span>
+        </a>
+      </div>
+
+    </div>
+
+    <script>
+      (function () {
+        var bar = document.getElementById('progress');
+        if (!bar) return;
+        var raf = 0;
+        function update() {
+          raf = 0;
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        }
+        window.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+        update();
+      })();
+    </script>
+  </body>
+</html>
