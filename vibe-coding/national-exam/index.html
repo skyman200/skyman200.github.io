@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브 코딩 7편] "공부해야 문이 열립니다" — 국가고시 100% 합격을 위한 DIT 국시실 스마트 출결 & 5문항 퀴즈 입실 시스템 구축기 | 김강훈 교수</title>
+    <meta name="description" content="출석만 찍고 사라지는 자습실의 종말. 지오펜싱 위치 인증, 1,139문항 기반 개인화 취약 영역 AI 퀴즈 엔진, 실시간 합격 위험도 예측 대시보드까지 서버비 0원으로 구축한 동의과학대 물리치료과 국시실 스마트 시스템의 전 과정 기록." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, 국가고시, 스마트출결, 국시실, 물리치료사 국가고시, Next.js, Supabase, 지오펜싱, 적응형 퀴즈, 에듀테크, 김강훈, 김강훈 교수, 동의과학대학교, AI 교육혁신" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/national-exam/" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/national-exam/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브 코딩 7편] '공부해야 문이 열립니다' — DIT 국시실 스마트 출결 & 5문항 퀴즈 입실 시스템 구축기" />
+    <meta property="og:description" content="출석만 찍는 시대의 종말. 지오펜싱 위치 인증과 개인화 퀴즈 엔진으로 100% 합격률을 만드는 실전 에듀테크 아키텍처." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="article:published_time" content="2026-11-13" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브 코딩 7편] '공부해야 문이 열립니다' — DIT 국시실 스마트 출결 & 5문항 퀴즈 입실 시스템" />
+    <meta name="twitter:description" content="지오펜싱 위치 인증, 개인화 취약 영역 AI 퀴즈 엔진, 실시간 합격 위험도 예측 대시보드 전 과정 기록." />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "[바이브 코딩 7편] '공부해야 문이 열립니다' — 국가고시 100% 합격을 위한 DIT 국시실 스마트 출결 & 5문항 퀴즈 입실 시스템 구축기: 지오펜싱 위치 인증, 개인화 취약영역 AI 퀴즈 엔진, 실시간 합격 위험도 대시보드",
+      "alternativeHeadline": "출석만 찍는 시대의 종말. 비개발자 교수가 3일 만에 완성한 지오펜싱 + 적응형 퀴즈 연동 스마트 학습실 아키텍처",
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "alternateName": "KIM KANG-HOON",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0004-5083-406X",
+          "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+          "https://www.linkedin.com/in/prof-kimkanghoon"
+        ]
+      },
+      "datePublished": "2026-11-13",
+      "dateModified": "2026-11-13",
+      "inLanguage": "ko",
+      "articleSection": "바이브 코딩 실전기",
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "name": "바이브 코딩(Vibe Coding) 실전기",
+        "url": "https://skyman200.github.io/vibe-coding/"
+      },
+      "publisher": {
+        "@type": "CollegeOrUniversity",
+        "name": "동의과학대학교",
+        "url": "https://www.dit.ac.kr/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://skyman200.github.io/vibe-coding/national-exam/"
+      },
+      "description": "반경 20m 지오펜싱 위치 인증, 1,139문항 기반 개인화 취약영역 퀴즈 통과형 입실, 실시간 합격 위험도 예측 대시보드를 서버비 0원으로 구축한 대학 전문자격 시험 대비 시스템 설계 기록.",
+      "keywords": "바이브코딩, Vibe Coding, 국가고시, 스마트출결, 국시실, 물리치료과, Next.js, Supabase, 지오펜싱, 적응형 퀴즈, 김강훈교수, 동의과학대학교"
+    }
+    </script>
+
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #0a0a0a; color: #ecf1fa;
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 60px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 760px; width: 100%; }
+      .nav-back { display: inline-block; margin-bottom: 32px; color: rgba(157,183,255,.8); text-decoration: none; font-size: 0.95rem; }
+      .nav-back:hover { color: #fff; }
+      .badge { display: inline-block; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #10b981; font-weight: 700; margin-bottom: 16px; background: rgba(16,185,129,.1); padding: 4px 12px; border-radius: 6px; }
+      h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.32; margin-bottom: 20px; letter-spacing: -0.02em; }
+      .subhead { font-size: 1.15rem; color: rgba(236,241,250,.72); margin-bottom: 32px; line-height: 1.6; }
+      .meta { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(236,241,250,.12); border-bottom: 1px solid rgba(236,241,250,.12); margin-bottom: 48px; font-size: 0.92rem; color: rgba(236,241,250,.65); flex-wrap: wrap; }
+      .meta strong { color: #ecf1fa; }
+      h2 { font-size: 1.55rem; font-weight: 700; margin: 56px 0 20px; color: #10b981; border-left: 3px solid #10b981; padding-left: 14px; }
+      h3 { font-size: 1.25rem; font-weight: 700; margin: 32px 0 14px; color: #ecf1fa; }
+      p { margin-bottom: 22px; font-size: 1.05rem; color: rgba(236,241,250,.88); word-break: keep-all; }
+      blockquote { margin: 32px 0; padding: 20px 24px; background: rgba(16,185,129,.07); border-left: 4px solid #10b981; border-radius: 4px; font-size: 1.1rem; font-style: italic; color: #ecf1fa; }
+      ul, ol { margin: 0 0 26px 24px; color: rgba(236,241,250,.85); }
+      li { margin-bottom: 10px; font-size: 1.02rem; }
+      strong { color: #fff; font-weight: 700; }
+      code { font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 4px; font-size: 0.92em; color: #9db7ff; }
+      pre { background: #12141a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px; }
+      pre code { background: none; padding: 0; font-size: 0.9rem; color: #ecf1fa; line-height: 1.6; }
+      .diagram { background: #111318; border: 1px solid rgba(16,185,129,.25); border-radius: 10px; padding: 24px; margin: 28px 0; font-family: ui-monospace, monospace; font-size: 0.92rem; line-height: 1.7; color: #a7f3d0; white-space: pre-wrap; }
+      .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 22px; margin-bottom: 24px; }
+      .card h4 { font-size: 1.12rem; margin-bottom: 10px; color: #fff; }
+      .card p { margin-bottom: 0; font-size: 0.98rem; color: rgba(236,241,250,.78); }
+      .author-bio { margin-top: 64px; padding: 32px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.2rem; }
+      .author-bio p { font-size: 0.95rem; margin-bottom: 10px; }
+      .next-ep { display: block; margin-top: 40px; padding: 24px 26px; background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.3); border-radius: 10px; text-decoration: none; transition: background .2s ease; }
+      .next-ep:hover { background: rgba(16,185,129,.13); }
+      .next-ep .k { display: block; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: #10b981; font-weight: 700; margin-bottom: 8px; }
+      .next-ep .t { display: block; font-size: 1.08rem; font-weight: 700; color: #ecf1fa; line-height: 1.5; }
+      .next-ep .d { display: block; margin-top: 6px; font-size: 0.92rem; color: rgba(236,241,250,.65); }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+      .tags span { font-size: 0.8rem; background: rgba(255,255,255,.06); color: rgba(236,241,250,.6); padding: 5px 12px; border-radius: 999px; }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <a href="../" class="nav-back">← 바이브 코딩 연재 목록으로 돌아가기</a>
+      <div class="badge">VIBE CODING CASE 07 · SMART CAMPUS</div>
+      <h1>[바이브 코딩 7편] "공부해야 문이 열립니다" — 국가고시 100% 합격을 위한 DIT 국시실 스마트 출결 & 5문항 퀴즈 입실 시스템 구축기</h1>
+      <p class="subhead">출석만 찍고 사라지는 자습실의 종말. 지오펜싱 위치 인증, 1,139문항 기반 개인화 취약 영역 AI 퀴즈 엔진, 실시간 합격 위험도 예측 대시보드까지 서버비 0원으로 구축한 실전 기록.</p>
+
+      <div class="meta">
+        <div><strong>작성자:</strong> 김강훈 교수 (동의과학대학교 물리치료과 학과장 / DIT AI 허브센터 팀장)</div>
+        <div><strong>발행일:</strong> 2026년 11월 13일</div>
+        <div><strong>읽는 시간:</strong> 약 7분</div>
+      </div>
+
+      <h2>1. 프롤로그: "교수님, 출석 도장만 찍고 나가는 건 어떻게 막나요?"</h2>
+      <p>매년 12월 셋째 주, 전국 3년제·4년제 대학 물리치료과 수험생들이 한국보건의료인국가시험원(국시원)이 주관하는 국가고시에 응시합니다. 학과장으로서 학생들의 국가고시 100% 합격은 양보할 수 없는 지상 과제입니다. 매년 9월부터 학과에서는 3학년 전용 자습실인 <strong>'DIT 국시실'</strong>을 열고 야간 자율학습과 모의고사 집중 체제를 가동합니다.</p>
+      <p>하지만 모든 대학의 고시반이 겪는 고질적인 병목이 있었습니다.</p>
+      <ul>
+        <li><strong>무늬만 출석:</strong> 입실 지문이나 대장 서명만 하고 5분 뒤 카페나 밖으로 나가버리는 학생.</li>
+        <li><strong>대리 태그:</strong> 친구의 학생증이나 모바일 화면을 캡처해 대신 찍어주는 행위.</li>
+        <li><strong>맹목적 자습:</strong> 책상에 6시간 앉아 있었지만, 정작 자신이 모의고사에서 과락을 맞는 단원(의료법규, 신경계 중재, 보조기구학 등)은 손도 안 대고 아는 내용만 반복해 읽는 비효율.</li>
+      </ul>
+      <blockquote>
+        "출결 관리 솔루션 견적을 내보니 시스템 구축에만 1,500만 원, 전용 태블릿과 리더기 유지보수에 연 수백만 원이 든다고 했습니다. 학과 예산으로 감당할 수도 없거니와, 그 기계들도 '출석'만 체크할 뿐 '공부'를 시키지는 못했습니다."
+      </blockquote>
+      <p>그래서 결심했습니다. <strong>"문이 열리기 전에, 학생에게 반드시 필요한 공부를 시키자. 문제를 맞춰야만 입실이 승인되는 자습실을 직접 만들자."</strong></p>
+      <p>비개발자인 제가 클로드(Claude)와 커서(Cursor)를 켜고 바이브 코딩으로 단 사흘 만에 구축해 현장에 투입한 'DIT 국시실 스마트 출결 & 퀴즈 엔진'의 풀스택 아키텍처를 공개합니다.</p>
+
+      <h2>2. 전체 아키텍처: 3단 인터락(Interlock) 진입 파이프라인</h2>
+      <p>시스템의 핵심 철학은 <strong>"출석은 결과가 아니라 학습의 통과 의례"</strong>라는 점입니다. 학생이 국시실 문 앞에 서서 문을 열기까지 3단계의 하드웨어·소프트웨어 인터락이 작동합니다.</p>
+
+      <div class="diagram">
+[학생 스마트폰 (PWA)]
+       │
+       ▼ (1단계: 물리적 접근 검증)
+[반경 20m 지오펜싱(GPS) + 30초 동적 TOTP QR 스캔]
+  - 캠퍼스 밖/원격 대리 인증 원천 차단
+       │
+       ▼ (2단계: 적응형 인텔리전트 퀴즈)
+[개인화 취약 영역 5문항 퀴즈 출제]
+  - 1,139개 국시 기출 은행에서 개인별 정답률 60% 미만 과목 자동 추출
+  - 4문항 이상 정답 시: 입실 승인 토큰 발급 & 도어락 웹훅 해제
+  - 불합격 시: 5분간 오답 해설 열람 강제 락 → 재응시
+       │
+       ▼ (3단계: 교수자 관제 대시보드)
+[실시간 합격 예측 레이더 (Supabase + Next.js)]
+  - 누적 순수 학습 체류 시간 × 퀴즈 정답률 = 합격 위험군(Danger) 즉각 알림
+      </div>
+
+      <h2>3. 병목 1: "집에서 찍는 QR"을 원천 차단한 지오펜싱 + 동적 TOTP 하이브리드</h2>
+      <p>시중 대학 전자출결 앱의 최대 맹점은 QR 코드를 스크린샷 찍어 카카오톡으로 보내면 도서관 밖에서도 출석이 인정된다는 점이었습니다.</p>
+      <p>이를 막기 위해 브라우저의 <code>navigator.geolocation</code> API와 서버 측 30초 단위 TOTP(시간 기반 일회용 패스워드)를 결합했습니다.</p>
+      <pre><code>// geofence-validator.ts: 반경 20m 하버사인 공식 검증
+export function isWithinExamRoom(userLat: number, userLng: number): boolean {
+  const EXAM_ROOM_LAT = 35.168542; // 동의과학대 석당관 4층 국시실 위도
+  const EXAM_ROOM_LNG = 129.071285; // 국시실 경도
+  const MAX_RADIUS_METERS = 20;     // 허용 오차 반경 20m
+
+  const R = 6371e3; // 지구 반경 (m)
+  const dLat = (userLat - EXAM_ROOM_LAT) * (Math.PI / 180);
+  const dLng = (userLng - EXAM_ROOM_LNG) * (Math.PI / 180);
+
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(EXAM_ROOM_LAT * (Math.PI / 180)) * 
+            Math.cos(userLat * (Math.PI / 180)) *
+            Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+
+  return distance <= MAX_RADIUS_METERS;
+}</code></pre>
+      <p>국시실 출입문 옆에 비치된 저가형 태블릿(안드로이드 공기계) 화면에는 30초마다 갱신되는 동적 TOTP 기반 QR 코드가 표시됩니다. 학생은 <strong>①국시실 문 앞 20m 이내에 도달한 상태</strong>에서, <strong>②지금 화면에 떠 있는 30초 유효 QR</strong>을 스캔해야만 다음 단계인 퀴즈 화면으로 넘어갈 수 있습니다. 캡처본 공유를 통한 대리 출석은 0%로 떨어졌습니다.</p>
+
+      <h2>4. 병목 2: 1,139개 기출 데이터베이스와 '취약 영역 타깃 퀴즈' 엔진</h2>
+      <p>출석만 찍히고 끝난다면 기존 출결 앱과 다를 바가 없습니다. 이 시스템의 진짜 마법은 <strong>입실 퀴즈</strong>에 있습니다.</p>
+      <p>학과 학생들의 최근 3회분 전국 모의고사 성적표 데이터를 익명화하여 Supabase DB에 적재했습니다. 학생마다 구멍 난 과목이 다릅니다. 어떤 학생은 '의료관계법규'가 과락 위기이고, 어떤 학생은 '신경계 물리치료학' 점수가 낮습니다.</p>
+      <blockquote>
+        "학생이 문 앞에 서서 QR을 찍는 순간, 시스템은 그 학생의 가장 취약한 하위 단원을 조회해 5문항의 기출 변형 문제를 무작위로 추출합니다."
+      </blockquote>
+
+      <div class="card">
+        <h4>💡 국시실 입실 퀴즈 규칙</h4>
+        <p>• <strong>문항 수:</strong> 5문항 (문항당 45초 타임어택 제한)<br>
+        • <strong>출제 로직:</strong> 최근 모의고사 정답률 60% 미만 과목 3문항 + 전범위 핵심 빈출 2문항<br>
+        • <strong>합격 기준:</strong> 4문항(80점) 이상 정답 시 즉시 <strong>[입실 승인]</strong><br>
+        • <strong>불합격 시 패널티:</strong> 틀린 문항의 상세 해설과 필수 암기 카드가 강제로 5분간 노출되며, 5분이 지나야 재도전 가능</p>
+      </div>
+
+      <p>처음에는 "문 앞에서 문제 푸느라 줄 서면 어떡하냐"는 우려가 있었습니다. 하지만 1주일이 지나자 놀라운 변화가 생겼습니다. 학생들이 국시실에 도착하기 전 계단을 올라오며 모바일로 미리 약점 암기 카드를 열람하고, 문 앞에서는 2분 만에 집중해서 문제를 풀고 당당하게 문을 열고 들어가는 <strong>'입실 전 웜업 루틴'</strong>이 정착된 것입니다.</p>
+
+      <h2>5. 병목 3: "누가 떨어질 것인가?" — 교수의 밤잠을 깨우는 합격 예측 레이더</h2>
+      <p>교수에게 가장 절박한 정보는 "지금 누가 자습실에 있는가"가 아니라, <strong>"12월 국시에서 과락 위험이 있는 학생이 누구인가"</strong>입니다.</p>
+      <p>기존에는 한 달에 한 번 치르는 종이 모의고사 성적이 나올 때까지 학생의 위기를 알 수 없었습니다. 하지만 국시실 스마트 출결 시스템은 매일매일의 <strong>'순수 체류 시간'</strong>과 <strong>'일일 취약점 퀴즈 정답률'</strong>을 실시간 누적합니다.</p>
+      <pre><code>-- pass-risk-calculator: 실시간 합격 위험 지수 계산 뷰
+CREATE OR REPLACE VIEW student_exam_risk AS
+SELECT 
+  s.student_id,
+  s.name,
+  COALESCE(SUM(a.duration_minutes), 0) as total_study_minutes,
+  ROUND(AVG(q.score), 1) as avg_quiz_score,
+  CASE 
+    WHEN AVG(q.score) < 60 OR COALESCE(SUM(a.duration_minutes), 0) < 1200 THEN 'DANGER (과락위험군)'
+    WHEN AVG(q.score) < 75 OR COALESCE(SUM(a.duration_minutes), 0) < 2400 THEN 'WARNING (집중관리군)'
+    ELSE 'SAFE (안정권)'
+  END as risk_level
+FROM students s
+LEFT JOIN attendances a ON s.id = a.student_id AND a.created_at >= NOW() - INTERVAL '14 days'
+LEFT JOIN quiz_logs q ON s.id = q.student_id AND q.created_at >= NOW() - INTERVAL '14 days'
+GROUP BY s.student_id, s.name;</code></pre>
+      <p>이 지표는 교수 전용 모바일 대시보드에 실시간으로 표시됩니다. 최근 2주간 자습 시간이 급감했거나, 퀴즈 정답률이 60점 미만으로 떨어진 학생이 감지되면 디스코드(Discord) 봇이 학과장인 저에게 비공개 알림을 전송합니다. 성적이 완전히 곤두박질치기 전에, 교수가 먼저 연구실로 학생을 불러 따뜻한 차 한 잔을 건네며 상담할 수 있는 <strong>'골든타임'</strong>을 확보한 것입니다.</p>
+
+      <h2>6. 학생 자생적 프로젝트로의 확장: 학회 최우수상 '물탱크' 탄생의 씨앗</h2>
+      <p>이 국시실 퀴즈 시스템을 매일 접하며 공부하던 학부생 팀(홍예은 학생 외)은 한 걸음 더 나아갔습니다.<br>
+      <em>"교수님, 입실할 때 5문제만 푸는 게 아니라, 등하교 지하철이나 버스 안에서도 저희끼리 1,139개 기출문제를 오답노트처럼 풀 수 있는 앱을 만들면 안 될까요?"</em></p>
+      <p>학생들의 아이디어에 바이브 코딩 개발 방법론과 Supabase 아키텍처 노하우를 지도했습니다. 학생들은 스스로 기출문제를 체계화한 웹앱 <strong>'물탱크'</strong>를 성공적으로 런칭했고, 이 결과물은 <strong>2026 대한지역사회물리치료학회 추계학술대회에서 4년제 대학들을 제치고 최우수상(1위)</strong>을 거머쥐는 쾌거로 이어졌습니다.</p>
+      <p>교수가 현장의 병목을 치료하기 위해 만든 작은 도구가, 학생들에게 영감을 주어 전국 학술대회 수상작이라는 결실로 확장된 것입니다.</p>
+
+      <h2>7. 에필로그: 감시가 아닌 '성장의 울타리'를 짓는 바이브 코딩</h2>
+      <p>기술을 도입할 때 가장 경계해야 할 것은 기술이 사람을 옥죄는 '감시 도구'로 전락하는 것입니다.</p>
+      <p>만약 제가 1,500만 원짜리 상용 솔루션을 사다가 CCTV와 얼굴인식기를 달았다면, 학생들은 자습실을 감옥처럼 느꼈을 것입니다.<br>
+      하지만 <strong>"자신의 취약점을 마주하고, 5문제를 풀며 뇌를 깨우고, 안전하게 몰입할 수 있도록 돕는 시스템"</strong>이라는 교육적 진정성을 담았기에, 학생들은 불만 대신 자발적인 학습 의지를 불태웠습니다.</p>
+      <p>바이브 코딩은 단순한 웹사이트 제작 기술이 아닙니다. 교육자가 머릿속으로만 그리던 <strong>'이상적인 교육 환경'</strong>을 외주 개발사나 예산의 한계에 가로막히지 않고, 오늘 당장 실체화할 수 있게 만드는 강력한 날개입니다.</p>
+
+      <a class="next-ep" href="../ctl/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[6편] 서버비 0원으로 동시접속 300명을 버티는 대학 실습 LMS 'CTL 실마리' 구축기</span>
+        <span class="d">Next.js 16과 Supabase, 구글 드라이브 무료 풀스택 아키텍처와 AI 과제 대필 검사 파이프라인</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#국가고시</span><span>#스마트출결</span>
+        <span>#적응형퀴즈</span><span>#지오펜싱</span><span>#동의과학대학교</span><span>#물리치료과</span><span>#김강훈교수</span><span>#에듀테크</span>
+      </div>
+    </main>
+  </body>
+</html>
