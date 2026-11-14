@@ -24,46 +24,107 @@
     <meta name="twitter:description" content="3만 줄 풀스택, 77개 API, 42회 AI 코드 심사 — 교수 한 사람이 만든 행사 운영체제." />
 
     <script type="application/ld+json">
-    {
+{
       "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "headline": "[바이브 코딩 실전기 2편] 단 하나의 URL로 끝낸 교내 해커톤: 3만 줄 풀스택 시스템과 42회 AI 코드 심사 파이프라인 구축기",
-      "alternativeHeadline": "신청 접수에서 4인 팀빌딩, 한글(HWPX) 공문, 48시간 예선, 익명 AI 코드 심사, 무대 시상까지 — 교수 한 사람이 만든 행사 운영체제",
-      "author": {
-        "@type": "Person",
-        "name": "김강훈",
-        "alternateName": "KIM KANG-HOON",
-        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
-        "url": "https://skyman200.github.io/",
-        "sameAs": ["https://orcid.org/0009-0004-5083-406X", "https://scholar.google.com/citations?user=TOfGLNYAAAAJ"]
-      },
-      "datePublished": "2026-11-08",
-      "dateModified": "2026-11-08",
-      "inLanguage": "ko",
-      "articleSection": "바이브 코딩 실전기",
-      "isPartOf": {
-        "@type": "CreativeWorkSeries",
-        "name": "바이브 코딩(Vibe Coding) 실전기",
-        "url": "https://skyman200.github.io/vibe-coding/"
-      },
-      "publisher": {
-        "@type": "CollegeOrUniversity",
-        "name": "동의과학대학교",
-        "url": "https://www.dit.ac.kr/"
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://skyman200.github.io/vibe-coding/hackathon/"
-      },
-      "description": "2026 DIT 바이브코딩 해커톤 올인원 플랫폼(약 3만 줄, API 77개, 화면 11개, 테스트 185개)의 아키텍처와 병목 해결 과정. 구글 시트 락 3초→0.1초, HWPX/PDF 조판 일치, 익명 AI 코드 심사 42회 파이프라인, 100명 동시 접속 대응.",
-      "keywords": "바이브코딩, Vibe Coding, 해커톤 플랫폼, AI 코드 심사, Google Apps Script, Preact, HWPX, 김강훈",
-      "about": [
-        { "@type": "Thing", "name": "바이브 코딩 (Vibe Coding)" },
-        { "@type": "Thing", "name": "대학 행사 운영 자동화" },
-        { "@type": "Thing", "name": "생성형 AI 코드 심사" }
-      ],
-      "mentions": [
-        { "@type": "SoftwareApplication", "name": "2026 DIT 바이브코딩 해커톤 올인원 플랫폼", "url": "https://skyman200.github.io/vibe/" }
+      "@graph": [
+        {
+          "@type": [
+            "Article",
+            "TechArticle"
+          ],
+          "@id": "https://skyman200.github.io/vibe-coding/hackathon/#article",
+          "headline": "[바이브 코딩 실전기 2편] 단 하나의 URL로 끝낸 교내 해커톤: 3만 줄 풀스택 시스템과 42회 AI 코드 심사 파이프라인 구축기",
+          "alternativeHeadline": "신청 접수에서 4인 팀빌딩, 한글(HWPX) 공문, 48시간 예선, 익명 AI 코드 심사, 무대 시상까지 — 교수 한 사람이 만든 행사 운영체제",
+          "description": "2026 DIT 바이브코딩 해커톤 올인원 플랫폼(약 3만 줄, API 77개, 화면 11개, 테스트 185개)의 아키텍처와 병목 해결 과정. 구글 시트 락 3초→0.1초, HWPX/PDF 조판 일치, 익명 AI 코드 심사 42회 파이프라인, 100명 동시 접속 대응.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "@id": "https://skyman200.github.io/#person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ"
+            ]
+          },
+          "datePublished": "2026-11-08",
+          "dateModified": "2026-11-08",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "CollegeOrUniversity",
+            "name": "동의과학대학교",
+            "url": "https://www.dit.ac.kr/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/hackathon/"
+          },
+          "keywords": "바이브코딩, Vibe Coding, 해커톤 플랫폼, AI 코드 심사, Google Apps Script, Preact, HWPX, 김강훈",
+          "about": [
+            {
+              "@type": "Thing",
+              "name": "바이브 코딩 (Vibe Coding)"
+            },
+            {
+              "@type": "Thing",
+              "name": "대학 행사 운영 자동화"
+            },
+            {
+              "@type": "Thing",
+              "name": "생성형 AI 코드 심사"
+            }
+          ],
+          "mentions": [
+            {
+              "@type": "SoftwareApplication",
+              "name": "2026 DIT 바이브코딩 해커톤 올인원 플랫폼",
+              "url": "https://skyman200.github.io/vibe/"
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/hackathon/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "2편 — 단 하나의 URL로 끝낸 교내 해커톤",
+              "item": "https://skyman200.github.io/vibe-coding/hackathon/"
+            }
+          ]
+        }
       ]
     }
     </script>
