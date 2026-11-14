@@ -4,16 +4,31 @@
 // 왜 안전한가: 실제로 콘텐츠가 바뀐 주기(주간/수동)에만 호출한다.
 // 매일 무의미하게 핑하면 스팸 취급이라 역효과 — 크론은 주 1회로 제한.
 //
+// 대상 URL은 sitemap.xml의 <loc>을 그대로 읽는다. 새 칼럼이 사이트맵에
+// 추가되면 별도 수정 없이 함께 핑된다.
+//
 // 엔드포인트는 아무 IndexNow 멤버 하나에 제출하면 서로 공유된다(api.indexnow.org).
+
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const KEY = '854562e3f054d5ed2edb81e73180a48a'
 const HOST = 'skyman200.github.io'
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`
 
-const urlList = [
-  'https://skyman200.github.io/',
-  'https://skyman200.github.io/profcook/',
-]
+let urlList = []
+try {
+  const xml = readFileSync(resolve(__dirname, '..', 'sitemap.xml'), 'utf8')
+  urlList = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim())
+} catch (e) {
+  console.log(`[indexnow] sitemap 읽기 실패: ${e.message}`)
+}
+if (urlList.length === 0) {
+  urlList = [`https://${HOST}/`, `https://${HOST}/profcook/`]
+}
 
 const body = { host: HOST, key: KEY, keyLocation: KEY_LOCATION, urlList }
 
@@ -41,6 +56,7 @@ for (const ep of endpoints) {
   }
 }
 
+console.log(`[indexnow] 제출 ${urlList.length}개 URL`)
 console.log(anyOk ? '[indexnow] 최소 1개 엔드포인트 접수 성공' : '[indexnow] 모든 엔드포인트 비2xx (치명적 아님, 로그 확인)')
 // 워크플로를 실패로 만들지 않음 — 핑은 best-effort
 process.exit(0)

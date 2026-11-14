@@ -4,11 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
-    <title>[바이브 코딩 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결: Cloudflare Pages와 AI ONE으로 구축한 'AI Class Lab' 플랫폼 아키텍처 | 김강훈 교수</title>
+    <title>[바이브 코딩 5편] 90분에 교수 수업 앱을 배포하는 AI Class Lab 연수 플랫폼 | 김강훈 교수</title>
     <meta name="description" content="DIT AI-ONE 지능형 라우팅, 샌드박스 자가치유 스튜디오, 실시간 D1 참여판으로 완성한 교수자 실전 연수 시스템. 부산외대 PSC 연수를 위해 비전공 교수가 직접 구축한 AI Class Lab(kimcook-edu.pages.dev) 아키텍처 기록." />
     <meta name="keywords" content="바이브코딩, Vibe Coding, AI Class Lab, Cloudflare Pages, Cloudflare D1, DIT AI-ONE, 교수자 연수, AI 교육, 구글 앱스 스크립트, GAS, 김강훈, 김강훈 교수, 동의과학대학교, 부산외국어대학교 PSC" />
     <meta name="author" content="김강훈 (KIM KANG-HOON)" />
     <link rel="canonical" href="https://skyman200.github.io/vibe-coding/edu/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://skyman200.github.io/vibe-coding/edu/" />
@@ -179,15 +182,15 @@
   </head>
   <body>
     <div class="progress-bar" id="progress"></div>
-    <div class="article-wrap">
+    <main class="article-wrap">
 
-      <div class="nav-links">
+      <nav class="nav-links" aria-label="시리즈 이동">
         <a href="https://skyman200.github.io/">← 연구실 홈</a>
         <span>·</span>
         <a href="../">바이브 코딩 연재 홈</a>
         <span>·</span>
         <a href="../syllabus/">4편: 강의계획서 AI 체크</a>
-      </div>
+      </nav>
 
       <span class="badge">Vibe Coding Series · Ep.5</span>
       <h1>[바이브 코딩 5편] 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 비결: Cloudflare Pages와 AI ONE으로 구축한 'AI Class Lab' 플랫폼 아키텍처</h1>
@@ -203,7 +206,7 @@
       </a>
 
       <div class="img-card">
-        <img src="assets/og.jpg" alt="AI Class Lab 실습 페이지 첫 화면 — 두 개의 미션과 오늘의 시간표" />
+        <img src="assets/og.jpg" alt="AI Class Lab 실습 페이지 첫 화면 — 두 개의 미션과 오늘의 시간표" width="1600" height="827" />
         <figcaption>▲ 부산외대 PSC 연수용으로 배포된 'AI Class Lab' 첫 화면 (kimcook-edu.pages.dev) — 오늘 할 일 두 개와 90분 시간표만 남겼다.</figcaption>
       </div>
 
@@ -240,7 +243,7 @@
       <p>90분 안에 이 흐름이 끊기지 않으려면 기술적으로 네 개의 병목을 먼저 치워야 했습니다. 이 글의 나머지는 그 네 개를 어떻게 뚫었는지에 대한 기록입니다.</p>
 
       <div class="img-card">
-        <img src="assets/mission2.jpg" alt="미션 2 기획 화면 — 예시 앱 9종과 기획서, BUILD PROMPT" />
+        <img src="assets/mission2.jpg" alt="미션 2 기획 화면 — 예시 앱 9종과 기획서, BUILD PROMPT" width="1600" height="827" loading="lazy" decoding="async" />
         <figcaption>▲ 미션 2의 01 기획 화면. 예시 앱 9종 중 하나를 고르면 기획서가 채워지고, 그대로 프롬프트가 된다.</figcaption>
       </div>
 
@@ -314,7 +317,7 @@ gas-fix2 (재수정)     strong      Claude Opus 5.5         12,000</code></pre>
       <p>참가자가 하는 일은 붙여 넣기와 다시 받기, 두 번의 클릭입니다. 강사가 달려갈 필요가 없습니다. 이것이 이 플랫폼에서 말하는 <strong>자가치유(Self-Healing) 루프</strong>입니다. 오류를 고쳐 주는 AI가 아니라, <strong>오류를 설명 가능한 문장으로 바꿔 주는 장치</strong>가 핵심입니다.</p>
 
       <div class="img-card">
-        <img src="assets/studio-run.jpg" alt="바이브코딩 스튜디오 실행 화면 — 코드 편집기와 iframe 실행 칸, '실행했습니다. 오류 없음' 상태" />
+        <img src="assets/studio-run.jpg" alt="바이브코딩 스튜디오 실행 화면 — 코드 편집기와 iframe 실행 칸, '실행했습니다. 오류 없음' 상태" width="1600" height="827" loading="lazy" decoding="async" />
         <figcaption>▲ 실행 칸(오른쪽)은 페이지와 분리된 샌드박스 iframe이다. 위쪽 상태줄이 오류 개수와 첫 오류 줄 번호를 바로 알려 준다.</figcaption>
       </div>
 
@@ -528,7 +531,7 @@ gas-fix2 (재수정)     strong      Claude Opus 5.5         12,000</code></pre>
         </a>
       </div>
 
-    </div>
+    </main>
 
     <script>
       (function () {

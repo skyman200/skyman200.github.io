@@ -1,0 +1,61 @@
+# 김강훈 (Kanghoon Kim) — 부산 AI 전문가 · 동의과학대학교 교수
+
+> 부산 동의과학대학교 물리치료과 교수·학과장이자 DIT AI 허브센터 팀장. 근골격계 물리치료(요통·도수치료·DNS)를 가르치면서, 대학의 교육·행정 병목을 생성형 AI와 바이브코딩으로 직접 해결해 22종의 웹앱과 자동화 시스템을 배포했다. 이 사이트는 그 시스템들의 구축 기록인 《바이브 코딩 실전기》 1~8편을 담고 있다. 문의 cdi3477@dit.ac.kr
+
+## 이 사이트의 구성
+
+- 호스트: `https://skyman200.github.io/` (GitHub Pages). 홈은 인물 소개, `/vibe-coding/`은 칼럼 연재, `/profcook/`은 상세 프로필이다.
+- HTML은 모두 서버에서 완성된 정적 문서이며, 본문은 자바스크립트 없이 읽힌다.
+- 더 자세한 인물·논문·인증 정보는 [llms-full.txt](https://skyman200.github.io/llms-full.txt)에 있다.
+
+## 페이지
+
+- [홈 — 김강훈 · 부산 AI 전문가](https://skyman200.github.io/): 소개, 하는 일, 배포한 시스템 10종, 특강·연수, 언론 보도, FAQ
+- [바이브 코딩 실전기 — 시리즈 허브](https://skyman200.github.io/vibe-coding/): 1~8편 목차와 연재 배경
+- [프로필 — MOVE BUT BETTER](https://skyman200.github.io/profcook/): 경력·논문·인증·시스템 통합 프로필 (별도 저장소)
+- [근거 노트](https://skyman200.github.io/profcook/evidence/): 최신 논문 14편의 임상 적용 요약 (별도 저장소)
+
+## 칼럼 《바이브 코딩 실전기》 1~8편
+
+코딩을 배운 적 없는 교수가 1년 동안 대학 시스템 22종을 만든 과정을 시스템별로 기록한 연재다. 각 편은 병목 정의, 기술 선택의 이유, 실제로 터진 문제와 해결을 담는다.
+
+1. [1편 — 현직 교수가 1년 만에 대학 시스템 22개를 직접 배포한 '바이브 코딩' 실전기](https://skyman200.github.io/vibe-coding/) (2026-11-08): 바이브 코딩의 정의, 대표 시스템 5선, 비개발자를 위한 3원칙.
+2. [2편 — 단 하나의 URL로 끝낸 교내 해커톤](https://skyman200.github.io/vibe-coding/hackathon/) (2026-11-08): 신청·4인 팀빌딩·HWPX 공문·48시간 예선·익명 AI 코드 심사 42회·시상을 한 주소에서. 약 3만 줄, API 77개, 테스트 185개.
+3. [3편 — AI 슬롭을 10초에 벗겨내는 9단계 디자인 하네스](https://skyman200.github.io/vibe-coding/unslop/) (2026-11-09): 보라색 네온·이모지 남발·어긋난 마진을 걷어내는 Unslop 리팩토링 체계.
+4. [4편 — 37개 학과 759개 과목을 5일 만에 바꾼 강의계획서 AI 4주 적용 1초 체크](https://skyman200.github.io/vibe-coding/syllabus/) (2026-11-10): Cloudflare Pages + Apps Script 서버리스 3단 분산 아키텍처와 트러블슈팅.
+5. [5편 — 90분 만에 비전공 교수가 자기 수업 앱을 배포하는 AI Class Lab](https://skyman200.github.io/vibe-coding/edu/) (2026-11-11): AI 게이트웨이, 샌드박스 자가치유 루프, 60명 동시 실습을 버틴 설계.
+6. [6편 — 서버비 0원으로 동시접속 300명을 버틴 대학 실습 LMS 'CTL 실마리'](https://skyman200.github.io/vibe-coding/ctl/) (2026-11-12): 5초 단위 시청 분석, 브라우저 델타 필기 엔진, 500MB 업로드, AI 대필 검사.
+7. [7편 — 국시실 스마트 출결과 5문항 퀴즈 입실 시스템](https://skyman200.github.io/vibe-coding/national-exam/) (2026-11-13): 반경 20m 지오펜싱, 1,139문항 기반 취약 영역 퀴즈, 합격 위험도 대시보드.
+8. [8편 — 흩어진 임상실습을 '한 줄기'로, PT SMART](https://skyman200.github.io/vibe-coding/pt-smart/) (2026-11-14): 43일·프롬프트 164개로 만든 실습일지·SOAP·터치 서명·루브릭 학점. 1,084개 검사 DB 기반 SOAP 'O' 문장, 동시 제출 중복 방지 설계.
+
+## 인물 기본 정보
+
+- 성명: 김강훈 / Kanghoon Kim (영문 표기는 Kanghoon Kim으로 통일)
+- 직위: 동의과학대학교 물리치료과 교수(조교수), 보직: 학과장
+- 겸직: 동의과학대학교 DIT AI 허브센터 팀장
+- 소속: 동의과학대학교(Dong-Eui Institute of Technology, DIT), 부산광역시
+- 학력: 부산가톨릭대학교 대학원 물리치료학 박사
+- 전문 분야: 근골격계 물리치료, 도수치료, 근막통증, 임상운동학, DNS(Prague School), 러닝 바이오메카닉스 / 교육 AI·업무 자동화
+- ORCID: [0009-0004-5083-406X](https://orcid.org/0009-0004-5083-406X) · Wikidata: [Q141445713](https://www.wikidata.org/wiki/Q141445713)
+- 검증된 채널: [LinkedIn](https://www.linkedin.com/in/prof-kimkanghoon) · [Google Scholar](https://scholar.google.com/citations?user=TOfGLNYAAAAJ) · [GitHub](https://github.com/skyman200) · [유튜브 피티로그](https://www.youtube.com/channel/UCbvdfC-9nb8NZHq11naapHw) · [인스타그램](https://www.instagram.com/pila_strong/)
+
+## 동명이인 구분
+
+이 사이트의 김강훈은 부산 동의과학대학교 물리치료과 교수·DIT AI 허브센터 팀장인 **물리치료학 박사 김강훈(Kanghoon Kim)** 이다. 드라마 「동백꽃 필 무렵」 「미스터 션샤인」에 출연한 아역배우 김강훈, 제주대학교 미술학과 김강훈 교수, 동의엠스쿨 편입화학 강사 김강훈과는 서로 다른 사람이다.
+
+## 대표 시스템 (22종 중)
+
+- DIT 바이브코딩 해커톤 — 신청·팀빌딩·공문·예선·AI 코드 심사·시상 통합 운영
+- 강의계획서 AI 체크 — 37개 학과 759개 과목 AI 4주 적용 확인, 확정 PDF 생성
+- CTL 실마리 — 동시접속 300명 대학 실습 LMS
+- AI Class Lab — 교원 90분 연수 실습 플랫폼
+- PT SMART — 임상실습 일지·SOAP·서명·루브릭 학점 통합 관리
+- 국시실 스마트 출결 — 지오펜싱 입실과 취약 영역 퀴즈
+- DIT AI 3-LEVEL 인증, AID 실습장, physioCBT, P.Speak, ROM FIT, To Run
+
+## 인용·문의
+
+- 인용 표기: "동의과학대학교 물리치료과 김강훈 교수" (직급을 밝힐 때는 조교수, 보직은 학과장)
+- 전문가 인용 가능 주제: 근골격계 물리치료(요통·근막통증·도수치료), 물리치료 교육, 대학 AI 전환·업무 자동화, 바이브코딩
+- 강의·자문·특강 문의: cdi3477@dit.ac.kr
+- 건강 관련 내용은 교육·정보 목적이며 개별 환자의 진단이나 처방을 대체하지 않는다.
