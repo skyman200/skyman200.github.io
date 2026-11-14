@@ -225,6 +225,14 @@
       .foot { margin-top: 44px; font-size: 0.82rem; color: rgba(236,241,250,.38); }
       .foot a { color: inherit; }
 
+      /* 방문자 집계 — TOTAL / TODAY */
+      .views { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 26px; margin-bottom: 14px;
+        font-variant-numeric: tabular-nums; }
+      .views[hidden] { display: none; }
+      .views__item { display: inline-flex; align-items: baseline; gap: 8px; }
+      .views__label { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(236,241,250,.26); }
+      .views__num { font-size: 0.84rem; letter-spacing: 0.06em; color: rgba(236,241,250,.66); font-weight: 600; }
+
       @media (max-width: 620px) {
         body { padding: 9vh 18px 8vh; }
         .latest { display: block; }
@@ -355,7 +363,107 @@
         <a href="mailto:cdi3477@dit.ac.kr">강의·자문 문의 · cdi3477@dit.ac.kr</a>
       </nav>
 
-      <p class="foot">© 2026 김강훈 · 동의과학대학교 물리치료과 · 부산 · <a href="https://skyman200.github.io/profcook/">skyman200.github.io/profcook</a></p>
+      <footer class="foot">
+        <div class="views" id="views" aria-label="방문자 수" hidden>
+          <span class="views__item"><span class="views__label">Total</span><span class="views__num" id="views-total"></span></span>
+          <span class="views__item"><span class="views__label">Today</span><span class="views__num" id="views-today"></span></span>
+        </div>
+        <p>© 2026 김강훈 · 동의과학대학교 물리치료과 · 부산 · <a href="https://skyman200.github.io/profcook/">skyman200.github.io/profcook</a></p>
+      </footer>
     </main>
+
+    <!-- 방문자 집계: abacus.jasoncameron.dev (무료 공개 JSON 카운터, skyman200.github.io 네임스페이스) -->
+    <script>
+      (function () {
+        var API = 'https://abacus.jasoncameron.dev';
+        var NS = 'skyman200.github.io';
+        var TOTAL_KEY = 'skyman200-total';
+        var SESSION_KEY = 'sk-viewed';
+        var views = document.getElementById('views');
+        if (!views) return;
+
+        function kstDate() {
+          var d = new Date(Date.now() + 9 * 3600 * 1000);
+          var m = d.getUTCMonth() + 1;
+          var day = d.getUTCDate();
+          return '' + d.getUTCFullYear() + (m < 10 ? '0' + m : m) + (day < 10 ? '0' + day : day);
+        }
+
+        var TODAY_KEY = 'skyman200-today-' + kstDate();
+
+        function call(mode, key) {
+          return fetch(API + '/' + mode + '/' + NS + '/' + key, { cache: 'no-store' })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (j) { return j && typeof j.value === 'number' ? j.value : null; })
+            .catch(function () { return null; });
+        }
+
+        var firstVisit = true;
+        try { firstVisit = !sessionStorage.getItem(SESSION_KEY); } catch (e) {}
+        var mode = firstVisit ? 'hit' : 'get';
+
+        Promise.all([call(mode, TOTAL_KEY), call(mode, TODAY_KEY)]).then(function (r) {
+          var total = r[0];
+          var today = r[1];
+
+          // 세션 재방문인데 오늘 키가 아직 없으면(자정 경계 등) 한 번만 집계
+          if (!firstVisit && total !== null && today === null) {
+            return call('hit', TODAY_KEY).then(function (v) { return [total, v]; });
+          }
+          return [total, today];
+        }).then(function (r) {
+          var total = r[0];
+          var today = r[1];
+          if (total === null && today === null) return; // 집계 실패 시 숫자를 지어내지 않고 숨김
+          try { if (mode === 'hit') sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+
+          var elTotal = document.getElementById('views-total');
+          var elToday = document.getElementById('views-today');
+          var boxTotal = elTotal && elTotal.parentNode;
+          var boxToday = elToday && elToday.parentNode;
+          if (total === null && boxTotal) boxTotal.style.display = 'none';
+          if (today === null && boxToday) boxToday.style.display = 'none';
+
+          var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var shown = false;
+
+          function fmt(n) { return n.toLocaleString('ko-KR'); }
+
+          function countUp(el, target, duration) {
+            if (!el) return;
+            if (REDUCED) { el.textContent = fmt(target); return; }
+            var t0 = performance.now();
+            function step(t) {
+              var p = Math.min(1, (t - t0) / duration);
+              var e = 1 - Math.pow(1 - p, 3);
+              el.textContent = fmt(Math.round(target * e));
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = fmt(target);
+            }
+            requestAnimationFrame(step);
+          }
+
+          function show() {
+            if (shown) return;
+            shown = true;
+            views.hidden = false;
+            countUp(elTotal, total || 0, 1200);
+            countUp(elToday, today || 0, 900);
+          }
+
+          var foot = document.querySelector('footer.foot') || views;
+          if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+              for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) { show(); io.disconnect(); break; }
+              }
+            }, { threshold: 0.15 });
+            io.observe(foot);
+          } else {
+            show();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
