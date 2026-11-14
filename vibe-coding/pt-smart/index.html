@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브 코딩 8편] 흩어진 임상실습을 '한 줄기'로 — 비개발자 교수가 43일·프롬프트 164개로 만든 PT SMART(실습일지·SOAP·터치 서명·루브릭 학점) 구축기 | 김강훈 교수</title>
+    <meta name="description" content="종이 일지·엑셀·대면 서명으로 흩어져 있던 병원 임상실습 관리를 일지 제출 → 병원 담당자 서명 → 교수 학점까지 한 줄기로 잇는 Google Apps Script 웹앱. 1,084개 검사 DB 기반 SOAP 'O' 문장 자동 작성, 시트에서 바꾸는 루브릭 채점, 마감 직전 동시 제출을 버틴 중복 방지 설계까지 43일의 실제 기록." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, PT SMART, 임상실습, 실습일지, SOAP 노트, 루브릭 평가, Google Apps Script, 클라스프, clasp, Apps Script 동시실행, 임상실습 관리, 물리치료과, 김강훈, 김강훈 교수, 동의과학대학교, AI 교육혁신, 에듀테크" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/pt-smart/" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/pt-smart/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브 코딩 8편] 흩어진 임상실습을 '한 줄기'로 — 43일·프롬프트 164개로 만든 PT SMART 구축기" />
+    <meta property="og:description" content="실습일지 → 병원 담당자 터치 서명 → 교수 학점까지 하나의 데이터. 1,084개 검사 DB 기반 SOAP 자동 작성과 시트에서 바꾸는 루브릭 설계의 전 과정." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-14" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브 코딩 8편] 흩어진 임상실습을 '한 줄기'로 — PT SMART 구축기" />
+    <meta name="twitter:description" content="실습일지·SOAP·터치 서명·루브릭 학점을 하나의 데이터로 잇는 Google Apps Script 웹앱, 43일의 기록." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/pt-smart/#article",
+          "headline": "[바이브 코딩 8편] 흩어진 임상실습을 '한 줄기'로 — 비개발자 교수가 43일·프롬프트 164개로 만든 PT SMART(실습일지·SOAP·터치 서명·루브릭 학점) 구축기",
+          "alternativeHeadline": "실습일지 제출 → 병원 담당자 터치 서명 → 교수 학점 산출까지 하나의 데이터로 잇는 Google Apps Script 웹앱 아키텍처",
+          "description": "종이 일지·엑셀·대면 서명으로 흩어져 있던 병원 임상실습 관리를 일지 제출, 병원 담당자 서명, 교수 학점 산출까지 한 줄기로 잇는 Google Apps Script 웹앱. 1,084개 검사 데이터베이스 기반 SOAP 'O' 문장 자동 작성, 시트에서 바꾸는 루브릭 채점, 동시 제출 중복 방지 설계까지 43일간의 실제 구축 기록.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-14",
+          "dateModified": "2026-11-14",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/pt-smart/"
+          },
+          "keywords": "바이브코딩, Vibe Coding, PT SMART, 임상실습 관리, 실습일지, SOAP 노트, 루브릭 평가, Google Apps Script, clasp, 동시 실행 한도, 물리치료과, 김강훈교수, 동의과학대학교",
+          "about": [
+            { "@type": "Thing", "name": "임상실습 관리 시스템" },
+            { "@type": "Thing", "name": "SOAP 노트" },
+            { "@type": "Thing", "name": "성과 기반 루브릭 평가" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/pt-smart/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "8편 — PT SMART 임상실습 관리 웹앱",
+              "item": "https://skyman200.github.io/vibe-coding/pt-smart/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/pt-smart/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "코딩을 모르는 교수가 학과 행정 시스템을 직접 만들 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "가능하지만 조건이 있습니다. 무엇이 있어야 하는지에 대한 현장 지식, AI가 만든 코드를 검증하는 절차, 그리고 3년 뒤에도 고칠 수 있는 기술 스택입니다. PT SMART는 2026년 6월 10일부터 7월 23일까지 43일 동안 진행된 25개 작업 세션, 164개 프롬프트로 완성됐고 2026 하계 임상실습에 실제로 사용됐습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "SOAP 노트 자동화는 AI가 임상 기록을 창작하는 것 아닌가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "아닙니다. S(주관적)와 A(평가), P(계획)는 학생이 직접 씁니다. 자동으로 만들어지는 것은 O(객관적) 문장이며, 1,084개 검사 데이터베이스의 검사 정의와 ROM·MMT 측정값을 조합해 문장을 만듭니다. 같은 측정값이면 같은 문장이 나오는 결정론적 방식이므로, 기록의 재현성과 감사 가능성이 유지됩니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Google Apps Script로 마감 직전에 몰리는 접속을 감당할 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Apps Script는 한 번에 동시 실행되는 스크립트가 30개로 제한됩니다. 그래서 제출마다 중복 방지 키(idempotency key)를 함께 보내고, 서버는 이미 접수된 제출이면 기록을 건너뛰고 성공으로 응답하도록 설계했습니다. 여기에 재시도와 백오프를 더해 마감 시각에 제출이 몰리는 상황을 전제로 만들었습니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede {
+        margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all;
+      }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="crumb" aria-label="현재 위치">
+      <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>8편</span>
+    </nav>
+
+    <main class="article-wrap">
+      <article>
+        <p class="kicker">Vibe Coding Case 08 · Clinical Practicum</p>
+        <h1>[바이브 코딩 8편] 흩어진 임상실습을 '한 줄기'로 — 비개발자 교수가 43일·프롬프트 164개로 만든 PT SMART</h1>
+        <p class="subhead">실습일지 제출 → 병원 담당자 터치 서명 → 교수 학점 산출까지 하나의 데이터로. 1,084개 검사 데이터베이스가 만드는 SOAP 'O' 문장, 시트에서 바꾸는 루브릭, 그리고 마감 직전 몰림을 버틴 중복 방지 설계의 전 과정.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 14일</div>
+          <div><strong>읽는 시간</strong> 약 9분</div>
+        </div>
+
+        <p class="lede">이번 편은 <b>이미 완성해서 실제로 돌린 시스템</b>의 기록입니다. 2026년 하계 임상실습 기간(6월 10일 ~ 7월 23일)에 학생·병원 담당자·교수가 같은 데이터를 보도록 만든 <b>PT SMART</b>. 아래의 모든 수치는 그때의 코드와 작업 기록에서 그대로 가져왔고, 없는 성과는 넣지 않았습니다.</p>
+
+        <h2><span class="idx">1</span>임상실습은 수업이 아니라 '운영'이다</h2>
+        <p>물리치료과 2학년이 되면 학생들은 학교를 떠나 병원으로 갑니다. 학과 입장에서 이 기간은 강의가 아니라 <strong>운영</strong>입니다. 매일 제출되는 일일 실습일지, 주 단위로 마감되는 SOAP 노트, 출결, 병원 실습 담당자의 확인 서명, 실습 종료 후의 최종 학점과 포트폴리오까지 — 하나의 실습이 끝나려면 서로 다른 사람들이 서로 다른 자리에서 같은 기록을 확인해야 합니다.</p>
+        <p>문제는 그 '같은 기록'이 한 곳에 없었다는 점입니다. 학생은 파일로 일지를 쓰고, 병원 선생님은 대면으로 종이에 서명하고, 교수는 학기 말에 모인 파일과 엑셀을 붙여 학점을 만듭니다. 세 사람이 각자 다른 사본을 들고 있으니, 확인이 늦어지고, 빠진 항목이 생기고, 점수 계산은 손으로 다시 하게 됩니다.</p>
+        <blockquote>
+          "학생이 쓰는 화면, 병원 선생님이 서명하는 화면, 제가 학점을 매기는 화면이 같은 데이터를 봐야 한다."
+        </blockquote>
+        <p>상용 실습 관리 솔루션을 사는 방법도 있습니다. 다만 임상실습에는 그 서비스가 잘 맞지 않는 조건이 붙습니다. 서명해야 하는 사람이 <strong>우리 학교 소속이 아닌 병원 실습 담당자</strong>라는 점입니다. 병원마다 담당자가 다르고, 그분들에게 매 학기 계정을 발급하고 교육하는 일은 실습 운영의 몫이 됩니다. 게다가 학과 예산으로 매년 갱신되는 라이선스를 감당하기도 쉽지 않습니다.</p>
+        <p>그래서 만들기로 했습니다. 조건은 명확했습니다. <strong>① 세 역할이 하나의 데이터를 본다 ② 병원 담당자는 계정 없이 들어온다 ③ 서버비가 들지 않고, 내가 직접 고칠 수 있다.</strong></p>
+
+        <h3>숫자로 본 결과물</h3>
+        <table>
+          <tr><th>항목</th><th>값</th></tr>
+          <tr><td>제작 기간</td><td>2026-06-10 ~ 07-23 (43일), 2026 하계 임상실습에 실제 사용</td></tr>
+          <tr><td>작업 방식</td><td>AI 코딩 에이전트(GJC) 세션 25개 · 사용자 프롬프트 164개</td></tr>
+          <tr><td>코드 규모</td><td>서버 약 7,200줄 · 화면 약 10,100줄 · 서버 함수 390개</td></tr>
+          <tr><td>데이터</td><td>구글 스프레드시트 17개 시트 · 검사 데이터베이스 1,084개</td></tr>
+          <tr><td>테스트</td><td>테스트 파일 55개 (서버 순수 함수 직접 호출)</td></tr>
+          <tr><td>비용</td><td>서버비 0원 (학교 구글 계정의 Apps Script · 스프레드시트 · 드라이브)</td></tr>
+        </table>
+
+        <h2><span class="idx">2</span>기술 선택의 기준은 성능이 아니라 '내가 고칠 수 있는가'</h2>
+        <p>스택은 Google Apps Script(V8)로 정했습니다. 화려한 선택은 아니지만, 이 프로젝트에서는 세 가지가 결정적이었습니다.</p>
+        <ul>
+          <li><strong>스프레드시트가 곧 데이터베이스이자 운영 콘솔</strong> — 이게 가장 컸습니다. 루브릭 평가 기준, 병원별 설정, 교수 계정, 제출 현황이 모두 17개 시트에 있습니다. 교수가 평가 기준을 바꾸고 싶을 때 코드를 열 필요가 없습니다. 시트의 칸을 고치면 다음 채점부터 적용됩니다.</li>
+          <li><strong>권한과 배포가 학교 계정 안에서 끝난다</strong> — 학생·병원 담당자는 학과가 나눠 주는 로그인 QR로 들어오고, 파일은 학교 구글 드라이브 안에만 생깁니다. 개인정보 검토를 새로 받아야 하는 외부 서비스를 끼우지 않았습니다.</li>
+          <li><strong>유지보수를 사람이 감당할 수 있다</strong> — 43일 동안 만든 1만 7천여 줄을 3년 뒤에 고칠 사람은 저입니다. 빌드 도구가 없는 HTML·CSS·바닐라 JavaScript 조합은 서버가 죽어도 브라우저에서 열어 원인을 볼 수 있습니다.</li>
+        </ul>
+        <p>대가는 분명히 있습니다. Apps Script는 동시 실행에 한도가 있고(뒤에서 자세히), 배포 방식에 함정이 있습니다. 그 한계를 알고 설계에 반영하는 것이 이 프로젝트의 절반이었습니다.</p>
+
+        <h2><span class="idx">3</span>아키텍처: 세 개의 문, 하나의 데이터</h2>
+        <div class="note">
+          <p>※ 운영 웹앱의 접속 주소는 공개하지 않습니다. 실제 학생·환자 기록이 있는 학내 시스템이고, 접속은 학과가 배포하는 로그인 QR로만 가능합니다.</p>
+        </div>
+        <pre><code>학생 (휴대폰)          병원 실습 담당자              교수
+학번 + 이름            병원 선택 + 병원 PIN          이름 + 비밀번호(이메일 인증 가입)
+     │                 (해당 병원 학생만 조회)              │
+     └──────────── Google Apps Script 웹앱 (한 페이지 앱) ────────────┘
+                        ├ 구글 스프레드시트 17시트 : 일지·SOAP·출석부·평가·학점
+                        ├ 구글 드라이브 : 서명완료 PDF · 실습 포트폴리오
+                        ├ Discord 웹훅 : 로그인·제출·서명·잠금해제 요청 알림
+                        └ 시간 트리거 : 매일 20시 제출 현황 보고
+
+점수 = 출석 20% + 실습일지 40% + 병원평가 40%</code></pre>
+
+        <h3>역할마다 다른 문, 같은 테이블</h3>
+        <table>
+          <tr><th>역할</th><th>들어오는 방법</th><th>하는 일</th></tr>
+          <tr><td>학생</td><td>학번 + 이름 (별도 가입 없음)</td><td>일일 실습일지 7개 칸, SOAP 노트, 출석부, 보강 기록, 환자 경과 추세</td></tr>
+          <tr><td>병원 담당자</td><td>병원 선택 + 병원별 PIN</td><td>일지·SOAP 검토, 터치 서명(개별·일괄), '수정 필요' 표시, 최종평가(임상역량·태도·소통 1~5점)</td></tr>
+          <tr><td>교수</td><td>이름 + 비밀번호 (이메일 인증코드로 가입)</td><td>전 병원 현황, 루브릭 채점, 최종 학점 산출, PDF 포트폴리오, 잠금 해제 처리</td></tr>
+        </table>
+        <p>학생은 가입 절차가 없습니다. 2학년 전원이 첫날 접속해야 하는 시스템에서 회원가입은 곧 이탈이기 때문입니다. 대신 담당자는 <strong>해당 병원 학생만</strong> 보이게 했고, 교수 계정은 이메일 인증코드로 본인 확인을 거쳐 비밀번호를 만들게 했습니다(대문자·특수문자를 포함한 7자 이상, 세션은 약 12시간, 로그인 실패가 반복되면 대기 시간이 점점 길어짐).</p>
+        <p>자동으로 도는 일도 있습니다. 매일 20시에 오늘 제출·미제출·SOS 요청과 병원별 미제출 현황을 정리해 보고하고, 서명이 들어오면 서명완료 PDF를 드라이브에 자동 생성합니다. PDF 생성이 실패해도 서명 자체는 진행되게 했습니다 — 서명을 기다리게 하는 것보다, PDF는 나중에 다시 만들 수 있게 하는 편이 현장에서 낫습니다.</p>
+
+        <h2><span class="idx">4</span>SOAP의 'O'는 AI가 창작하지 않는다 — 1,084개 검사 DB가 문장을 조립한다</h2>
+        <p>임상 실습에서 학생이 가장 오래 붙잡는 것이 SOAP 노트입니다. S(주관적)·O(객관적)·A(평가)·P(계획) 네 칸 중에서, 학생들이 가장 못 쓰는 칸은 O입니다. 검사 결과를 측정값으로는 적는데, 그것을 <strong>임상 문장</strong>으로 옮기는 훈련이 안 되어 있기 때문입니다.</p>
+        <p>PT SMART는 이 지점을 구조로 해결했습니다.</p>
+        <ol>
+          <li>환자 유형(근골격계·신경계)과 병명, S 내용을 학생이 적습니다.</li>
+          <li>O 항목은 <strong>1,084개 검사 데이터베이스</strong>에서 검사를 고릅니다. 각 검사에는 질환/문제, 검사 목적, 방법, 양성 기준, 근거가 붙어 있습니다.</li>
+          <li>결과를 입력합니다(양성·측면·제한 각도·통증 NRS 등). ROM·MMT 측정표는 우/좌 AROM·PROM과 정상 범위가 있고, 정상 범위를 벗어난 칸은 빨간 테두리로 즉시 표시됩니다.</li>
+          <li>「O로 반영」을 누르면 O 칸에 문장이 만들어집니다. 학생은 A와 P를 직접 쓰고 제출합니다.</li>
+        </ol>
+        <blockquote>
+          자동으로 만들어지는 문장은 AI가 지어낸 문장이 아닙니다. 검사 정의와 측정값에서 조립된 문장입니다. 같은 측정값을 넣으면 같은 문장이 나옵니다.
+          <cite>— 임상 기록에서 재현성과 감사 가능성은 편의성보다 앞선다</cite>
+        </blockquote>
+        <p>이 구분은 타협할 수 없는 부분이었습니다. 학생이 쓴 O 문장은 나중에 병원 담당자의 서명을 받고, 학점의 근거가 되고, 포트폴리오 PDF로 남습니다. 그 기록을 언어 모델이 그때그때 다르게 생성한다면, 같은 환자·같은 측정값에 대해 다른 기록이 나오게 됩니다. 그래서 생성형 AI는 <strong>문장 생성이 아니라 코드 작성</strong>에 썼습니다. 이 시스템에서 'AI 자동화'는 창작의 자동화가 아니라 <strong>정리와 조립의 자동화</strong>입니다.</p>
+        <p>대신 규율은 시스템이 강제합니다. 일일 실습일지는 7개 칸이 있고 <strong>칸마다 최소 50자</strong>를 요구하며, 입력 칸의 <strong>복사·붙여넣기를 막았습니다</strong>. 주간 SOAP 마감은 다음 주 월요일 22시이고, 넘기면 관련 기능이 잠기며 교수에게 잠금 해제를 요청해야 합니다. 늦게 낸 일지는 '지각 제출'로 따로 기록됩니다.</p>
+
+        <h2><span class="idx">5</span>루브릭은 시트로 꺼내 놓는다 — 비개발자 운영의 핵심</h2>
+        <p>학점은 <strong>출석 20% + 실습일지 40% + 병원평가 40%</strong>로 자동 산출됩니다. 여기서 중요한 것은 계산이 아니라 <strong>기준을 누가 바꿀 수 있는가</strong>입니다.</p>
+        <p>평가 기준은 학기 중에도 바뀝니다. 작년 기준을 그대로 쓰면 안 되는 항목이 생기고, 병원마다 요구하는 관찰 항목이 다릅니다. 코드를 고쳐야 기준을 바꿀 수 있는 시스템은 비개발자 교수에게 결국 '외주가 필요한 시스템'입니다. 그래서 루브릭 채점 기준과 배점, 병원별 설정, 문구 템플릿을 모두 스프레드시트로 빼 두었습니다. 교수는 시트의 칸을 고치고, 다음 채점부터 새 기준이 적용됩니다.</p>
+        <p>여기에 실무를 줄이는 장치를 더했습니다. 전 병원 학생을 한 화면에서 보는 칸반·리스트 보기, 여러 학생에게 같은 문구를 보내는 일괄 피드백, 익명으로 처리되는 우수사례 게시판, 서명완료 기록을 모아 만드는 PDF 포트폴리오, 병원별 실습 통계 차트, 그리고 지각·미제출 리포트입니다.</p>
+        <div class="note">
+          <p>비개발자 교수를 위한 시스템의 성공 조건은 기능의 개수가 아니라, <strong>코드 밖에서 바꿀 수 있는 것의 개수</strong>입니다. 이 시스템에서 그 개수는 17개 시트의 설정 칸이었습니다.</p>
+        </div>
+
+        <h2><span class="idx">6</span>43일 동안 실제로 터진 것들</h2>
+        <p>완성된 아키텍처보다 값진 기록은 고장의 기록입니다. 아래는 실제로 겪고 고친 문제들입니다.</p>
+
+        <div class="item">
+          <h3><span class="sym">01</span> 학생이 제출했는데 담당자 화면에 안 보인다</h3>
+          <p>가장 먼저 만난 문제입니다. 제출 데이터는 쌓이는데 담당자 화면이 그것을 읽지 못했습니다. 이후로는 "학생이 제출하면 담당자 로그인으로 실제로 보이는지 확인해라"를 검증 절차로 고정했습니다. 화면 하나가 정상이라고 해서 다음 화면이 정상인 것은 아니었습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">02</span> 결석이 점수를 깎지 않는 계산식</h3>
+          <p>출석 점수를 낼 때 0점(결석)을 평균에서 제외하고 있었습니다. 화면에는 아무 문제가 없어 보였습니다. 이 오류는 <strong>가짜 데이터로 서버 함수를 직접 실행</strong>해 보면서 찾았습니다. 이후 "가짜 데이터로 서버 함수를 실제로 실행해서 확인해라"가 이 프로젝트의 상시 검증 문장이 됐습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">03</span> 마감 직전 몰림 vs Apps Script 동시 실행 30</h3>
+          <p>Apps Script는 한 번에 동시에 실행되는 스크립트가 30개로 제한됩니다. 실습이 끝나는 시각에 제출이 몰리는 상황(50명 규모)을 가정하고 설계해야 했습니다. 제출마다 중복 방지 키(idempotency key)를 함께 보내고, 서버는 이미 접수된 제출이면 기록을 건너뛰고 성공으로 응답하게 했습니다. 여기에 재시도와 백오프를 더했습니다. 사용자에게는 '한 번만 눌렀는데 두 번 기록되는 일'이 없어야 하고, 서버는 '두 번 와도 한 번만 쓰면' 됩니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">04</span> 배포 명령이 익명 접근을 깨뜨린다</h3>
+          <p>로컬 코드와 운영본이 어긋나는 일이 반복됐고, 배포 명령(<code>clasp deploy</code>)이나 REST 방식으로 갱신하면 익명 접근이 깨질 수 있다는 것도 알게 됐습니다. 그래서 운영 반영은 편집기에서 직접 하고, 로컬과 라이브를 맞추는 동기화 문서(SYNC.md)를 따로 두었습니다. 배포 후에는 운영 주소가 살아 있는지 점검 스크립트로 확인합니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">05</span> 로그인 응답에 다른 역할의 PIN이 섞여 나온다</h3>
+          <p>역할별 응답을 점검하다 발견했습니다. 화면에서 숨기는 것은 보안이 아닙니다. 학번 하나만 받아 기록을 돌려주는 함수가 없어야 하고, 이름·PIN·세션을 함께 확인해야 하며, 응답에 다른 역할의 값이 섞이지 않아야 합니다. 웹훅 주소·공용 코드 같은 비밀값과 실명은 코드에 쓰지 않고 스크립트 속성에 두었습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">06</span> 병원마다 운영 요일이 다르다</h3>
+          <p>주 5일 운영 병원과 주 6일 운영 병원이 섞여 있으면, 토요일 일지 미제출이 곧바로 감점이 됩니다. 담당자가 처음 들어와 운영 요일을 정하게 하고, 토요일·공휴일 휴무 일지는 서명 없이 자동 완료 처리했습니다. 규칙을 코드에 박아 넣는 대신, 병원이 자기 규칙을 선언하게 한 것이 답이었습니다.</p>
+        </div>
+
+        <h2><span class="idx">7</span> 프롬프트 설계 노하우 — 164개를 25개 세션으로</h2>
+        <p>43일 동안 던진 프롬프트는 164개, 작업 세션은 25개입니다. 많이 물어서 된 것이 아니라, <strong>묻는 순서</strong>가 결과를 바꿨습니다.</p>
+
+        <h3>1) 통합 프롬프트는 다섯 블록으로 쓴다</h3>
+        <p>처음부터 기능 목록을 늘어놓으면 AI는 그럴듯한 껍데기를 만듭니다. 대신 다섯 블록으로 잘라 썼습니다.</p>
+        <ul>
+          <li><strong>① 역할과 로그인</strong> — 누가 어떤 자격으로 들어오고, 그 역할이 무엇을 보면 안 되는지</li>
+          <li><strong>② 한 줄기</strong> — 학생 로그인 → 일지 제출 → 담당자 서명까지, 최소 기능을 끝까지</li>
+          <li><strong>③ 데이터·마감 규칙</strong> — 7개 칸 50자, 주간 마감 시각, 점수 비율, 잠금 조건</li>
+          <li><strong>④ 운영 안전</strong> — 동시 제출, 재시도, 배포 방식, 비밀값의 위치</li>
+          <li><strong>⑤ 디자인 제약</strong> — 어떤 인상이어야 하고, 무엇을 하지 말아야 하는지</li>
+        </ul>
+        <p>실제 통합 프롬프트의 골격은 이렇게 시작했습니다.</p>
+        <pre><code>물리치료과 임상실습을 관리하는 Google Apps Script 웹앱(스프레드시트 바인딩)을 만든다.
+학생은 휴대폰으로 일일 실습일지와 SOAP 노트를 쓰고, 병원 실습 담당자가 검토·서명하고,
+교수가 현황과 최종 학점을 본다.
+
+■ 역할과 로그인
+- 학생: 학번 + 이름. 담당자: 병원 이름 선택 + 병원 PIN(해당 병원 학생만 보임).
+- 교수: 이름 + 비밀번호(이메일 인증코드 → 새 비밀번호, 세션 약 12시간).
+- 학생 로그인 응답에 다른 사람의 PIN·비밀번호가 섞이지 않게 하고,
+  학번만 받는 함수가 없게 한다(이름·PIN 확인).
+
+■ 실습일지·SOAP
+- 일지: 출결, 7개 칸(칸마다 최소 50자), SOS 요청, 복사·붙여넣기 차단, 임시저장.
+- SOAP: O 는 검사 데이터베이스에서 고르고 ROM/MMT 측정표를 채우면 O 문장 자동 작성.
+- 서명: 담당자가 터치 서명(개별·일괄), 서명 시 PDF 를 드라이브에 자동 생성
+  (실패해도 서명은 진행).
+
+■ 운영 안전
+- 마감 직전에 50명이 몰려도 중복 제출이 없게: 제출마다 idempotency 키,
+  이미 있으면 append 를 건너뛰고 성공 처리. 재시도·백오프.
+- 비밀값(웹훅·PIN)과 실명은 코드에 쓰지 말고 스크립트 속성에 둔다.
+
+먼저 학생 로그인 → 일지 제출 → 담당자 서명까지 되는 최소 버전을 만들고
+가짜 학생 9명으로 화면을 보여 줘.</code></pre>
+
+        <h3>2) '검증 문장'을 다섯 개 정해 두고 계속 섞는다</h3>
+        <ul>
+          <li>"로컬이 라이브와 같은지 비교해서 다르면 로컬을 라이브와 똑같게 만들어라."</li>
+          <li>"학생이 제출하면 담당자 로그인으로 실제로 보이는지 확인해라."</li>
+          <li>"동시에 50명이 들어오면 어떻게 되는지 말해라 / 중복 제출 가드를 확인해라."</li>
+          <li>"가짜 데이터로 프로젝트의 서버 함수를 실제로 실행해서 확인해라."</li>
+          <li>"배포한 뒤 운영 주소가 살아 있는지 점검해라."</li>
+        </ul>
+        <p>이 문장들은 기능 요청이 아니라 <strong>합격 기준</strong>입니다. AI에게 일을 시키는 것보다, 무엇을 확인해야 합격인지 말해 주는 쪽이 결과를 훨씬 안정적으로 만듭니다.</p>
+
+        <h3>3) 화면 디자인은 '하지 말 것'으로 고정한다</h3>
+        <p>AI가 만든 화면이 한눈에 'AI가 만든 것'처럼 보이는 이유는 대개 장식입니다. 왼쪽 색 띠, 이모지 아이콘, 과한 그림자. 그래서 프롬프트에 디자인 제약을 명시했습니다. "노션 홈페이지 같은 느낌, 박스는 전체에 얇은 테두리, 왼쪽 색 띠와 이모지 장식 금지." 장식을 빼면 남는 것은 정보 구조이고, 정보 구조가 좋으면 화면은 저절로 정돈됩니다.</p>
+
+        <h3>4) 순서를 지킨다</h3>
+        <ol>
+          <li>한 줄기(로그인 → 제출 → 서명)를 끝까지 만든다. 그 전에 기능을 늘리지 않는다.</li>
+          <li>역할별로 보여야 할 것과 보이지 않아야 할 것을 먼저 정한다.</li>
+          <li>나머지(SOAP·출석부·학점·PDF)를 하나씩 붙인다.</li>
+          <li>구조가 바뀌면 README와 SYNC 문서를 같이 고친다. 문서가 낡으면 다음 작업에서 AI가 잘못 읽습니다.</li>
+          <li>작업은 자주 커밋하고 원격에도 올린다. 로컬에만 있으면 사본은 하나뿐입니다.</li>
+        </ol>
+
+        <h2><span class="idx">8</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>코딩을 모르는 교수가 학과 행정 시스템을 직접 만들 수 있나요?</h3>
+          <p>가능하지만 조건이 붙습니다. <strong>무엇이 있어야 하는지에 대한 현장 지식</strong>, AI가 만든 코드를 <strong>검증하는 절차</strong>, 그리고 3년 뒤에도 고칠 수 있는 <strong>기술 스택</strong>입니다. 이 셋 중 하나가 빠지면 '데모는 되는데 운영은 안 되는 시스템'이 됩니다. PT SMART는 43일, 25개 세션, 164개 프롬프트로 완성됐고 2026 하계 임상실습에 실제로 사용됐습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>SOAP 노트 자동화는 AI가 임상 기록을 창작하는 것 아닌가요?</h3>
+          <p>아닙니다. S·A·P는 학생이 직접 씁니다. 자동으로 만들어지는 것은 O 문장이고, 1,084개 검사 데이터베이스의 검사 정의와 ROM·MMT 측정값을 조합해 만듭니다. 같은 측정값이면 같은 문장이 나오는 결정론적 방식이라 기록의 재현성과 감사 가능성이 유지됩니다. 생성형 AI는 이 시스템에서 문장이 아니라 코드를 쓰는 데 쓰였습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>Google Apps Script로 마감 직전 접속 폭주를 감당할 수 있나요?</h3>
+          <p>동시 실행 30개라는 한도가 있어서, 그대로 두면 마감 시각에 제출이 유실될 수 있습니다. 그래서 제출마다 중복 방지 키를 보내고, 서버는 이미 접수된 제출이면 기록을 건너뛰고 성공으로 응답합니다. 재시도·백오프를 더해 50명 규모의 몰림을 전제로 설계했습니다. 한도가 있는 도구를 쓰는 일의 핵심은 한도를 없애는 것이 아니라, 한도 안에서 사용자가 실패를 느끼지 않게 만드는 것입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>운영 비용과 개인정보는 어떻게 처리했나요?</h3>
+          <p>서버비는 0원입니다. 학교 구글 계정의 Apps Script·스프레드시트·드라이브 안에서 모두 돌아가고, 서명완료 PDF는 학내 드라이브에만 생성됩니다. 운영 주소는 공개하지 않으며, 학생과 병원 담당자는 학과가 배포하는 로그인 QR로만 들어옵니다. 담당자는 자기 병원 학생만 볼 수 있고, 접속 기록은 지정된 교수만 열람합니다.</p>
+        </div>
+
+        <h2><span class="idx">9</span>에필로그 — 기록이 남으면 시간이 돌아온다</h2>
+        <p>이 시스템이 잘한 일은 자동화가 아니라 <strong>순서를 정한 것</strong>이었습니다. 학생은 제출 전에 마감을 알고, 담당자는 서명할 것이 남아 있는지 로그인하자마자 알며, 교수는 학기 말에 파일을 모으지 않아도 됩니다. 확인이 늦어지던 일이, 확인할 것이 한 곳에 있는 일로 바뀌었습니다.</p>
+        <p>임상실습은 학생이 병원에서 배우는 시간입니다. 그 시간을 지키기 위해 필요한 것은 거창한 플랫폼이 아니라, 세 사람이 같은 기록을 보게 만드는 작은 약속입니다. 그 약속을 코드로 옮기는 데 43일이 걸렸고, 옮기고 나니 제가 다시 학생에게 쓸 시간이 생겼습니다.</p>
+        <blockquote>
+          AI는 교수를 대체하지 않습니다. 다만 교수가 붙잡고 있던 서류를 대신 정리해 줄 뿐입니다. 그 서류에서 손을 떼는 결정은 여전히 사람의 몫입니다.
+        </blockquote>
+      </article>
+
+      <a class="next-ep" href="../national-exam/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[7편] "공부해야 문이 열립니다" — 국가고시 100% 합격을 위한 DIT 국시실 스마트 출결 &amp; 5문항 퀴즈 입실 시스템 구축기</span>
+        <span class="d">지오펜싱 위치 인증, 1,139문항 기반 취약 영역 퀴즈, 실시간 합격 위험도 대시보드</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#임상실습</span><span>#SOAP노트</span>
+        <span>#루브릭평가</span><span>#GoogleAppsScript</span><span>#동의과학대학교</span><span>#물리치료과</span>
+        <span>#김강훈교수</span><span>#에듀테크</span>
+      </div>
+    </main>
+  </body>
+</html>
