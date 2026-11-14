@@ -223,6 +223,21 @@
       .links a:hover { border-color: rgba(157,183,255,.5); }
       .foot { margin-top: 44px; font-size: 0.82rem; color: rgba(236,241,250,.38); }
       .foot a { color: inherit; }
+
+      @media (max-width: 620px) {
+        body { padding: 9vh 18px 8vh; }
+        .latest { display: block; }
+        .latest .tag { display: inline-block; margin-bottom: 4px; }
+        table { font-size: 0.9rem; }
+        thead { display: none; }
+        tr { display: block; padding: 12px 0; border-bottom: 1px solid rgba(236,241,250,.09); }
+        td { display: block; border: 0; padding: 0 0 4px; }
+        td.name { white-space: normal; font-size: 0.96rem; }
+        td.field { font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: normal; }
+        caption { padding-top: 12px; }
+        ul.list li { display: block; }
+        ul.list li .when { display: block; margin-bottom: 2px; }
+      }
     </style>
   </head>
   <body>
