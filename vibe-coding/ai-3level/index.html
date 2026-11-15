@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 9편] AI가 등급을 제안하고 사람이 승인한다 — 동의과학대 AI 3-LEVEL 인증 | 김강훈 교수</title>
+    <meta name="description" content="앱을 올리면 판정이 끝나고, 승인하면 2분 안에 공개된다. 부산 동의과학대학교 DIT AI 3-LEVEL 인증·앱 제작 실적 플랫폼을 25시간·37커밋으로 세운 기록 — 샌드박스 크롬 판정, 학생 개인정보 자동 가리기, 디스코드 승인 카드, 그리고 '성공'이라 답한 배포가 아무것도 올리지 않던 7.5분의 원인까지." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, DIT AI 3-LEVEL, AI 인증, 앱 제작 실적, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교, DIT AI 허브센터, AI 교육혁신, 디스코드 봇, GitHub Pages, Apps Script, Docker 샌드박스, 개인정보 가리기, 에듀테크" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/ai-3level/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/ai-3level/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 9편] AI가 등급을 제안하고 사람이 승인한다 — 25시간·37커밋의 DIT AI 3-LEVEL 인증 구축기" />
+    <meta property="og:description" content="앱을 올리면 2분 안에 판정, 승인하면 2분 안에 공개. 샌드박스 크롬 판정·개인정보 자동 가리기·디스코드 승인 카드로 세운 대학 AI 인증 플랫폼의 실제 기록." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-15" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 9편] AI가 등급을 제안하고 사람이 승인한다 — DIT AI 3-LEVEL 인증 구축기" />
+    <meta name="twitter:description" content="25시간·37커밋. 샌드박스 크롬 판정, 개인정보 자동 가리기, 디스코드 승인 카드로 세운 대학 AI 인증 플랫폼." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/ai-3level/#article",
+          "headline": "[바이브코딩 9편] AI가 등급을 제안하고 사람이 승인한다 — 동의과학대 AI 3-LEVEL 인증",
+          "alternativeHeadline": "앱을 올리면 판정이 끝나고 승인하면 2분 안에 공개되는 대학 AI 인증 플랫폼을 25시간·37커밋으로 세운 기록",
+          "description": "부산 동의과학대학교 DIT AI 허브센터의 'DIT AI 3-LEVEL 인증 · 앱 제작 실적' 플랫폼 구축기. 스프레드시트 수신함과 Apps Script, Docker 컨테이너에서 도는 샌드박스 크롬 판정 일꾼, 학생 개인정보 자동 가리기, 디스코드 승인 카드, GitHub Pages 배포까지 실제 수치와 실패 기록.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-15",
+          "dateModified": "2026-11-15",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/ai-3level/"
+          },
+          "keywords": "바이브코딩, Vibe Coding, DIT AI 3-LEVEL, AI 인증, 앱 제작 실적, 부산 AI 전문가, 김강훈 교수, 동의과학대학교, Docker 샌드박스, 개인정보 가리기, 디스코드 승인, GitHub Pages",
+          "about": [
+            { "@type": "Thing", "name": "대학 AI 역량 인증제" },
+            { "@type": "Thing", "name": "자동 판정 파이프라인" },
+            { "@type": "Thing", "name": "학생 개인정보 보호" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/ai-3level/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "9편 — DIT AI 3-LEVEL 인증 · 앱 제작 실적 플랫폼",
+              "item": "https://skyman200.github.io/vibe-coding/ai-3level/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/ai-3level/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "AI가 앱의 등급을 정하는 것인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "아닙니다. 등급은 사람이 승인합니다. 시스템은 앱 화면과 요청, 코드에서 근거를 모아 검사표를 만들고, 규칙(AI API 호출이면 Lv.3, 로그인과 서버 저장이면 Lv.2, 화면만 있으면 Lv.1)과 AI 제안을 나란히 제시합니다. AI는 근거가 있을 때만 레벨을 제안하고, 근거가 모자라면 낮은 레벨을 고릅니다. 최종 결정은 승인자가 디스코드 카드나 시트에서 누릅니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "학생 이름·학번·성적 같은 개인정보는 어떻게 처리하나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "판정 일꾼이 앱을 열어 캡처할 때 이름·학번·전화번호·성적을 회색 상자로 가립니다. 가린 글자는 AI 레벨 질문과 근거에도 넣지 않습니다. 원본 캡처는 디스크에 쓰지 않고, 결정이 끝나면 수신함 드라이브의 원본도 지우며, 남은 파일은 매일 새벽 정리 작업이 훑어 지웁니다. 가리기를 확인하지 못한 캡처는 '확인 필요'로 표시해 디스코드에 올리지 않습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "비개발자 교수가 이런 심사 시스템을 직접 만들 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "만들 수 있지만 조건이 있습니다. 심사 기준을 말로 정확히 쓸 수 있어야 하고, AI가 만든 코드를 실제로 돌려 확인하는 절차가 있어야 하며, 3년 뒤에도 고칠 수 있는 기술을 골라야 합니다. 이 시스템은 2026년 10월 27일 00시 2분 첫 커밋부터 10월 28일 01시 11분 마지막 커밋까지 37개 커밋, 약 25시간에 완성됐고, 코드 약 1만 6,800줄 가운데 7,300줄이 시험 코드입니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "운영 비용과 서버는 어떻게 감당하나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "새로 드는 서버비는 없습니다. 공개 화면은 GitHub Pages, 수신함은 학교 구글 계정의 스프레드시트와 Apps Script, 판정은 사업단이 이미 운영하던 GPU 서버의 도커 컨테이너 하나, 승인 알림은 디스코드 봇입니다. 컨테이너는 CPU 2코어·메모리 4GB·들어오는 포트 없음·읽기 전용으로 제한하고, 실제 사용 메모리는 0.55GB였습니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede {
+        margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all;
+      }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>9편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 09 · Credential Platform</p>
+        <h1>[바이브코딩 9편] AI가 등급을 제안하고 사람이 승인한다 — 동의과학대 AI 3-LEVEL 인증</h1>
+        <p class="subhead">앱을 올리면 1~2분 안에 판정이 끝나고, 승인하면 2분 안에 공개된다. 스프레드시트 수신함, 샌드박스 크롬에서 도는 판정 일꾼, 학생 개인정보 자동 가리기, 디스코드 승인 카드 — 25시간·37커밋으로 세운 인증 플랫폼의 실제 기록.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 15일</div>
+          <div><strong>읽는 시간</strong> 약 11분</div>
+        </div>
+
+        <p class="lede">이번 편은 <b>부산 동의과학대학교 DIT AI 허브센터의 'DIT AI 3-LEVEL 인증 · 앱 제작 실적' 플랫폼</b>을 만든 기록입니다. 2026년 10월 27일 00시 2분의 첫 커밋에서 10월 28일 01시 11분의 마지막 커밋까지, <b>37개 커밋·약 25시간</b>. 아래 수치는 모두 그 저장소의 코드와 작업 기록(<code>STATES.md</code>)에서 그대로 가져왔고, 확인하지 못한 성과는 넣지 않았습니다.</p>
+
+        <h2><span class="idx">1</span>인증이 사람의 기억에 있으면 확장되지 않는다</h2>
+        <p>DIT AI 허브센터는 교직원의 AI 역량을 세 단계로 나눕니다. <strong>Lv.1 AI 활용전문가</strong>(도구를 써서 일을 처리한다), <strong>Lv.2 AI 설계전문가</strong>(로그인과 서버 저장이 있는 앱을 설계한다), <strong>Lv.3 AI 혁신리더</strong>(앱이 AI 모델·AI API를 직접 불러 쓴다). 기준 자체는 명확합니다. 문제는 그 기준을 <em>운영하는 방식</em>이었습니다.</p>
+        <p>실적을 모으는 일은 늘 사람 손에 남습니다. 교수가 "이 앱을 만들었습니다"라고 메일을 보내고, 담당자가 링크를 열어 보고, 캡처를 받아 엑셀에 적고, 등급을 판단합니다. 열 건까지는 됩니다. 백 건이 되면 판단이 흔들리고, 근거는 사라지고, "작년엔 어떻게 처리했더라"를 다시 묻게 됩니다.</p>
+        <blockquote>
+          "심사가 사람의 기억에 있는 동안 인증은 게시판 하나로 끝난다. 게시판은 쌓이지 않는다."
+        </blockquote>
+        <p>그래서 조건을 세 개로 정했습니다. <strong>① 제출부터 배지까지 한 줄기로 이어진다 — 교수가 링크 하나를 올리면 그다음은 시스템이 간다. ② 증거는 기계가 모으고 등급은 사람이 정한다. ③ 학생 개인정보는 시스템 밖으로 나가지 않는다.</strong> 세 번째 조건이 이 프로젝트에서 가장 어려운 부분이었고, 뒤에서 절반을 할애해 다룹니다.</p>
+
+        <h3>여섯 단계로 나눠 만들고, 단계마다 끝을 확인했다</h3>
+        <p>작업은 L0부터 L5까지 여섯 단계로 나눠 진행했습니다. 각 단계는 "다음 단계를 시작하기 전에 실제로 도는 것을 확인한다"는 규칙을 지켰습니다.</p>
+        <table>
+          <tr><th>단계</th><th>내용</th><th>확인한 것</th></tr>
+          <tr><td>L0</td><td>저장소 세 개, GitHub Pages 배포</td><td>빈 보드가 실제 주소에 뜸</td></tr>
+          <tr><td>L1</td><td>공개 화면 (칸반·쇼케이스·배지·등록)</td><td>Lighthouse 모바일 0.98, e2e 12개</td></tr>
+          <tr><td>L2</td><td>Apps Script 수신함 (접수·확인 메일·결정·경보)</td><td>시험용 환경 끝-끝, 멈춤 경보 24분</td></tr>
+          <tr><td>L3</td><td>판정 일꾼 (프록시·크롬·가리기·AI 제안)</td><td>실제 앱 판정 Lv.1~3, 가림 10곳</td></tr>
+          <tr><td>L4</td><td>디스코드 승인 봇</td><td>카드 승인 → 68초 뒤 공개</td></tr>
+          <tr><td>L5</td><td>시범 판정·오픈</td><td>시험 제출 끝-끝, 10-28 00시 34분 접수 개방</td></tr>
+        </table>
+
+        <h2><span class="idx">2</span>숫자로 본 결과물</h2>
+        <table>
+          <tr><th>항목</th><th>값</th></tr>
+          <tr><td>제작 기간</td><td>2026-10-27 00:02 ~ 10-28 01:11 (약 25시간), 커밋 37개</td></tr>
+          <tr><td>코드 규모</td><td>16,803줄 — 수신함 2,169 · 판정 일꾼 3,265 · 화면 2,082 · 배포 도구 1,988 · 시험 7,297</td></tr>
+          <tr><td>파일</td><td>219개(글꼴·외부 라이브러리 제외) · 판정 일꾼 32개 · 수신함 18개 · 시험 37개</td></tr>
+          <tr><td>시험</td><td>작업 기록 기준 247개(246 통과 · 실제 OCR 1개는 조건부 건너뜀) + 브라우저 e2e 15개</td></tr>
+          <tr><td>공개 화면 성능</td><td>Lighthouse 13.5.0 모바일 0.98 · LCP 2.3초 · CLS 0 · TBT 0 (모바일 회선 1.6Mbps·CPU 4배 감속)</td></tr>
+          <tr><td>판정 소요</td><td>메일 확인 → 판정 완료 39~93초 (시험용 4건), 운영 환경 시험 제출 90초</td></tr>
+          <tr><td>승인 → 공개</td><td>47초 · 68초 · 93초 · 101초 (경로별 실측), 비공개 반영 41초</td></tr>
+          <tr><td>운영 비용</td><td>새 서버비 0원 (GitHub Pages · 학교 구글 계정 · 사업단 GPU 서버의 컨테이너 1개)</td></tr>
+          <tr><td>공개 주소</td><td><a href="https://skyman200.github.io/master/" target="_blank" rel="noopener">skyman200.github.io/master</a> (2026-10-28 접수 개방, 별도 저장소)</td></tr>
+        </table>
+        <div class="note">
+          <p>※ 소스는 비공개 저장소에 있고, 공개 저장소에는 배포용 화면만 둡니다. 공개 데이터에는 이메일 칸 자체가 없습니다. 이 글은 시스템의 구축 기록이며, 심사 결과의 통계가 아닙니다.</p>
+        </div>
+
+        <h2><span class="idx">3</span>구조: 심사는 사람이, 증거는 기계가</h2>
+        <p>전체 구조는 다섯 부분입니다. 중요한 원칙 하나가 이 구조를 정했습니다. <strong>공개 화면은 다른 무엇이 멈춰도 그대로 보여야 한다.</strong> 심사 도구가 죽었다고 해서 이미 인증받은 사람의 실적이 사라지면 안 되기 때문입니다.</p>
+        <pre><code>교수 (등록 화면)                승인자 (디스코드 · 시트)
+   │  앱 주소·설명·캡처              │  [승인] [반려] [캡처 고르기]
+   ▼                                ▼
+수신함 (구글 시트 + Apps Script, 학교 계정)
+   ├ 접수 → 학교 메일 확인 링크 → 상태 관리 → 결정 → 안내 메일
+   ├ 1분마다 판정 일감 내주기(pull) · 판정 카드 재료 · 경보
+   ▼
+2호기 판정 일꾼 (spark2 도커 컨테이너 1개, CPU 2 · 메모리 4GB)
+   ├ 관문 프록시 → 샌드박스 크롬 → 앱 열기·캡처 → 개인정보 가리기
+   ├ 코드 저장소 읽기 → 검사표 → 규칙 레벨 → AI 레벨 제안(1호기)
+   ▼
+공개 묶음 → GitHub Pages 배포 → 공개 화면 (정적, 항상 보임)
+   ▼
+배지(디지털 인증서) → 교수에게 메일</code></pre>
+
+        <h3>각 부분을 무엇으로 만들었나</h3>
+        <table>
+          <tr><th>부분</th><th>기술</th><th>그렇게 고른 이유</th></tr>
+          <tr><td>공개 화면</td><td>정적 HTML·CSS·바닐라 JS, GitHub Pages</td><td>판정 도구·구글·디스코드가 모두 멈춰도 보드가 살아 있고, 서버가 없다</td></tr>
+          <tr><td>수신함</td><td>구글 스프레드시트 + Apps Script</td><td>승인자가 시트에서 직접 결정·메모할 수 있고, 권한이 학교 계정 안에서 끝난다</td></tr>
+          <tr><td>판정 일꾼</td><td>Node.js + Playwright(Chromium), 도커</td><td>앱을 사람처럼 열어 봐야 '화면만 있는 앱'과 'AI를 부르는 앱'이 구분된다</td></tr>
+          <tr><td>AI 제안</td><td>자체 GPU 서버의 Qwen3-235B-A22B-Instruct-2507</td><td>학생 정보가 들어갈 수 있는 질문을 외부 API로 보내지 않는다</td></tr>
+          <tr><td>승인·알림</td><td>디스코드 봇(discord.js 14.27) + 웹훅</td><td>승인자가 휴대폰에서 버튼 한 번으로 처리하고, 경보가 같은 채널에 온다</td></tr>
+        </table>
+        <p>수신함과 판정 일꾼 사이에는 열쇠가 하나 있습니다. 일꾼은 1분마다 "내가 할 일 있나"를 물어 가져가고, 수신함은 일꾼이 "아직 보는 중"이라고 알려 오면 그 일을 다른 곳에 넘기지 않습니다. 판정이 느린 앱 하나가 전체를 막지 않게 하려는 장치입니다.</p>
+
+        <h2><span class="idx">4</span>판정 일꾼: 남이 만든 앱을 열어 보는 크롬을 안전하게 다루기</h2>
+        <p>이 시스템에서 가장 위험한 동작은 명확합니다. <strong>외부인이 제출한 주소를 서버가 직접 연다</strong>는 것입니다. 그 주소가 사내망을 찌르거나, 클라우드 메타데이터 주소를 읽으려 하거나, 끝없이 무거운 화면으로 판정을 멈추게 할 수 있습니다. 그래서 크롬을 그냥 띄우지 않고 세 겹으로 감쌌습니다.</p>
+
+        <h3>1) 관문 프록시 — 크롬의 모든 연결이 지나는 단 하나의 문</h3>
+        <p>크롬은 프록시를 통해서만 밖으로 나갑니다. 프록시는 사설·특수 대역을 전부 막습니다. <code>10/8</code>, <code>172.16/12</code>, <code>192.168/16</code>, 테일넷 대역 <code>100.64/10</code>, 클라우드 메타데이터가 사는 <code>169.254/16</code>, 그리고 IPv6까지 — NAT64·6to4·Teredo처럼 IPv4 차단을 우회하는 표기법도 함께 계산해서 막습니다. 위험한 포트(NFS·SOCKS·IRC 등)도 따로 걸러 냅니다.</p>
+        <p>여기에 DNS 재바인딩 방어가 붙습니다. 이름은 <strong>한 번만 풀고, 그 IP로만 연결</strong>합니다. "처음엔 공인 IP, 두 번째엔 사내 IP"로 답하는 도메인이 통하지 않습니다.</p>
+
+        <h3>2) 샌드박스를 끄지 않고 컨테이너에 넣기</h3>
+        <p>도커 안에서 크롬을 띄울 때 흔히 <code>--no-sandbox</code>를 씁니다. 편하지만, 남이 만든 앱을 여는 일에서는 그 편함이 곧 위험입니다. 이 시스템은 대신 조합을 찾았습니다: <strong>Playwright가 제공하는 seccomp 프로필 + <code>no-new-privileges</code> + 권한 전부 제거(<code>cap_drop ALL</code>) + <code>SYS_CHROOT</code> 하나만 허용.</strong> 이 조합에서 크롬은 샌드박스를 켠 채로 뜹니다. 컨테이너는 읽기 전용이고, 들어오는 포트가 없고, 마운트도 없습니다(임시 파일 시스템만).</p>
+
+        <h3>3) 시간 예산 — 느린 앱이 판정을 잡아먹지 않게</h3>
+        <p>앱 하나를 보는 데 쓸 수 있는 시간은 정해져 있습니다. 앱 주소 열기 전체 225초, 화면 크기마다 창 150초, 검사 전체도 그 안에서 끝납니다. 남은 시간이 10초도 안 되면 창을 열지 않고, 60초도 안 남으면 링크를 더 열지 않습니다. 시간을 다 쓰면 "앱이 너무 느려 정해진 시간 안에 검사를 끝내지 못했습니다"라는, 다시 해도 소용없는 실패로 정직하게 남깁니다.</p>
+        <p>멈춘 앱은 따로 다룹니다. 첫 화면을 못 찍으면 주 스레드에 답이 있는지 확인하고, 답이 없을 때만 '앱 화면이 멈춤'으로 판정합니다. 같은 앱에서 세 번 멈추면 판정 실패가 되고, 한 앱을 65분 넘게 보면 일꾼이 스스로 다시 켜집니다.</p>
+        <div class="note">
+          <p>배포 전에 서버에서 자체 점검 15개를 돌립니다. 내부 주소 6곳(교내 IP, 테일넷 IP·이름, 메타데이터 주소, localhost, 사설 대역)이 실제로 막히는지, 크롬 렌더러가 분리되는지, 캡처 중·후에 디스크에 그림이 남지 않는지, 메모리 최고치가 얼마인지. 마지막 측정값은 <strong>0.55GB</strong>였습니다.</p>
+        </div>
+
+        <h2><span class="idx">5</span>개인정보는 캡처 단계에서 지운다</h2>
+        <p>앱 화면에는 학생 정보가 있습니다. 로그인한 화면에 이름과 학번이 뜨고, 성적표에는 학점이, 관리 화면에는 전화번호가 있습니다. 그 화면을 인증 배지와 함께 공개 게시판에 올리는 순간, 인증 시스템이 개인정보 유출 경로가 됩니다. 그래서 가리기를 '나중에 하는 일'이 아니라 <strong>캡처 파이프라인의 일부</strong>로 넣었습니다.</p>
+        <ul>
+          <li><strong>세 겹으로 찾습니다</strong> — 정규식(학번·전화번호·학점 패턴), AI가 고른 글자, 화면에서 읽어낸 글자(OCR). 이름은 문맥으로 판단합니다.</li>
+          <li><strong>가린 글자는 AI에게도 보내지 않습니다</strong> — 레벨 판정 질문과 근거에는 가린 글자와 확인하지 못한 글자를 빼고 넣습니다. AI가 개인정보를 볼 이유가 없습니다.</li>
+          <li><strong>원본은 디스크에 쓰지 않습니다</strong> — 캡처는 메모리에서 처리하고, 결정이 끝나면 수신함 드라이브의 원본도 지웁니다. 남은 파일은 매일 새벽 정리 작업이 '원본' 폴더를 훑어 다시 지웁니다.</li>
+          <li><strong>주소에 이메일이 있으면 거절합니다</strong> — 앱 주소는 공개됩니다. 경로·쿼리·해시 뒤에 이메일이 있으면(<code>%40</code>으로 바꿔 쓴 것, 두 번 감은 <code>%2540</code>까지 세 번 풀어 검사) 접수 단계에서 받지 않습니다.</li>
+          <li><strong>확인하지 못한 캡처는 올리지 않습니다</strong> — '글자 없음'·'확인 필요' 표시가 붙은 캡처는 가리지 못했을 수 있으므로 디스코드에 올리지 않고 번호만 알립니다. 승인자가 시트에서 직접 보고 켭니다.</li>
+        </ul>
+
+        <h3>가림 상자가 5픽셀 어긋난 이유</h3>
+        <p>가장 오래 붙잡은 버그입니다. 가림 상자는 '글자의 위치'를 재서 그리고, 그림은 그 순간의 화면을 찍습니다. 그런데 애니메이션이 막 시작된 요소는 시작 시각이 아직 없어서, 크롬이 글자 자리는 0초로, 그림은 한 장면 뒤로 그렸습니다. 상자가 5픽셀 어긋났고, 찍기 앞뒤 글자를 비교하는 검사로도 잡히지 않았습니다.</p>
+        <p>부하가 걸린 서버에서 캡처 시험이 가끔 실패하는 것을 보고 찾았습니다. 실험에서는 16번 중 13번 어긋났습니다. 고친 방법은 <strong>움직임을 '지금 자리'에 먼저 세운 뒤 찍기</strong>입니다. 시작할 때까지 기다렸다가, 굳을 때까지 기다린 다음, 앞뒤 글자를 읽고 찍습니다. 고친 뒤 20번 중 0번 어긋났습니다.</p>
+        <p>성적 가리기도 한 번 뚫렸습니다. 시험용 앱의 첫 화면에서 이름 3개, 학번 3개, 전화 1개는 가렸는데 <code>A+</code>·<code>B0</code> 같은 학점 칸을 AI가 고르지 않았습니다. 글 전체가 학점 하나뿐인 칸은 정규식이 직접 고르게 바꾸고, AI에게는 "학점"이라는 힌트를 주도록 고쳤습니다. 같은 앱의 가림 수는 7곳에서 10곳이 됐습니다.</p>
+
+        <h2><span class="idx">6</span>레벨은 규칙이 정하고, AI는 근거를 붙인다</h2>
+        <p>가장 많이 받은 질문이 "AI가 등급을 정하느냐"입니다. 아닙니다. 등급을 정하는 것은 규칙과 사람이고, AI는 <strong>근거를 읽고 제안하는 역할</strong>만 합니다.</p>
+        <table>
+          <tr><th>레벨</th><th>규칙 (기계가 확인)</th><th>뜻</th></tr>
+          <tr><td>Lv.1</td><td>AI 호출 없음 · 로그인/저장 없음</td><td>AI 활용전문가 — 화면만 있는 앱</td></tr>
+          <tr><td>Lv.2</td><td>로그인 + 서버 저장</td><td>AI 설계전문가 — 데이터가 남는 앱</td></tr>
+          <tr><td>Lv.3</td><td>AI 모델·AI API 직접 호출</td><td>AI 혁신리더 — AI를 부품으로 쓰는 앱</td></tr>
+        </table>
+        <p>규칙은 앱이 실제로 보낸 요청과 코드에서 확인합니다. 화면에 "AI 챗봇"이라고 써 있어도 실제 호출이 없으면 Lv.1입니다. 반대로 화면에 티가 안 나도 코드에서 AI API를 부르면 Lv.3입니다. AI에게는 화면·요청 2천 토큰, 코드 5천 토큰으로 <strong>총 8천 토큰 이하</strong>의 근거만 주고, "근거가 있을 때만 인정하고, 모자라면 낮은 레벨을 골라라"고 지시합니다. 그래서 근거 없는 Lv.3 제안은 '근거 부족'으로 표시됩니다.</p>
+
+        <h3>AI가 멈춰도 접수는 멈추지 않는다</h3>
+        <p>AI 서버는 언제든 답하지 않을 수 있습니다. 그때 제출을 거절하면 교수는 이유를 모른 채 다시 보내게 됩니다. 그래서 AI가 답하지 않는 제출은 <strong>'판정 대기'로 쌓아 두고</strong>, AI가 돌아오면 이어서 판정합니다. 60분 넘게 이 상태가 이어지면 승인자에게 한 번 알립니다("AI 서버가 답하지 않아 판정이 쌓입니다"). 열쇠가 바뀐 경우(401·403)도 같은 경보로 이어집니다.</p>
+
+        <h3>시범 10건으로 규칙을 먼저 시험한다</h3>
+        <p>규칙을 세우고 바로 문을 열지 않았습니다. 기존 앱 10개에 대해 <strong>내 판정을 먼저 적고, 시스템의 AI 판정과 비교</strong>했습니다. 통과 조건은 두 가지 — 레벨마다 내 판정이 3개 이상, 그리고 10개 중 9개 이상 일치. 통과하지 못하면 규칙을 고쳐 다시 판정하고, 그 이력이 '기록' 탭에 남습니다. 시험용 환경에서는 4건 중 4건이 일치했습니다. 제가 판정을 잘못 적은 줄이 하나 있었는데, 고치니 3.5초 뒤 '같음'으로 바뀌었습니다.</p>
+
+        <h2><span class="idx">7</span>승인은 디스코드 카드 한 장으로</h2>
+        <p>승인자에게 필요한 것은 대시보드가 아니라 <strong>결정할 수 있는 카드</strong>입니다. 판정이 끝나면 디스코드 채널에 카드가 뜹니다. 레벨, 근거, 확인 항목, 캡처(한 메시지에 10장까지, 넘으면 이어서), 그리고 버튼 세 개 — [승인] [반려(사유 2~300자)] [캡처 고르기].</p>
+        <ul>
+          <li><strong>서버 주인만 누를 수 있습니다.</strong> 다른 사람이 눌러도 아무 일도 일어나지 않습니다.</li>
+          <li><strong>먼저 처리한 쪽이 이깁니다.</strong> 시트에서 먼저 승인했으면 디스코드 카드는 "이미 처리됨 (시트, 시각)"으로 바뀌고 버튼이 사라집니다. 반대도 같습니다.</li>
+          <li><strong>옛 카드는 도장으로 걸러냅니다.</strong> 판정이 다시 돌면 카드에 찍힌 도장(캡처 파일과 근거의 해시 6자리)이 달라집니다. 옛 카드에서 승인을 눌러도 "판정이 바뀌었습니다. 새 카드에서 눌러 주세요"로 막힙니다.</li>
+          <li><strong>카드 하나가 막혀도 나머지는 갑니다.</strong> 캡처를 못 받은 카드가 있어도 다른 카드는 올라가고, 누가 지운 카드는 다시 올라갑니다. 일꾼이 다시 켜지면 채널의 최근 500개 메시지에서 자기 카드를 이어받습니다.</li>
+        </ul>
+        <p>승인하면 그때부터 시계가 돕니다. 실측값은 <strong>47초, 68초, 93초, 101초</strong>. 승인 메일에도 "1~2분 뒤 공개됩니다"라고 적혀 있고, 실제로 그 안에 끝납니다.</p>
+
+        <h2><span class="idx">8</span>"성공"이라 답한 배포가 아무것도 올리지 않은 7.5분</h2>
+        <p>승인까지는 1분이면 끝났는데, 첫 공개는 <strong>7.5분</strong>이 걸렸습니다. 그동안 배포는 세 번 '성공'했습니다. 성공했다는데 화면은 그대로였습니다.</p>
+        <p>원인은 배포 도구가 배포에 붙이는 이름이었습니다. GitHub의 Pages 배포는 배포 이름으로 커밋 해시를 씁니다. 판정 일꾼은 같은 커밋에서 거듭 배포를 요청했고, 이름이 겹치자 Pages는 <strong>예전 배포의 '성공'을 4~5초 만에 돌려주면서 새 산출물은 올리지 않았습니다.</strong> 같은 커밋으로 두 번 요청하면 7분이 지나도 그대로인 것을 따로 실험해 확인했습니다.</p>
+        <p>고친 방법은 이렇습니다. 배포 요청마다 <strong>파일 내용(tree)은 같지만 해시는 다른 새 커밋</strong>을 하나 만들어(브랜치에는 붙이지 않음), 그 해시로 배포를 부르고, 실제로 '성공'이 될 때까지 기다립니다. 고친 뒤로는 새 배포가 <strong>3초</strong>에 끝났고, 승인에서 공개까지가 47~101초로 줄었습니다.</p>
+
+        <h3>캐시가 10분을 붙잡고 있었다</h3>
+        <p>또 하나. Pages의 CDN은 응답에 <code>cache-control: max-age=600</code>을 붙이고, 캐시 키에 쿼리 문자열을 넣지 않으며, 요청의 no-cache도 무시합니다. 404조차 캐시합니다. 그래서 "새 버전이야"라고 알리려고 주소 뒤에 붙이던 <code>?t=</code>는 <strong>아무 효과가 없었습니다.</strong> 대신 배포가 끝날 때 CDN이 비워지는 성질을 이용했습니다. 지금은 버전 파일 하나만 캐시 없이 받고(no-store), 데이터 파일 이름 자체에 버전을 넣습니다. 받은 파일은 바뀌지 않으니 캐시가 오히려 안전합니다.</p>
+
+        <h2><span class="idx">9</span>이 코드가 지킨 세 가지 규칙</h2>
+        <p>기능보다 오래 남는 것은 규칙입니다. 이 저장소에는 코드 리뷰에서 세 번, 네 번 지적받아도 끝까지 유지한 규칙이 셋 있습니다.</p>
+
+        <h3>규칙 1. 소스 파일 하나는 8KB를 넘지 않는다</h3>
+        <p>판정 일꾼 32개 파일이 모두 8,192바이트 이하입니다. 이유는 취향이 아니라 <strong>AI가 고칠 수 있는 크기</strong>이기 때문입니다. 파일이 8KB를 넘기 시작하면 AI는 그 파일의 일부만 읽고 고치고, 그러면 없는 함수를 부르거나 있던 분기를 지웁니다. 작업 중 화면 파일 세 개가 이 선을 넘자 기능을 그대로 두고 파일을 나눴습니다.</p>
+
+        <h3>규칙 2. 디자인 금지 목록은 문서가 아니라 시험으로 고정한다</h3>
+        <p>"AI가 만든 것처럼 보이는 화면"을 막는 방법은 프롬프트에 부탁하는 것이 아니라 <strong>테스트로 실패하게 만드는 것</strong>입니다. 이 프로젝트의 시험은 CSS에서 그림자, 그라데이션, 왼쪽 강조 막대, 세리프 글꼴, 12px를 넘는 둥근 모서리를 발견하면 실패합니다. 강조색은 파랑 하나, 글꼴은 Pretendard 하나로 제한됩니다. 사람이 취향을 매번 판단하지 않아도 되고, 나중에 다른 사람이 손대도 흔들리지 않습니다.</p>
+
+        <h3>규칙 3. 실패해도 결정은 남는다</h3>
+        <p>승인은 됐는데 안내 메일이 실패했다고 결정을 되돌리면, 승인자는 같은 판단을 두 번 하게 됩니다. 이 시스템은 결정을 먼저 확정하고, 메일은 10분마다 다시 보냅니다. 48시간 동안 실패하면 그때 경보를 올리고 포기합니다. 대신 기다리는 메일은 제출 줄의 숨은 칸에 적어 두어, 많이 밀려도 사라지지 않습니다.</p>
+        <p>같은 원칙이 디스코드 알림에도 적용됐습니다. 웹훅이 알림을 받지 않고 조용히 버리는 일이 있었습니다. 그때부터 못 보낸 알림은 쌓아 두었다가 다음 알림 때와 10분마다 다시 보냅니다. 나중에 도착한 알림에는 <code>(늦게 보냄 · 원래 시각)</code>이 붙습니다.</p>
+
+        <h2><span class="idx">10</span>25시간에 실제로 터진 것들</h2>
+        <p>완성된 구조보다 값진 기록은 고장의 기록입니다. 아래는 이 프로젝트에서 실제로 겪고 고친 문제들입니다.</p>
+
+        <div class="item">
+          <h3><span class="sym">01</span> 바닥글이 화면을 흔들었다 (CLS 0.176)</h3>
+          <p>첫 Lighthouse 측정에서 CLS가 0.176이었습니다. 원인은 바닥글이 늦게 밀려 내려간 것이었습니다. 본문 영역에 최소 높이를 주자 0이 됐고, 점수는 0.98이 됐습니다. 성능 문제는 대개 코드가 아니라 자리 문제입니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">02</span> 가림 상자가 그림보다 한 장면 앞서 갔다</h3>
+          <p>부하가 걸린 서버에서만 가끔 실패하던 캡처 시험을 파고들어 찾은 문제입니다. 막 시작한 애니메이션을 '지금'에 세우면 글자 자리는 0초, 그림은 다음 장면이 그려졌습니다. 지금은 시작을 기다렸다가 세우고, 앞뒤 글자가 같을 때만 캡처를 믿습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">03</span> 성적 'A+'를 AI가 고르지 않았다</h3>
+          <p>가림 7곳을 확인하고 안심했는데, 공개 캡처에 학점이 그대로 있었습니다. AI는 이름·학번·전화는 잘 골랐지만 학점 칸은 개인정보로 보지 않았습니다. 글 전체가 학점 하나인 칸은 정규식이 직접 가리도록 바꿨습니다. 다만 홀로 있는 <code>A</code>·<code>B</code>는 보기 번호일 수 있어 그대로 두었습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">04</span> 같은 커밋을 다시 배포하면 아무 일도 안 일어났다</h3>
+          <p>앞에서 다룬 Pages 배포 이름 문제입니다. '성공' 응답을 믿으면 안 되고, 산출물이 실제로 바뀌었는지를 확인해야 한다는 교훈을 남겼습니다. 지금은 배포 요청마다 새 커밋 해시를 만들고, 실제 성공까지 기다립니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">05</span> 알림이 조용히 사라졌다</h3>
+          <p>비공개로 내렸다는 알림이 디스코드에 오지 않았습니다. 수신함 실행에는 오류가 없었고, 웹훅이 받지 않은 응답을 코드가 그냥 버리고 있었습니다. 실패를 기록하고 다시 보내는 구조로 바꾼 뒤로는 같은 일이 없습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">06</span> 일꾼이 조용히 멈췄다</h3>
+          <p>판정 일꾼이 도는 컴퓨터의 도커가 꺼지면서 일꾼이 멈췄습니다. 24분 뒤 점검에서 경보가 왔습니다("2호기가 24분째 소식이 없습니다"). 다시 켜자 저절로 재시작하고, 채널에 있던 카드를 이어받았습니다. 아무 일도 안 하는 것처럼 보이는 시스템에는 반드시 '소식 없음'을 감시하는 장치가 필요합니다.</p>
+        </div>
+
+        <h2><span class="idx">11</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>AI가 앱의 등급을 정하는 것인가요?</h3>
+          <p>아닙니다. 등급은 사람이 승인합니다. 시스템이 화면·요청·코드에서 근거를 모아 검사표를 만들고, 규칙과 AI 제안을 나란히 보여 줍니다. AI는 근거가 있을 때만 레벨을 제안하고, 모자라면 낮은 쪽을 고릅니다. 최종 결정은 승인자가 디스코드 카드나 시트에서 누릅니다. <strong>자동화한 것은 판단이 아니라 증거 수집</strong>입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>학생 이름·학번·성적은 어떻게 처리하나요?</h3>
+          <p>캡처 단계에서 회색 상자로 가립니다. 가린 글자는 AI 질문과 근거에도 넣지 않고, 원본은 디스크에 쓰지 않으며, 결정이 끝나면 드라이브의 원본도 지웁니다. 가리기를 확인하지 못한 캡처는 '확인 필요'로 표시해 디스코드에 올리지 않습니다. 앱 주소에 이메일이 섞여 있으면 접수 자체를 받지 않습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>비개발자 교수가 이런 시스템을 직접 만들 수 있나요?</h3>
+          <p>조건이 셋 있습니다. <strong>심사 기준을 말로 정확히 쓸 수 있어야</strong> 하고(이 프로젝트에서는 레벨 정의와 '무엇을 근거로 볼지'), <strong>AI가 만든 코드를 실제로 돌려 확인하는 절차</strong>가 있어야 하며(가짜 환경 시험 247개, 브라우저 e2e 15개), <strong>3년 뒤에도 고칠 수 있는 기술</strong>을 골라야 합니다. 이 시스템은 25시간·37커밋으로 완성됐고, 1만 6,800줄 가운데 7,300줄이 시험 코드입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>운영 비용과 서버는 어떻게 감당하나요?</h3>
+          <p>새로 드는 서버비가 없습니다. 공개 화면은 GitHub Pages, 수신함은 학교 구글 계정의 스프레드시트와 Apps Script, 판정은 사업단이 이미 쓰던 GPU 서버의 컨테이너 하나, 승인은 디스코드입니다. 컨테이너는 CPU 2코어·메모리 4GB·들어오는 포트 없음·읽기 전용이고, 실제로 쓴 메모리는 0.55GB였습니다. 비용이 0원인 것보다, <strong>들어오는 문이 없다는 것</strong>이 이 구성의 장점입니다.</p>
+        </div>
+
+        <h2><span class="idx">12</span>에필로그 — 인증은 게시판이 아니라 약속이다</h2>
+        <p>이 시스템이 잘한 일은 심사를 자동화한 것이 아니라, <strong>심사의 근거를 남긴 것</strong>입니다. 1년 뒤에 "이 앱이 왜 Lv.2였나"를 물으면, 그때의 화면과 요청과 코드가 검사표로 남아 있습니다. 판단은 사람이 했고, 그 판단에 이르는 길이 기록되어 있습니다.</p>
+        <p>인증은 게시판이 아닙니다. "이 사람은 이만큼 할 수 있다"고 학교가 약속하는 일입니다. 약속이 유지되려면 기준이 흔들리지 않아야 하고, 기준이 흔들리지 않으려면 <strong>확인하는 절차가 사람의 기억 밖에 있어야</strong> 합니다. 25시간 동안 만든 것은 그 절차였습니다.</p>
+        <blockquote>
+          AI가 대신할 수 있는 것은 확인입니다. 대신할 수 없는 것은 "이 사람에게 이 등급을 주겠다"고 말하는 일입니다. 그래서 이 시스템의 마지막 버튼은 여전히 사람 손에 있습니다.
+        </blockquote>
+      </article>
+
+      <a class="next-ep" href="../pt-smart/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[8편] 흩어진 임상실습을 '한 줄기'로 — 비개발자 교수가 43일·프롬프트 164개로 만든 PT SMART(실습일지·SOAP·터치 서명·루브릭 학점) 구축기</span>
+        <span class="d">1,084개 검사 DB가 만드는 SOAP 'O' 문장, 시트에서 바꾸는 루브릭, 마감 직전 몰림을 버틴 중복 방지 설계</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#DITAI3LEVEL</span><span>#AI인증</span>
+        <span>#부산AI전문가</span><span>#동의과학대학교</span><span>#개인정보보호</span><span>#디스코드봇</span>
+        <span>#김강훈교수</span><span>#에듀테크</span>
+      </div>
+    </main>
+  </body>
+</html>
