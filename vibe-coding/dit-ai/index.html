@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 10편] 보고서에 AI가 쓴 숫자를 서버가 지운다 — 동의과학대 AID 성과관리 시스템 | 김강훈 교수</title>
+    <meta name="description" content="정부 사업 보고서의 숫자는 예쁘게 쓰는 것이 아니라 증명하는 것이다. KPI·과제·예산·점검·증빙·회의록을 하나의 데이터로 묶고, AI에게는 서술만 시키고 숫자는 서버가 대조하게 만든 동의과학대 AID 성과관리 시스템 — 93커밋·43개 마이그레이션·35개 테이블, 그리고 보안 점검 17건과 114회 연속 실패한 백업의 기록." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, AID 성과관리, 성과관리시스템, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교, DIT AI 허브센터, Supabase, RLS, Postgres, Cloudflare Pages, Backblaze B2, Claude, LLM 브리지, HWPX, 전자서명, 데이터 무결성, 정부사업 보고" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/dit-ai/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/dit-ai/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 10편] 보고서에 AI가 쓴 숫자를 서버가 지운다 — 동의과학대 AID 성과관리 시스템" />
+    <meta property="og:description" content="93커밋·43개 마이그레이션·35개 테이블. 확정값만 쓰는 append-only 원장, 주입값 밖의 숫자를 지우는 P5 게이트, 3초마다 밖으로만 나가는 iMac 브리지." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-16" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 10편] 보고서에 AI가 쓴 숫자를 서버가 지운다 — AID 성과관리 시스템" />
+    <meta name="twitter:description" content="정부 사업 보고서의 숫자를 지키는 방법. 93커밋·43개 마이그레이션·35개 테이블, 보안 점검 17건, 114회 실패한 백업의 기록." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/dit-ai/#article",
+          "headline": "[바이브코딩 10편] 보고서에 AI가 쓴 숫자를 서버가 지운다 — 동의과학대 AID 성과관리 시스템",
+          "alternativeHeadline": "KPI·과제·예산·점검·증빙·회의록을 하나의 데이터로 묶고 AI에게는 서술만 시킨 93커밋의 기록",
+          "description": "부산 동의과학대학교 DIT AI 허브센터의 AID 성과관리 시스템 구축기. Supabase Postgres와 RLS, 확정값만 남기는 append-only KPI 원장, 주입값 밖의 숫자를 [수치검토]로 치환하는 P5 게이트, 3초마다 아웃바운드로만 폴링하는 상시 iMac Claude 브리지, Backblaze B2 presign 증빙, 회의록 정본 SHA-256과 전자서명까지 — 저장소의 코드와 마이그레이션 43개에서 확인한 수치만 담았다.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-16",
+          "dateModified": "2026-11-16",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/dit-ai/"
+          },
+          "keywords": "바이브코딩, AID 성과관리, Supabase, RLS, Postgres, 데이터 무결성, LLM 브리지, P5 수치 게이트, Cloudflare Pages, Backblaze B2, HWPX, 전자서명, 부산 AI 전문가, 김강훈 교수, 동의과학대학교",
+          "about": [
+            { "@type": "Thing", "name": "성과관리 시스템" },
+            { "@type": "Thing", "name": "데이터 무결성과 감사 가능성" },
+            { "@type": "Thing", "name": "LLM 출력 통제" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/dit-ai/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "10편 — AID 성과관리 시스템",
+              "item": "https://skyman200.github.io/vibe-coding/dit-ai/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/dit-ai/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "AI가 보고서 숫자를 만들어내면 어떻게 막나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "AI에게 숫자를 쓰게 하지 않습니다. 서버가 보고서 대상 기간의 확정 실적을 계산해 프롬프트에 넣고, AI가 돌려준 문장에서 그 값들의 집합에 없는 숫자를 찾아 [수치검토]로 바꿉니다. 전각 숫자나 1e6 같은 과학적 표기로 빠져나가지 못하도록 정규화한 뒤 대조하고, 차단이 한 건이라도 있으면 초안 본문 맨 위에 경고 배너를 붙여 검수자가 바로 보게 합니다. 숫자는 LLM이 아니라 집계 함수가 만듭니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "성과 실적을 나중에 고치면 예전 보고서 숫자도 바뀌나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "바뀌지 않습니다. 실적은 입력만 가능한 원장으로 두고 수정·삭제를 트리거로 막았습니다. 정정은 이전 기록을 참조하는 새 리비전으로만 남기고, 무효화는 별도 표시로 처리합니다. 보고서는 '보고 기준일까지 확정된 최신 값'만 읽으므로, 6월 30일 보고서는 그 시점에 확정돼 있던 값을 그대로 유지합니다. 무효 처리된 최신 리비전이 있을 때 그 이전 리비전을 되살리지 않는 것도 코드에 규칙으로 넣었습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "서버비는 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "새로 내는 돈은 0원입니다. 화면은 Cloudflare Pages 무료, 데이터베이스와 인증은 Supabase 무료 티어, 증빙 파일은 Backblaze B2 무료 10GB(비공개 버킷만 쓰면 카드 등록도 필요 없습니다), AI 서술은 이미 쓰고 있던 Claude 정액 구독을 상시 켜 둔 iMac이 호출합니다. AI가 멈추면 유료 API로 갈아타는 대신 기능을 끄고 결정론적 템플릿으로 내려가도록 만들었습니다. 무료 한도에 닿으면 그때 비용을 판단합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "학교 방화벽 안의 컴퓨터로 어떻게 AI를 붙였나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "밖에서 안으로 들어오는 연결을 아예 만들지 않았습니다. 상시 켜 둔 iMac이 3초마다 클라우드로 아웃바운드 HTTPS를 걸어 '처리할 작업 있나' 물어보고, 있으면 하나를 원자적으로 가져가 Claude에게 서술만 시킵니다. VPN도 터널도 포트포워딩도 쓰지 않으므로 네트워크가 바뀌어도, 재부팅해도 다시 붙이면 그대로 동작합니다. 살아 있는지는 클라우드에 3초마다 갱신되는 하트비트 시각으로 판단합니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede {
+        margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all;
+      }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>10편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 10 · Performance Ledger</p>
+        <h1>[바이브코딩 10편] 보고서에 AI가 쓴 숫자를 서버가 지운다 — 동의과학대 AID 성과관리 시스템</h1>
+        <p class="subhead">정부 사업 보고서의 숫자는 잘 쓰는 것이 아니라 증명하는 것이다. KPI·과제·예산·점검·증빙·회의록을 하나의 원장으로 묶고, AI에게는 서술만 시키고 숫자는 서버가 대조하게 만든 시스템 — 93커밋·43개 마이그레이션·35개 테이블의 기록.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 16일</div>
+          <div><strong>읽는 시간</strong> 약 13분</div>
+        </div>
+
+        <p class="lede">이번 편은 <b>부산 동의과학대학교 DIT AI 허브센터의 AID 성과관리 시스템</b>을 만든 기록입니다. 2026년 6월 17일의 첫 커밋에서 10월 8일 마지막 커밋까지 <b>93개 커밋</b>, 그중 실제 구현이 몰렸던 <b>12일</b> 동안 <b>43개 마이그레이션·35개 테이블</b>이 쌓였습니다. 아래 수치는 모두 그 저장소의 코드, 마이그레이션, 문서, 커밋 로그에서 직접 세었고, 코드에 없는 성과는 적지 않았습니다.</p>
+
+        <h2><span class="idx">1</span>보고서 한 장이 틀리면, 사업 전체가 흔들린다</h2>
+        <p>대학에서 정부 사업을 맡으면 일의 절반은 <strong>증명</strong>입니다. 사업계획서에 적은 지표를 실제로 달성했는지, 예산을 어디에 얼마나 썼는지, 점검 회의를 약속한 주기대로 했는지, 그 사실을 담은 증빙이 남아 있는지. 담당자는 분기마다 이 네 가지를 모아 한 권의 성과보고서로 만듭니다.</p>
+        <p>문제는 숫자가 한 곳에 없다는 것입니다. KPI 실적은 담당자별 엑셀에, 예산 집행은 회계 파일에, 점검 일정은 달력에, 증빙 사진은 공용 드라이브에, 회의록은 한글 문서에 있습니다. 보고서를 쓸 때가 되면 다섯 개의 출처를 사람이 손으로 맞춥니다. 그 과정에서 반드시 생기는 일이 있습니다. <em>같은 기간의 같은 지표가 문서마다 조금씩 다르게 적히는 것</em>입니다.</p>
+        <p>그래서 만들기 전에 조건을 네 개로 정했습니다.</p>
+        <ul>
+          <li><strong>숫자는 한 번만 입력하고 한 곳에서만 집계한다.</strong> 화면과 서버가 같은 계산 함수를 쓰고, 엑셀처럼 값이 두 벌 존재하지 않게 한다.</li>
+          <li><strong>지난 보고서의 숫자는 나중에 바뀌지 않는다.</strong> 실적은 원장처럼 덧붙이기만 하고, 정정은 이력으로만 남긴다.</li>
+          <li><strong>AI는 문장만 쓴다.</strong> 숫자를 만들면 안 되고, 만들면 서버가 지운다.</li>
+          <li><strong>새로 내는 돈은 0원, 그리고 내가 고칠 수 있는 기술.</strong> 무료 한도 안에서 설계하고, AI가 멈추면 기능을 끄지 과금으로 넘어가지 않는다.</li>
+        </ul>
+        <p>이 네 조건이 이 글의 나머지 전부입니다. 기능 목록이 아니라, 이 조건들을 지키려고 만든 장치들의 이야기입니다.</p>
+
+        <h2><span class="idx">2</span>규모는 이렇게 나왔다</h2>
+        <p>먼저 저장소에서 센 값부터 둡니다. 커밋 수와 줄 수는 <code>git</code>으로, 테이블·함수·정책은 <code>supabase/migrations/</code> 43개 파일을 직접 세었습니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>항목</th><th>실측값</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>기간</td><td>2026-06-17 ~ 2026-10-08, 커밋이 있던 날 12일</td></tr>
+            <tr><td>커밋</td><td>93개 (가장 많았던 날 27개, 6월 27일)</td></tr>
+            <tr><td>스키마</td><td>마이그레이션 43개 · 테이블 35개 · 함수 24개 · 뷰 1개</td></tr>
+            <tr><td>권한</td><td>RLS를 켠 테이블 35개 · 정책 59개 생성(14개는 이후 회수) · 트리거 7개</td></tr>
+            <tr><td>서버</td><td>Edge Function 8개 · 단일 쓰기 관문의 액션 73개</td></tr>
+            <tr><td>코드</td><td>18,438줄 — 화면 8,286 · 서버 6,306 · 운영도구 2,032 · 레거시 1,041 · 브리지 744</td></tr>
+            <tr><td>시험 코드</td><td>3,326줄(전체의 18%) · 시험 파일 19개 + SQL 시험 9개</td></tr>
+            <tr><td>문서</td><td>인수인계·아키텍처·런북·개발절차·보안리뷰 등 <code>docs/</code>와 <code>report.md</code></td></tr>
+          </tbody>
+        </table>
+
+        <p>숫자를 나란히 놓고 보면 이 시스템의 성격이 드러납니다. 화면 코드보다 <strong>서버와 스키마 코드가 거의 같고</strong>(8,286 대 6,306), 전체의 <strong>18%가 시험 코드</strong>입니다. 다른 편에서 만든 시스템들은 대개 화면이 컸습니다. 이 시스템은 반대입니다. 성과관리에서 어려운 것은 예쁜 화면이 아니라, <em>틀린 값이 저장되지 않게 막는 일</em>이기 때문입니다.</p>
+
+        <h2><span class="idx">3</span>네 개의 부품, 그리고 0원이 유지되는 이유</h2>
+        <p>구성은 단순합니다. 화면, 데이터베이스, AI, 파일 저장소. 이 넷을 각각 무료 한도가 있는 서비스로 골랐습니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>부품</th><th>실체</th><th>비용</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>화면</td><td>Cloudflare Pages 정적 배포(바닐라 JS + Vite, 프레임워크 없음)</td><td>무료</td></tr>
+            <tr><td>데이터·인증</td><td>Supabase Postgres (서울 리전), Auth, Edge Functions</td><td>무료 티어</td></tr>
+            <tr><td>AI 서술</td><td>학교에 상시 켜 둔 iMac의 Claude 브리지(정액 구독)</td><td>추가 과금 0</td></tr>
+            <tr><td>증빙 파일</td><td>Backblaze B2 비공개 버킷(10GB, 만료 없음)</td><td>무료</td></tr>
+          </tbody>
+        </table>
+
+        <p>0원이 유지되는 이유는 값이 싼 서비스를 골라서가 아니라, <strong>한도에 닿았을 때의 행동을 미리 정해 두었기</strong> 때문입니다. 가장 중요한 규칙은 이겁니다.</p>
+        <blockquote>
+          AI가 응답하지 못하면 유료 API로 갈아타지 않는다. 기능을 끄고, 결정론적 템플릿으로 내려간다.
+        </blockquote>
+        <p>보고서 AI가 멈추면 화면은 "degraded"라고 표시하고 서버가 조립한 숫자와 기본 문장 틀로 초안을 만듭니다. 사람이 손으로 쓰면 되는 일이지, 새는 돈을 막으려고 종량제로 넘어갈 일이 아닙니다. 이 규칙이 없으면 무과금은 선언일 뿐이고, 있으면 설계 제약이 됩니다. 실제로 증빙 저장소도 이 규칙으로 골랐습니다. 처음 검토한 Cloudflare R2는 공개 버킷에 카드 등록을 요구해서 탈락했고, 카드 없이 비공개 버킷을 쓰는 B2로 바꿨습니다. 코드는 이미 S3 서명 방식을 쓰고 있었으므로 엔드포인트만 바꾸면 그대로 동작했습니다.</p>
+
+        <h2><span class="idx">4</span>숫자가 틀리면 보고가 틀린다 — 원장으로 만든 실적</h2>
+        <p>이 시스템에서 가장 공을 들인 곳은 KPI 실적 테이블 하나입니다. 규칙은 세 문장입니다.</p>
+        <p><strong>첫째, 실적은 덧붙이기만 한다.</strong> 입력은 되지만 수정과 삭제는 트리거가 막습니다. 잘못 적었으면 <em>정정 리비전</em>을 새로 남기고, 이전 행을 가리키는 참조를 답니다. 실수로 지운 것처럼 보이게 만드는 일 자체가 불가능합니다.</p>
+        <p><strong>둘째, 보고서는 '보고일까지 확정된 최신값'만 읽는다.</strong> 집계 함수의 이름 그대로 <code>latestConfirmedAsOf</code>입니다. 미확정 값, 보고일 이후의 값, 무효 처리된 값은 계산에서 빠집니다. 덕분에 6월 30일자 보고서는 몇 달 뒤에 7월 실적을 입력해도 숫자가 흔들리지 않습니다.</p>
+        <p><strong>셋째, 무효 처리된 최신 리비전은 이전 리비전을 되살리지 않는다.</strong> 이게 은근히 어려운 부분이었습니다. 날짜별로 최신 리비전 하나를 대표행으로 정하고, 그 대표행이 무효면 <em>그 날짜를 통째로 제외</em>합니다. 단순히 "무효 아닌 행 중 최댓값"을 고르면, 잘못된 정정을 무효 처리했을 때 더 오래된 잘못된 값이 조용히 부활합니다. 감사 관점에서 그건 데이터가 스스로를 고치는 것처럼 보이는 최악의 동작입니다.</p>
+
+        <p>점검 이행률도 같은 원칙으로 계산합니다. 약속한 점검일이 보고일까지 도래한 것만 분모에 넣고, 유예 기간 7일이 지나도 안 했으면 실패로 셉니다. 수시 점검이나 수동 마일스톤은 분모에서 빼고 별도 로그로 남깁니다. 날짜 경계는 전부 한국 시간 달력일 기준입니다. 서버가 UTC로 돌아도 "오늘"이 하루 밀리지 않게, 시각을 날짜로 바꾸는 함수 하나를 공용 모듈에 두고 화면과 서버가 같이 씁니다.</p>
+        <p>이 '같은 함수를 같이 쓴다'는 원칙이 이 시스템의 조용한 핵심입니다. 달성률, 목표달성도, 이행률, 예산 합산, AI 운영 내재화 지수까지 전부 순수 함수 하나에 정의되어 있고, 브라우저와 서버가 <strong>같은 파일을 import</strong>합니다. 화면에서 본 숫자와 저장된 숫자가 다를 수 있는 구조를 아예 만들지 않았습니다.</p>
+
+        <h2><span class="idx">5</span>AI는 서술만 쓴다 — 주입값 밖의 숫자를 지우는 게이트</h2>
+        <p>보고서 초안은 AI가 씁니다. 여기서 조심할 것은 문장력이 아니라 숫자입니다. LLM은 문맥상 그럴듯한 퍼센트를 만들어내는 데 거리낌이 없고, 그 숫자가 보고서에 들어가면 그건 그냥 거짓말이 됩니다.</p>
+        <p>그래서 구조를 뒤집었습니다. <strong>숫자는 서버가 만들고, AI는 그 숫자를 문장에 넣는 일만 합니다.</strong> 서버는 보고 기준일까지의 확정 실적을 계산해 프롬프트에 값으로 넣습니다. AI가 결과를 돌려주면, 콜백 단계에서 주입한 값들의 집합을 만들고 본문의 모든 숫자를 대조합니다.</p>
+        <pre><code>// 주입값에 없는 숫자는 [수치검토]로 치환하고 위반 목록을 반환
+const { text, violations } = sanitizeNarrative(narrative, injectedNumbers)
+// violations.length &gt; 0 이면 본문 맨 위에 경고 배너를 붙인다</code></pre>
+        <p>차단되면 문장은 <code>[수치검토]</code>로 바뀌고, 검수자 화면에는 "LLM이 생성한 비주입 수치 N건을 차단했습니다"라는 배너가 본문 위에 붙습니다. 조용히 지우지 않고 <em>지웠다는 사실을 보이게</em> 한 것이 중요합니다. 조용히 지우면 사람은 그 문장이 원래 멀쩡했는지 알 수 없습니다.</p>
+        <p>이 게이트도 처음부터 완벽하지 않았습니다. 외부 보안 검토에서 두 가지 우회가 지적됐습니다. 하나는 <code>1e6</code> 같은 과학적 표기로 숫자 하나가 두 토큰으로 쪼개져 검사를 통과하는 것, 다른 하나는 전각 숫자(<code>１２３</code>)나 아랍-인도 숫자로 쓴 값이 아예 매칭되지 않는 것이었습니다. 지금은 숫자를 정규화한 뒤 대조하고, 과학적 표기도 한 토큰으로 잡습니다. 기본 통제는 여전히 "허용 목록에 없으면 차단"입니다. 정규화는 그물의 구멍을 메우는 일이지, 통제를 느슨하게 하는 장치가 아닙니다.</p>
+        <p>그리고 마지막에 사람이 있습니다. 초안(draft) → 검수(review) → 게시(published)의 상태 기계를 두고, 게시는 운영 관리자만 누를 수 있게 했습니다. AI가 아무리 잘 써도 게시 버튼은 사람 손에 있습니다.</p>
+
+        <h2><span class="idx">6</span>3초마다 밖으로만 나가는 컴퓨터</h2>
+        <p>가장 많이 질문받은 부분입니다. "학교 방화벽 안에 있는 컴퓨터로 어떻게 AI를 붙였나."</p>
+        <p>답은 <strong>안으로 들어오는 연결을 만들지 않았다</strong>입니다. 학교에 상시 켜 둔 iMac이 3초마다 클라우드로 아웃바운드 HTTPS를 걸어 "처리할 작업 있나" 물어봅니다. 클라우드는 iMac에 먼저 연결하지 않습니다. VPN도, 터널도, 포트포워딩도 쓰지 않습니다.</p>
+        <p>이 선택의 이유는 보안 구호가 아니라 그 환경의 사실입니다. iMac은 학교 NAT와 방화벽 뒤에 있어 밖에서 들어올 수 없고, 반대로 나가는 443 포트는 어디서든 열려 있습니다. 그래서 폴링은 위치가 바뀌어도, 재부팅해도, 네트워크가 끊겼다 붙어도 설정을 다시 할 필요가 없습니다. 들어오는 문이 없다는 것은 그 자체로 공격면이 하나 없다는 뜻이기도 합니다.</p>
+        <p>상시성은 운영체제에 맡겼습니다. <code>launchd</code>로 로그인 없이 자동 시작하고 죽으면 다시 띄우며, <code>caffeinate</code>로 절전을 막습니다. 살아 있는지는 iMac이 폴링할 때마다 갱신하는 하트비트 시각을 클라우드에서 읽어 판단합니다. 20초 안에 갱신됐으면 정상 폴링 중이고, 그보다 오래됐으면 절전이나 네트워크를 봅니다. 원격에서 iMac에 접속할 수 없으니, <em>iMac이 스스로 남기는 마지막 목소리</em>가 유일한 상태 신호입니다.</p>
+        <p>작업은 원자적으로 하나씩 가져갑니다. 두 개의 요청이 같은 작업을 동시에 집어가면 보고서가 두 번 생성되고 비용과 이력이 꼬입니다. 데이터베이스 함수가 대기 중인 작업 하나를 잠그고 돌려주는 방식이라 중복이 생기지 않습니다. 브리지가 죽어서 가져간 작업을 붙잡고 있으면, 리스 만료된 작업을 회수해 다시 대기열로 돌려보냅니다. 결과를 돌려줄 때는 HMAC 서명을 검증합니다. 서명이 없거나 틀리면 콜백은 거부됩니다.</p>
+        <p>모델은 작업 종류에 따라 나눕니다. 보고서 서술과 위험 코칭은 상위 모델, 챗봇과 요약은 중위, 보조 작업은 하위. 정액 구독 안에서 호출하므로 티어를 나누는 것이 곧 응답 속도와 정확도의 배분입니다.</p>
+
+        <h2><span class="idx">7</span>문을 하나로 — 쓰기가 지나가는 단 하나의 관문</h2>
+        <p>권한 설계는 한 문장으로 요약됩니다. <strong>브라우저는 읽기만 하고, 모든 쓰기는 서버 함수 하나를 지나간다.</strong> 그 관문에 액션이 73개 있습니다. 실적 입력, 정정, 무효화, 과제 상태 변경, 예산 집행, 점검 생성, 증빙 서명 URL 발급, 권한 승인, 보고서 상태 전이까지.</p>
+        <p>관문이 하는 일은 순서가 정해져 있습니다. 토큰을 검증하고, 그 사용자가 승인된 사람인지 보고, 담당 영역(HUB)이 맞는지 확인한 뒤, 서버 권한으로 데이터베이스를 갱신합니다. 갱신은 조건부입니다. <em>내가 보고 있던 버전이 그사이 바뀌었으면 0행이 갱신되고 서버는 409를 돌려줍니다.</em> 두 사람이 같은 과제를 동시에 고쳤을 때 나중 사람이 앞사람을 조용히 덮어쓰는 일을 막는 방식입니다.</p>
+        <p>데이터베이스의 행 수준 보안(RLS)은 2차 방어선입니다. 35개 테이블 전부에 켰고, 정책은 59개를 만들면서 14개를 걷어냈습니다. 정책을 만드는 것보다 <strong>필요 없어진 정책을 지우는 일</strong>이 실제로는 더 중요했습니다. 아래 이야기가 그 이유입니다.</p>
+
+        <h3>보안 검토가 찾아낸 17건, 그리고 치명 1건</h3>
+        <p>2026년 6월 19일, 저장소 전체를 자동 보안 검토에 넣었습니다. 결과는 17건 — 치명 1, 높음 10, 중간 6이었습니다. 그중 가장 무서운 것은 AI 브리지에 관한 것이었습니다.</p>
+        <div class="note">
+          <p><strong>치명 — Claude 브리지 작업이 도구를 하나도 허용하지 않은 설정에서도 호스트 도구를 실행할 수 있었다.</strong> 브리지가 Claude 세션을 열 때 도구 목록을 빈 배열로 넘겼는데, 그것만으로는 주변 설정에서 상속되는 MCP 서버 도구까지 막지 못했습니다. 즉 AI가 실행 권한을 가질 수 있는 경로가 남아 있었습니다.</p>
+        </div>
+        <p>고친 방식은 옵션을 한 곳에 모으는 것이었습니다. 세션 옵션을 별도 모듈 하나(<code>claude-policy.mjs</code>)로 빼서, 내장 도구는 빈 목록, 주변 설정 로딩도 빈 목록, MCP 도구는 이름 패턴으로 전면 차단했습니다. 그리고 이 밀폐를 <em>주장이 아니라 시험</em>으로 만들었습니다. 실제 SDK로 세션을 열어 도구 수와 MCP 서버 수가 0인지 확인하는 시험을 따로 두었습니다.</p>
+        <p>나머지 열 건의 높음 등급은 대부분 같은 뿌리였습니다. 데이터베이스 함수를 브라우저에서 직접 호출하면 서버 함수의 권한 검사를 건너뛸 수 있다는 것, 그리고 승인된 사용자면 누구나 다른 영역의 증빙 메타데이터나 보고서 초안을 직접 고칠 수 있다는 것이었습니다. 6월 22일의 하드닝 마이그레이션이 이 뿌리를 잘랐습니다.</p>
+        <pre><code>-- 브라우저 역할의 직접 쓰기 권한을 전부 회수한다 (읽기와 서버 권한은 유지)
+revoke insert, update, delete on all tables in schema public from authenticated;
+revoke insert, update, delete on all tables in schema public from anon;
+-- 조건부 갱신 함수도 서버 권한 전용으로 되돌린다
+grant execute on function update_task_status_cas(...) to service_role;</code></pre>
+        <p>이 한 줄들이 시스템의 성격을 바꿉니다. 그전까지 RLS는 "권한이 있으면 통과"였는데, 이제 브라우저가 데이터베이스에 직접 쓸 방법 자체가 없습니다. 모든 변경은 반드시 관문의 검사를 지납니다. 보안 검토가 지적한 17건은 이렇게 코드와 마이그레이션으로 닫았고, 각 항목의 판단 근거는 저장소의 보안 리뷰 문서에 남아 있습니다.</p>
+
+        <h3>사진 한 장이 증빙이 되려면</h3>
+        <p>증빙 파일은 서버를 거치지 않고 브라우저가 저장소로 직접 올립니다. 서버는 서명된 업로드 주소만 발급하고, 업로드가 끝나면 저장소에 다시 물어 크기와 형식을 확인한 뒤 데이터베이스에 등록합니다. 여기에 두 가지를 더했습니다.</p>
+        <p>업로드 주소를 발급할 때 <strong>예약 행</strong>을 먼저 만듭니다. 나중에 등록할 때 예약자 본인인지, 만료되지 않았는지, 아직 쓰이지 않았는지, 키가 일치하는지 확인한 뒤 소비합니다. 이게 없으면 남의 파일 키를 자기 증빙으로 등록하거나, 같은 파일을 여러 번 등록할 수 있습니다. 그리고 저장 키에는 유일성 제약을 걸었습니다.</p>
+        <p>영수증 사진에서 금액과 날짜를 읽는 기능은 <strong>온디바이스 OCR</strong>로 만들었습니다. 증빙에는 거래처와 금액이 찍혀 있어서 외부 AI로 보내고 싶지 않았습니다. 맥에 기본으로 있는 비전 프레임워크로 한글·영문을 인식하고, 인식된 텍스트는 그 컴퓨터 안에서만 파싱됩니다. 합성 영수증으로 시험했을 때 상호·합계 금액·날짜가 정확히 잡혔고, 추가 설치나 사용료는 없었습니다.</p>
+
+        <h2><span class="idx">8</span>회의록은 문서가 아니라 원본이다</h2>
+        <p>성과관리에서 가장 자주 분쟁이 되는 물건은 회의록입니다. "그때 그렇게 정하지 않았나"에 답하려면, 그 문서가 <em>그때 그 상태 그대로</em>였다는 것을 보여야 합니다.</p>
+        <p>그래서 확정을 잠금으로 만들었습니다. 회의록을 확정하면 서버가 내용을 정규화해 하나의 문자열로 직렬화하고, 그 문자열의 SHA-256 해시를 계산해 원문과 함께 저장합니다. 정규화 규칙은 명확합니다. 키를 사전순으로 정렬하고, 유니코드는 합성형으로 통일하고, 줄바꿈은 LF로 고정하고, 숫자 표기를 통일합니다. 이렇게 하면 객체 키 순서가 달라지거나 한글 자모가 다르게 합성돼도 <strong>같은 내용은 같은 해시</strong>가 나옵니다. 나중에 재검증할 때는 저장된 원문을 그대로 다시 해싱합니다. 재직렬화하지 않습니다. 그게 감사의 조건입니다.</p>
+        <p>확정은 한 트랜잭션에서 끝납니다. 상태가 '초안'이고 버전이 내가 본 그 버전일 때만 잠그고, 확정 리비전을 만들고, 회의록이 그 리비전을 가리키게 합니다. 경합이 나면 두 번째 요청은 실패하고 잠금도 함께 취소됩니다. 반쯤 잠긴 회의록은 존재하지 않습니다.</p>
+        <p>참석 서명은 계정이 없는 사람도 할 수 있어야 했습니다. 외부 위원이나 협력 업체 담당자에게 계정을 만들게 하는 순간 아무도 서명하지 않기 때문입니다. 그래서 회의 단위로 서명 링크를 발급하고, 그 링크의 토큰은 별도 목적의 서명 키로 검증합니다. 이 키가 설정되지 않으면 링크 기능은 <em>닫힌 채로</em> 실패합니다. 서버의 다른 비밀 키를 재사용해 대충 열어 두는 선택을 하지 않았습니다.</p>
+        <p>출력은 한글(HWPX)입니다. 학교 행정은 아직 한글 문서로 돕니다. 여기서 실제로 크게 데었습니다. 본문 XML에 제어문자가 하나 섞이면 한글은 "파일이 깨졌습니다"라고 말하고 열지 않습니다. 표의 셀을 문자열 치환으로 바꾸다 앵커가 어긋나도 같은 일이 납니다. 지금은 금지 제어문자를 걷어내고, 셀은 앵커 단위로만 바꾸고, 한글 호환 재열기 시험을 통과한 파일만 내보냅니다.</p>
+
+        <h2><span class="idx">9</span>실제로 터진 것들</h2>
+        <p>완성된 구조보다 값진 기록은 고장의 기록입니다. 아래는 이 저장소의 커밋 로그와 인수인계 문서에 남은 실제 사고들입니다.</p>
+
+        <div class="item">
+          <h3><span class="sym">01</span> 백업이 114회 연속 실패했다</h3>
+          <p>매일 새벽 데이터베이스를 덤프해 저장소에 올리는 워크플로가 있었습니다. 6월 17일부터 10월 6일까지, <strong>114회 연속 실패</strong>했습니다. 남아 있던 로그 92건의 원인은 전부 같았습니다. 데이터베이스 접속 문자열 시크릿이 등록되지 않았습니다. 워크플로는 매일 초록색 대신 빨간색을 띄웠지만 아무도 그 화면을 보지 않았습니다. 백업은 <em>있다고 믿는 순간</em>부터 없는 것입니다. 지금은 실패 로그를 읽는 절차와 시크릿 점검 항목을 런북에 넣었고, 7월과 10월에 접속 방식과 실행 환경을 고쳐 정상화했습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">02</span> 마이그레이션은 자동, 화면은 수동 — 순서가 어긋나 로그가 403이 됐다</h3>
+          <p>활동 로그에서 이메일 노출을 막으려고 컬럼 권한을 좁혔습니다. 데이터베이스 변경은 즉시 적용됐습니다. 그런데 화면 배포는 명령을 직접 실행하는 방식이라 아직 예전 화면이 떠 있었습니다. 예전 화면은 전체 컬럼을 요청했고, 좁아진 권한과 부딪혀 <strong>403</strong>이 났습니다. 기능 하나가 아니라 화면 한 칸이 통째로 비었습니다. 이후로는 되돌리기 쉬운 변경을 먼저 하고, 화면 배포가 끝난 뒤 권한을 조이는 순서로 바꿨습니다. 배포가 원자적이지 않은 환경에서는 <em>변경의 순서 자체가 설계</em>입니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">03</span> 브리지를 업데이트했더니 브리지가 죽었다</h3>
+          <p>브리지 프로그램을 고쳐 배포했는데 몇 초 만에 프로세스가 죽었습니다. 원인은 프로그램이 정적으로 불러오는 보조 모듈 두 개를 배포 목록에서 빠뜨린 것이었습니다. 본체만 새로 받은 브리지는 시작하자마자 모듈을 찾지 못해 종료됐습니다. 지금은 배포 스크립트가 런타임 파일 일체를 함께 보내고, 수동으로 올릴 때도 세 파일을 모두 올리라는 경고를 문서 첫머리에 박아 두었습니다. <em>배포 목록은 코드의 의존 관계와 같아야 합니다.</em></p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">04</span> AI가 '1e6'으로 숫자 검사를 빠져나갔다</h3>
+          <p>앞에서 다룬 수치 게이트의 구멍입니다. 외부 보안 검토가 지적하기 전까지는 소수점과 콤마만 상정하고 있었습니다. 지금은 과학적 표기와 전각 숫자, 아랍-인도 숫자까지 정규화한 뒤 대조합니다. 검사 규칙을 만들면 반드시 그 규칙의 <em>표기 가정</em>을 먼저 의심해야 한다는 교훈입니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">05</span> 점검 웹 취약점 스캔에서 걸린 것들</h3>
+          <p>자동 취약점 스캔에서 보안 헤더 누락, 허용 출처 와일드카드, 이미지·연결 정책의 과도한 허용이 지적됐습니다. 전송 보안 헤더를 추가하고, 허용 출처를 명시 목록으로 바꾸고, 콘텐츠 보안 정책의 와일드카드를 실제로 쓰는 도메인까지 좁혔습니다. 눈에 보이는 기능은 하나도 늘지 않은 작업이지만, 브라우저가 이 앱을 신뢰하는 방식은 이 헤더들로 결정됩니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">06</span> 의존성 취약점 22건을 0건으로</h3>
+          <p>마지막 커밋 두 개는 기능이 아니라 청소였습니다. 패키지 감사에서 나온 취약점을 루트 22건, 브리지 7건에서 0건으로 줄였습니다. 기능을 만드는 커밋보다 이런 커밋이 로그에 남기 싫어서 미루게 되는데, 미루는 동안에도 그 코드는 매일 돌아갑니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">07</span> 3초 폴링이 남긴 것</h3>
+          <p>폴링은 방화벽 문제를 없애 줬지만, 다른 문제를 만들었습니다. 브리지가 어떤 작업을 가져간 뒤 응답하지 않으면 그 작업은 영원히 '진행 중'으로 남습니다. 대기열이 막히고, 사용자는 계속 기다립니다. 그래서 작업을 가져갈 때 리스를 함께 기록하고, 만료된 리스는 회수해 실패로 정리한 뒤 다음 작업을 가져가게 했습니다. <em>가져간 사람이 사라질 수 있다는 전제</em>가 없으면 큐는 조용히 멈춥니다.</p>
+        </div>
+
+        <h2><span class="idx">10</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>AI가 보고서 숫자를 만들어내면 어떻게 막나요?</h3>
+          <p>AI에게 숫자를 쓰게 하지 않습니다. 서버가 확정 실적을 계산해 프롬프트에 넣고, 돌아온 문장에서 그 값들의 집합에 없는 숫자를 <code>[수치검토]</code>로 바꿉니다. 전각 숫자와 과학적 표기도 정규화해 대조하고, 차단이 있으면 본문 위에 경고 배너를 붙입니다. <strong>숫자는 LLM이 아니라 집계 함수가 만듭니다.</strong></p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>실적을 나중에 고치면 예전 보고서 숫자도 바뀌나요?</h3>
+          <p>바뀌지 않습니다. 실적은 입력만 가능한 원장이고 수정·삭제는 트리거가 막습니다. 정정은 이전 행을 가리키는 새 리비전으로 남기고, 보고서는 보고일까지 확정된 최신값만 읽습니다. 무효 처리된 최신 리비전이 이전 리비전을 되살리지 않게 하는 것도 코드의 규칙입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>서버비는 얼마인가요?</h3>
+          <p>0원입니다. 화면은 Cloudflare Pages, 데이터·인증은 Supabase 무료 티어, 증빙은 B2 무료 10GB(비공개 버킷은 카드도 필요 없습니다), AI는 이미 쓰던 정액 구독을 상시 켜 둔 iMac이 호출합니다. AI가 멈추면 유료 API로 넘어가지 않고 기능을 끄고 템플릿으로 내려갑니다. 무료 한도에 닿으면 그때 비용을 판단합니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>학교 방화벽 안의 컴퓨터로 어떻게 AI를 붙였나요?</h3>
+          <p>밖에서 안으로 들어오는 연결을 만들지 않았습니다. iMac이 3초마다 클라우드로 나가서 작업을 물어보고, 있으면 하나를 원자적으로 가져갑니다. VPN도 터널도 포트포워딩도 없습니다. 살아 있는지는 3초마다 갱신되는 하트비트 시각으로 판단하고, 결과 콜백은 서명으로 검증합니다.</p>
+        </div>
+
+        <h2><span class="idx">11</span>에필로그 — 좋은 성과관리 시스템은 조용하다</h2>
+        <p>이 시스템을 만든 뒤로 분기 마감이 조용해졌습니다. 누가 밤을 새지도 않고, 문서마다 숫자가 다르지도 않습니다. 보고서를 누르면 그 시점에 확정된 값으로 초안이 나오고, 검수자가 숫자를 훑고 게시를 누릅니다. 잘 만든 성과관리 시스템은 사람들이 칭찬할 일이 없습니다. 그저 아무 일도 일어나지 않기 때문입니다.</p>
+        <p>대신 그 조용함을 유지하는 장치는 요란합니다. 3초마다 나가서 일을 물어보는 컴퓨터, 주입값 밖의 숫자를 지우는 정규식, 무효 처리된 행이 이전 값을 되살리지 못하게 막는 열 줄의 코드, 매일 새벽에 도는 백업. 이 글에서 가장 자랑스러운 부분은 아마 코드 줄 수가 아니라 <strong>114회 실패한 백업 기록</strong>입니다. 그 숫자를 남겨 두었기 때문에 지금은 백업이 있다고 말할 수 있습니다.</p>
+        <blockquote>
+          AI는 문장을 잘 씁니다. 그래서 문장을 맡겨야 합니다. 숫자는 맡기면 안 됩니다. 그 경계를 코드로 긋는 일이, AI 시대의 성과관리였습니다.
+        </blockquote>
+      </article>
+
+      <a class="next-ep" href="../ai-3level/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[9편] AI가 등급을 제안하고 사람이 승인한다 — 동의과학대 AI 3-LEVEL 인증 · 앱 제작 실적 플랫폼 25시간 구축기</span>
+        <span class="d">샌드박스 크롬 판정 일꾼, 학생 개인정보 자동 가리기, 디스코드 승인 카드 — 그리고 '성공'이라 답한 배포가 아무것도 올리지 않던 7.5분의 원인</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#성과관리시스템</span><span>#데이터무결성</span>
+        <span>#Supabase</span><span>#부산AI전문가</span><span>#동의과학대학교</span><span>#LLM보안</span>
+        <span>#김강훈교수</span><span>#대학혁신</span>
+      </div>
+    </main>
+  </body>
+</html>
