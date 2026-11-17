@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 11편] 복붙으로 끝내는 대학 AI 실습 — Apps Script 28개 파일 1,973줄 | 김강훈 교수</title>
+    <meta name="description" content="설치도 결제도 없이 학생이 자기 구글 계정에서 웹앱·메일·문서·슬라이드·캘린더 자동화를 만든다. EBS 「생활 속의 AI 융합지식」 7·9주차 4강을 위한 Apps Script 실습 키트 — 28개 파일 1,973줄, 97개 이름 충돌표, 172장의 캡처." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, Google Apps Script, GAS, 대학 AI 교육, EBS 생활 속의 AI 융합지식, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교, Cloudflare Workers, Workers AI, Gemini in Apps Script, 무과금 실습, AI 교양, 구글 시트 자동화, 웹앱" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/sam/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/sam/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 11편] 복붙으로 끝내는 대학 AI 실습 — Apps Script 28개 파일 1,973줄" />
+    <meta property="og:description" content="학생 계정 하나로 웹앱·메일·문서·슬라이드·캘린더까지. 36개 항목 매니페스트, 97개 이름 충돌표, 172장의 실습 캡처 — 수업 자료를 저장소로 만든 이유." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-17" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 11편] 복붙으로 끝내는 대학 AI 실습 — Apps Script 4강 실습 키트" />
+    <meta name="twitter:description" content="28개 파일 1,973줄, 172장 캡처, 97개 이름 충돌표. 수업용 Apps Script 실습 키트를 저장소로 만든 이유와 실제로 터진 것들." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/sam/#article",
+          "headline": "[바이브코딩 11편] 복붙으로 끝내는 대학 AI 실습 — Apps Script 28개 파일 1,973줄",
+          "alternativeHeadline": "EBS 전문대연합 「생활 속의 AI 융합지식」 7·9주차 4강을 저장소로 만든 기록",
+          "description": "부산 동의과학대학교 김강훈 교수가 EBS 전문대연합 「생활 속의 AI 융합지식」 7·9주차 4강을 위해 만든 Google Apps Script 실습 키트(skyman200/sam) 구축기. 24개 .gs·4개 .html 1,973줄, 36개 항목 매니페스트와 4강 페이지 자동 생성, 51·23·23개 이름 충돌표, 172장 실습 캡처, 그리고 교실용 Cloudflare Workers 요약 API의 6시간 캐시·1,500자 상한·수업 코드 구조까지 — 저장소에서 직접 확인한 수치만 담았다.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-17",
+          "dateModified": "2026-11-17",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/sam/"
+          },
+          "keywords": "바이브코딩, Google Apps Script, 대학 AI 교육, AI 교양, Cloudflare Workers, Workers AI, 무과금 실습, 실습 키트, 부산 AI 전문가, 김강훈 교수, 동의과학대학교",
+          "about": [
+            { "@type": "Thing", "name": "Google Apps Script를 이용한 대학 AI 실습" },
+            { "@type": "Thing", "name": "키 없는 교실용 AI API 설계" },
+            { "@type": "Thing", "name": "수업 자료의 단일 원본화" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/sam/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "11편 — Apps Script 4강 실습 키트",
+              "item": "https://skyman200.github.io/vibe-coding/sam/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/sam/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "학생이 API 키를 발급받지 않아도 AI 요약 실습이 되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "됩니다. 수업용 Cloudflare Worker가 요약 API를 대신 호출하고, 학생 스크립트는 자기 키 대신 수업 코드를 헤더에 붙여 그 서버로 글을 보냅니다. 결제 정보도, 카드 등록도, 키 관리도 학생 계정에 남지 않습니다. 같은 글은 6시간 동안 스크립트 캐시에 저장된 답을 쓰므로 같은 문단을 반복 실행해도 호출이 늘지 않습니다. 키를 직접 다루는 경로(AI_SUMMARY)와 키 없이 쓰는 경로(SAM_SUMMARY)를 나란히 두어, 두 방식의 차이를 학생이 코드로 비교하게 했습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "왜 코드를 한 파일에 다 넣지 않고 28개로 나눴나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "한 프로젝트 안의 .gs 파일은 전역 이름 공간을 공유하기 때문에 나누는 순간 충돌이 생깁니다. 그래서 나눈 뒤에 이름 충돌표(NAMES.md)를 함께 만들었습니다. 세 프로젝트의 이름 97개(51·23·23)를 표로 적고 중복 0을 확인했으며, 도우미 함수는 끝에 밑줄을 붙여 함수 목록에 뜨지 않게 했습니다. 어떤 파일을 같은 프로젝트에 붙이면 안 되는지(doGet·SHEET_NAME·onOpen이 겹치는 조합)도 표에 적어 두었습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Gemini가 Apps Script 안에 들어왔는데 왜 아직 복사·붙여넣기인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2026년 11월 16일 Gemini 사이드 패널이 Apps Script 편집기에서 정식 출시(GA)되었지만, 사용하려면 Workspace Business Standard·Plus, Enterprise Standard·Plus, Google AI Pro for Education, 또는 개인용 Google AI Pro·Ultra 같은 유료 라이선스가 필요하고 관리자가 콘솔에서 켜야 합니다. 개인 무료 구글 계정으로 수업을 듣는 학생에게는 아직 없는 기능입니다. 또 편집기 언어가 영어이거나 기본값일 때만 패널이 보인다고 문서에 적혀 있습니다. 생성이 쉬워지는 것과 학생 계정에서 처음 실행되는 것은 다른 문제라, 붙여넣기 경로는 그대로 필요합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "강의 자료를 왜 웹사이트와 저장소로 공개했나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "실습이 막히는 지점은 대개 코드 내용이 아니라 순서와 이름입니다. 어떤 파일을 먼저 붙여야 하는지, 같은 이름을 두 번 선언하면 어떻게 되는지, 권한 동의 창에서 무엇을 눌러야 하는지를 화면과 캡처로 남겨야 다음 학기에도 같은 자리에서 멈추지 않습니다. 매니페스트 하나를 고치면 4강 페이지와 코드 사본이 다시 만들어지고, GitHub Pages로 배포되므로 강의 자료와 저장소가 서로 어긋나지 않습니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>11편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 11 · Classroom GAS Kit</p>
+        <h1>[바이브코딩 11편] 복붙으로 끝내는 대학 AI 실습 — Apps Script 28개 파일 1,973줄</h1>
+        <p class="subhead">설치도, 회원가입도, 카드 등록도 없는 AI 실습. 학생은 자기 구글 계정을 열고 코드를 붙여 넣어 웹앱·메일 리포트·문서·슬라이드·캘린더 일정을 직접 만든다. EBS 전문대연합 「생활 속의 AI 융합지식」 7·9주차 4강을 위해 만든 실습 키트를 저장소로 남긴 이유와, 그 안에서 실제로 터진 것들.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 17일</div>
+          <div><strong>읽는 시간</strong> 약 12분</div>
+        </div>
+
+        <p class="lede">이번 편은 <b>수업 자료를 소프트웨어처럼 만든 기록</b>입니다. 대상은 부산 동의과학대학교가 아니라 EBS 전문대연합 교양 「생활 속의 AI 융합지식」의 7주차·9주차, 모두 네 강입니다. 저장소 <code>skyman200/sam</code>은 2026년 11월 11일 오후에 만들어져 12일 오전에 마지막 커밋이 올라갔고, 13일 밤에 사이트가 배포됐습니다. 아래 수치는 그 저장소의 코드·매니페스트·커밋 로그·캡처 파일에서 직접 센 것이고, 저장소에 없는 수강생 반응이나 성과는 적지 않았습니다.</p>
+
+        <h2><span class="idx">1</span>강의 자료가 아니라 '실행되는 자료'가 필요했다</h2>
+        <p>AI 교양 수업에서 늘 같은 곳에서 막힙니다. 강의실 컴퓨터에 개발 도구를 설치할 수 없고, 학생 계정에는 결제 수단이 없고, 수업이 끝나면 실습 환경은 사라집니다. 다음 학기에 같은 강의를 다시 열면 지난 학기의 시행착오도 함께 사라져 있습니다.</p>
+        <p>그래서 이번에는 조건을 먼저 정하고 도구를 골랐습니다.</p>
+        <ul>
+          <li><strong>학생 계정 안에서, 설치 없이 끝난다.</strong> 브라우저와 구글 계정 하나로 시작하고 끝난다. 별도 호스팅도, 서버도, 카드 등록도 없다.</li>
+          <li><strong>결과물이 학생 손에 남는다.</strong> 수업이 끝나면 각자 스크랩 아카이브, 필기 요약 노트, 오답노트와 복습 자료, 발표 슬라이드가 남는다.</li>
+          <li><strong>AI 키는 학생 손에 쥐여주지 않는다.</strong> 무료 한도 안에서 돌아가고, 한도를 넘으면 기능이 멈추는 쪽이지 학생에게 청구서가 가는 쪽이 아니다.</li>
+          <li><strong>막히는 지점을 캡처로 남긴다.</strong> 오류 메시지와 권한 동의 창을 사진으로 남겨, 다음 학기의 나와 다른 교강사가 같은 자리에서 멈추지 않게 한다.</li>
+        </ul>
+        <p>이 네 조건이 이 글의 나머지 전부입니다. 어떤 기능을 넣었는지가 아니라, 이 조건들을 지키려고 만든 장치들 — 이름 충돌표, 매니페스트, 수업용 API, 캡처 목록 — 의 이야기입니다.</p>
+
+        <h2><span class="idx">2</span>규모는 이렇게 나왔다</h2>
+        <p>먼저 저장소에서 센 값부터 둡니다. 줄 수는 <code>wc -l</code>로, 커밋은 <code>git log</code>로, 파일 수는 매니페스트를 직접 세었습니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>항목</th><th>실측값</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>기간</td><td>2026-11-11 14:19 저장소 생성 ~ 11-12 11:43 마지막 커밋 · 커밋 7개 · 11-13 23:37 사이트 배포</td></tr>
+            <tr><td>강의</td><td>4강 — 7주차 1·2강, 9주차 1·2강</td></tr>
+            <tr><td>Apps Script 파일</td><td>28개 (24개 <code>.gs</code> + 4개 <code>.html</code>) · 1,973줄 (585 · 440 · 520 · 428)</td></tr>
+            <tr><td>연습 데이터</td><td>CSV 8개 36줄 — 스크랩 6행, 중복 링크 8행, 손필기 10문단, 퀴즈 10문항, 오답 7행, 시험 일정, 대본 8행, 점검용 5행</td></tr>
+            <tr><td>매니페스트</td><td><code>code/MANIFEST.json</code> 36개 항목 · 선언된 줄 수 합 2,022</td></tr>
+            <tr><td>이름 충돌표</td><td>3개 프로젝트 97개 이름(51 · 23 · 23) · 중복 0</td></tr>
+            <tr><td>강의 페이지</td><td>4장 2,376줄 — 매니페스트에서 자동 생성(생성기 124줄)</td></tr>
+            <tr><td>실습 캡처</td><td>172장 — <code>site/shots/</code></td></tr>
+            <tr><td>저장소</td><td>266개 파일 81MB (대부분 캡처) · 공개 저장소 · GitHub Pages 배포</td></tr>
+          </tbody>
+        </table>
+
+        <p>다른 편들과 숫자의 성격이 다릅니다. 9편은 25시간·37커밋에 1만 6,800줄, 10편은 93커밋에 1만 8,438줄이었습니다. 이번 편은 코드가 2,000줄이 안 됩니다. 대신 <strong>캡처가 172장</strong>입니다. 만드는 데 쓴 시간보다 <em>학생이 어디서 멈추는지 확인하는 데 쓴 시간</em>이 더 많았다는 뜻이고, 그게 이 저장소의 성격입니다.</p>
+
+        <h2><span class="idx">3</span>네 강의가 실제로 남기는 것</h2>
+        <p>각 강의는 독립된 시트 하나에서 시작해, 끝나면 학생 계정에 쓸 만한 물건 하나가 남습니다. 쓰는 구글 서비스는 시트·문서·슬라이드·드라이브·Gmail·캘린더 여섯 개입니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>강의</th><th>남는 것</th><th>핵심 함수</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>7주차 1강</td><td>스크랩 웹앱 + 주간 메일 리포트</td><td><code>doGet</code>의 <code>?page=</code> 화면 선택, 최신 20건 목록, RSS 5건 가져오기, 중복 링크 삭제, 주제별 개수, 문서 내보내기, 월요일 8시 트리거</td></tr>
+            <tr><td>7주차 2강</td><td>필기 요약 노트 + PDF 보관함</td><td>셀 함수 <code>AI_SUMMARY</code>(내 Gemini 키)와 <code>SAM_SUMMARY</code>(키 없이), PDF 저장, 드라이브 '수업 PDF' 폴더에 날짜 붙여 이동, 시트 메뉴 'AI 도우미'</td></tr>
+            <tr><td>9주차 1강</td><td>폰에서 푸는 CBT 퀴즈 + 오답노트</td><td>4지선다 검증(F열 1~4), 점수·정답률 기록, 자주 틀린 문제 TOP3, 복습 자료 문서, 시험 D-14·D-7·D-1 캘린더 등록, 밤 9시 복습 메일</td></tr>
+            <tr><td>9주차 2강</td><td>발표 슬라이드 + 대본 점검</td><td>대본 탭에서 슬라이드 20장 이하 자동 생성(제목·내용·발표자 노트), 대본 문서 내보내기, 350자/분으로 예상 발표 시간, 60자 넘는 문장과 빈 칸 표시</td></tr>
+          </tbody>
+        </table>
+
+        <p>강의마다 '따라 하는 순서'는 네 줄로 같습니다. 시트를 새로 만들고, <code>확장 프로그램 &gt; Apps Script</code>를 열고, 파일을 위에서부터 붙이고, 함수를 골라 실행해 권한을 허용한다. 이 네 줄이 전부라서, 학생이 막히면 어느 줄에서 막혔는지 바로 알 수 있습니다.</p>
+        <p>7주차 1강의 흐름을 조금만 들여다보면 이 실습의 성격이 보입니다. 웹앱 화면에서 스크랩을 저장하면 목록이 즉시 갱신되고, [정리하기]를 누르면 같은 링크를 지운 뒤 주제별 개수를 돌려주고, [문서로 내보내기]를 누르면 주제 순서로 정리한 구글 문서가 만들어집니다. 여기에 RSS 연습 피드 8건 중 아직 저장하지 않은 5건을 가져오는 <code>importFeed</code>와, 매주 월요일 8시에 "전체 몇 건, 최근 7일 몇 건, 가장 최근 저장일"을 메일로 보내는 <code>weeklyReport</code>가 붙습니다. 기능 목록이 길지 않지만 <strong>입력·정리·공유·알림</strong>이라는 업무 자동화의 네 칸을 다 채웁니다.</p>
+        <p>9주차는 평가와 발표로 갑니다. 퀴즈 앱은 틀린 문제를 오답노트 탭에 남기고, 결과 화면에 점수·정답률·틀린 문제·TOP3·복습 문서 링크·시험 일정을 한 번에 보여 줍니다. 발표 도우미는 대본 표를 슬라이드로 바꾸면서 발표자 노트까지 채우고, 예상 발표 시간이 제한을 넘으면 콘솔에 경고를 남깁니다. <em>학생이 자기 공부를 관리하는 도구를 직접 만드는 것</em>이 이 네 강의의 목표입니다.</p>
+
+        <h2><span class="idx">4</span>이름이 겹치면 코드가 아니라 수업이 멈춘다</h2>
+        <p>Apps Script의 함정은 하나입니다. 한 프로젝트 안의 <code>.gs</code> 파일들은 <strong>전역 이름 공간을 공유</strong>합니다. 파일을 나눠 정리하는 순간, 같은 이름을 두 번 선언하면 그 프로젝트는 실행되지 않습니다. 학생 입장에서는 방금 붙인 코드가 맞는데도 빨간 오류만 보이는 상황이 됩니다.</p>
+        <p>저장소의 캡처에 그 장면이 그대로 남아 있습니다. 실행 로그에 <code>SyntaxError: Identifier 'FEED_URL' has already been declared</code>가 찍히고, 오류 위치는 <code>Dup.gs:1</code>입니다. RSS 주소를 상수로 올린 파일을 하나 더 붙였더니, 이미 있던 상수와 부딪힌 것입니다.</p>
+        <p>그래서 코드와 함께 <code>NAMES.md</code>를 만들었습니다. 세 프로젝트의 이름을 전부 표로 적고, 기대는 관계를 같이 적었습니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>프로젝트</th><th>구성</th><th>이름</th><th>주의</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A</td><td>7주차 1·2강을 한 시트에</td><td>51개</td><td><code>onOpen</code>은 Menu.gs 하나만</td></tr>
+            <tr><td>B</td><td>9주차 1강</td><td>23개</td><td><code>doGet</code>이 A와 겹침</td></tr>
+            <tr><td>C</td><td>9주차 2강</td><td>23개</td><td><code>doGet</code>·<code>onOpen</code>이 A와 겹침</td></tr>
+          </tbody>
+        </table>
+
+        <p>표에 적힌 규칙은 세 가지입니다. 상수는 대문자로, 셀 함수는 <code>AI_SUMMARY</code>·<code>SAM_SUMMARY</code>처럼 대문자와 밑줄로, 도우미 함수는 끝에 밑줄을 붙여 <em>함수 목록에 뜨지 않게</em>. 마지막 규칙은 취향이 아니라 교실 사정입니다. 함수 선택 드롭다운에 실행할 함수만 보여야 학생이 무엇을 눌러야 하는지 헷갈리지 않습니다. 실제로 7주차 프로젝트의 함수 목록에는 학생이 실행할 함수와, 그 함수가 부르는 도우미가 섞여 있지 않습니다.</p>
+        <p>그리고 문서 첫머리에 못을 박아 두었습니다. <strong>9주차 파일을 7주차 프로젝트에 붙이면 안 된다.</strong> <code>doGet</code>·<code>SHEET_NAME</code>·<code>onOpen</code> 세 이름이 동시에 겹치기 때문입니다. 이런 규칙은 머리로 기억되지 않습니다. 파일 옆에 적혀 있어야 지켜집니다.</p>
+
+        <h2><span class="idx">5</span>키를 학생에게 주지 않고 AI를 쓰는 방법</h2>
+        <p>7주차 2강에는 AI 요약이 두 갈래로 들어 있습니다. 하나는 정공법입니다. <code>AI_SUMMARY</code>는 스크립트 속성에 넣어 둔 Gemini 키를 꺼내 Google API를 직접 호출합니다. 키는 코드에 쓰지 않고, 모델 이름은 <code>MODEL</code> 상수 하나에만 적어 두어 바뀌면 그 줄만 고치면 됩니다. 키를 다루는 법을 가르치는 데는 이 방식이 맞습니다.</p>
+        <p>문제는 나머지 학생들입니다. 개인 무료 계정으로 수업을 듣는 학생에게 "키를 발급받아 결제 수단을 등록하세요"라고 말할 수는 없습니다. 그래서 두 번째 갈래를 만들었습니다. <code>SAM_SUMMARY</code>는 학생 대신 <strong>수업용 서버</strong>가 요약합니다.</p>
+        <p>학생 스크립트는 자기 키 대신 수업 코드를 헤더에 붙여 글을 보냅니다. 서버는 Cloudflare Worker 22줄입니다. AI는 Workers AI의 무료 사용량으로 돌고, 정적 파일은 같은 Worker가 <code>site/</code> 디렉터리에서 그대로 서빙합니다.</p>
+
+        <pre><code>// 수업용 요약 API(/api/summarize). 나머지 경로는 정적 파일(site/)이 처리한다.
+if (request.headers.get("x-sam-code") !== (env.CLASS_CODE || "..."))
+  return json({ error: "수업 코드가 다릅니다" }, 401);
+const text = String(body.text || "").slice(0, 1500);
+if (text.length &lt; 20) return json({ error: "요약할 글이 너무 짧습니다" }, 400);</code></pre>
+
+        <p>서버 쪽 규칙은 네 개입니다. 본문은 <strong>1,500자에서 자릅니다</strong>. 20자 미만은 400으로 돌려보냅니다. 시스템 프롬프트는 "한국어로 정확히 3줄, 각 줄 40자 이내, 없는 내용을 지어내지 않는다, 숫자와 고유명사는 그대로 둔다"입니다. 수업 코드가 틀리면 401입니다. 실제로 오늘 확인해 보니 잘못된 코드에는 <code>{"error":"수업 코드가 다릅니다"}</code>가 401로 돌아왔고, 정상 코드로 보낸 광합성 설명에는 정확히 세 줄이 돌아왔습니다.</p>
+        <p>학생 쪽에는 캐시가 하나 더 있습니다. 같은 글은 <strong>6시간 동안</strong> 스크립트 캐시에 저장한 답을 씁니다. 캐시 키는 글 내용의 MD5를 웹 안전 base64로 바꾼 값입니다. 이 장치가 없으면 40명이 같은 예문으로 실습할 때 40번 호출됩니다. 있으면 한 번입니다. 무료 한도는 아끼는 게 아니라 <em>설계로 지키는</em> 것입니다.</p>
+        <div class="note">
+          <p><strong>정직하게 적어 둘 것.</strong> 이 '수업 코드'는 비밀이 아니라 교실 출석부에 가깝습니다. 저장소가 공개라 코드도 공개돼 있고, 실제 운영에서는 서버 환경변수로 바꾸라는 뜻으로 <code>env.CLASS_CODE</code>를 먼저 읽게 해 두었습니다. 사이트에도 "연습 기간이 끝나면 닫힐 수 있습니다"라고 적어 두었습니다. 학생에게 약속한 것은 영구 서비스가 아니라 <em>수업 기간 동안의 실습</em>입니다.</p>
+        </div>
+
+        <h2><span class="idx">6</span>매니페스트 하나가 사이트를 만든다</h2>
+        <p>강의 자료에서 가장 자주 어긋나는 것은 코드와 설명입니다. 코드는 고쳤는데 페이지의 설명이 지난주 것을 그대로 보여 주는 일입니다. 그래서 이 저장소는 <strong>매니페스트를 유일한 원본</strong>으로 두었습니다. <code>code/MANIFEST.json</code> 36개 항목이 각 파일의 강의, 종류, 목적, 붙일 곳, 먼저 필요한 파일, 줄 수를 담습니다.</p>
+
+        <pre><code>{
+  "lecture": "7-2",
+  "file": "code/ep2/WebSummary.gs",
+  "kind": "gs",
+  "purpose": "요약 노트 화면용 서버 함수(loadNotes, summarizeNote, savePdfLink)",
+  "paste_to": "WebSummary.gs",
+  "requires": ["code/ep2/SamSummary.gs", "code/ep2/Pdf.gs", "code/ep1/Code.gs"],
+  "lines": 42
+}</code></pre>
+
+        <p>이 여섯 칸이 화면의 문장이 됩니다. 페이지는 파일마다 이름·목적·붙일 곳을 보여 주고, <code>requires</code>는 "먼저 필요: …"라는 줄로 렌더링됩니다. 학생이 순서를 틀리면 코드가 아니라 <em>의존 관계</em>가 먼저 눈에 들어옵니다. 생성기(<code>build_site.py</code> 124줄)는 이 매니페스트로 4강 페이지 2,376줄과 코드 사본을 만들고, 배포 스크립트 13줄이 그 결과를 <code>gh-pages</code> 브랜치로 밀어 올립니다. 사이트 주소는 <code>skyman200.github.io/sam/</code>입니다.</p>
+        <p>덤으로 얻은 것이 있습니다. 페이지의 모든 코드 블록에는 복사 버튼과 받기 링크가 붙고, 강의 첫 화면에는 "코드 6개 · 연습 파일 2개"처럼 파일 수가 표시됩니다. 수업 중에 "몇 개 남았나"를 세지 않아도 됩니다. 매니페스트를 고치고 배포하면 설명과 코드가 같은 커밋에서 함께 바뀝니다.</p>
+
+        <h2><span class="idx">7</span>실습은 콘솔이 아니라 화면에서 끝난다</h2>
+        <p>강의용 웹앱이 네 개 있습니다. 7-1 스크랩 화면, 7-2 요약 노트(<code>?page=Note</code>), 9-1 퀴즈 결과 화면, 9-2 발표 도우미. 네 화면 모두 서버 함수 하나를 부르고 결과를 즉시 그립니다. 목록을 다시 불러오고, 요약 결과를 칸 옆에 쓰고, PDF 링크를 보여 주고, 점수와 TOP3를 그리고, 슬라이드 제목 목록을 띄웁니다.</p>
+        <p>여기서 일부러 같은 계산을 두 번 구현한 곳이 한 군데 있습니다. 9-2의 점검 기능입니다. <code>highlightProblems</code>는 시트의 문제 칸을 노란색으로 칠하고, 화면용 <code>checkScript</code>는 시트를 건드리지 않고 <code>{row, col, why}</code> 목록만 돌려줍니다. 주석에 "시트는 안 칠함"이라고 적어 두었습니다. 화면은 학생이 스크롤하는 동안 계속 다시 그려지므로, 화면을 그리다가 시트를 칠하면 같은 칸을 수십 번 칠하게 됩니다. <em>보여 주는 일과 기록하는 일을 분리</em>한 것입니다.</p>
+        <p>이 분리가 없으면 실습이 콘솔 로그에서 끝납니다. 학생이 "돌아갔나요?"라고 물을 때 화면에 아무것도 없으면, 교강사는 매번 실행 로그를 열어 확인해야 합니다. 화면에 결과가 보이면 확인은 학생 몫이 됩니다.</p>
+
+        <h2><span class="idx">8</span>실제로 터진 것들</h2>
+        <p>완성된 구조보다 값진 기록은 막힌 장면입니다. 아래는 저장소의 캡처와 코드 주석에 실제로 남아 있는 것들입니다.</p>
+
+        <div class="item">
+          <h3><span class="sym">01</span> 복사하다 이름이 겹쳤다</h3>
+          <p>앞에서 본 <code>FEED_URL</code> 중복 선언입니다. 캡처의 프로젝트 이름은 "SAM 7-1 스크랩 웹앱"이고, 오류가 난 파일은 <code>Dup.gs</code>입니다. 학생이 연습 삼아 파일을 하나 더 만들었다가 겪은 그대로입니다. 이름 충돌표는 이 화면에서 태어났습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">02</span> 두 번째 실행은 0건이 정상이다</h3>
+          <p>RSS 가져오기를 다시 실행하면 로그에 <strong>"0건 추가했습니다"</strong>가 찍힙니다. 실패가 아니라, 이미 저장한 링크를 건너뛰는 정상 동작입니다. 캡처에 그 로그가 남아 있습니다. 실습에서 가장 위험한 것은 오류보다 <em>정상인데 실패로 오해되는 화면</em>입니다. 그래서 함수는 "0건 추가했습니다"처럼 결과를 말로 돌려줍니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">03</span> "Google에서 확인하지 않은 앱"</h3>
+          <p>학생이 처음 실행하면 빨간 경고 화면이 나옵니다. 개발자(학생 계정)의 앱이 아직 인증 전이라는 안내이고, <strong>고급 설정</strong>을 열어 계속해야 진행됩니다. 캡처 목록에 이 화면이 여러 장 있습니다(피드 가져오기, 슬라이드 만들기). 말로 설명하면 3분 걸리고, 사진을 보여 주면 20초 걸립니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">04</span> 트리거와 시간대</h3>
+          <p>7-1의 주간 리포트, 7-2의 매일 8시 메일, 9-1의 밤 9시 알림은 모두 트리거입니다. 트리거 함수는 <strong>만들기 전에 같은 이름의 기존 트리거를 지웁니다.</strong> 학생이 버튼을 두 번 눌러 메일이 두 통씩 오는 일을 코드로 막았습니다. 그리고 프로젝트 설정의 시간대 캡처(한국 표준시 – 서울)를 남겨, 트리거 시각이 스크립트 시간대 기준이라는 점을 학생이 직접 확인하게 했습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">05</span> 일부러 넣은 오류 문구</h3>
+          <p>메뉴 요약은 한 열에서 5칸까지만 받습니다. 넘으면 "5칸 이하로 고르세요", 여러 열을 고르면 "한 열만 고르세요"라고 멈춥니다. 퀴즈는 F열이 1~4가 아니면 "F열은 1~4 숫자만"이라고 알려 줍니다. 슬라이드는 20장을 넘으면 "20장 이하로 줄이세요"입니다. 학생이 실수할 수 있는 자리를 미리 정해 두고, 그 자리에서 <em>무엇을 고쳐야 하는지 사람 말로</em> 알려 주는 것이 교실용 코드의 조건입니다.</p>
+        </div>
+
+        <h2><span class="idx">9</span>Gemini가 Apps Script에 들어왔지만, 교실에는 아직</h2>
+        <p>이 글을 쓰는 시점에 맞물린 변화가 하나 있습니다. Google은 <strong>2026년 11월 16일</strong> Apps Script 편집기의 Gemini 사이드 패널이 정식 출시(GA)되었다고 공지했습니다. 자연어로 자동화를 설명하면 코드를 만들고, 제안을 블록 단위로 수락·거절하고, 실행 로그의 오류에서 한 번에 고칠 제안을 받는 기능입니다. 순차 배포는 11월 12일부터 최대 15일이라고 안내됐습니다.</p>
+        <p>좋은 변화입니다. 다만 공지와 개발자 문서에 적힌 조건을 그대로 읽으면, 교실 사정은 이렇습니다.</p>
+        <ul>
+          <li><strong>라이선스가 필요합니다.</strong> Workspace Business Standard·Plus, Enterprise Standard·Plus, AI Expanded Access, 교육용은 Google AI Pro for Education, 개인은 Google AI Pro·Ultra입니다. <em>무료 개인 계정은 목록에 없습니다.</em></li>
+          <li><strong>관리자가 켜야 합니다.</strong> 도메인 관리자가 Admin 콘솔에서 Gemini 기능을 허용해야 패널이 뜹니다.</li>
+          <li><strong>편집기 언어 제약이 있습니다.</strong> 문서에 따르면 패널은 편집기 언어가 영어이거나 기본값일 때만 나타납니다.</li>
+        </ul>
+        <p>그래서 이 저장소의 경로는 당분간 그대로 유효합니다. 그리고 패널이 모든 학생에게 와도 바뀌지 않는 것이 세 가지 있습니다. <strong>이름 충돌</strong>은 AI가 코드를 잘 써도 그대로 생기고, <strong>권한 동의</strong>는 학생이 직접 눌러야 하며, <strong>트리거 시간대</strong>는 학생 계정 설정을 따라갑니다. 생성이 쉬워지는 것과, 남의 계정에서 처음 실행되는 것은 다른 문제입니다.</p>
+        <blockquote>
+          AI가 코드를 대신 써 주는 시대에도, 수업은 학생 계정에서 처음 실행되는 순간에 막힌다. 그 순간을 줄이는 일이 교강사의 몫으로 남는다.
+        </blockquote>
+
+        <h2><span class="idx">10</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>학생이 API 키를 발급받지 않아도 AI 요약 실습이 되나요?</h3>
+          <p>됩니다. 수업용 Worker가 대신 호출하고, 학생 스크립트는 수업 코드만 헤더에 붙입니다. 결제 정보도 카드도 학생 계정에 남지 않습니다. 같은 글은 6시간 동안 캐시된 답을 쓰므로 반복 실행해도 호출이 늘지 않고, 본문은 서버에서 1,500자로 잘립니다. 키를 직접 다루는 <code>AI_SUMMARY</code>와 나란히 두어 두 방식의 차이를 코드로 비교하게 했습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>왜 코드를 한 파일에 넣지 않고 28개로 나눴나요?</h3>
+          <p>나누면 전역 이름이 겹치기 때문입니다. 그래서 나눈 뒤 이름 충돌표를 함께 만들었습니다. 세 프로젝트 97개 이름(51·23·23)을 표로 적고 중복 0을 확인했으며, 도우미는 끝에 밑줄을 붙여 함수 목록에서 숨겼습니다. <code>doGet</code>·<code>SHEET_NAME</code>·<code>onOpen</code>이 겹치는 조합은 같은 프로젝트에 붙이지 말라고 표에 적어 두었습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>Gemini가 Apps Script 안에 들어왔는데 왜 아직 복사·붙여넣기인가요?</h3>
+          <p>11월 16일 GA는 맞지만, 쓰려면 유료 라이선스와 관리자 허용이 필요하고 편집기 언어 제약도 있습니다. 개인 무료 계정으로 수업을 듣는 학생에게는 아직 없는 기능입니다. 게다가 생성이 쉬워져도 이름 충돌·권한 동의·시간대는 학생 계정에서 그대로 생깁니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>강의 자료를 왜 웹사이트와 저장소로 공개했나요?</h3>
+          <p>막히는 지점은 코드 내용이 아니라 순서와 이름이기 때문입니다. 어떤 파일을 먼저 붙이는지, 같은 이름을 두 번 선언하면 어떻게 되는지, 동의 창에서 무엇을 누르는지를 캡처로 남겨야 다음 학기에도 같은 자리에서 멈추지 않습니다. 매니페스트 하나를 고치면 페이지와 코드 사본이 함께 다시 만들어집니다.</p>
+        </div>
+
+        <h2><span class="idx">11</span>에필로그 — 좋은 수업 자료는 조용히 작동한다</h2>
+        <p>이 저장소는 자랑할 만한 규모가 아닙니다. 코드 2,000줄이 안 되고, 만드는 데 걸린 시간은 이틀입니다. 대신 172장의 캡처가 있습니다. 다음 학기 수업을 준비할 때, 나는 코드를 다시 읽지 않고 캡처를 봅니다. 학생이 어디서 멈췄는지가 그 안에 있기 때문입니다.</p>
+        <p>수업 자료를 소프트웨어처럼 다루면 좋은 점은 따로 있습니다. 매니페스트를 고치고 배포하면 설명과 코드가 같은 커밋에서 바뀝니다. 지난 학기의 실수를 지우지 않고 커밋으로 남길 수 있습니다. 그리고 무엇보다, <strong>강의 자료가 공개 저장소에 있으면 다른 학교의 교강사도 그대로 쓸 수 있습니다.</strong> 이 사이트를 만든 이유의 절반은 우리 반이고, 나머지 절반은 옆 학교의 같은 강의입니다.</p>
+        <blockquote>
+          AI 교양의 첫 관문은 개념이 아니라 실행이다. 학생 계정에서 처음 돌아가는 순간을 지나야, 그다음 질문이 시작된다.
+        </blockquote>
+        <p>실습 사이트는 <a href="https://skyman200.github.io/sam/">skyman200.github.io/sam</a>, 코드는 <a href="https://github.com/skyman200/sam">github.com/skyman200/sam</a>에 있습니다. 모든 예시는 가명과 더미 데이터이고, API 키와 개인정보는 코드에 쓰지 않았습니다.</p>
+      </article>
+
+      <a class="next-ep" href="../dit-ai/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[10편] 보고서에 AI가 쓴 숫자를 서버가 지운다 — 동의과학대 AID 성과관리 시스템 · 93커밋·43개 마이그레이션·35개 테이블</span>
+        <span class="d">확정값만 남기는 append-only 실적 원장, 주입값 밖의 숫자를 [수치검토]로 바꾸는 P5 게이트, 3초마다 밖으로만 나가는 iMac 브리지 — 그리고 17건의 보안 검토와 114회 연속 실패한 백업</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• EBS 전문대연합 교양 「생활 속의 AI 융합지식」 7·9주차 강의 및 실습 자료 저자</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#GoogleAppsScript</span><span>#대학AI교육</span>
+        <span>#AI교양</span><span>#CloudflareWorkers</span><span>#부산AI전문가</span><span>#동의과학대학교</span>
+        <span>#김강훈교수</span><span>#무과금실습</span>
+      </div>
+    </main>
+  </body>
+</html>
