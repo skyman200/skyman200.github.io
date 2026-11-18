@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 12편] 구글폼 대신 직접 만든 워크숍 만족도 조사 — 5시간·16커밋·2,916줄 | 김강훈 교수</title>
+    <meta name="description" content="만족도 조사는 폼으로 받고 엑셀로 센다. 그 기본값을 버리고 설문·실시간 대시보드·PDF·HWPX 보고서·AI 종합분석을 한 페이지에 담았다. 5시간·16커밋·2,916줄, 의존성 0의 SVG 차트 8종, RLS와 학과 PIN." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, 만족도 조사, 설문 웹앱, 실시간 대시보드, Supabase, RLS, Row Level Security, Edge Function, GitHub Pages, 정적 호스팅, 대학 AI 교육, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교, 교강사 워크숍, 리커트, NPS, HWPX 보고서" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/workshop-survey/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/workshop-survey/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 12편] 구글폼 대신 직접 만든 워크숍 만족도 조사 — 5시간·16커밋·2,916줄" />
+    <meta property="og:description" content="설문 화면·실시간 분석 대시보드·PDF/HWPX 보고서·AI 종합분석을 한 페이지에. 프레임워크 0, 서버는 Supabase 무료 티어 하나 — 저장소에서 직접 센 수치로 쓴 구축기." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-18" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 12편] 구글폼 대신 직접 만든 워크숍 만족도 조사" />
+    <meta name="twitter:description" content="5시간·16커밋·2,916줄, 의존성 0의 SVG 차트 8종. 설문에서 AI 종합분석까지 한 페이지에 담은 기록." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/workshop-survey/#article",
+          "headline": "[바이브코딩 12편] 구글폼 대신 직접 만든 워크숍 만족도 조사 — 5시간·16커밋·2,916줄",
+          "alternativeHeadline": "교강사 워크숍 만족도 조사·실시간 분석 대시보드를 정적 호스팅과 Supabase 무료 티어로 구축한 기록",
+          "description": "부산 동의과학대학교 김강훈 교수가 교강사 워크숍 만족도 조사를 구글폼 대신 직접 만든 과정(skyman200/workshop-survey)을 저장소에서 직접 센 수치로 정리했다. 2026-08-05 13:38~18:29 4시간 51분, 커밋 16개, 2,916줄(JS 2,243·CSS 456·HTML 63·SQL 57·TS 97). 프레임워크 없는 순수 SVG 차트 8종, 10문항 4영역 5점 척도의 통계 엔진(문항·영역·직급·31개 학과·재참여 NPS), jsonb 응답 테이블 하나와 RLS 정책 2개, bcrypt 학과 PIN RPC, 서버 시크릿으로만 키를 쓰는 Supabase Edge Function 97줄, PDF·HWPX 보고서 내보내기까지 — 실제로 터진 7건과 함께 기록했다.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-18",
+          "dateModified": "2026-11-18",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/workshop-survey/"
+          },
+          "keywords": "바이브코딩, 설문 웹앱, 만족도 조사, 실시간 대시보드, Supabase, RLS, Edge Function, GitHub Pages, 정적 호스팅, 리커트, NPS, 부산 AI 전문가, 김강훈 교수, 동의과학대학교",
+          "about": [
+            { "@type": "Thing", "name": "정적 호스팅 위의 설문·분석 웹앱" },
+            { "@type": "Thing", "name": "RLS와 학과별 PIN으로 나눈 응답 접근 권한" },
+            { "@type": "Thing", "name": "서버에서만 키를 쓰는 AI 종합분석" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/workshop-survey/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "12편 — 워크숍 만족도 조사·실시간 대시보드",
+              "item": "https://skyman200.github.io/vibe-coding/workshop-survey/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/workshop-survey/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "구글폼으로 받으면 되는데 왜 직접 만들었나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "구글폼은 응답을 모으는 데는 충분하지만, 문항별 평균·영역별 비교·직급별 차이·학과별 순위를 보려면 결국 시트에서 손으로 세야 합니다. 워크숍이 끝난 당일 교강사에게 결과를 보여주려면 집계가 화면에서 즉시 끝나야 하고, 학과별로는 자기 학과 결과만 보여야 하고, 결과는 학교 문서 형식(PDF·HWPX)으로 나와야 합니다. 이 네 가지가 폼 도구의 기본 기능 밖에 있어서 직접 만들었습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "응답 데이터는 안전한가요? 익명 키가 코드에 그대로 있는데요.",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "config.js에 있는 anon 키는 설계상 공개되는 키이고, 실제 권한은 데이터베이스의 RLS(Row Level Security) 정책이 정합니다. 스키마는 익명 사용자에게 INSERT와 SELECT만 허용하고 UPDATE·DELETE는 막습니다. 이후 학과별 관리자 PIN을 도입하면서 anon의 직접 조회를 차단하고, bcrypt로 해시한 PIN을 검증하는 dept_login RPC를 통해서만 해당 학과 응답이 반환되게 바꿨습니다. PIN 시드와 관리자 PIN 파일은 저장소에 커밋하지 않도록 .gitignore로 막아 두었습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "응답이 수천 건으로 늘어도 이 구조가 버티나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "지금 구조는 브라우저가 응답 원자료를 받아 통계를 계산합니다. 교내 워크숍 규모(수십~수백 건)에서는 이 방식이 가장 단순하고 무료 티어의 함수 호출도 아낍니다. 다만 응답이 수천 건을 넘으면 원자료 전송과 클라이언트 계산이 병목이 되므로, 그때는 Postgres 집계 뷰나 RPC로 계산을 서버로 옮겨야 합니다. 글에 적힌 수치는 모두 그 이전 단계의 설계입니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "이 코드를 다른 학교나 행사에서도 쓸 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "쓸 수 있습니다. 저장소가 공개되어 있고 Supabase 프로젝트를 하나 만들어 스키마를 실행한 뒤 config.js의 URL과 anon 키만 채우면 같은 구성이 됩니다. 값이 비어 있으면 클라우드 없이 브라우저 저장소만 쓰는 로컬(키오스크) 모드로 동작합니다. 문항은 표준 10문항 외에 학과별로 제목·안내문·문항 사용 여부와 순서를 바꿀 수 있고, 커스텀 문항도 추가할 수 있습니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>12편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 12 · Survey &amp; Dashboard</p>
+        <h1>[바이브코딩 12편] 구글폼 대신 직접 만든 워크숍 만족도 조사 — 5시간·16커밋·2,916줄</h1>
+        <p class="subhead">만족도 조사는 폼으로 받고 엑셀로 세는 것이 기본값이다. 그 기본값을 버리고 설문 화면과 실시간 분석 대시보드, PDF·HWPX 보고서, AI 종합분석까지 한 페이지에 담았다. 프레임워크는 없고, 서버는 Supabase 무료 티어 하나다. 2026년 8월 5일 오후 다섯 시간 동안 올린 16개 커밋의 기록.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 18일</div>
+          <div><strong>읽는 시간</strong> 약 13분</div>
+        </div>
+
+        <p class="lede">이번 편은 <b>행사 하나를 위해 만든 웹앱</b>의 기록입니다. 대상은 동의과학대학교 교강사 워크숍 만족도 조사이고, 저장소는 공개된 <code>skyman200/workshop-survey</code>입니다. 첫 커밋은 2026년 8월 5일 13시 38분, 마지막 커밋은 같은 날 18시 29분입니다. <b>4시간 51분, 커밋 16개</b>. 아래 수치는 그 저장소의 코드 줄 수(<code>wc -l</code>), 스키마, 커밋 로그에서 직접 센 것만 적었습니다. 저장소에 없는 응답자 규모나 운영 성과는 쓰지 않았습니다.</p>
+
+        <h2><span class="idx">1</span>워크숍은 끝나고, 분석은 다음 주에 온다</h2>
+        <p>만족도 조사의 병목은 응답을 받는 데 있지 않습니다. 응답을 <em>해석하는 데</em> 있습니다. 폼 링크를 뿌리면 응답은 금방 쌓이지만, 그다음에 남는 일은 이렇습니다. 문항 10개를 문항별로 평균 내고, 영역 4개로 묶어 비교하고, 전임·겸임·강사 직급별로 갈라 보고, 31개 학과를 순위로 세우고, 자유의견 수십 건을 읽어 키워드로 묶습니다. 이걸 시트에서 손으로 하면 워크숍이 끝난 다음 주에야 한 장짜리 표가 나옵니다.</p>
+        <p>그런데 워크숍 주최자가 결과를 가장 필요로 하는 시점은 <strong>행사가 끝난 그날</strong>입니다. 다음 학기 프로그램을 정하는 회의가 바로 다음 주에 잡혀 있기 때문입니다. 그래서 이번에는 조건을 먼저 정했습니다.</p>
+        <ul>
+          <li><strong>응답자는 로그인 없이 2분.</strong> 이름을 받지 않고, 소속 학과와 직급만 고른다. 앱 설치도, 회원가입도 없다.</li>
+          <li><strong>결과는 같은 날 보여준다.</strong> 응답이 들어오는 즉시 대시보드가 다시 그려진다. 다음 주에 집계하는 일이 없다.</li>
+          <li><strong>학과별로는 자기 학과만 본다.</strong> 31개 학과 결과를 아무나 열람할 수 있으면 안 된다. 관리자 PIN으로 나눈다.</li>
+          <li><strong>결과는 학교 문서로 나온다.</strong> 화면 캡처가 아니라 PDF와 한글(HWPX) 파일. 교무·행정으로 넘어가는 문서이기 때문이다.</li>
+        </ul>
+        <p>이 네 줄이 이 글의 나머지 전부입니다. 어떤 기능을 넣었는지가 아니라, 이 조건을 지키려고 만든 장치들 — 통계 엔진, RLS 정책, PIN RPC, 서버 프록시 — 의 이야기입니다.</p>
+
+        <h2><span class="idx">2</span>규모는 이렇게 나왔다</h2>
+        <p>먼저 저장소에서 센 값부터 둡니다. 커밋은 <code>git log</code>, 줄 수는 <code>wc -l</code>, 파일 수는 <code>git ls-files</code> 기준입니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>항목</th><th>실측값</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>기간</td><td>2026-08-05 13:38 첫 커밋 ~ 18:29 마지막 커밋 · <strong>4시간 51분</strong> · 커밋 <strong>16개</strong></td></tr>
+            <tr><td>코드</td><td><strong>2,916줄</strong> — JS 2,243(모듈 6개 2,221 + <code>config.js</code> 22) · CSS 456 · HTML 63 · SQL 57 · TS 97</td></tr>
+            <tr><td>파일</td><td>추적 파일 14개 — js 7 · css 1 · html 1 · sql 1 · ts 1 · png 1 · <code>.gitignore</code>·<code>.nojekyll</code></td></tr>
+            <tr><td>화면</td><td>설문 응답 · 분석 대시보드 두 탭 + 데이터 관리 모달 + 학과별 설문 편집기</td></tr>
+            <tr><td>차트</td><td>순수 SVG <strong>8종</strong> 320줄 — 게이지·수평막대·수직막대·레이더·리커트100%누적·도넛·그룹막대·추이선</td></tr>
+            <tr><td>문항</td><td>표준 10문항 · 4영역(운영·진행 / 교육내용 / 교육환경 / 종합만족) · 5점 척도 · 직급 3구분 · 학과 31개(6계열)</td></tr>
+            <tr><td>백엔드</td><td>Supabase 무료 — 테이블 1개(<code>responses</code>, 컬럼 8개), RLS 정책 2개, Edge Function 1개(97줄)</td></tr>
+            <tr><td>보고서</td><td>PDF(html2canvas 1.4.1 + jsPDF 2.5.2, CDN 지연 로드) · HWPX(외부 kordoc 엔드포인트) · Markdown 폴백</td></tr>
+            <tr><td>배포</td><td>GitHub Pages 정적 · <code>https://skyman200.github.io/workshop-survey/</code> HTTP 200</td></tr>
+            <tr><td>런타임 의존성</td><td>프레임워크 0 · 번들러 0 · 차트 라이브러리 0 (PDF 라이브러리만 버튼을 누를 때 로드)</td></tr>
+          </tbody>
+        </table>
+
+        <p>앞선 편들과 숫자의 성격이 다릅니다. 9편은 25시간·37커밋, 10편은 12일·93커밋, 11편은 이틀·7커밋이었습니다. 이번 편은 <strong>다섯 시간</strong>입니다. 만든 사람이 행사 주최자였기 때문에 요구사항을 물어볼 시간이 필요 없었고, 화면이 두 개뿐이라 구조를 고민할 여지가 적었습니다. 대신 그 다섯 시간의 절반은 <em>이미 만든 것을 지우는 데</em> 쓰였습니다(10절).</p>
+
+        <h2><span class="idx">3</span>의존성 0 — 차트 8종을 직접 그린 이유</h2>
+        <p>이 앱에는 차트 라이브러리가 없습니다. <code>js/charts.js</code> 320줄이 SVG를 직접 만듭니다. 게이지, 수평·수직 막대, 레이더, 리커트 100% 누적, 도넛, 그룹 막대, 추이선 — 여덟 종입니다. 각 함수는 컨테이너와 옵션을 받아 <code>document.createElementNS</code>로 도형을 그리고, 좌표는 극좌표 변환과 호 경로 계산 몇 줄로 끝냅니다.</p>
+        <p>이유는 취향이 아니라 배포 환경입니다. 이 앱은 교내망과 모바일 브라우저에서 열리고, 링크는 메신저로 공유됩니다. 차트 라이브러리를 CDN에서 불러오는 구조라면 <em>CDN 하나가 막히는 순간 화면 전체가 빈 카드</em>가 됩니다. 실제로 이 저장소는 나중에 같은 문제를 한 번 겪습니다 — 학교망이 Vercel을 막아 HWPX 변환이 실패한 일입니다(10절). 그때 배운 것을 차트에 미리 적용해 둔 셈입니다.</p>
+
+        <pre><code>// js/dashboard.js — 종합 게이지 한 줄
+Charts.gauge(summaryCard.querySelector("#heroGauge"),
+  { value: R1(s.overallScore100), max: 100, label: "종합 만족도", unit: "점" });</code></pre>
+
+        <p>직접 그리면 얻는 것이 하나 더 있습니다. <strong>색을 데이터에 맞출 수 있습니다.</strong> 이 앱의 5점 척도는 브릭(<code>#a8473a</code>) · 오커(<code>#cd9350</code>) · 스톤(<code>#bdb7a8</code>) · 세이지(<code>#7a9f88</code>) · 파인(<code>#3c6350</code>) 다섯 색으로 고정되어 있고, 평균 점수에 따라 색이 달라지는 규칙(<code>scoreColor</code>)도 코드 안에 있습니다. 라이브러리의 기본 팔레트를 쓰면 이 규칙을 매번 옵션으로 덮어써야 합니다.</p>
+
+        <h2><span class="idx">4</span>통계는 서버가 아니라 화면에서 계산한다</h2>
+        <p><code>js/data.js</code> 507줄에 문항 정의, 저장소, 통계 엔진, 데모 데이터가 모두 들어 있습니다. 중심은 <code>compute()</code> 한 함수입니다. 응답 배열과 문항 배열을 받아 다음을 한 번에 계산합니다.</p>
+        <ul>
+          <li><strong>문항별</strong> — 평균, 표준편차, 5단 분포, 긍정응답률(top-box: 4~5점), 부정응답률(bottom-box: 1~2점), 100점 환산</li>
+          <li><strong>영역별</strong> — 4개 영역의 평균과 100점 환산</li>
+          <li><strong>직급별</strong> — 전임·겸임·강사 각각의 평균과 응답 수</li>
+          <li><strong>학과별</strong> — 31개 학과 평균을 내림차순 정렬</li>
+          <li><strong>전체 분포</strong> — 다섯 선택지에 몇 명이 답했는지</li>
+          <li><strong>재참여 의향</strong> — 10번 문항을 NPS처럼 계산(추천자 − 비추천자)</li>
+          <li><strong>강점·개선점</strong> — 문항 평균 상위 3개와 하위 3개</li>
+          <li><strong>자유의견</strong> — 최신순 정렬 + 불용어를 뺀 키워드 빈도</li>
+        </ul>
+        <p>이 계산을 브라우저에서 하는 이유는 세 가지입니다. 첫째, 응답이 수십 건 규모에서 서버 집계 함수를 따로 두는 것은 배보다 배꼽이 큽니다. 둘째, 필터를 바꿀 때마다 데이터베이스를 다시 부르지 않으므로 무료 티어의 호출과 대역폭이 거의 들지 않습니다. 셋째, 계산식이 코드에 그대로 보이므로 <em>"이 100점은 어떻게 나온 숫자인가"</em>를 나중에 확인할 수 있습니다. 100점 환산은 5점 평균을 20배 한 값이고, 등급은 90·80·70·60에서 잘립니다. 대시보드 맨 위의 KPI 여섯 칸도 같은 값에서 나옵니다 — 총 응답 수, 종합 만족도(100점), 평균 점수, 긍정 응답률, 재참여 의향, 자유의견 건수.</p>
+        <div class="note">
+          <p><strong>한계도 적어 둡니다.</strong> 브라우저가 원자료를 받아 계산하는 구조는 응답이 수천 건을 넘으면 병목이 됩니다. 그 규모에서는 Postgres 집계 뷰나 RPC로 계산을 서버로 옮겨야 합니다. 지금 구조는 교내 워크숍 규모를 전제로 한 선택입니다.</p>
+        </div>
+
+        <h2><span class="idx">5</span>백엔드는 표 하나, 정책 두 줄</h2>
+        <p>스키마 파일은 57줄입니다. 응답 테이블 하나에 컬럼 8개이고, 문항 응답은 <code>answers</code> 한 칸에 JSON으로 들어갑니다.</p>
+
+        <pre><code>create table if not exists public.responses (
+  id          uuid        primary key default gen_random_uuid(),
+  created_at  timestamptz not null    default now(),
+  participant text        default '',
+  department  text        default '미기재',
+  position    text        default '전임',
+  session     text        default '',
+  answers     jsonb       not null,          -- {"1":4,"2":5,...,"10":4}
+  feedback    text        default ''
+);</code></pre>
+
+        <p>문항을 컬럼으로 펼치지 않은 이유는 기능 때문입니다. 이 앱은 학과마다 설문을 조금씩 바꿀 수 있습니다. 제목과 안내문을 고치고, 표준 10문항 중 일부를 빼거나 순서를 바꾸고, 그 학과만의 문항을 추가할 수 있습니다. 문항이 학과별로 달라지면 컬럼 구조로는 감당이 안 됩니다. JSON 한 칸이면 문항이 몇 개든 같은 표에 들어갑니다.</p>
+        <p>권한은 RLS 두 줄로 정합니다. 익명 사용자에게 <strong>INSERT와 SELECT만</strong> 허용하고 UPDATE·DELETE는 막습니다. 응답을 넣고 읽는 것이 이 앱의 전부이므로, 고치고 지우는 권한은 애초에 주지 않았습니다.</p>
+        <p>그리고 클라우드가 없어도 동작합니다. <code>config.js</code>의 주소와 키가 비어 있으면 앱은 브라우저 저장소만 쓰는 <strong>로컬(키오스크) 모드</strong>로 떨어집니다. 행사장에 노트북 한 대를 두고 그 자리에서 응답을 받는 방식에는 이쪽이 오히려 맞습니다. 화면 오른쪽 위의 작은 표식이 지금 어느 모드인지 알려 줍니다 — '로컬' 또는 '클라우드'.</p>
+
+        <h2><span class="idx">6</span>PIN은 응답 테이블에 두지 않는다</h2>
+        <p>처음 스키마는 익명에게 SELECT를 열어 두었습니다. 대시보드를 보려면 응답을 읽어야 했기 때문입니다. 그런데 그 상태에서는 <em>링크를 아는 사람이면 누구나 전체 응답을 읽을 수 있습니다.</em> 학과별로 결과를 나누려던 조건과 정면으로 부딪힙니다.</p>
+        <p>그래서 같은 날 오후에 접근 구조를 바꿨습니다. 익명의 <code>responses</code> 직접 조회를 막고, 학과와 PIN을 받는 <code>dept_login</code> RPC 하나만 남겼습니다. PIN은 <code>dept_pins</code> 테이블에 <strong>bcrypt 해시</strong>로 저장되고, 그 테이블에는 익명 정책이 아예 없습니다. RPC는 <code>security definer</code>로 PIN을 검증한 뒤, 맞을 때만 해당 학과의 응답을 돌려줍니다. 대시보드 앞에는 PIN 입력 화면이 서고, 전체 통합 분석은 마스터 PIN이 있어야 열립니다.</p>
+        <p>시드(실제 PIN 값)는 저장소에 넣지 않았습니다. 스키마 주석에 그렇게 적어 두고, 관리자용 PIN 파일은 <code>.gitignore</code>에 걸었습니다.</p>
+
+        <pre><code># 관리자 PIN 등 비밀 — 공개 저장소에 절대 커밋 금지
+*관리자PIN*
+*마스터PIN*
+*PIN*.xlsx
+*PIN*.csv
+*.wspw</code></pre>
+
+        <p>저장소의 마지막 커밋이 그 <code>.gitignore</code>였습니다. 관리자 PIN을 엑셀·CSV로 관리하던 시점에, 그런 파일이 저장소에 섞여 들어가지 않도록 이름 패턴으로 막은 것입니다. <strong>비밀은 코드가 아니라 파일 이름에서 새어 나옵니다.</strong></p>
+        <div class="note">
+          <p><strong>정직하게 적어 둘 것.</strong> PIN을 여러 번 넣어 보는 무차별 대입을 막는 장치는 코드에 없습니다. 브라우저가 PIN 문자열을 들고 RPC를 호출하므로, PIN은 TLS 구간을 지나 서버까지 갑니다. 교내 소규모 행사에서 학과 결과를 서로 가리는 수준의 장치이고, 외부에 공개되는 서비스의 인증으로는 부족합니다. 그 용도라면 Supabase Auth와 사용자별 정책으로 가야 합니다.</p>
+        </div>
+
+        <h2><span class="idx">7</span>AI는 브라우저에서 부르지 않는다</h2>
+        <p>대시보드에는 'AI 종합분석' 버튼이 있습니다. 누르면 통계가 문장이 되어 돌아옵니다. 이 호출은 브라우저가 AI 제공자에게 직접 가지 않습니다. Supabase Edge Function 한 개(<code>ai-analyze</code>, 97줄)를 거칩니다.</p>
+        <p>이유는 단순합니다. 브라우저 번들에 API 키를 넣으면 그 키는 <em>공개된 것</em>입니다. 이 사이트는 저장소도 공개하고 anon 키도 공개하지만, anon 키는 RLS가 권한을 제한하는 공개용 키입니다. AI 게이트웨이 키는 그런 성격이 아니라서 서버 시크릿(<code>Deno.env</code>)에만 둡니다. 함수는 90초에 타임아웃을 걸고, 응답은 1,600 토큰으로 자릅니다.</p>
+        <p>프롬프트도 서버가 고정합니다. 화면에서 문장을 바꿀 수 없습니다. 규칙은 두 줄로 요약됩니다.</p>
+
+        <pre><code>위 통계만 근거로 대학 워크숍 만족도 분석 보고를 한국어로 작성하라.
+## 총평 / ## 주요 강점 / ## 개선 우선순위 / ## 집단별 인사이트 / ## 실행 제언
+규칙: 제공된 수치만 사용하고 새로운 수치를 지어내지 말 것.
+      과장·상투어 금지. 간결한 개조식.</code></pre>
+
+        <p>프롬프트에 실어 보내는 것도 원자료가 아니라 <strong>집계값</strong>입니다. 응답자 수, 100점 환산, 긍정·부정 비율, 문항별 평균과 긍정률, 영역별 평균, 직급별 평균, 재참여 NPS, 강점·개선점 상위 3개, 그리고 자유의견은 <em>최대 15건만 140자로 잘라</em> 넣습니다. 이름과 소속은 보내지 않습니다. 응답 원문을 통째로 넘기면 개인을 특정할 수 있는 문장이 그대로 외부로 나가기 때문입니다.</p>
+        <p>이 구조의 값은 결과물이 아니라 <em>실패 방식</em>에 있습니다. 키가 없으면 함수는 "서버에 시크릿이 설정되지 않았습니다"라고 500을 돌려주고, 게이트웨이가 실패하면 상태 코드와 본문 앞부분을 잘라 502로 돌려줍니다. 화면에는 그 문장이 그대로 뜹니다. AI가 안 되면 AI 없이 PDF를 만들면 되고, 그 사실을 사용자가 알아야 합니다.</p>
+
+        <h2><span class="idx">8</span>보고서는 화면에서 끝난다</h2>
+        <p>분석이 끝나면 세 가지로 내보냅니다. PDF, HWPX, 그리고 화면 자체입니다.</p>
+        <p><strong>PDF</strong>는 <code>report.js</code> 264줄이 만드는 격식 보고서를 그대로 인쇄합니다. 문항마다 <em>문항 제시 → 응답 분포 → 통계 → 해석</em> 순으로 서술이 붙고, 종합 막대와 표가 따라붙습니다. 해석 문장은 규칙으로 생성됩니다 — 긍정률 85% 이상이면 "응답자 대다수가 긍정적으로 평가했다", 70% 이상이면 "대체로 긍정적이나 일부 개선 여지가 있다", 부정 응답이 8%를 넘으면 그 사실을 덧붙입니다. 라이브러리(html2canvas 1.4.1, jsPDF 2.5.2)는 <strong>버튼을 누를 때</strong> CDN에서 불러옵니다. 대시보드를 보기만 하는 사람에게 400KB를 먼저 내려보내지 않기 위해서입니다.</p>
+        <p><strong>HWPX</strong>가 이 앱의 진짜 목적지입니다. 학교에서 도는 보고는 한글 문서이기 때문입니다. 브라우저가 보고서를 Markdown으로 만들고, 외부 변환 엔드포인트에 POST해 HWPX 파일을 받습니다. 문제는 그 엔드포인트가 학교망에서 막힌다는 것이었습니다. 그래서 순서를 바꿨습니다 — <strong>Cloudflare Worker 프록시를 먼저 시도하고, 안 되면 Vercel로 직행하고, 둘 다 실패하면 Markdown 파일을 내려줍니다.</strong> 세 단계 중 어디서 멈춰도 사용자는 손에 파일 하나를 들고 있습니다.</p>
+        <table>
+          <thead>
+            <tr><th>내보내기</th><th>경로</th><th>실패했을 때</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PDF</td><td>html2canvas + jsPDF (CDN, 클릭 시 로드)</td><td>라이브러리 로드 실패 시 화면 인쇄 안내</td></tr>
+            <tr><td>HWPX</td><td>Cloudflare Worker 프록시 → Vercel <code>/api/hwpx</code></td><td>두 경로 모두 실패 시 <code>.md</code> 다운로드</td></tr>
+            <tr><td>AI 분석</td><td>Edge Function → 게이트웨이 → 모델</td><td>오류 문장을 화면에 그대로 표시</td></tr>
+          </tbody>
+        </table>
+
+        <h2><span class="idx">9</span>AI 슬롭을 걷어낸 커밋 하나</h2>
+        <p>16개 커밋 중 성격이 가장 다른 것은 디자인 전면 개편입니다. 커밋 메시지는 이렇습니다 — <em>"디자인 전면 개편: 에디토리얼 스타일로 AI 슬롭 제거 (세리프 제목·종이 배경·네이비 단색·이모지/그라데이션 제거·저채도 데이터 색)"</em>.</p>
+        <p>바뀐 것은 CSS 변수 몇 줄이지만 효과는 화면 전체입니다. 배경은 종이색(<code>#f4f2ec</code>), 카드는 흰색, 글자는 잉크색(<code>#1b1a17</code>), 액센트는 딥 네이비(<code>#21324b</code>) 하나. 모서리 반경은 3px, 그림자는 없고 헤어라인 보더로 구분합니다. 데이터 색도 채도를 낮춰 다섯 단계로 고정했습니다. 그라데이션과 이모지는 쓰지 않습니다.</p>
+        <p>이유가 있습니다. 만족도 조사 결과는 결국 <strong>교무·행정 문서로 넘어가는 숫자</strong>입니다. 화면이 화려하면 숫자가 가벼워 보이고, "이건 우리가 만든 내부 도구"라는 인상이 붙습니다. 논문·보고서처럼 보이는 화면은 반대 효과를 냅니다. 같은 이유로 링크 미리보기 이미지(OG)도 대시보드형 리포트 디자인으로 다시 만들었습니다 — KPI·게이지·레이더·도넛이 들어간 1,200×630 카드 하나입니다.</p>
+        <blockquote>
+          조사 결과의 신뢰는 숫자의 정확도에서만 오지 않는다. 그 숫자가 놓인 종이의 태도에서도 온다.
+        </blockquote>
+        <p>판단 기준은 3편에서 정리한 <a href="../unslop/">AI 슬롭 9단계 하네스</a>와 같습니다. 보라색 네온, 이모지 남발, 어긋난 마진을 걷어내고 정보 위계만 남기는 일입니다.</p>
+
+        <h2><span class="idx">10</span>실제로 터진 것들</h2>
+        <p>다섯 시간짜리 작업에서도 막히는 자리는 있었습니다. 커밋 메시지에 그대로 남아 있는 것들입니다.</p>
+
+        <div class="item">
+          <h3><span class="sym">01</span> 응답이 0건이면 분석 화면에 들어갈 수 없었다</h3>
+          <p>빈 대시보드는 "응답이 없습니다"만 보여 주고 끝났습니다. 그런데 학과별 설문을 미리 세팅하려면 <em>응답이 0건인 상태에서</em> 편집기에 들어가야 합니다. 결국 빈 화면에 편집기 버튼을 붙였습니다. 기능 하나를 더 만든 것이 아니라, <strong>아무것도 없는 상태를 정상 상태로 취급</strong>한 커밋입니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">02</span> 데모 데이터가 클라우드에서 안 불러와졌다</h3>
+          <p>화면을 보여 주려고 만든 46건짜리 데모 데이터가 클라우드 모드에서 동작하지 않았습니다. 로컬 저장소에만 넣고 있었기 때문입니다. 데모 데이터도 진짜 응답과 같은 경로로 넣도록 고쳤습니다. <em>시연용 경로와 실제 경로가 다르면, 시연에서 통과한 것이 실제에서 터집니다.</em></p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">03</span> PDF가 잘리고, HWPX는 PDF와 레이아웃이 달랐다</h3>
+          <p>페이지 경계에서 표가 잘렸고, HWPX로 변환한 문서는 PDF와 줄이 어긋났습니다. 두 파일이 같은 문서처럼 보여야 하는데, 실제로는 서로 다른 문서였습니다. 잘림을 고치고, HWPX 변환에 넘기는 Markdown을 PDF 레이아웃에 맞춰 다시 썼습니다. <strong>같은 내용을 두 형식으로 낸다면, 형식이 아니라 원본을 하나로</strong> 만들어야 합니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">04</span> 학교망에서 Vercel이 막혔다</h3>
+          <p>HWPX 변환 엔드포인트가 교내망에서 응답하지 않았습니다. 도메인을 바꾸는 대신 경로를 하나 더 얹었습니다 — Cloudflare Worker가 같은 요청을 대신 보내는 프록시입니다. 지금은 프록시를 먼저 시도하고, 실패하면 Vercel로 직행합니다. 사내망·학교망은 인터넷과 다른 나라입니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">05</span> 만든 기능을 지웠다 — 회차</h3>
+          <p>처음에는 회차(1차·2차)를 골라 응답을 쌓고 추이선을 그리는 구조였습니다. 그런데 이 행사는 <em>2026학년도 2학기 단일 행사</em>였습니다. 회차 선택 UI와 대시보드의 회차 필터·추이선을 지웠습니다. 다만 통계 엔진은 회차 데이터를 버리지 않았습니다 — 응답에 회차가 2개 이상 쌓이면 요약 문장이 흐름을 말하도록 남겨 두었습니다. <strong>화면에서 지우는 것과 데이터 구조에서 지우는 것은 다른 일</strong>입니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">06</span> PIN 명단이 커밋될 자리</h3>
+          <p>관리자 PIN을 엑셀·CSV로 다루고 있었습니다. 커밋 한 번이면 31개 학과의 관리자 PIN이 공개 저장소에 올라갈 수 있는 자리였습니다. <code>.gitignore</code>에 파일 이름 패턴을 걸어 막았고, 그 커밋이 이 저장소의 마지막이 되었습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">07</span> 외장 볼륨의 <code>._</code> 파일</h3>
+          <p>작업 폴더를 외장 볼륨으로 옮긴 뒤 macOS의 <code>._*</code> 메타 파일이 저장소에 섞여 들어왔습니다. 무시 규칙 한 줄로 정리했습니다. 사소해 보이지만, 이런 파일이 쌓이면 배포 산출물에 섞여 올라갑니다.</p>
+        </div>
+
+        <h2><span class="idx">11</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>구글폼으로 받으면 되는데 왜 직접 만들었나요?</h3>
+          <p>폼은 응답을 모으는 데는 충분하지만, 문항별 평균·영역 비교·직급별 차이·학과별 순위를 보려면 결국 시트에서 손으로 세야 합니다. 이 앱은 집계가 화면에서 즉시 끝나고, 학과별로는 자기 학과 결과만 보이고, 결과가 PDF·HWPX로 바로 나옵니다. 이 세 가지가 폼 도구의 기본 기능 밖에 있습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>anon 키가 코드에 그대로 있는데 안전한가요?</h3>
+          <p>그 키는 설계상 공개되는 키이고, 권한은 RLS가 정합니다. 익명에게는 INSERT와 SELECT만 허용하고 UPDATE·DELETE는 막았습니다. 이후 익명의 직접 조회를 차단하고, bcrypt PIN을 검증하는 <code>dept_login</code> RPC로만 해당 학과 응답이 나가게 바꿨습니다. PIN 명단과 시드는 저장소에 없습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>응답이 수천 건이 되면 버티나요?</h3>
+          <p>지금은 브라우저가 원자료를 받아 계산합니다. 교내 워크숍 규모에서는 가장 단순하고 무료 티어 호출도 아끼는 방식입니다. 수천 건을 넘으면 원자료 전송과 클라이언트 계산이 병목이 되므로, Postgres 집계 뷰나 RPC로 계산을 서버로 옮겨야 합니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>다른 학교나 행사에서도 쓸 수 있나요?</h3>
+          <p>쓸 수 있습니다. 저장소가 공개되어 있고, Supabase 프로젝트를 하나 만들어 스키마를 실행한 뒤 <code>config.js</code>의 주소와 anon 키만 채우면 같은 구성이 됩니다. 키가 비어 있으면 클라우드 없이 브라우저에만 저장하는 로컬 모드로 동작합니다. 문항은 학과별로 제목·안내문·사용 여부·순서를 바꾸고 커스텀 문항을 더할 수 있습니다.</p>
+        </div>
+
+        <h2><span class="idx">12</span>에필로그 — 다섯 시간이 남긴 것</h2>
+        <p>이 앱은 자랑할 만한 규모가 아닙니다. 코드 2,916줄, 화면 두 개, 다섯 시간입니다. 앞선 편들의 시스템처럼 몇 주를 쓰지도 않았고, 93개 커밋이 쌓이지도 않았습니다. 대신 <strong>행사가 끝난 그날 결과가 나왔습니다.</strong> 다음 학기 프로그램을 정하는 자리에 "지난 워크숍에서 가장 낮은 평가를 받은 항목은 진행 시간과 교육 장소였습니다"라는 문장을 숫자와 함께 들고 갈 수 있었던 것이 이 작업의 전부입니다.</p>
+        <p>그리고 이 구조는 한 번 만들면 다음 행사에도 그대로 씁니다. 문항이 바뀌면 편집기에서 고치고, 학과가 바뀌면 목록에서 고르고, 새 학기에는 회차를 다시 켜면 됩니다. <em>행사마다 폼을 새로 만들고 엑셀을 새로 짜는 일</em>이 사라지는 것이 다섯 시간의 값입니다.</p>
+        <blockquote>
+          좋은 내부 도구는 눈에 띄지 않는다. 행사가 끝난 날, 아무도 집계를 위해 야근하지 않는 것으로 존재를 증명한다.
+        </blockquote>
+        <p>앱은 <a href="https://skyman200.github.io/workshop-survey/">skyman200.github.io/workshop-survey</a>, 코드는 <a href="https://github.com/skyman200/workshop-survey">github.com/skyman200/workshop-survey</a>에 있습니다. 응답 원자료와 관리자 PIN은 저장소에 없고, 데모 데이터 46건만 코드에서 생성됩니다.</p>
+      </article>
+
+      <a class="next-ep" href="../sam/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[11편] 복붙으로 끝내는 대학 AI 실습 — Apps Script 28개 파일 1,973줄</span>
+        <span class="d">설치·결제 없이 학생 계정에서 웹앱·메일·문서·슬라이드·캘린더까지 — 36개 항목 매니페스트와 97개 이름 충돌표, 172장의 실습 캡처, 키를 나눠주지 않는 교실용 요약 API</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 교강사 워크숍·교육 만족도 조사 및 실시간 분석 대시보드 운영</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#만족도조사</span><span>#실시간대시보드</span>
+        <span>#Supabase</span><span>#RLS</span><span>#정적호스팅</span>
+        <span>#부산AI전문가</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+      </div>
+    </main>
+  </body>
+</html>

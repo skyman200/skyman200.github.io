@@ -1,6 +1,6 @@
 # 김강훈 (Kanghoon Kim) — 전체 프로필 · 부산 AI 전문가 · 동의과학대학교 교수
 
-> 이 문서는 https://skyman200.github.io/ 의 전체 텍스트판이다. 인물의 신원·학력·논문·인증·개발 시스템·강연·언론 보도와 함께, 이 사이트가 연재하는 《바이브 코딩 실전기》 1~9편의 요약을 담는다. 요약본은 https://skyman200.github.io/llms.txt 를 참조한다.
+> 이 문서는 https://skyman200.github.io/ 의 전체 텍스트판이다. 인물의 신원·학력·논문·인증·개발 시스템·강연·언론 보도와 함께, 이 사이트가 연재하는 《바이브 코딩 실전기》 1~12편의 요약을 담는다. 요약본은 https://skyman200.github.io/llms.txt 를 참조한다.
 
 ## 동명이인 구분 (Disambiguation)
 
@@ -50,7 +50,7 @@
 - [인스타그램 @pila_strong](https://www.instagram.com/pila_strong/)
 - [GitHub skyman200](https://github.com/skyman200): 교육·임상 시스템 개발 저장소
 
-## 칼럼 《바이브 코딩 실전기》 1~11편 (2026-11)
+## 칼럼 《바이브 코딩 실전기》 1~12편 (2026-11)
 
 코딩을 배운 적 없는 교수가 1년 동안 대학 시스템 22종을 직접 만들고 배포한 과정을, 시스템별로 병목 → 설계 → 실제로 터진 문제 순으로 기록한 연재다. 각 글은 실제 배포된 시스템의 수치와 실패를 근거로 쓴다.
 
@@ -97,6 +97,10 @@ https://skyman200.github.io/vibe-coding/dit-ai/
 ### 11편 — 복붙으로 끝내는 대학 AI 실습, Apps Script 4강 실습 키트 (2026-11-17)
 https://skyman200.github.io/vibe-coding/sam/
 EBS 전문대연합 교양 「생활 속의 AI 융합지식」 7주차·9주차 4강(스크랩 웹앱과 주간 메일, 필기 요약과 PDF 보관, 폰 CBT 퀴즈와 오답노트, 발표 슬라이드와 대본 점검)을 위한 Google Apps Script 실습 사이트(저장소 sam, 공개). 2026-11-11 14:19 생성, 11-12 11:43 마지막 커밋, 커밋 7개, 11-13 23:37 gh-pages 배포, GitHub Pages 200. 코드는 24개 .gs + 4개 .html = 28개 1,973줄(7-1 585·7-2 440·9-1 520·9-2 428), 연습 CSV 8개 36줄, MANIFEST.json 36개 항목(선언 2,022줄), NAMES.md 이름 충돌표 3개 프로젝트 51·23·23 = 97개 이름 중복 0. build_site.py 124줄이 매니페스트로 4강 페이지 2,376줄과 코드 사본을 생성하고 deploy_pages.sh 13줄이 gh-pages로 배포한다. 실습 캡처 172장(site/shots/), 저장소 266파일 81MB. 7-2·9-2의 AI 요약은 수업용 Cloudflare Worker(22줄, Workers AI 무료 사용량, 정적 자산을 같은 Worker가 서빙)가 처리하며, 헤더의 수업 코드 검증(불일치 401)·본문 1,500자 상한·20자 미만 400·한국어 3줄 40자 이내 프롬프트·같은 글 6시간 스크립트 캐시(MD5→base64web-safe 키)로 학생 계정에 API 키와 결제가 남지 않는다. 트리거는 중복 삭제 후 재생성(월요일 8시 주간 보고, 매일 8시 메일, 밤 9시 복습 알림). 외부 흐름: Gemini in Apps Script 사이드 패널 GA(Google Workspace Updates, 2026-11-16)는 Workspace Business/Enterprise·Google AI Pro for Education·Google AI Pro/Ultra 라이선스와 관리자 허용이 필요해 무료 개인 계정 학생에게는 아직 제공되지 않는다.
+
+### 12편 — 구글폼 대신 직접 만든 워크숍 만족도 조사, 5시간·16커밋·2,916줄 (2026-11-18)
+https://skyman200.github.io/vibe-coding/workshop-survey/
+동의과학대학교 교강사 워크숍 만족도 조사를 구글폼 대신 직접 만든 웹앱(저장소 workshop-survey, 공개, 라이브 https://skyman200.github.io/workshop-survey/ 200). 2026-08-05 13:38 첫 커밋~18:29 마지막 커밋, 4시간 51분, 커밋 16개, 추적 파일 14개, 코드 2,916줄(JS 2,243 — 모듈 6개 2,221 + config.js 22, CSS 456, HTML 63, SQL 57, TS 97). 프레임워크·번들러·차트 라이브러리 0. 순수 SVG 차트 8종(gauge·hbars·vbars·radar·likert100·donut·groupedBars·line) 320줄. 표준 10문항 4영역 5점 척도, 직급 3구분(전임·겸임·강사), 학과 31개 6계열. 통계는 브라우저에서 계산(data.js 507줄의 compute): 문항별 평균·표준편차·5단 분포·긍정(top-box)/부정(bottom-box) 비율, 영역별·직급별·학과별 평균, 재참여 의향 NPS, 강점·개선점 상위 3개, 자유의견 키워드. 백엔드는 Supabase 무료 티어로 responses 테이블 1개(컬럼 8개, answers jsonb), RLS 정책 2개(익명 INSERT·SELECT만 허용, UPDATE/DELETE 차단). 학과별 관리자 PIN은 dept_pins에 bcrypt 해시로 저장하고 익명 직접 조회를 막은 dept_login RPC로만 해당 학과 응답을 반환하며, PIN 시드·관리자 PIN 엑셀/CSV는 .gitignore로 커밋 차단. AI 종합분석은 Supabase Edge Function(ai-analyze 97줄)이 게이트웨이를 대신 호출 — 키는 서버 시크릿에만 두고 90초 타임아웃·1,600 토큰, 프롬프트는 '제공된 수치만 사용, 새 수치 창작 금지'와 5개 절(총평·주요 강점·개선 우선순위·집단별 인사이트·실행 제언) 고정, 자유의견은 15건·140자까지만 전송. 보고서는 PDF(html2canvas 1.4.1+jsPDF 2.5.2 CDN 지연 로드)와 HWPX(Cloudflare Worker 프록시→Vercel /api/hwpx, 실패 시 .md 폴백). config.js의 주소·키가 비면 브라우저 저장소만 쓰는 로컬(키오스크) 모드. 실제 수정 기록: 응답 0건에서 학과별 설문 편집기 진입, 데모 데이터의 클라우드 경로, PDF 잘림과 HWPX 레이아웃 불일치, 학교망의 Vercel 차단, 2026-2학기 단일 행사에 맞춘 회차 기능 삭제, PIN 파일 gitignore, 외장 볼륨 ._ 파일.
 
 ## 학술 논문 (국제) — Journal of Physical Therapy Science 7편
 
