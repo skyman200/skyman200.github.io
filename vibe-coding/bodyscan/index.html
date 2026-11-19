@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 13편] 90초 바디 스캔 키오스크 — Rust 엔진과 Go 서버를 20시간·33커밋에 붙였다 | 김강훈 교수</title>
+    <meta name="description" content="정면·옆모습·1분 스쿼트를 90초에 재서 QR로 건네는 키오스크를 직접 만들었다. Rust 추론 엔진(RTMPose 26관절, GPU 상한 3→10)과 Go 서버(SQLite·PDF)를 20시간 32분·33커밋에 붙인 기록 — 첫 요청 0.6초를 지운 워밍업, 카메라 기울기 4.7° 자동 감지, 결과를 담은 190바이트 링크, 지운 기록의 익명 숫자까지." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, Rust, Go, ONNX Runtime, RTMPose, 자세 분석, 키오스크, 바디 스캔, 체형 측정, 1분 스쿼트, SQLite, GPU 추론, CUDA, 카메라 기울기 보정, 개인정보 최소화, 대학 AI, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/bodyscan/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/bodyscan/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 13편] 90초 바디 스캔 키오스크 — Rust 엔진과 Go 서버를 20시간·33커밋에 붙였다" />
+    <meta property="og:description" content="센터 입구에서 90초 동안 정면·옆모습·1분 스쿼트를 재고 결과는 회원 휴대폰으로. Rust 관절 추론 엔진과 Go 서버, SQLite 한 파일 — 저장소에서 직접 센 수치로 쓴 구축기." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-19" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 13편] 90초 바디 스캔 키오스크 — Rust 엔진 + Go 서버, 20시간·33커밋" />
+    <meta name="twitter:description" content="GPU 상한 3→10, 첫 요청 0.6초를 지운 워밍업 24줄, 카메라 기울기 4.7° 자동 감지, 190바이트 결과 링크. 저장소에서 직접 센 수치로 쓴 구축기." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/bodyscan/#article",
+          "headline": "[바이브코딩 13편] 90초 바디 스캔 키오스크 — Rust 엔진과 Go 서버를 20시간·33커밋에 붙였다",
+          "alternativeHeadline": "센터 입구 키오스크 바디 스캔(BARO)을 Rust 추론 엔진과 Go 서버로 구축한 기록",
+          "description": "부산 동의과학대학교 김강훈 교수가 센터 입구 키오스크 바디 스캔 시스템(저장소 bodyscan, 비공개)을 만든 과정을 저장소에서 직접 센 수치로 정리했다. 2026-11-18 19:55 첫 커밋부터 11-19 16:28 마지막 커밋까지 20시간 32분, 커밋 33개, 첫 커밋 대비 203개 파일에 14,026줄 추가. Rust 11파일 3,071줄(ONNX Runtime 위 RTMPose Halpe26 26관절 + RTMDet-nano 사람 검출, 측정 산수, 카드·타임랩스 렌더)과 Go 33파일 8,671줄(시험 1,576줄·시험 함수 17개, SQLite 표 10개, PDF·SSE)로 나눈 두 프로세스 구조. GPU 전환으로 모델 추론 2~11배·동시 측정 상한 3→10, 엔진 시작 시 빈 화면 워밍업으로 첫 요청 0.6초를 수십 ms로, 배경 세로선에서 읽는 카메라 기울기 자동 감지(−6°~+4.7°를 0.3° 안으로), 결과를 190바이트 링크에 담아 서버 없이도 여는 폴백, 프레임을 디스크에 쓰지 않는 개인정보 설계까지 — 실제로 터진 8건과 함께 기록했다.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-19",
+          "dateModified": "2026-11-19",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/bodyscan/"
+          },
+          "keywords": "바이브코딩, Rust, Go, ONNX Runtime, RTMPose, 자세 분석, 키오스크, 바디 스캔, 1분 스쿼트, GPU 추론, CUDA, SQLite, 개인정보 최소화, 부산 AI 전문가, 김강훈 교수, 동의과학대학교",
+          "about": [
+            { "@type": "Thing", "name": "Rust 추론 엔진과 Go 서버로 나눈 키오스크 측정 시스템" },
+            { "@type": "Thing", "name": "결정론적 측정 산수와 측정 오차(MDC)" },
+            { "@type": "Thing", "name": "프레임을 남기지 않는 개인정보 설계" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/bodyscan/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "13편 — 키오스크 바디 스캔(Rust 엔진 + Go 서버)",
+              "item": "https://skyman200.github.io/vibe-coding/bodyscan/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/bodyscan/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "상용 체형 측정 장비를 사면 되는데 왜 직접 만들었나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "상용 장비는 측정값이 장비 안에 갇힙니다. 이 시스템은 측정 기록이 센터의 SQLite 파일에 남고, 회원의 두 번째 측정과 비교해 변화량을 보여 주며, 상담 신청이 관리자 화면과 알림으로 바로 이어집니다. 카메라 영상은 디스크에 쓰지 않고 관절 좌표와 계산값만 저장하며, 각도만 내고 cm 단위 값이나 진단 용어는 쓰지 않습니다. 데이터가 어디로 가는지를 직접 정하는 것이 직접 만든 이유입니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "카메라 두 대와 AI로 잰 각도를 믿을 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "믿는 대신 재현되게 만들었습니다. 정적 자세는 품질 기준을 통과한 프레임이 8개 미만이면 값을 내지 않고, 통과한 프레임 값의 중앙값을 씁니다. 측정 계산은 학습 성분이 없는 순수 산수(Rust metrics 크레이트)라 같은 관절 좌표에는 같은 값이 나옵니다. 같은 사람을 3시간 안에 두 번 측정한 쌍이 20~30개 모이면 측정 오차(MDC95)를 계산해, 그보다 큰 변화만 '측정 오차보다 큰 변화'로 표시합니다. 또래 비교 규준표는 스위스 성인 6,926명 논문 표를 옮겨 넣었고 원 프로토콜이 의자 기반이라 결과 화면에 참고 비교로 밝힙니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "GPU가 없으면 못 쓰나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "CPU로도 동작합니다. GPU 기능 없이 빌드하면 ONNX Runtime 내장 CPU로 돌고, 부하 측정에서 동시 2명까지는 혼자일 때와 같은 속도(스쿼트 초당 11장·정면 6.7장)였으며 4명이면 떨어져 동시 측정 상한을 3으로 두었습니다. GPU 라이브러리가 있으면 상한이 자동으로 10이 되고, 정면 12대·스쿼트 10대까지 목표 속도를 유지했습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "여러 센터에서 같이 쓸 수 있나요? 기록은 섞이지 않나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "한 서버에서 여러 센터를 운영하고, 센터마다 회원·측정 기록·상담 신청·설정·측정 오차표·키오스크 기기·관리자 키가 따로입니다. 다른 센터의 기록은 재측정 코드로도 관리자 화면에서도 보이지 않습니다. 같은 법인(직영점)을 같은 회사로 묶으면 회원이 동의한 경우에만 다른 지점에서 기록을 이어 볼 수 있고, 동의를 빼면 다시 닫힙니다. 법인이 다른 센터는 제3자 제공 동의가 필요하므로 묶지 않는 것이 기본입니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+    </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>13편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 13 · Kiosk Body Scan</p>
+        <h1>[바이브코딩 13편] 90초 바디 스캔 키오스크 — Rust 엔진과 Go 서버를 20시간·33커밋에 붙였다</h1>
+        <p class="subhead">센터 입구에서 정면 서기, 옆으로 서기, 1분 스쿼트를 재고 결과를 QR로 회원 휴대폰에 건넨다. 관절 추론과 렌더는 Rust가, 화면·기록·상담은 Go가 맡는다. 2026년 11월 18일 밤부터 다음 날 오후까지, 20시간 32분 동안 올린 33개 커밋의 기록.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 19일</div>
+          <div><strong>읽는 시간</strong> 약 14분</div>
+        </div>
+
+        <p class="lede">이번 편은 <b>두 언어를 한 시스템에 나눠 쓴 첫 사례</b>입니다. 대상은 센터 입구에 두는 바디 스캔 키오스크이고, 저장소는 <code>skyman200/bodyscan</code>입니다. 다만 이 저장소는 <b>비공개</b>입니다. 측정 데이터 구조와 운영 설정이 함께 들어 있어 공개하지 않았습니다. 아래 수치는 저장소를 직접 클론해 <code>git log</code>와 <code>wc -l</code>로 센 값이고, 코드·키·내부 주소·회원 정보는 옮기지 않았습니다. 공개해도 되는 것 하나 — 키오스크가 실제로 떠 있는 주소는 <code>baro.ditcloud.net/kiosk/</code>이고, 이 글을 쓰는 시점에 HTTP 200으로 응답합니다.</p>
+
+        <h2><span class="idx">1</span>측정은 하는데, 기록이 남지 않는다</h2>
+        <p>센터 입구에서 체형과 자세를 보는 일은 이미 하고 있습니다. 상담사가 눈으로 보고, 줄자로 재고, 종이에 적습니다. 문제는 그다음입니다. 그 숫자는 상담사가 바뀌면 사라지고, 회원이 두 달 뒤에 다시 왔을 때 비교할 기준이 없고, 상담으로 이어지지 않은 측정은 아무 데도 남지 않습니다.</p>
+        <p>그래서 조건을 네 줄로 먼저 정했습니다. 이 네 줄이 이 글의 나머지 전부입니다.</p>
+        <ul>
+          <li><strong>직원 없이 90초.</strong> 회원이 혼자 서고, 화면이 시키는 대로 세 단계를 마치면 끝난다.</li>
+          <li><strong>결과는 회원 손에.</strong> 앱 설치도 회원가입도 없이 QR 한 장으로 휴대폰에서 열린다.</li>
+          <li><strong>기록은 센터에 쌓인다.</strong> 두 번째 측정부터 변화가 보이고, 상담 신청은 그 자리에서 관리자에게 도착한다.</li>
+          <li><strong>영상은 남기지 않는다.</strong> 카메라 프레임은 메모리에서 읽고 버린다. 저장하는 것은 관절 좌표와 계산값이다.</li>
+        </ul>
+        <p>이 조건을 만족하는 물건을 사는 대신 만든 이유는 8절에 적었습니다. 먼저 무엇을 만들었는지부터.</p>
+
+        <h2><span class="idx">2</span>규모는 이렇게 나왔다</h2>
+        <p>커밋은 <code>git log</code>, 줄 수는 <code>wc -l</code>, 파일 수는 <code>git ls-files</code> 기준입니다. 첫 커밋은 2026년 11월 18일 19시 55분, 마지막 커밋은 다음 날 16시 28분입니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>항목</th><th>실측값</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>기간</td><td>2026-11-18 19:55 ~ 11-19 16:28 · <strong>20시간 32분</strong> · 커밋 <strong>33개</strong></td></tr>
+            <tr><td>변경량</td><td>첫 커밋→HEAD <strong>203개 파일</strong>, <strong>14,026줄 추가</strong> · 845줄 삭제</td></tr>
+            <tr><td>Rust</td><td><strong>11파일 3,071줄</strong> — <code>infer</code>(관절·사람 검출) · <code>metrics</code>(측정 산수·규준) · <code>render</code>(카드·타임랩스) · <code>cli</code>(서비스) 4크레이트, <code>#[test]</code> 15개</td></tr>
+            <tr><td>Go</td><td><strong>33파일 8,671줄</strong> — 본체 7,095줄, 시험 1,576줄(11파일·시험 함수 17개)</td></tr>
+            <tr><td>웹</td><td>JS <strong>2,513줄</strong> · CSS 1,657줄 · HTML 385줄 · 프레임워크 0 · 번들러 0</td></tr>
+            <tr><td>저장</td><td>SQLite <strong>표 10개</strong> — <code>people</code>·<code>scans</code>·<code>leads</code>·<code>mdc</code>·<code>settings</code>·<code>centers</code>·<code>center_settings</code>·<code>devices</code>·<code>anon_scans</code>·<code>anon_retest</code></td></tr>
+            <tr><td>의존성</td><td>Go 직접 의존 4개(websocket·fpdf·qrcode·modernc sqlite) · Rust 작업공간 의존 4개(anyhow·serde·image·ort) · 웹 0</td></tr>
+            <tr><td>모델</td><td>RTMPose Halpe26 <strong>26관절</strong> x·l·m 3종 + RTMDet-nano 사람 검출(320×320), Apache-2.0 — 가중치는 저장소에 넣지 않고 경로만 둠</td></tr>
+            <tr><td>배포</td><td>Cloudflare 터널로 공개 주소 연결 · <code>baro.ditcloud.net/kiosk/</code> HTTP 200(2026-11-19 확인)</td></tr>
+            <tr><td>공개 범위</td><td>저장소 <strong>비공개</strong> — 이 글은 구조와 수치만 다룸</td></tr>
+          </tbody>
+        </table>
+
+        <p>앞선 편들과 비교하면 숫자의 성격이 또 다릅니다. 9편은 25시간·37커밋, 10편은 12일·93커밋, 12편은 5시간·16커밋이었습니다. 이번은 <strong>20시간·33커밋</strong>인데, 그 20시간에 두 언어와 두 개의 프로세스, 그리고 카메라라는 통제할 수 없는 입력이 함께 들어 있습니다. 커밋이 몰린 시간대도 특징적입니다 — 18일 밤 6개, 19일 오전 6개, 오후 21개. 대부분의 수정은 <em>실제 카메라 앞에 사람이 서 본 뒤</em> 나왔습니다(11절).</p>
+
+        <h2><span class="idx">3</span>왜 Rust와 Go 두 개인가</h2>
+        <p>한 언어로 다 만들 수 있었습니다. 그런데 이 시스템은 성격이 정반대인 두 덩어리입니다.</p>
+        <ul>
+          <li><strong>엔진(Rust)</strong> — 카메라 프레임을 받아 관절 26개를 뽑고, 각도를 계산하고, 결과 카드와 9:16 타임랩스 영상을 그린다. 이미지 디코딩·타이포그래피·GPU 추론이 한 프로세스에 몰려 있고, 1분 스쿼트 동안 초당 15장을 쉬지 않고 처리한다.</li>
+          <li><strong>서버(Go)</strong> — 동의 화면, 세션, 기기 등록, SQLite, 결과 페이지, PDF, 관리자 화면, 알림, SSE 푸시. 잦은 문자열 처리와 템플릿, 작은 DB 질의가 끝없이 오간다.</li>
+        </ul>
+        <p>두 요구를 한 언어로 만족하려면 둘 중 하나를 포기해야 합니다. Rust로 서버를 쓰면 웹 템플릿과 PDF 라이브러리를 직접 감당해야 하고, Go로 엔진을 쓰면 폰트·이미지·ONNX 바인딩에서 매번 우회로를 찾아야 합니다. 20시간짜리 작업에서 그 우회로는 곧 일정입니다. 그래서 경계를 <strong>프로세스 하나</strong>로 그었습니다.</p>
+        <pre><code>카메라(브라우저) ──WebSocket──▶ Go 서버 :7100 ──HTTP──▶ Rust 엔진 :7101
+                                     │                      │
+                                  SQLite              관절·각도·카드·영상
+                                     │                      │
+                            결과 페이지·PDF·관리자 ◀────────┘</code></pre>
+        <p>엔진은 <code>127.0.0.1</code>에만 열리고 서버만 부릅니다. 서버가 엔진에 보내는 것은 JPEG 한 장과 모드뿐이고, 돌아오는 것은 관절 좌표 JSON 또는 렌더된 PNG·MP4입니다. 이 경계 덕분에 엔진은 <code>bodyscan-engine serve|bench|pose</code>처럼 단독 CLI로도 돌아가고, 모델 파일만 바꿔 교체할 수 있습니다. 실제로 GPU 전환은 엔진 쪽 기능 플래그 하나와 서비스 스크립트 세 줄로 끝났습니다(5절).</p>
+        <p>부수 효과도 있습니다. 이미 저장된 결과 페이지와 PDF는 서버가 DB의 값과 그때 만들어진 카드로 그립니다. 엔진이 멈춰도 <em>지난 기록은 열립니다.</em> 무거운 계산과 기록을 다른 프로세스에 두면 장애의 모양이 달라집니다.</p>
+
+        <h2><span class="idx">4</span>측정은 모델이 아니라 산수다</h2>
+        <p>이 시스템에서 AI가 하는 일은 딱 하나입니다. 프레임에서 <strong>관절 좌표 26개</strong>를 찾는 것. 그 뒤의 모든 숫자는 학습 성분이 없는 순수 산수입니다. Rust <code>metrics</code> 크레이트 첫 줄에 그렇게 적어 두었습니다 — <em>"Everything here is plain arithmetic: no learned components, no randomness."</em></p>
+        <p>이 결정 때문에 지표마다 규칙을 문장으로 설명할 수 있습니다.</p>
+        <table>
+          <thead>
+            <tr><th>지표</th><th>계산</th><th>표시</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>어깨 기울기</td><td>정면에서 양 어깨 관절 중심선 대 수평</td><td>표준 측정</td></tr>
+            <tr><td>귀-어깨 전방 각도</td><td>측면에서 귀-어깨 선 대 수직</td><td>표준 측정 (두개척추각 CVA 아님)</td></tr>
+            <tr><td>골반 높이 차이</td><td>모델의 고관절 중심 추정값</td><td>참고 (ASIS와 다름)</td></tr>
+            <tr><td>1분 스쿼트</td><td>엉덩이-발목 높이 / 선 자세 높이</td><td>횟수 + 또래 백분위</td></tr>
+          </tbody>
+        </table>
+        <p>정적 자세는 프레임별 값을 그대로 쓰지 않습니다. 품질 기준(전신이 보이는지, 정면이나 측면인지)을 통과한 프레임이 <strong>8개 미만이면 값을 내지 않고</strong>, 통과한 프레임 값의 <strong>중앙값</strong>을 씁니다. 한 프레임에서 팔이 몸을 가려 어깨가 튀어도 결과가 흔들리지 않게 하는 장치입니다.</p>
+        <p>1분 스쿼트는 반복 횟수를 세는 일이라 규칙이 더 깁니다. 카메라 쪽 다리만 씁니다(반대쪽은 몸에 가립니다). 엉덩이-발목 높이가 선 자세의 <strong>72% 아래로 2프레임</strong> 내려갔다가 <strong>88% 위로 2프레임</strong> 올라오면 1회이고, 가장 낮은 지점이 68% 이하여야 인정합니다. 최소 간격은 0.6초입니다. 선 자세 높이는 스쿼트 첫 1초와 90번째 백분위로 잡습니다 — 사람이 처음 몇 초에 어정쩡하게 서도 기준이 끌려가지 않게요. 프레임이 1초 넘게 비면 그 구간은 빼고, 남은 시간이 75% 이상일 때만 '참고'로 세며 순위와 또래 비교에서는 제외합니다. 그보다 적으면 <em>확정하지 않습니다.</em></p>
+        <div class="note">
+          <p><strong>내지 않는 값도 정해 두었습니다.</strong> 각도만 쓰고 cm 단위 값은 내지 않습니다. 진단 용어를 쓰지 않습니다. 골반은 숫자 대신 단계로 보여 줍니다. 카메라 한 대로 잰 골반 높이 차이는 ASIS 기준과 다르기 때문입니다. 이 선을 넘으면 물리치료사인 제가 만든 도구가 진단기처럼 읽히기 시작합니다.</p>
+        </div>
+        <p>비어 있는 칸도 일부러 비워 두었습니다. 또래 비교 규준표와 측정 오차입니다. 규준표는 Strassmann 등(Int J Public Health 2013;58(6):949-953)의 1분 앉았다 일어나기 표(스위스 성인 6,926명, 20~79세, 5세 구간)를 그대로 옮겨 넣었습니다. 다만 원 프로토콜은 46cm 의자에서 무릎을 펴고 일어나는 검사라, 의자 없는 키오스크 스쿼트와 동작 기준이 다릅니다. 그래서 결과 화면에 <strong>참고 비교</strong>라고 밝히고, 20세 미만과 80세 이상은 비교하지 않습니다. 한국인 자료나 같은 동작 기준의 자료가 생기면 CSV 한 파일만 바꾸면 됩니다.</p>
+        <p>측정 오차(MDC95)는 숫자를 지어내지 않으려고 비워 두었습니다. 같은 사람을 3시간 안에 두 번 측정한 쌍이 지표마다 <strong>20~30개</strong> 모이면 관리자 화면의 '이 값으로 저장'을 누르고, 그때부터 변화가 MDC95보다 클 때만 '측정 오차보다 큰 변화'로 표시됩니다. 그 전까지 이 시스템은 변화를 주장하지 않습니다.</p>
+
+        <h2><span class="idx">5</span>GPU로 옮긴 날 — 첫 요청 0.6초를 지운 24줄</h2>
+        <p>처음 엔진은 CPU로만 돌았습니다. 그러다 엔진 컴퓨터에 NVIDIA GB10이 있다는 것을 확인하고 CUDA로 옮겼습니다. ONNX Runtime GPU판과 cuDNN은 시스템에 설치하지 않고 <code>engine/ort-gpu</code> 폴더에 라이브러리만 풀어 두고, 엔진이 시작할 때 그 경로에서 읽게 했습니다. 빌드 플래그 하나(<code>--features bodyscan-engine/gpu</code>)를 주면 GPU판, 안 주면 내장 CPU판입니다. GPU가 없는 서버에서도 같은 코드가 그대로 빌드됩니다.</p>
+        <p>효과는 저장소에 적어 둔 대로입니다. 모델 한 번 추론이 CPU 대비 <strong>2~11배</strong> 빨라졌고(자세 x 76ms→7ms, l 45ms→5ms), 키포인트 차이는 1px 안팎이었습니다. 추론이 빨라지니 동시에 받을 수 있는 사람 수도 늘었습니다. 동시 측정 상한이 <strong>3에서 10</strong>이 되었습니다.</p>
+        <table>
+          <thead>
+            <tr><th>엔진</th><th>부하 측정 결과</th><th>상한</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CPU</td><td>동시 2명까지 혼자일 때와 같은 속도(스쿼트 초당 11장·정면 6.7장). 4명이면 스쿼트 7.4장·정면 2.8장으로 하락</td><td>3</td></tr>
+            <tr><td>GPU</td><td>정면(초당 8장) 12대·스쿼트(초당 15장) 10대까지 목표 속도 유지(응답 p95 68ms), 12대에서 스쿼트 14.5장</td><td>10</td></tr>
+          </tbody>
+        </table>
+        <p>이 숫자는 <code>server/cmd/bodyscan-load</code>라는 부하 도구로 잰 것입니다. 키오스크의 실제 프레임률과 전송 중 상한(미리보기 2장·측정 3장)을 그대로 흉내 내는 도구라, "몇 대까지 버티는가"를 화면이 아니라 숫자로 답할 수 있었습니다. 테스트 서버에만 돌리고 운영 DB에는 쓰지 않습니다.</p>
+        <p>GPU로 옮기고 나서 새 문제가 하나 생겼습니다. <strong>첫 요청만 느립니다.</strong> cuDNN이 첫 실행에서 자기 커널을 고르느라 최대 0.5초를 씁니다. 회원이 서 있는 첫 프레임이 그 비용을 내면 안 되므로, 엔진이 포트를 열기 <em>전에</em> 640×480 회색 빈 화면을 모델마다 두 번씩, 사람 검출기까지 두 번 돌립니다. 24줄짜리 커밋입니다.</p>
+        <pre><code>// 첫 실행에서 장치 준비(on the GPU cuDNN picks its kernels: up to half a second).
+// 회원의 첫 프레임이 그 비용을 내지 않도록, 포트를 열기 전에 빈 화면으로 돌린다.
+let blank = image::RgbImage::from_pixel(640, 480, image::Rgb([128, 128, 128]));
+for (key, m) in &amp;models {
+    let mut m = m.lock().unwrap();
+    for _ in 0..2 { m.infer(&amp;blank, BBox::full(640, 480)); }
+}</code></pre>
+        <p>결과는 커밋 메시지에 그대로 남겼습니다 — <strong>첫 요청 0.6초 → 수십 ms.</strong> 화면에는 "잠시 기다리고 있습니다"가 3초씩 뜨던 자리입니다.</p>
+
+        <h2><span class="idx">6</span>카메라가 4.7도 기울면, 모든 회원의 어깨가 기운다</h2>
+        <p>이 시스템에서 가장 값싸게 큰 오차를 만드는 것은 모델이 아니라 <strong>설치</strong>입니다. 카메라가 수평에서 몇 도만 기울어도 그 키오스크를 쓰는 모든 회원의 어깨와 골반이 같은 쪽으로 기운 것처럼 재어집니다. 키오스크마다 카메라가 다르므로 보정값도 기기마다 달라야 합니다.</p>
+        <p>그래서 세 겹으로 처리했습니다.</p>
+        <ul>
+          <li><strong>기기별 값</strong> — 관리자 화면에서 기기마다 도 단위로 적습니다. 사람은 평균적으로 곧게 서므로, 그 기기에서 잰 회원들의 몸 중심선(발목 가운데→어깨 가운데) 중앙값(최근 200건)이 곧 카메라 기울기입니다. 10명 이상 모이면 "이 값으로"를 누릅니다.</li>
+          <li><strong>휴대폰 센서</strong> — 회원이 자기 휴대폰으로 측정할 때는 기울기 센서 값을 그대로 씁니다. 8°를 넘으면 측정을 시작하지 않습니다.</li>
+          <li><strong>배경 자동 감지</strong> — 측정이 끝나면 정면 단계의 원본 프레임 몇 장(약 6장, 메모리에서만 쓰고 버림)에서 벽·문틀·선반 같은 <strong>세로 모서리</strong>를 찾아 기울기를 읽습니다.</li>
+        </ul>
+        <p>세 번째가 이번 편의 기술적 하이라이트입니다. 카메라가 위아래로도 기울어 있으면 세로선이 화면 양쪽에서 벌어지므로(원근), 기울기를 <code>r + k × 가로위치</code>로 함께 맞추고 화면 한가운데에서 r을 읽습니다. 사람의 윤곽은 가려서 제외합니다. 판정 조건은 엄격하게 뒀습니다 — 세로 모서리 가중치가 <strong>22% 이상</strong> 한 기울기에 모이고, <strong>3장 이상</strong>이 <strong>1.2° 안</strong>에서 일치할 때만 그 값을 쓰고, 아니면 기기에 정한 값으로 돌아갑니다. 합성 방 영상으로 <strong>−6°~+4.7°</strong>를 <strong>0.3° 안</strong>으로 읽는지 시험합니다.</p>
+        <p>우선순위는 이렇습니다: <em>휴대폰 센서 &gt; 배경 자동 감지 &gt; 기기 값 &gt; 서버 기본값.</em> 측정마다 어느 기기에서 몇 도를, 어디서 얻어 보정했는지 기록합니다(<code>scans.device_id</code>, <code>roll_deg</code>, <code>roll_src</code>, <code>roll_auto</code>).</p>
+        <p>첫 시험 기록이 이 기능의 값을 증명했습니다. 결과 사진의 책장 세로선이 약 4.7° 기울어 있었고, 그 값으로 고치자 어깨 기울기가 <strong>3.5°에서 1.2°</strong>로 바뀌었습니다. 기기 보정값도 3.6°에서 4.7°로 올렸습니다. 이미 잰 기록도 고칠 수 있게 했습니다 — <code>scan roll &lt;토큰&gt; &lt;도&gt;</code>는 모든 관절을 같은 각도만큼 돌리므로, 영상 없이도 어깨·골반·귀-어깨 값과 저장된 자세, 결과 사진의 기준선, 공유 카드가 <strong>수학적으로 정확히</strong> 함께 고쳐집니다.</p>
+        <div class="note">
+          <p>결과 사진의 격자와 세로·수평 점선도 보정한 기울기만큼 돌아갑니다. 사진 위의 선이 화면의 수직과 어긋나 보이면, 보는 사람은 측정값이 아니라 사진을 의심하기 때문입니다.</p>
+        </div>
+
+        <h2><span class="idx">7</span>결과를 190바이트에 담아 링크로 보낸다</h2>
+        <p>결과 페이지는 DB에서 나옵니다. 그런데 비회원 기록은 센터가 정한 기간(1~30일)이 지나면 지워집니다. 회원이 결과를 스크린샷으로 찍어 두지 않았다면, 그때부터 링크는 "결과를 찾을 수 없습니다"가 됩니다. 서버가 멈춰도 마찬가지입니다.</p>
+        <p>그래서 결과 자체를 링크에 넣었습니다. 주소 끝에 <code>#r1.&lt;데이터&gt;</code>를 붙입니다. 측정값 네 가지, 신뢰도, 스쿼트 횟수와 또래 백분위, 날짜, 나이, 센터 이름, 그리고 정면·측면 <strong>관절 26개 위치</strong>(상자 안 <strong>10비트</strong>)를 이진으로 묶어 약 <strong>190바이트</strong>입니다. QR은 약 340자, 버전 14.</p>
+        <pre><code>u8  version(1) · u16 day · u8 flags · u8 age
+i16 어깨·귀-어깨·골반 기울기 ×10
+u8  신뢰도(2비트×4) · u8 unsteady(비트 3개) · u8 스쿼트 횟수 · u8 백분위
+str 센터 이름 · str 규준 구간
+자세마다: u16 x0,y0,w,h · u32 본 관절 · 26 × (x,y) 10비트</code></pre>
+        <p>두 가지가 이 설계의 핵심입니다. 첫째, <strong><code>#</code> 뒤는 브라우저가 서버로 보내지 않습니다.</strong> 그래서 서버는 이 데이터를 받지도 저장하지도 않습니다. 결과가 링크를 타고 다니는 동안 서버의 부담은 0입니다. 둘째, 기록이 지워졌거나 서버에 닿지 않으면 <code>/r/…</code>가 404와 함께 <code>r-lite.html</code>을 내보내고, 이 페이지가 링크 안의 데이터만으로 측정값·설명·자세 그림(관절 위치로 그린 실루엣, 이미지 저장 가능)을 그립니다. 사진과 지난 기록 비교는 없습니다.</p>
+        <p>서버가 아예 죽은 경우도 처리했습니다. 결과 페이지를 한 번 연 휴대폰에는 서비스 워커(<code>r-sw.js</code>, 범위 <code>/r/</code>)가 그 페이지를 보관해 두었다가, 서버에 닿지 않거나 Cloudflare가 5xx를 돌려주면 대신 보여 줍니다. 시험은 "링크가 360자, QR 버전 14를 넘으면 실패"로 걸어 두었습니다 — 폰으로 스캔하기 좋은 크기의 상한입니다.</p>
+
+        <h2><span class="idx">8</span>지워야 할 것을 지우는 설계</h2>
+        <p>사람의 몸을 카메라로 재는 시스템에서 기능보다 먼저 정해야 하는 것은 보관 정책입니다. 이 시스템은 이렇게 동작합니다.</p>
+        <ul>
+          <li><strong>프레임은 디스크에 쓰지 않습니다.</strong> 카메라 영상은 메모리에서 추론한 뒤 버리고, 키포인트와 계산값만 저장합니다. Tailscale 구간으로 엔진 컴퓨터까지 간 프레임도 메모리에서 폐기됩니다.</li>
+          <li><strong>사진은 선택 사항입니다.</strong> 회원이 "결과 사진 저장"에 동의한 경우에만 정면·옆모습에서 가장 선명한 프레임 1장씩을 몸에 맞게 잘라 저장하고(얼굴은 기본으로 흐리게), 동의하지 않으면 실루엣 카드로 보여 줍니다. 사진은 측정 기록과 같은 기간 보관되고 함께 삭제됩니다.</li>
+          <li><strong>주소는 추측할 수 없습니다.</strong> 결과 주소는 128비트 난수 토큰이고, 이름과 연락처를 표시하지 않습니다.</li>
+          <li><strong>기간은 센터가 정합니다.</strong> 회원은 해제할 때까지, 비회원은 상담 신청이 없으면 센터가 정한 기간(1~30일, 정하기 전엔 30일), 상담을 신청한 사람은 30일 뒤 지웁니다. 처리 전 상담 신청이 남아 있는 사람은 지우지 않습니다. 정리는 한 시간마다 돕니다.</li>
+          <li><strong>지울 때는 숫자만 남깁니다.</strong> 사진·카드·영상·재측정 코드·출생연도·결과 주소를 모두 지우고, 날짜·성별·5세 나이대·측정값·그 측정이 본 카메라 기울기만 <code>anon_scans</code>·<code>anon_retest</code>에 남깁니다. 누구인지 알 수 없는 숫자이고, 센터 통계·측정 오차 계산·기기별 기울기 추천에 계속 쓰입니다.</li>
+          <li><strong>백업도 정책에 넣었습니다.</strong> 엔진 컴퓨터에 하루 DB 사본 7일, 외부 Mac에 밤 백업 30일. 지운 기록도 백업에는 한동안 남으므로 처리방침에 "백업은 최대 30일 뒤 지워짐"을 적으라고 저장소에 못 박아 두었습니다.</li>
+        </ul>
+        <p>동의는 키오스크에서 두 종(필수 수집·이용, 건강 관련 정보)을 받고, 상담 연락은 결과 페이지 신청서에서 따로 받습니다. 만 14세 미만은 측정하지 않습니다. 법률 자문이 아니므로 최종 문구는 전문가 확인이 필요하다는 단서도 코드와 함께 두었습니다.</p>
+        <div class="note">
+          <p><strong>라이선스에서 걸러낸 것.</strong> 자세 추정은 MMPose RTMPose(Halpe26)와 RTMDet-nano를 ONNX로 받아 씁니다. 코드·가중치는 Apache-2.0이지만 학습 데이터 일부(Body7 계열)에 연구 목적 조건이 붙어 있어, 저장소 <code>models/LICENSES.md</code>에 "상용 서비스로 확장하기 전 확인"이라고 적어 두었습니다. Ultralytics YOLO(AGPL-3.0), SMPL 계열 3D 메시(비상업), Depth Anything V2 Base 이상(CC-BY-NC)은 <em>쓰지 않기로</em> 결정했습니다. 라이선스는 나중에 바꾸는 것이 거의 불가능한 선택이라 처음에 지불해야 합니다.</p>
+        </div>
+
+        <h2><span class="idx">9</span>배포가 곧 새로고침</h2>
+        <p>키오스크는 센터 입구에 있고, 저는 학교에 있습니다. 고칠 때마다 센터에 가서 브라우저를 새로고침할 수는 없습니다. 그래서 <strong>서버가 열려 있는 화면을 스스로 새로고침</strong>하게 만들었습니다.</p>
+        <p>키오스크·휴대폰 결과·관리자 화면은 모두 서버와의 연결(<code>/api/events</code>, Server-Sent Events)을 열어 둡니다. 서버는 <code>web/kiosk</code>·<code>web/static</code> 파일이 바뀌는 것을 1초마다 살피고, 2초 동안 더 바뀌지 않으면(복사 중간에 새로고침하지 않게) 새 버전을 모두에게 보냅니다. 서버 자체를 다시 켠 경우에도 화면들이 2초 안에 다시 연결해 새 버전을 받습니다.</p>
+        <p>세 가지를 더 붙였습니다. 키오스크는 <em>측정 중이면</em> 새로고침을 미루고 첫 화면으로 돌아온 순간 합니다. 관리자 화면은 입력 칸에 쓰는 중이면 칸을 벗어날 때 합니다. 그리고 Cloudflare가 .js·.css·영상에 브라우저 4시간 캐시(<code>max-age=14400</code>)를 덮어쓰기 때문에, 캐시되지 않는 키오스크 페이지가 모든 파일 주소에 그 버전을 붙여(<code>?v=…</code>) 내보냅니다. 실측 새로고침 시간은 파일을 바꾸고 <strong>1.9~2.6초</strong> 뒤였습니다.</p>
+        <p>이 기능은 편의가 아니라 운영 방식입니다. 아침에 고친 문구가 점심때 센터 화면에 그대로 떠 있고, 센터 직원이 "아직 안 바뀌었는데요"라고 전화하는 일이 사라집니다.</p>
+
+        <h2><span class="idx">10</span>한 화면 원칙 — 스크롤이 없는 UI</h2>
+        <p>키오스크 앞에 선 사람은 아래로 스크롤하지 않습니다. 스크롤할 줄 모르는 사람도 있습니다. 그래서 회원이 보는 모든 화면(첫 화면·동의·기본 정보·코드 입력·안전 확인·측정·결과·기기 등록)이 <strong>창 높이 안에</strong> 들어오도록 글자와 간격을 창 높이에 맞춰 줄입니다. 확인한 화면 크기는 8가지입니다 — 1920×1080, 1366×768, 1280×800, 1180×820, 1080×1920, 820×1180, 768×1024, 390×844. 직원용 설정 화면만 스크롤됩니다.</p>
+        <p>첫 화면 도입부는 이 원칙과 정면으로 부딪힌 부분이었습니다. 원래 24fps 5초짜리 영상을 0.87배속으로 늘려 재생했는데, 60Hz 화면에서 초당 약 21장이 2·3·4번씩 들쭉날쭉 머물러 끊겨 보였고(121장 중 110장만 표시) 마지막 1.8초는 멈춰 있었습니다. 해결은 재생 속도가 아니라 <em>영상 자체를 다시 굽는 것</em>이었습니다. 원본을 480fps로 보간한 뒤 60fps·7.6초(4초까지 등속, 이후 서서히 멈춤)로 미리 만들어 1배속으로 재생하고, 오버레이는 화면에 실제로 나온 프레임(<code>requestVideoFrameCallback</code>)을 따라가게 했습니다. 다시 재 보니 422장 중 <strong>420장이 한 번씩만</strong> 표시됐습니다.</p>
+        <p>실시간 실루엣은 반대 문제였습니다. 관절은 프레임을 보낸 뒤 0.2~0.8초 늦게 돌아옵니다. 실시간 영상 위에 그리면 스쿼트에서 실루엣이 몸보다 늦게 따라옵니다. 그래서 키오스크는 최근 1초의 카메라 화면을 모아 두고(약 30fps × 32프레임) 분석에 걸린 만큼 지난 화면을 보여 주며, 그 순간의 관절을 앞뒤 답의 보간으로 겹칩니다. 화면이 그만큼 늦게 보이는 대신 몸과 실루엣이 함께 움직입니다. 느린 것과 어긋난 것 중에서는 느린 쪽이 낫습니다.</p>
+
+        <h2><span class="idx">11</span>실제로 터진 것들</h2>
+        <p>20시간 중 절반은 카메라 앞에 사람이 서 본 뒤 나온 수정이었습니다. 커밋 메시지에 그대로 남아 있는 것들입니다.</p>
+
+        <div class="item">
+          <h3><span class="sym">01</span> 사람을 놓치면 관절이 같이 틀렸다</h3>
+          <p>처음에는 자세 모델만으로 프레임 전체에서 관절을 읽었습니다. 어수선한 배경이나 빠른 스쿼트에서 사람을 놓치면 관절이 엉뚱한 곳에 붙었습니다. 사람 검출기(RTMDet-nano)를 추가해 측정 프레임마다 사람 상자를 먼저 찾고 그 안에서 관절을 읽게 바꿨습니다. 미리보기는 추적이 끊기거나 5프레임마다 검출합니다. 같은 커밋에서 SimCC 소수점 디코딩의 0.5px 어긋남도 잡았습니다. <strong>작은 좌표 오차는 각도에서 증폭됩니다.</strong></p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">02</span> 옆모습 스쿼트에서 반대쪽 다리를 셌다</h3>
+          <p>측면 1분 스쿼트는 카메라 쪽 다리만 보입니다. 반대쪽은 몸에 가려 관절이 추정값으로 채워지고, 그 값으로 세면 횟수가 어긋납니다. 카메라 쪽 다리만 쓰도록 바꾸고, 기준 높이도 스쿼트 단계에서 직접 잡게 했습니다. 화면에 뜨는 횟수도 같은 규칙으로 계산합니다. <em>화면의 숫자와 저장되는 숫자가 다른 규칙으로 계산되면, 둘 다 믿을 수 없게 됩니다.</em></p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">03</span> 결과 사진의 선과 숫자가 달랐다</h3>
+          <p>사진 위에 그리는 선은 프레임 하나에서 나오고, 숫자는 여러 프레임의 중앙값입니다. 그래서 둘이 미묘하게 어긋났습니다. 보고값(중앙값)에 가장 가까운 프레임을 사진으로 고르고, 선은 <strong>보고 각도로</strong> 그리도록 바꿨습니다. 골반은 숫자 대신 단계 표시로 바꿨습니다. 사진과 숫자가 한 화면에 있으면, 사람은 둘을 대조합니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">04</span> 도입부 영상이 끊겼다 — 원인은 그리기가 아니었다</h3>
+          <p>처음엔 렌더링 부하를 의심했습니다. 재 보니 그리기는 매 프레임 16.7ms로 고르고 스크립트도 1.4ms(p95) 이하였습니다. 진짜 원인은 24fps 영상을 0.87배속으로 늘린 것이었습니다(10절). <strong>의심과 측정이 다를 때는 측정을 믿어야</strong> 엉뚱한 곳을 고치지 않습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">05</span> 휴대폰에서 도입부가 안 보였다</h3>
+          <p>탭마다 한 번만 재생하도록 세션에 저장해 둔 것이 화면을 비웠고, iOS Safari는 화면 밖의 영상을 멈추지 않아 첫 장면이 늦게 떴습니다. 영상을 받는 동안 첫 장면을 그림으로 보여 주고, 영상을 캔버스 아래 전체 크기로 두고, 휴대폰은 '건너뛰기' 버튼으로만 넘기게 했습니다. 스크롤 한 번에 사라지던 동작도 없앴습니다.</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">06</span> 서버를 다시 켜면 설정 화면이 비었다</h3>
+          <p>설정 화면이 DB 값을 읽기 전에 그려져 빈 칸으로 열렸습니다. 재시작 직후에만 나오는 버그라 눈에 잘 띄지 않습니다. 값이 도착한 뒤 그리도록 순서를 잡았습니다. <em>재시작해야 재현되는 버그는 재시작을 자주 하는 사람만 만납니다.</em></p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">07</span> 전체 화면 버튼이 사라졌다</h3>
+          <p>브라우저 창 자체가 전체 화면(맥 초록 버튼)일 때, 페이지의 전체 화면 버튼이 숨는 조건과 겹쳐 아무것도 누를 수 없었습니다. 전체 화면에서는 버튼이 사라지고 ESC로 끄게 했고, 켜 둔 채 새로고침으로 풀리면 다음 터치에 다시 켜지게 했습니다(브라우저는 터치가 있어야 전체 화면을 허용합니다).</p>
+        </div>
+
+        <div class="item">
+          <h3><span class="sym">08</span> 마네킹의 팔이 몸통 조각을 끌고 갔다</h3>
+          <p>공유 카드의 마네킹은 몸을 부위별 조각으로 나눠 회원 자세에 맞춰 휘었습니다. 그랬더니 팔이 허벅지 조각을 끌고 가고 이음매에 자국이 남았습니다. 부위 조각 대신 층(다리·몸통·팔)별 <strong>격자 스키닝</strong>으로 바꿨습니다. 팔은 몸통과 함께, 다리는 그림 자세에서 3°까지만 꺾고 길이만 맞춥니다. 세 층이 만나는 곳은 주인 층을 불투명하게 해 비침을 없앴습니다. 그리고 마네킹은 회원 자세를 따라 휘지 않고 <strong>항상 똑바로</strong> 서 있고, 회원의 측정값은 그 위의 선으로만 보여 줍니다.</p>
+        </div>
+
+        <h2><span class="idx">12</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>상용 체형 측정 장비를 사면 되는데 왜 직접 만들었나요?</h3>
+          <p>상용 장비는 측정값이 장비 안에 갇힙니다. 이 시스템은 기록이 센터의 SQLite 파일에 남고, 두 번째 측정과 비교해 변화를 보여 주고, 상담 신청이 관리자 화면과 알림으로 바로 이어집니다. 카메라 영상은 디스크에 쓰지 않고 관절 좌표와 계산값만 저장하며, 각도만 내고 cm 단위 값이나 진단 용어는 쓰지 않습니다. 데이터가 어디로 가는지를 직접 정하는 것이 직접 만든 이유입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>카메라와 AI로 잰 각도를 믿을 수 있나요?</h3>
+          <p>믿는 대신 재현되게 만들었습니다. 품질 기준을 통과한 프레임이 8개 미만이면 값을 내지 않고, 통과한 프레임 값의 중앙값을 씁니다. 측정 계산은 학습 성분이 없는 순수 산수라 같은 관절 좌표에는 같은 값이 나옵니다. 같은 사람을 3시간 안에 두 번 측정한 쌍이 20~30개 모이면 MDC95를 계산해, 그보다 큰 변화만 변화로 표시합니다. 또래 비교는 스위스 성인 6,926명 논문 표를 참고 비교로만 쓰고, 원 프로토콜이 의자 기반이라 그 차이를 결과 화면에 밝힙니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>GPU가 없으면 못 쓰나요?</h3>
+          <p>CPU로도 동작합니다. GPU 기능 없이 빌드하면 ONNX Runtime 내장 CPU로 돌고, 동시 2명까지는 혼자일 때와 같은 속도(스쿼트 초당 11장·정면 6.7장)였습니다. 4명에서 떨어져 상한을 3으로 두었습니다. GPU 라이브러리가 있으면 상한이 자동으로 10이 됩니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>여러 센터에서 같이 쓸 수 있나요? 기록은 섞이지 않나요?</h3>
+          <p>한 서버에서 여러 센터를 운영하고, 센터마다 회원·측정 기록·상담 신청·설정·측정 오차표·기기·관리자 키가 따로입니다. 다른 센터의 기록은 재측정 코드로도 관리자 화면에서도 보이지 않습니다. 같은 법인(직영점)을 같은 회사로 묶으면 회원이 동의한 경우에만 다른 지점에서 기록을 이어 볼 수 있고, 동의를 빼면 다시 닫힙니다. 법인이 다른 센터를 묶는 일은 제3자 제공 동의가 필요하므로 하지 않는 것이 기본입니다.</p>
+        </div>
+
+        <h2><span class="idx">13</span>에필로그 — 20시간이 남긴 것</h2>
+        <p>이 시스템은 아직 자랑할 단계가 아닙니다. 첫 시험 기록의 카메라가 4.7° 기울어 있었고, 규준표는 다른 동작 기준의 논문 표이고, 측정 오차는 아직 비어 있습니다. 코드도 20시간짜리입니다. 그런데 이 20시간에 들어간 것들은 <em>나중에 바꾸기 어려운 결정</em>입니다. 프레임을 저장하지 않는 구조, 진단 용어를 쓰지 않는 선, 측정값을 지어내지 않으려고 비워 둔 두 칸, 그리고 라이선스에서 걸러낸 세 가지.</p>
+        <p>기능은 나중에 붙일 수 있습니다. 반대로 한 번 저장하기 시작한 영상은 되돌릴 수 없고, 한 번 진단기처럼 읽히기 시작한 화면은 문구를 고쳐도 인상을 되돌리기 어렵습니다. 그래서 이번 편에서 가장 중요한 커밋은 GPU도, 기울기 감지도 아니라 <strong>보관 기간과 익명 숫자</strong>를 정한 커밋입니다.</p>
+        <blockquote>
+          측정 도구의 신뢰는 정확도에서 시작하지만, 지키는 것은 정확도가 아니라 선(線)에서 지킨다. 무엇을 저장하지 않기로 했는지가 그 도구의 성격을 정한다.
+        </blockquote>
+        <p>키오스크는 <a href="https://baro.ditcloud.net/kiosk/">baro.ditcloud.net/kiosk</a>에 떠 있고, 2026년 11월 19일 기준 HTTP 200으로 응답합니다. 저장소는 비공개이며, 이 글에 적은 수치는 모두 그 저장소의 커밋 로그와 코드에서 직접 센 값입니다. 회원 정보와 카메라 영상은 글에도, 링크에도 없습니다.</p>
+      </article>
+
+      <a class="next-ep" href="../workshop-survey/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[12편] 구글폼 대신 직접 만든 워크숍 만족도 조사 — 5시간·16커밋·2,916줄</span>
+        <span class="d">설문·실시간 대시보드·PDF/HWPX 보고서·AI 종합분석을 한 페이지에 — 프레임워크 0의 SVG 차트 8종, jsonb 응답 테이블과 RLS 두 줄, bcrypt 학과 PIN, 서버에서만 키를 쓰는 Edge Function</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 센터 입구 키오스크 바디 스캔(BARO) 설계·운영 — Rust 추론 엔진 + Go 서버</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#Rust</span><span>#Go</span>
+        <span>#ONNXRuntime</span><span>#RTMPose</span><span>#자세분석</span><span>#키오스크</span>
+        <span>#GPU추론</span><span>#개인정보최소화</span>
+        <span>#부산AI전문가</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+      </div>
+    </main>
+  </body>
+</html>
