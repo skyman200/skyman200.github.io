@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 14편] 종이 동의서를 373줄로 끝냈다 — 파일 하나·커밋 하나로 만든 자원봉사 서명 페이지 | 김강훈 교수</title>
+    <meta name="description" content="자원봉사 활동일지의 개인정보 제공 동의를 종이·수기 서명·스캔·카톡 사진으로 받던 일을, 스마트폰에서 손가락으로 서명해 A4 150dpi 동의서 이미지 한 장으로 끝내는 페이지를 만들었다. index.html 373줄, 커밋 1개, 프레임워크 0, 서버 0 — 서명칸과 문서 서명란이 5:3으로 같아서 생기는 일, 0.95% 선 굵기, 잉크 0.2 임계값, 5단계 자동 축소, 카카오톡으로 보내는 세 갈래를 코드에서 직접 센 수치로 적는다." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, 전자서명, 서명 페이지, 개인정보 동의서, 자원봉사 활동일지, 캔버스 서명, Canvas, 오프라인 웹앱, 개인정보 최소화, 카카오톡 공유, navigator.share, A4 150dpi, 대학 AI, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/volunteer-sign/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/volunteer-sign/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 14편] 종이 동의서를 373줄로 끝냈다 — 파일 하나·커밋 하나로 만든 자원봉사 서명 페이지" />
+    <meta property="og:description" content="종이 출력·수기 서명·스캔·카톡 사진을 스마트폰 서명 한 번으로. index.html 373줄, 커밋 1개, 프레임워크 0, 서버 0 — 서명칸과 문서 서명란을 같은 5:3으로 맞춘 이유와 카카오톡으로 보내는 세 갈래." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-20" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 14편] 종이 동의서를 373줄로 끝냈다 — 한 파일, 커밋 하나, 서버 0" />
+    <meta name="twitter:description" content="서명칸과 문서 서명란을 5:3으로 맞춘 이유, 선 굵기 0.95%, 잉크 0.2 임계값, 5단계 자동 축소, 카카오톡으로 보내는 세 갈래. 저장소에서 직접 센 수치로 쓴 373줄 구축기." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/volunteer-sign/#article",
+          "headline": "[바이브코딩 14편] 종이 동의서를 373줄로 끝냈다 — 파일 하나·커밋 하나로 만든 자원봉사 서명 페이지",
+          "alternativeHeadline": "자원봉사 활동일지 개인정보 제공 동의를 스마트폰 서명 한 번으로 받는 단일 파일 웹앱 구축기",
+          "description": "부산 동의과학대학교 김강훈 교수가 자원봉사 활동일지(서식 33)의 개인정보 제공 동의를 받기 위해 만든 서명 페이지(저장소 volunteer-sign, 공개)를 저장소에서 직접 센 수치로 정리했다. 2026-11-04 09:52 단일 커밋 1개, 2개 파일 377줄 추가(index.html 373줄·README 4줄), 프레임워크 0·번들러 0·외부 스크립트 0·서버 0. 파일 505,961바이트 중 484,972자가 내장 글꼴(Pretendard 400·600 woff2)이고 실제 코드·마크업은 18,590자, JS는 10,701자 226줄. 화면 서명칸과 문서 서명란을 같은 5:3 비율로 두고 좌표를 0~1로 정규화해 하나의 paint()로 두 번 그리는 구조, 선 굵기를 서명칸 너비의 0.95%로 두는 규칙, 잉크 길이 0.2·성명 2자·필수 동의 2개를 모두 통과해야 버튼이 켜지는 최소 검증, A4 150dpi(1240×1754) 문서를 5단계로 자동 축소해 서명란(550,1290,600×360)과 겹치지 않게 하는 합성, navigator.share·ClipboardItem·길게 눌러 저장의 세 갈래 내보내기, 저장·전송 API를 하나도 쓰지 않는 설계와 유일한 외부 요청(Google Fonts Noto Serif KR)까지 기록했다.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-20",
+          "dateModified": "2026-11-20",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/volunteer-sign/"
+          },
+          "keywords": "바이브코딩, 전자서명, 서명 페이지, 개인정보 동의서, 자원봉사 활동일지, Canvas, 개인정보 최소화, 카카오톡 공유, A4 150dpi, 부산 AI 전문가, 김강훈 교수, 동의과학대학교",
+          "about": [
+            { "@type": "Thing", "name": "한 파일로 끝내는 개인정보 동의 수집" },
+            { "@type": "Thing", "name": "화면 서명을 A4 문서 서명란에 그대로 옮기는 좌표 설계" },
+            { "@type": "Thing", "name": "저장하지 않는 서명 페이지의 개인정보 설계" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/volunteer-sign/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "14편 — 자원봉사 서명 페이지(volunteer-sign)",
+              "item": "https://skyman200.github.io/vibe-coding/volunteer-sign/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/volunteer-sign/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "구글폼이나 네이버폼을 쓰면 되는데 왜 직접 만들었나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "폼은 글자와 선택 항목을 받지만 손으로 쓴 서명을 받지 못합니다. 이 페이지가 만드는 것은 활동일지에 첨부할 A4 동의서 이미지 한 장이고, 고지 항목·성명·서명일시·서명이 문서 안에 함께 인쇄되어야 합니다. 1365 자원봉사포털 실적 등록용 서식에 그대로 붙는 형태가 필요했습니다. 그리고 폼은 제출된 개인정보가 서버에 쌓이지만, 이 페이지는 성명과 서명을 어디에도 보내지 않고 그린 이미지를 기기 안에서만 만듭니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "손가락으로 그린 서명이 법적으로 유효한가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "이 페이지는 인증서 기반 전자서명이 아니라 동의 사실을 증빙하는 이미지를 만듭니다. 누가 서명했는지는 대면 확인이 맡고, 서명일시가 문서에 찍히며, 서명과 성명이 한 장에 함께 남습니다. 개인정보보호법상 동의를 받는 방식으로는 이 정도가 실무의 기준이고, 공인전자서명이 필요한 문서에는 쓰지 않습니다. 이 선을 넘지 않으려고 서명 이미지 외의 인증 기능을 넣지 않았습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "서버가 없는데 어떻게 여러 사람이 동시에 쓸 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "서버가 하는 일이 없기 때문입니다. 페이지는 GitHub Pages가 정적 파일로 내려보내고, 서명과 이미지 합성은 모두 참가자 휴대폰 브라우저 안에서 끝납니다. 100명이 동시에 열어도 서버가 하는 일은 파일 한 장을 보내는 것뿐입니다. 대신 결과가 서버에 쌓이지 않으므로, 취합은 참가자가 보낸 이미지를 받아서 합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "다른 행사나 다른 동의서에도 쓸 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "쓸 수 있지만 관리자 화면은 없습니다. 활동 정보 3줄과 고지 항목 6줄이 코드 안의 상수로 들어 있어, 새 행사는 그 값을 고쳐 다시 올리는 방식입니다. 서명란 좌표도 서명 추출 도구와 같은 비율로 약속해 둔 값이라, 문서 양식을 바꾸면 두 곳을 함께 바꿔야 합니다. 여러 행사를 자주 돌린다면 이 값을 시트나 주소 파라미터로 빼는 것이 다음 단계입니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+    </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>14편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 14 · Consent Signature</p>
+        <h1>[바이브코딩 14편] 종이 동의서를 373줄로 끝냈다 — 파일 하나·커밋 하나로 만든 자원봉사 서명 페이지</h1>
+        <p class="subhead">행사가 끝나면 활동일지와 개인정보 동의서를 출력해 한 명씩 서명받고 다시 스캔하던 일이 남는다. 이번 시스템은 그 일을 참가자 휴대폰에서 끝낸다. 손가락으로 서명하면 A4 동의서 이미지 한 장이 만들어지고, 카카오톡으로 보내면 끝이다. 서버도, 데이터베이스도, 프레임워크도 없다.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 20일</div>
+          <div><strong>읽는 시간</strong> 약 11분</div>
+        </div>
+
+        <p class="lede">이번 편은 연재 중 <b>가장 작은 시스템</b>입니다. 대상은 자원봉사 활동일지(서식 33)의 ‘정보제공 동의’란에 붙일 서명 페이지이고, 저장소는 <code>skyman200/volunteer-sign</code>입니다. 13편까지는 20시간·33커밋, 12일·93커밋처럼 시간과 커밋으로 규모를 말했는데, 이번은 <b>커밋 1개, 파일 2개, 377줄</b>입니다. 아래 수치는 저장소를 직접 클론해 <code>git log</code>·<code>wc</code>로 센 값이고, 페이지 주소 <code>https://skyman200.github.io/volunteer-sign/</code>는 2026년 11월 20일 HTTP 200으로 응답합니다.</p>
+
+        <p>작은 시스템이라고 쉬운 시스템은 아닙니다. 서명을 받는 일은 <em>손가락</em>이라는 통제할 수 없는 입력과, <em>문서</em>라는 고정된 종이를 한 번에 다뤄야 합니다. 이 글의 절반은 그 두 개를 맞추는 이야기입니다.</p>
+
+        <h2><span class="idx">1</span>동의서 한 장이 남기는 일</h2>
+        <p>대학이 자원봉사 활동일지를 쓸 때 마지막에 남는 일은 늘 같습니다. 활동일지 서식에 ‘정보제공 동의’란을 채워야 하고, 거기에는 참가자의 성명과 서명이 들어가야 합니다. 실무 순서를 그대로 적으면 이렇습니다.</p>
+        <ol>
+          <li>활동일지와 동의서를 출력한다.</li>
+          <li>현장에서 한 명씩 서명을 받는다. 손이 젖어 있거나 장갑을 끼고 있으면 더 오래 걸린다.</li>
+          <li>서명지가 몇 장인지 세고, 빠진 사람을 이름으로 대조한다.</li>
+          <li>스캔하거나 휴대폰으로 찍어 파일로 만든다. 초점이 흔들린 사진이 섞인다.</li>
+          <li>스캔본을 활동일지 파일에 붙이고, 원본 종이는 제출이 끝날 때까지 보관한다.</li>
+        </ol>
+        <p>참가자가 10명이면 30분, 40명이면 반나절입니다. 그리고 이 일은 <em>행사가 끝난 뒤에</em> 몰립니다. 가장 피곤한 시점에, 가장 실수가 나기 쉬운 대조 작업이 옵니다.</p>
+        <p>그래서 조건을 네 줄로 정했습니다.</p>
+        <ul>
+          <li><strong>참가자 휴대폰에서 끝난다.</strong> 앱 설치도, 회원가입도, 링크 발송 절차도 없다. 주소를 열면 바로 서명 화면이다.</li>
+          <li><strong>결과는 문서 한 장.</strong> 고지 항목·성명·서명일시·서명이 A4 안에 함께 인쇄된 이미지여야 한다. 활동일지에 그대로 붙일 수 있어야 한다.</li>
+          <li><strong>개인정보는 아무 데도 쌓이지 않는다.</strong> 성명과 서명이 서버로 가지 않는다. 남는 것은 참가자가 스스로 보낸 이미지뿐이다.</li>
+          <li><strong>유지비 0원, 관리자 없음.</strong> 학기마다 한두 번 쓰는 도구에 계정과 서버를 두지 않는다.</li>
+        </ul>
+        <p>세 번째 조건이 이 시스템의 성격을 정했습니다. 개인정보를 받는 페이지에서 가장 좋은 보안은 <em>받지 않는 것</em>입니다. 저장하지 않으면 유출될 것도, 지워야 할 것도, 보관 기간을 정할 것도 없습니다. 서버가 필요 없어진 것도 그 결과입니다.</p>
+
+        <h2><span class="idx">2</span>규모는 이렇게 나왔다</h2>
+        <p>커밋은 <code>git log</code>, 줄 수는 <code>wc -l</code>, 글꼴·코드 비중은 파일을 직접 세었습니다. 저장소가 만들어진 시각과 커밋 시각이 같은 분(2026-11-04 09:52)이라는 것도 <code>gh repo view</code>와 <code>git log</code>를 대조해 확인했습니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>항목</th><th>실측값</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>저장소</td><td><code>skyman200/volunteer-sign</code> · 공개 · 2026-11-04 09:52 생성</td></tr>
+            <tr><td>이력</td><td>커밋 <strong>1개</strong>(<code>0c1b0bb</code>) · 2026-11-04 09:52:44 · 파일 <strong>2개</strong> <strong>377줄</strong> 추가</td></tr>
+            <tr><td>본문</td><td><code>index.html</code> <strong>373줄</strong> · README 4줄</td></tr>
+            <tr><td>파일 크기</td><td><strong>505,961바이트</strong> — 그중 <strong>484,972자</strong>(약 364KB)가 내장 글꼴, 실제 코드·마크업은 <strong>18,590자</strong></td></tr>
+            <tr><td>코드</td><td>CSS 4,623자 · JS <strong>10,701자 226줄</strong> · 이름 있는 함수 <strong>16개</strong> · 이벤트 리스너 <strong>14개</strong></td></tr>
+            <tr><td>의존성</td><td>프레임워크 <strong>0</strong> · 번들러 <strong>0</strong> · 외부 스크립트 <strong>0</strong> · 외부 스타일시트 1(Google Fonts Noto Serif KR)</td></tr>
+            <tr><td>서버</td><td>없음 — 정적 파일 1장. 저장 API·조회 API·DB <strong>0</strong></td></tr>
+            <tr><td>출력</td><td>A4 150dpi <strong>1240×1754</strong> PNG 1장</td></tr>
+            <tr><td>배포</td><td>GitHub Pages · <code>https://skyman200.github.io/volunteer-sign/</code> HTTP 200(2026-11-20 확인), 내려받는 크기 505,961바이트</td></tr>
+            <tr><td>색인</td><td><code>&lt;meta name="robots" content="noindex,nofollow"&gt;</code> — 서명 페이지는 검색에 노출하지 않음</td></tr>
+          </tbody>
+        </table>
+
+        <p>숫자에서 먼저 눈에 걸리는 것은 <strong>파일의 96%가 글꼴</strong>이라는 점입니다. 코드는 18,590자, 글꼴은 484,972자. 서명 페이지 하나에 왜 글꼴을 통째로 넣었는지는 6절에서 설명합니다. 요약하면 <em>동의서 이미지에 찍히는 글자가 그 글꼴이기 때문</em>입니다.</p>
+
+        <p>두 번째는 <strong>커밋이 하나</strong>라는 점입니다. 13편의 키오스크는 33커밋이었고, 그 커밋 대부분은 실제 카메라 앞에서 나온 수정이었습니다. 이번에는 그런 왕복이 없습니다. 입력이 손가락 하나뿐이고, 결과가 이미지 한 장이라 확인할 것이 적기 때문입니다. 대신 설계를 처음부터 끝까지 한 번에 정해야 했습니다 — 나중에 고칠 자리가 없으니, 서명칸 비율과 문서 서명란 좌표를 <em>처음부터 같은 값으로</em> 약속해야 했습니다.</p>
+
+        <h2><span class="idx">3</span>서버를 두지 않기로 한 결정</h2>
+        <p>이 시스템에는 백엔드가 없습니다. 정확히는, 백엔드가 할 일이 없습니다.</p>
+        <ul>
+          <li><strong>받을 것이 없다.</strong> 참가자가 입력한 성명과 그린 서명은 이미지로 합성되어 그 휴대폰 화면에 나타납니다. 서버로 보내는 코드가 한 줄도 없습니다. <code>fetch</code>·<code>XMLHttpRequest</code>·<code>sendBeacon</code>이 파일 전체에 <strong>0회</strong> 등장합니다.</li>
+          <li><strong>저장할 것이 없다.</strong> <code>localStorage</code>·<code>sessionStorage</code>·<code>indexedDB</code>도 <strong>0회</strong>입니다. 새로고침하면 쓴 것이 사라지는 것이 정상 동작입니다.</li>
+          <li><strong>유지할 것이 없다.</strong> 계정·세션·DB·백업·보관 기간 정책이 전부 사라집니다. 개인정보 처리방침에 적을 것이 줄어드는 것이 이 구조의 가장 큰 이득입니다.</li>
+        </ul>
+        <p>대신 대가가 있습니다. 결과가 서버에 쌓이지 않으므로 <em>취합은 사람이 합니다.</em> 참가자가 보낸 이미지를 받아 모으는 일은 남습니다. 다만 그 일은 원래 하던 일이고(스캔본 모으기), 이제는 초점 흔들린 사진 대신 규격이 같은 이미지가 모입니다.</p>
+        <p>배포도 이 구조 덕분에 단순합니다. 저장소에 <code>index.html</code> 한 장을 올리면 GitHub Pages가 그대로 내려보냅니다. 빌드 단계가 없으니 빌드가 깨질 일도, 의존성 버전이 올라가며 화면이 바뀔 일도 없습니다.</p>
+
+        <h2><span class="idx">4</span>서명은 손가락이고, 손가락은 미끄러진다</h2>
+        <p>서명 입력은 <code>&lt;canvas&gt;</code> 하나입니다. 그런데 캔버스에 선을 긋는 일은 생각보다 손이 많이 갑니다. 이 페이지가 처리한 것은 다섯 가지입니다.</p>
+
+        <h3>1) 좌표를 0~1로 저장한다</h3>
+        <p>포인터 위치를 캔버스 픽셀로 저장하면, 화면을 돌리거나 창 크기가 바뀌는 순간 저장된 선이 엉뚱한 곳에 그려집니다. 그래서 <code>pt(e)</code>는 좌표를 <strong>캔버스 크기로 나눠 0~1</strong>로 돌려줍니다. 그리기 함수 <code>paint(c, W, H)</code>는 저장된 비율 좌표에 <code>W</code>·<code>H</code>를 곱해 그립니다. 같은 함수가 화면 캔버스에도, 문서 캔버스에도 쓰입니다.</p>
+
+        <h3>2) 선 굵기를 캔버스 너비의 비율로 정한다</h3>
+        <p>선 굵기는 상수가 아니라 <strong>너비의 0.95%</strong>입니다(<code>LW = 0.0095</code>). 화면에서 528px 폭이면 약 5px, 문서의 600px 서명란에서는 약 5.7px. 휴대폰에서 그린 선과 A4 문서에 찍힌 선이 같은 굵기로 보이는 이유입니다. 픽셀 상수로 두면 작은 화면에서 굵게, 큰 문서에서 가늘게 나옵니다.</p>
+
+        <h3>3) 점을 이어 부드럽게 만든다</h3>
+        <p>포인터 이벤트는 초당 60~120번 옵니다. 그 점들을 직선으로 이으면 손으로 쓴 선이 아니라 꺾은선이 됩니다. <code>paint()</code>는 점 세 개씩 묶어 <strong>중간점을 지나는 2차 곡선</strong>(<code>quadraticCurveTo</code>)으로 잇고, 점이 하나뿐인 획은 반지름 <em>선 굵기/2</em>의 점으로 찍습니다. 손가락을 빠르게 움직여 점 사이가 벌어져도 곡선이 메웁니다.</p>
+
+        <h3>4) 손가락이 칸을 벗어나도 획이 끊기지 않게 한다</h3>
+        <p><code>pointerdown</code>에서 <code>setPointerCapture</code>로 포인터를 캔버스에 붙잡습니다. 손가락이 서명칸 밖으로 나가도 <code>pointermove</code>가 계속 들어오므로 획이 중간에 끊기지 않습니다. 캔버스에는 <code>touch-action:none</code>을 걸어 서명 중에 화면이 스크롤되지 않게 했고, <code>contextmenu</code>를 막아 길게 눌러도 메뉴가 뜨지 않게 했습니다. 애플펜슬처럼 고주파로 들어오는 입력은 <code>getCoalescedEvents()</code>로 뭉쳐진 중간점까지 받아 씁니다.</p>
+
+        <h3>5) 화면 픽셀은 3배까지만 쓴다</h3>
+        <p>고해상도 화면에서는 캔버스를 <code>devicePixelRatio</code>배로 키워야 선이 또렷합니다. 그런데 3배를 넘기면(4배 화면 등) 캔버스 메모리만 커지고 눈에 보이는 차이는 없습니다. 그래서 <code>Math.min(devicePixelRatio||1, 3)</code>으로 상한을 뒀습니다.</p>
+
+        <div class="note">
+          <p><strong>서명칸의 비율은 5:3입니다</strong> — CSS의 <code>aspect-ratio:5/3</code>. 이 비율은 장식이 아니라 5절의 계산과 맞물린 값입니다. 화면 서명칸과 문서 서명란의 비율이 다르면, 손으로 쓴 서명이 문서에서 늘어나거나 납작해집니다.</p>
+        </div>
+
+        <h2><span class="idx">5</span>A4 1240×1754 — 화면의 낙서를 문서의 칸에 옮기는 법</h2>
+        <p>결과물은 이미지 한 장입니다. 크기는 <strong>1240×1754</strong>, A4를 150dpi로 잡은 값입니다(210mm·297mm). 화면용 미리보기가 아니라 인쇄와 첨부를 견디는 해상도를 골랐습니다. 여백은 90px(약 15mm).</p>
+        <p>문서는 두 부분으로 그려집니다. 위쪽은 <code>drawDoc()</code>이 그리는 <em>고지 본문</em>이고, 아래쪽은 <code>compose()</code>가 붙이는 <em>서명 블록</em>입니다.</p>
+        <pre><code>/* 서명 블록: 왼쪽에 성명·일시·동의 항목, 오른쪽에 서명 사각형 */
+var PW=1240, PH=1754, PM=90;
+var SIG={x:550, y:1290, w:600, h:360};
+
+x.save(); x.translate(SIG.x, SIG.y);
+x.beginPath(); x.rect(0,0,SIG.w,SIG.h); x.clip();
+paint(x, SIG.w, SIG.h);        // 화면과 같은 함수, 다른 크기
+x.restore();</code></pre>
+        <p>핵심은 마지막 세 줄입니다. 화면에서 그린 획을 그대로 <strong>600×360 영역에 다시 그립니다.</strong> 서명칸도 5:3(600÷360), 화면 서명칸도 5:3이므로 비율이 왜곡되지 않습니다. 선 굵기도 <code>W</code> 기준이라 600px 폭에 맞춰 다시 계산됩니다. 즉 서명은 <em>한 번 그려서 두 번 그리는</em> 구조이고, 두 번째가 문서에 들어가는 정본입니다.</p>
+        <p>서명란 좌표 <code>{x:550, y:1290, w:600, h:360}</code>은 코드 주석에 이유를 적어 두었습니다. <strong>이 좌표는 서명 추출 도구와 같은 비율로 약속된 값</strong>이라, 여기를 바꾸면 문서에서 서명을 잘라내는 쪽도 함께 바꿔야 합니다. 화면과 문서 사이의 약속이 하나 더 있는 셈입니다. 그래서 값을 상수 하나로 두고 주석으로 못 박았습니다.</p>
+
+        <h3>내용이 길어져도 서명란을 침범하지 않게</h3>
+        <p>문서 본문은 고정 크기인데 내용은 바뀝니다. 활동 정보 3줄과 고지 항목 6줄이 지금 값이고, 항목이 늘면 본문이 아래로 자라 서명란을 덮습니다. 실제로 문서를 그려 보고 <strong>본문이 끝난 높이를 돌려받아</strong>, 서명란 위 56px보다 아래로 내려갔으면 <strong>글자 크기를 줄여 다시 그립니다.</strong></p>
+        <pre><code>var scales=[1,.95,.9,.85,.8];
+for (var k=0;k&lt;scales.length;k++){
+  c = document.createElement('canvas'); c.width=PW; c.height=PH;
+  x = c.getContext('2d');
+  endY = drawDoc(x, scales[k], name, when);
+  if (endY &lt;= SIG.y-56) break;    // 서명란 위에서 끝났으면 확정
+}</code></pre>
+        <p>다섯 단계(100%·95%·90%·85%·80%)로 줄여 보고, 그래도 넘치면 마지막 결과를 씁니다. 인쇄물에서 흔히 쓰는 ‘한 단계 작게’를 코드로 옮긴 것입니다. 문서가 두 장이 되지 않으므로, 인쇄·첨부·보관 절차가 한 장 기준으로 유지됩니다.</p>
+
+        <h3>글꼴을 파일에 넣은 이유</h3>
+        <p>캔버스에 글자를 그리려면 그 글꼴이 <em>이미 로드되어 있어야</em> 합니다. 로드되기 전에 그리면 대체 글꼴로 찍히고, 그 이미지가 그대로 정본이 됩니다. 그래서 두 가지를 했습니다. 첫째, 문서에 쓰는 Pretendard <strong>두 굵기(400·600)를 woff2로 파일에 직접 넣었습니다.</strong> 이것이 484,972자(약 364KB)입니다. 둘째, 그리기 전에 <code>document.fonts.load()</code>로 굵기별 로드를 기다립니다.</p>
+        <pre><code>await Promise.all([
+  document.fonts.load('400 26px "Pretendard"'),
+  document.fonts.load('600 26px "Pretendard"'),
+  document.fonts.load('700 26px "Pretendard"')
+]);</code></pre>
+        <p>글꼴을 내장한 두 번째 이유는 <em>오프라인</em>입니다. 행사장은 와이파이가 약하고, 참가자는 카카오톡 인앱 브라우저로 열 수도 있습니다. 외부 글꼴을 받아오는 구조였다면 네트워크가 느릴 때 대체 글꼴로 문서가 만들어질 수 있습니다. 이제 문서의 글자는 언제나 같은 글꼴입니다.</p>
+        <p>화면 제목에 쓰는 Noto Serif KR만 Google Fonts에서 받아옵니다. 문서에는 쓰이지 않는 글꼴이라, 이 요청이 실패해도 <em>동의서 이미지의 품질은 그대로</em>입니다. 파일 505KB 중 364KB를 글꼴에 쓴 판단은 이 우선순위에서 나왔습니다.</p>
+
+        <h2><span class="idx">6</span>버튼이 켜지는 세 가지 조건</h2>
+        <p>서명 페이지에서 가장 중요한 것은 <strong>빈 서명이 문서가 되는 일을 막는 것</strong>입니다. 그래서 ‘동의서 이미지 만들기’ 버튼은 세 조건이 모두 참일 때만 열립니다.</p>
+        <table>
+          <thead>
+            <tr><th>조건</th><th>판정</th><th>이유</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>성명</td><td>앞뒤 공백을 지운 길이 <strong>2자 이상</strong>(입력 상한 20자)</td><td>한 글자 이름은 오타와 구분되지 않음</td></tr>
+            <tr><td>동의</td><td>필수 체크 <strong>2개</strong> 모두</td><td>고지 확인과 보관 동의를 따로 받음</td></tr>
+            <tr><td>서명</td><td>획 길이 합계 <strong>0.2 초과</strong></td><td>점 하나·짧은 획을 서명으로 보지 않음</td></tr>
+          </tbody>
+        </table>
+        <p>세 번째가 흥미로운 부분입니다. 서명의 ‘길이’를 재는데, 세로 이동은 <strong>0.6을 곱해</strong> 셉니다. 사람이 서명할 때 세로로 긴 획보다 가로로 긴 획이 많고, 세로 선 하나만 그은 경우를 서명으로 인정하지 않으려는 가중치입니다. 임계값 0.2는 서명칸 너비의 20%만큼, 그러니까 528px 폭이면 약 106px을 움직여야 한다는 뜻입니다.</p>
+        <p>버튼이 잠겨 있는 동안 화면은 무엇이 빠졌는지 말해 줍니다. <code>aria-live="polite"</code> 영역에 <em>“남은 항목: 동의 체크 2개, 서명”</em>처럼 적고, 항목이 채워지면 그 문구가 줄어듭니다. 버튼이 왜 안 눌리는지 모르는 상태를 만들지 않는 것이 목적입니다.</p>
+        <p>서명칸 위에는 점선 기준선이 하나 있고, 아직 아무것도 그리지 않았을 때만 ‘여기에 서명하세요’ 안내가 보입니다. 첫 획이 들어오는 순간 안내는 사라집니다.</p>
+
+        <h2><span class="idx">7</span>카카오톡으로 보내는 세 갈래</h2>
+        <p>이미지를 만든 다음이 진짜 마지막 단계입니다. 참가자가 그 이미지를 <em>어떻게 교수에게 보내는가.</em> 여기에는 브라우저마다 다른 제약이 셋 있습니다.</p>
+        <h3>① 공유 창 (지원하는 브라우저)</h3>
+        <p>만든 PNG를 <code>File</code>로 감싸 <code>navigator.share</code>에 넘깁니다. 카카오톡이 목록에 뜨면 대화방을 골라 보내면 끝입니다. 단, <strong>공유는 사용자 제스처 안에서 호출되어야</strong> 합니다. 그래서 파일 객체를 버튼 클릭 처리 <em>안에서</em> 미리 만들어 둡니다. 만들기 → 화면 전환 → 공유 버튼을 누르는 사이에 시간이 흐르면 iOS가 공유를 거부하기 때문입니다.</p>
+        <p>공유를 지원하지 않는 브라우저(<code>navigator.canShare</code>가 없거나 파일 공유를 거부하는 경우)에서는 공유 버튼을 <em>아예 숨깁니다.</em> 눌러도 안 되는 버튼을 보여 주는 것보다 낫습니다.</p>
+        <h3>② 이미지 복사 (클립보드)</h3>
+        <p><code>ClipboardItem</code>으로 PNG를 클립보드에 넣습니다. 카카오톡 대화방에서 붙여넣기만 하면 됩니다. 저장 권한이나 사진첩 권한을 묻지 않는 경로라, 권한을 꺼둔 참가자에게 유용합니다.</p>
+        <h3>③ 길게 눌러 저장 (모두의 마지막 수단)</h3>
+        <p>이미지를 길게 눌러 ‘이미지 저장’을 고르는 방법은 어디서나 됩니다. 화면 안내문에 이 순서를 1번·2번으로 적어 두었습니다. 그리고 마지막 한 줄을 덧붙였습니다 — <em>“저장이 되지 않으면 카카오톡 안이 아니라 휴대폰 기본 브라우저(사파리, 크롬)에서 이 페이지를 열어 주세요.”</em> 인앱 브라우저는 저장·공유 권한이 막혀 있는 경우가 있어, 그때의 탈출구를 미리 적어 두는 편이 문의를 줄입니다.</p>
+        <div class="note">
+          <p>내보내기에 실패했을 때 화면이 침묵하지 않는 것도 같은 이유입니다. 복사가 실패하면 “복사하지 못했습니다. 이미지를 길게 눌러 저장해 주세요.”로 <em>다음 행동</em>을 알려 줍니다. 실패 문구에 다음 수단을 같이 적는 것이 이 화면의 규칙입니다.</p>
+        </div>
+
+        <h2><span class="idx">8</span>저장하지 않는 설계, 그리고 그 예외 하나</h2>
+        <p>이 페이지의 개인정보 처리는 코드 전체에 흩어져 있지 않고, 세 문장으로 요약됩니다.</p>
+        <ul>
+          <li><strong>보내지 않는다.</strong> 네트워크 전송 API가 0회. 성명·서명은 메모리의 캔버스에만 존재합니다.</li>
+          <li><strong>남기지 않는다.</strong> 저장소 API가 0회. 새로고침하면 사라집니다.</li>
+          <li><strong>검색에 노출하지 않는다.</strong> <code>noindex,nofollow</code>. 서명 화면은 검색 결과에 나올 성격이 아니고, 나오면 안 됩니다.</li>
+        </ul>
+        <p>이 문장은 화면 맨 아래에도 그대로 적었습니다 — <em>“동의서는 이 기기 안에서만 만들어집니다. 이 페이지는 입력한 성명과 서명을 어디에도 전송하거나 저장하지 않습니다.”</em> 참가자가 읽고 서명을 결정할 수 있어야 하는 정보라, 고지문이 아니라 화면의 문장으로 두었습니다.</p>
+        <p>예외도 정직하게 적습니다. 페이지가 열릴 때 <strong>Google Fonts로 요청이 나갑니다</strong> — 제목용 Noto Serif KR의 스타일시트와 글꼴 파일입니다. 성명도 서명도 실리지 않지만, 접속 기록과 IP는 그 요청에 남습니다. 완전히 없애려면 이 글꼴도 파일에 넣어야 하고, 그러면 파일이 몇십 KB 더 커집니다. 지금은 ‘서명·이름은 나가지 않는다’까지를 약속으로 두고, 글꼴 요청은 별도로 밝히는 쪽을 택했습니다. 개인정보 영향이 큰 순서대로 처리하고, 남은 것을 숨기지 않는 방식입니다.</p>
+
+        <h2><span class="idx">9</span>작은 페이지에도 넣은 것들</h2>
+        <p>373줄짜리 페이지지만, 현장에서 쓰는 도구라면 갖춰야 할 것들은 넣었습니다.</p>
+        <ul>
+          <li><strong>한 화면 흐름.</strong> 세로 한 칸, 최대 폭 560px. 고지 표 → 동의 체크 → 성명 → 서명 → 버튼 순서로 위에서 아래로만 진행합니다. 서명칸은 화면 폭에 맞춰 5:3으로 자라고, 창 크기가 바뀌면 <code>ResizeObserver</code>가 캔버스를 다시 맞춥니다.</li>
+          <li><strong>다크 모드.</strong> 기기 설정을 따르고(<code>prefers-color-scheme</code>), 강제로 밝게 열 수 있는 경로도 남겼습니다. 서명 문서 자체는 항상 흰 종이입니다 — 화면이 어두워도 서명란 배경은 <code>#fff</code>로 고정했습니다.</li>
+          <li><strong>안전 영역.</strong> 아이폰 노치·홈 인디케이터를 피해 여백을 잡습니다(<code>env(safe-area-inset-*)</code>). 서명칸이 홈 바에 가리면 손이 걸립니다.</li>
+          <li><strong>접근성.</strong> 캔버스에 <code>role="img"</code>와 <code>aria-label</code>, 상태 문구에 <code>aria-live</code>, 키보드 사용자를 위한 <code>focus-visible</code> 윤곽선, 움직임 최소화 설정(<code>prefers-reduced-motion</code>) 존중.</li>
+          <li><strong>입력 보조.</strong> 성명 칸은 <code>autocomplete="name"</code>, <code>spellcheck="false"</code>, <code>maxlength="20"</code>. 이름에 자동 수정이 붙으면 문서에 잘못된 이름이 찍힙니다.</li>
+        </ul>
+
+        <h2><span class="idx">10</span>남은 한계</h2>
+        <p>자랑할 단계는 아닙니다. 이 시스템에 없는 것을 그대로 적으면 이렇습니다.</p>
+        <div class="item">
+          <h3><span class="sym">—</span> 행사마다 코드를 고쳐야 한다</h3>
+          <p>활동 정보 3줄(활동처·봉사내용·활동일시)과 고지 항목 6줄이 스크립트 상단의 상수입니다. 새 행사는 이 값을 고쳐 다시 올립니다. 관리자 화면도, 주소 파라미터도 없습니다. 학기마다 한두 번 쓰는 도구라 화면을 만드는 비용이 더 크다고 판단했지만, 여러 행사를 자주 돌린다면 이 값부터 밖으로 빼야 합니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">—</span> 문서에 붙이는 일은 사람이 한다</h3>
+          <p>만들어지는 것은 이미지 한 장입니다. 활동일지 파일에 붙이거나 인쇄해 첨부하는 일은 남습니다. 서명란 좌표를 추출 도구와 같은 비율로 약속해 둔 것이 그 작업을 돕는 장치입니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">—</span> 인증서 기반 전자서명이 아니다</h3>
+          <p>이 페이지는 동의 사실을 증빙하는 이미지를 만듭니다. 서명일시가 문서에 찍히고 성명과 서명이 한 장에 남지만, 서명자가 본인인지 확인하는 것은 대면 확인의 몫입니다. 공인전자서명이 요구되는 계약에는 쓰지 않습니다. 이 선을 지키려고 인증 기능을 일부러 넣지 않았습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">—</span> 결과가 쌓이지 않는다</h3>
+          <p>누가 냈고 누가 안 냈는지 자동으로 알 수 없습니다. 참가자 명단과 대조하는 일은 사람이 합니다. 서버를 두지 않기로 한 결정의 대가이고, 개인정보를 받지 않기로 한 결정의 이득입니다.</p>
+        </div>
+
+        <h2><span class="idx">11</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>구글폼이나 네이버폼을 쓰면 되는데 왜 직접 만들었나요?</h3>
+          <p>폼은 글자와 선택 항목을 받지만 손으로 쓴 서명을 받지 못합니다. 필요한 것은 활동일지에 붙일 A4 동의서 이미지 한 장이고, 고지 항목·성명·서명일시·서명이 문서 안에 함께 인쇄되어야 합니다. 그리고 폼은 제출된 개인정보가 서버에 쌓이지만, 이 페이지는 성명과 서명을 어디에도 보내지 않고 이미지를 기기 안에서만 만듭니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>손가락으로 그린 서명이 법적으로 유효한가요?</h3>
+          <p>이 페이지는 인증서 기반 전자서명이 아니라 동의 사실을 증빙하는 이미지를 만듭니다. 누가 서명했는지는 대면 확인이 맡고, 서명일시가 문서에 찍히며, 서명과 성명이 한 장에 함께 남습니다. 개인정보보호법상 동의를 받는 실무 방식으로는 이 정도가 기준이고, 공인전자서명이 필요한 문서에는 쓰지 않습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>서버가 없는데 여러 사람이 동시에 쓸 수 있나요?</h3>
+          <p>서버가 하는 일이 없기 때문입니다. 페이지는 정적 파일 한 장으로 내려가고, 서명과 이미지 합성은 모두 참가자 브라우저 안에서 끝납니다. 100명이 동시에 열어도 서버가 하는 일은 파일 한 장을 보내는 것뿐입니다. 대신 결과가 서버에 쌓이지 않으므로 취합은 받은 이미지를 모아서 합니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>다른 행사나 다른 동의서에도 쓸 수 있나요?</h3>
+          <p>쓸 수 있지만 관리자 화면은 없습니다. 활동 정보 3줄과 고지 항목 6줄이 코드 안의 상수라, 새 행사는 그 값을 고쳐 다시 올리는 방식입니다. 서명란 좌표도 추출 도구와 약속한 값이라 문서 양식을 바꾸면 두 곳을 함께 바꿔야 합니다. 여러 행사를 자주 돌린다면 이 값을 시트나 주소 파라미터로 빼는 것이 다음 단계입니다.</p>
+        </div>
+
+        <h2><span class="idx">12</span>에필로그 — 373줄이 남긴 것</h2>
+        <p>이 페이지를 만든 시간은 13편의 20시간과 비교할 수 없이 짧았습니다. 그런데 이 작은 파일에서 가장 오래 고민한 것은 기능이 아니라 <em>비율</em>이었습니다. 서명칸을 5:3으로 두고, 문서 서명란도 5:3으로 두고, 선 굵기를 너비의 비율로 두고, 좌표를 0~1로 두는 일. 전부 ‘화면과 종이가 다르다’는 한 가지 사실에서 나온 결정입니다.</p>
+        <p>그리고 개인정보를 받는 도구에서 가장 좋은 기능은 <em>받지 않는 것</em>이었습니다. 서버를 두지 않으니 지울 것도, 지켜야 할 보관 기간도, 유출될 것도 없습니다. 대신 취합이 사람 몫으로 남습니다. 그 맞바꿈이 이 도구에서는 남는 장사였습니다.</p>
+        <blockquote>
+          개인정보를 받는 도구의 성능은 얼마나 많이 저장하는지가 아니라, 얼마나 적게 받아도 목적을 이루는지로 정해진다.
+        </blockquote>
+        <p>페이지는 <a href="https://skyman200.github.io/volunteer-sign/">skyman200.github.io/volunteer-sign</a>에 떠 있고, 2026년 11월 20일 기준 HTTP 200으로 응답합니다. 저장소는 공개(<code>skyman200/volunteer-sign</code>)이며, 이 글의 수치는 모두 그 저장소의 파일과 커밋에서 직접 센 값입니다. 다만 페이지에는 <code>noindex</code>를 걸어 검색에는 노출하지 않습니다.</p>
+      </article>
+
+      <a class="next-ep" href="../bodyscan/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[13편] 90초 바디 스캔 키오스크 — Rust 엔진과 Go 서버를 20시간·33커밋에 붙였다</span>
+        <span class="d">정면·옆모습·1분 스쿼트를 재서 QR로 건네는 시스템 — RTMPose 26관절 Rust 엔진, GPU 상한 3→10, 첫 요청 0.6초를 지운 워밍업, 4.7° 카메라 기울기 자동 감지, 190바이트 결과 링크, 프레임을 남기지 않는 설계</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 현장 행정 병목을 없애는 단일 파일 웹도구 설계·운영 — 자원봉사 동의 서명, 워크숍 만족도 조사</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#전자서명</span><span>#Canvas</span>
+        <span>#개인정보동의</span><span>#개인정보최소화</span><span>#서버없는웹앱</span>
+        <span>#카카오톡공유</span><span>#대학행정</span>
+        <span>#부산AI전문가</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+      </div>
+    </main>
+  </body>
+</html>
