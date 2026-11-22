@@ -1,6 +1,6 @@
 # 김강훈 (Kanghoon Kim) — 전체 프로필 · 부산 AI 전문가 · 동의과학대학교 교수
 
-> 이 문서는 https://skyman200.github.io/ 의 전체 텍스트판이다. 인물의 신원·학력·논문·인증·개발 시스템·강연·언론 보도와 함께, 이 사이트가 연재하는 《바이브 코딩 실전기》 1~15편의 요약을 담는다. 요약본은 https://skyman200.github.io/llms.txt 를 참조한다.
+> 이 문서는 https://skyman200.github.io/ 의 전체 텍스트판이다. 인물의 신원·학력·논문·인증·개발 시스템·강연·언론 보도와 함께, 이 사이트가 연재하는 《바이브 코딩 실전기》 1~16편의 요약을 담는다. 요약본은 https://skyman200.github.io/llms.txt 를 참조한다.
 
 ## 동명이인 구분 (Disambiguation)
 
@@ -50,7 +50,7 @@
 - [인스타그램 @pila_strong](https://www.instagram.com/pila_strong/)
 - [GitHub skyman200](https://github.com/skyman200): 교육·임상 시스템 개발 저장소
 
-## 칼럼 《바이브 코딩 실전기》 1~15편 (2026-11)
+## 칼럼 《바이브 코딩 실전기》 1~16편 (2026-11)
 
 코딩을 배운 적 없는 교수가 1년 동안 대학 시스템 22종을 직접 만들고 배포한 과정을, 시스템별로 병목 → 설계 → 실제로 터진 문제 순으로 기록한 연재다. 각 글은 실제 배포된 시스템의 수치와 실패를 근거로 쓴다.
 
@@ -134,6 +134,21 @@ https://skyman200.github.io/vibe-coding/vscan/
 OCR: Tesseract.js 5.1.1 워커 싱글턴, 언어 ["kor","eng"], OEM 1(LSTM), workerPath /vscan/tesseract/worker.min.js·corePath /vscan/tesseract/core·langPath /vscan/tesseract/lang, 결과는 페이지 ocrText로 저장·복사 버튼 제공.
 라이브 검증(2026-11-21, 원격 브라우저): https://skyman200.github.io/vscan/ HTTP 200·셸 882바이트·화면 정상. 스캔 버튼 → 카메라 화면은 장치 부재로 NotFoundError 문구("사용 가능한 카메라를 찾지 못했어요") — 예외 처리 확인, 실촬영 미검증. 합성 문서 이미지(1600×1200) 갤러리 불러오기 → 자동 감지가 종이 네 귀퉁이에 근접한 사각형 표시 → 수동 펴기(사선 편 직사각형·매직컬러 미리보기) → 손가락 제거 토글(약 2.3초, 손 없는 이미지라 결과 동일) → AI 펴기(모델·wasm 최초 다운로드 포함 약 45초, 실행 성공 — 평면 합성 문서에서 미세한 휘어짐 관찰) → 저장(문서 목록 "1페이지" 생성). OCR은 2회 모두 "문자 인식에 실패했어요" 문구로 실패(언어·코어·워커 자산 6종은 모두 HTTP 200 확인 — 원인 미확정, 이 환경 특유 제약 가능성 배제 못 함). PDF 내보내기는 오류 문구 없이 반응했으나 브라우저 다운로드 목록에 파일이 잡히지 않아 산출물 미확인.
 한계: 소스·테스트·README·LICENSE 부재, 첫 사용 대기(진행률 표시 없음), 자동 촬영의 0.03·5프레임 규칙은 환경 검증 필요, 인덱스드디비는 브라우저 데이터 삭제와 함께 소멸(클라우드 동기화·기기 이전 없음, PDF가 사실상 유일한 백업 경로).
+
+### 16편 — 이름은 AI, 판정은 42행 표: 자세 분석 웹앱 (2026-11-22)
+https://skyman200.github.io/vibe-coding/posture-ai/
+자세 분석 AI 웹앱 posture-ai-kor(저장소 posture-ai-kor, 공개, 라이브 https://skyman200.github.io/posture-ai-kor/ 2026-11-22 HTTP 200·910,258바이트, 화면 제목 "DIT 자세 분석 AI (최종 통합버전)"). 2025-11-04 00:29:34 UTC 생성 → 2025-11-24 11:16:14 UTC 마지막 푸시. 커밋 658개 — 첫 092e3f0(2025-11-04 09:24:44 KST "Initial commit: DIT 자세 분석 AI 웹 애플리케이션")에서 마지막 c33249c(2025-11-24 20:15:55 KST)까지 20일 10시간 51분, 커밋이 있는 날 17일, 하루 최다 112개(11-04). 작성자는 658커밋 전부 skyman200 <skyman200@naver.com>. 삽입 160,719줄·삭제 139,859줄. 추적 파일 29개 1,654,885바이트(1.58MiB)이고 그중 5개가 macOS AppleDouble '._' 메타파일(각 4,096바이트)이라 실내용은 24개. 배포는 GitHub Actions(actions/deploy-pages@v4, main push) → GitHub Pages.
+메시지 성격: 수정·오류·버그·해결 계열 395개(60.0%), PDF 178개(27.1%), 측면·정면 79개(12.0%), 한국어 433개(65.8%)·영어 225개(34.2%), rewrite 3회. 초기는 영어("feat: complete rewrite with Tailwind, Before/After comparison, score chart", "fix: vite base path for GitHub Pages"), 후기는 한국어("정면→옆모습 전환 시 점수 사라짐 수정").
+구조: index.html 하나가 19,655줄·803,481자·922,289바이트(전체 용량 55.7%). CSS 10–387줄(378줄, 그중 약 130줄이 PDF용 .pdf-safe 보정), 마크업 389–1040, 인라인 스크립트 3블록(1041–1117 77줄 / 1130–17531 16,402줄 / 17538–19652 2,115줄, 합 18,594줄), 함수 160개(선언 162회 — recommendPilates가 3,726줄과 18,930줄에 각각 전역 선언되어 뒤엣것이 앞엣것을 덮음), console.log 207·console.warn 120·alert 34. CDN 8개 스크립트(html2canvas 1.4.1, jsPDF 2.5.1, Chart.js 4.4.0, @mediapipe/pose@0.5.1675469404, camera_utils, drawing_utils, tfjs 4.14.0, @tensorflow-models/pose-detection)와 libs/ 로컬 사본(jspdf 364,463·html2canvas 198,689바이트)이 중복. 스크립트 태그는 /posture-ai-kor/assets/main-B5Qt9EMX.js 절대 경로이고 그 파일은 711바이트 modulepreload 폴리필뿐. 1125줄에 없는 파일(./js/main_pro_compatible.js) 참조가 주석으로 남음. .gitignore가 ._*를 무시하는데 AppleDouble 5개는 이미 추적 중.
+자세 추정: poseDetection.createDetector(BlazePose, {runtime:"tfjs", modelType:"full", enableSmoothing:true})를 정면·측면용으로 두 번 생성(모드 전환 시 상태 섞임을 인스턴스 분리로 해결), 33개 랜드마크에서 측면 tragus·c7·acromion·asis·psis·hip·knee·ankle, 정면 R_/L_ 쌍을 사용. 정면 판별 inferOrientationFromPose는 좌우 쌍(11-12·23-24·25-26·27-28·13-14)의 x 차 0.03 이상이 2쌍 이상이면 front — 함수는 있으나 화면은 수동 토글. 모델 로드 대기는 100ms×50(최대 5초).
+캘리브레이션: pxToCm(px, 50) 기본 50px/cm, 두 점 클릭+실제 cm 입력 시 dist/realLength로 px/cm 계산. 보정하지 않으면 cm 지표(HPD·GSB·LLD)는 촬영 거리에 종속.
+지표 21개(코드 기준 정상범위): CVA ≥50°, HPD ≤2cm, TIA 0–10°, SAA 0–10°, PTA 0–15°(부호 포함), KA 175–185°, Tibial 0–10°, GSB ≤2cm, HPA 0–10°, PDS 0–10점 / STA ≤3°, POA ≤3°, LLD ≤1cm, TD ±2°, HTA ≤3°, SPP 0–3°, Q-Angle 10–20°, KAS 0–3°, LLAS 0–3°, Knee Dev 0–3°, 판정표에만 FBA.
+점수: computeScoreFromFullMetrics가 100점에서 감점을 빼고 round(clamp(100−Σ감점,0,100)). 감점 규칙 25개(측면 1~11·정면 12~25): CVA (50−CVA)×2.5 상한 50(계수 ×1.6→×2.5), HPD (HPD−2)×8 상한 30(×5→×8), TIA (TIA−10)×3 상한 30(×2→×3), SAA ×2.5 상한 25(×1.5→×2.5), PTA |PTA|×3 상한 45(목표 0°, 15° 이내도 감점; ×2→×3), KA (175−KA)/(KA−185)×3.5 상한 35(×2.5→×3.5), Tibial ×2.5 상한 25, Knee Dev ×4 상한 25(×3→×4), Q-Angle (10−Q)×2.5 상한 25 / (Q−20)×3 상한 30, LLAS ×4 상한 25. 코드 주석에 감점 기준 강화 이력이 남아 있어 같은 자세의 점수가 버전에 따라 달라진다.
+표: db/posture_metrics_full.csv 42행·21개 코드·9열(Index_Code, Metric_Code, Metric_Name_KR/EN, Deviation_Label, Tight_Muscle, Weak_Muscle, Recommended_Strategy, Notes), db/Pilates_Mat_34·Reformer_42·Cadillac_58·WundaChair_28·Barrel_22_Classical.csv 총 184행·10열(Order, 이름 한/영, 주요 강화 근육, 주요 스트레칭 근육, 상세 동작, Spring_Traditional, Reps, Breathing_Pattern, References), db/Report_History_DB.json은 회원 1명·2025-01-07 1건의 읽기 전용 예시. 연결 규칙은 Tight_Muscle→Main_Stretch_Muscles, Weak_Muscle→Main_Strengthen_Muscles(근육명 정규화·중복 제거). 저장은 localStorage의 centerName·memberName·userName 세 문자열뿐이고 서버·DB·외부 AI API 호출이 없다.
+리포트: 화면 밖(position absolute, left -9999px, top 0, opacity 0, pointer-events none, display block, max-width 1000px)에 렌더한 .pdf-safe 컨테이너 10개(page1Container, sideImageContainer, sideReportContainer, frontImageContainer, frontReportContainer, page4Container, page5Container, page6Container, page8Container, page7Container)를 html2canvas로 캡처해 jsPDF('p','mm','a4')에 addPageAfter 순서로 붙인다. display:none은 크기 측정 실패로 잘리고 visibility:hidden은 렌더가 안 되어 opacity로 숨기는 방식을 쓴다. 푸터 서명은 "Generated by DIT 자세 분석 AI · created by Kim Cook (@pila_strong)". 센터명·회원명은 window.prompt로 받는다(커스텀 모달 커밋이 따로 있으나 라이브에서는 prompt가 뜸).
+라이브 검증(2026-11-22 16:33 KST, 원격 브라우저, 퍼블릭 도메인 1860년대 전신 사진 722×1200, 캘리브레이션 없이): 옆모습 모드에서 관절 5점 자동 배치·오버레이, CVA 59.4°·HPD 1.1cm·TIA 14.0°·SAA 14.0°·PTA 0.0°·KA 167.4°·Tibial 2.6°·GSB 0.2cm·HPA 1.4°·PDS 7.0 → 51점(감점 TIA 12·SAA 10·KA 27), 근육 긴장·약화 목록, 체형 유형 3건, 필라테스 3패턴·5동작(캐딜락 Arm Springs Inside 8회·1 Yellow each, 매트 The Hundred 100 pumps, Roll Up·Roll Over·Single Leg Circle). 같은 사진을 정면 모드로 STA 1.0°·POA 3.6°·LLD 0.02cm·TD 3.5°·HTA 3.3°·SPP 2.6°·Knee Dev 12.0°·Q-Angle 좌 10.1·우 7.5·평균 8.8°·LLAS 0.2° → 57점(감점 POA 2·TD 6·HTA 1·KAS 6·Q-Angle 3·Knee Dev 25). PDF 저장은 알림 "PDF 생성 완료! 모든 페이지에 내용이 정상 출력됩니다."와 함께 17페이지·3,830,990바이트(3.8MB, PDF 1.3) 파일 생성, 약 1분 소요.
+라이브에서 확인한 결함 9건: ① 추천 운동 카드 3개가 "[object Object]" ② Q-Angle 상태값 "worse_low"가 PDF에 그대로 인쇄 ③ POA·LLD가 별칭(POA_F·LLD_F)과 함께 두 줄씩 중복 인쇄 ④ 푸터 "Page undefined/9"와 "Page 6/9" 혼재(실제 17페이지) ⑤ 같은 지표에 다른 정상범위(PTA 화면 0–15 vs PDF 5–15, HTA 0–5 vs ≤3, SPP 0–5 vs 0–3, Q-Angle 10–20 vs 10–15, GSB(cm)에 "0–10°", PDS(점)에 "0–3°") ⑥ SAA 14.0°는 정상 초과인데 필라테스 섹션이 "SAA ↓ 낮음 · 과도한 견갑 후인"으로 반대 판정 ⑦ PDS가 자세편차점수와 골반 하강(Trendelenburg) 두 뜻으로 사용 ⑧ 정면/측면 자동 판별 함수가 있으나 화면은 수동 토글이라 정면 사진도 옆모습으로 계산 ⑨ 이스케이프된 "< h2 style = …" 문자열이 PDF에 텍스트로 인쇄. 코드에서 확인한 것: 전역 recommendPilates 중복 선언, 점수 함수 350여 줄에 규칙 25개 집중, /posture-ai-kor/ 절대 경로, .cursorrules 89줄(절대 규칙 10개 — sessions undefined 금지·initializeApp 1회·콘솔 error 0개, 아키텍처 src/core·src/ai 정책)와 실제 단일 파일 구조의 불일치.
+한계: 의료기기 인증 없음·진단 아님, 2D 단일 사진으로 회전(비틀림) 측정 불가, 촬영 거리·각도·조명 미통제, 서버·DB 없어 기록이 쌓이지 않음(이름 3개만 localStorage), "🤖 AI 분석"은 LLM 호출 0회 표 조회(같은 사진에 같은 답, 사진 외부 전송 없음), PDF가 비트맵 이미지라 텍스트 선택·검색 불가(17페이지 3.8MB).
 
 ## 학술 논문 (국제) — Journal of Physical Therapy Science 7편
 
