@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 18편] 코드 678줄, 지침 2,601줄 — 본선 시작 저장소 vibe-starter의 4커밋 | 김강훈 교수</title>
+    <meta name="description" content="14팀이 이틀 동안 각자 저장소를 열었을 때 팀이 갈라지지 않게 미리 심어 둔 것. skyman200/vibe-starter를 클론해 세어 보니 커밋 4개·파일 56개·3,661줄이었고, 그중 지침 문서가 23개 2,601줄, 코드가 678줄이었다. AGENTS.md 133줄의 '승인' 218회, DB 연결의 네 겹(CA 23줄·URL 정리 46줄·macOS TLS 릴레이 108줄·배포 포함 설정), 실패해도 비밀을 흘리지 않는 점검 스크립트 159줄, 저장소가 스스로 '아직 검증하지 않았다'고 적어 둔 세 곳을 실측한다." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, vibe-starter, 시작 저장소, 해커톤, Next.js 16, Supabase, Prisma 7, AGENTS.md, .agent, 코드 에이전트, 지침, 승인, TLS, CA 인증서, check-db, 템플릿 저장소, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/vibe-starter/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/vibe-starter/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 18편] 코드 678줄, 지침 2,601줄 — 본선 시작 저장소 vibe-starter의 4커밋" />
+    <meta property="og:description" content="56개 파일·3,661줄. 커밋 메시지는 네 개 모두 '시작 저장소 + 시각'이다. 지침이 코드의 3.8배인 이 저장소에서 가장 정교한 파일은 108줄짜리 macOS 전용 TLS 릴레이였고, 가장 정직한 파일은 '아직 검증하지 않았습니다'라고 적힌 배포 문서였다." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-24" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 18편] 코드 678줄, 지침 2,601줄 — 본선 시작 저장소 vibe-starter" />
+    <meta name="twitter:description" content="커밋 4개·파일 56개. AGENTS.md 133줄에 '승인' 218회, .agent/ 8개 473줄, docs/ 12개 1,735줄, 첫 화면 5단계 프롬프트 88~134자. 10-08의 34줄 Express 데모가 10-28 10:45에 12,787줄짜리 Next.js로 한 커밋에 갈아 끼워진 기록까지." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Article", "TechArticle"],
+          "@id": "https://skyman200.github.io/vibe-coding/vibe-starter/#article",
+          "headline": "[바이브코딩 18편] 코드 678줄, 지침 2,601줄 — 본선 시작 저장소 vibe-starter의 4커밋",
+          "alternativeHeadline": "14팀의 이틀을 버티게 하려고 코드보다 지침을 먼저 쓴 시작 저장소 — AGENTS.md 133줄·.agent 473줄·docs 1,735줄·'승인' 218회",
+          "description": "부산 동의과학대학교 김강훈 교수가 2026 DIT 바이브코딩 해커톤 본선용으로 만든 공개 템플릿 저장소 skyman200/vibe-starter를 클론해 계측했다. 저장소는 공개·템플릿(is_template=true)·기본 브랜치 main·홈페이지 없음·포크 0·스타 0·라이선스 MIT(원 제작자 progdper, package.json author도 progdper)이고, 생성 2026-10-08 15:56 KST·마지막 푸시 2026-10-28 11:27 KST다. 커밋은 4개뿐이고 메시지가 모두 '시작 저장소 YYYY-MM-DD HH:mm KST'다: 50d2b25 2026-10-08 15:56(6파일 83줄 — app.js 2·data.js 3·index.html 18·style.css 11·README 38·.gitignore 11의 Express+정적 데모, 합 34줄), 6b491d5 2026-10-09 10:44(11파일 148삽입·29삭제 — server.js 48줄과 public/ 66줄 추가), fabc9dc 2026-10-28 10:45(61파일 12,787삽입·152삭제 — Next.js 16.4.3·Prisma 7·Supabase 스택으로 전면 교체, package-lock 9,189줄 포함), b29f421 2026-10-28 11:27(1파일 6줄 — TLS 릴레이에 upstream close 처리와 rejectUnauthorized:true 강제). 추적 파일 56개 3,661줄(package-lock 제외), 그중 마크다운 23개 2,601줄·TypeScript/TSX 9+2개 678줄·CSS 26줄·설정 13개로, 지침이 코드의 3.83배다. 지침 구성: AGENTS.md 133줄(6,312자, '승인' 32회), .agent/ 8개 473줄(collaboration 55·database 103·deployment 56·development 105·frontend 44·security 46·server 48·troubleshooting 16), docs/ 12개 1,735줄(AUTHENTICATION 170·CODEX_GUIDE 223·CUSTOMIZE_PROJECT 85·FONTS 70·GITHUB_ACTIONS 103·SECURITY 66·SETUP 281·SUPABASE_SETUP 356·TROUBLESHOOTING 89·UI_UX 75·VALIDATION 86·VERCEL_DEPLOYMENT 131), plans/README.md 215줄(그중 계획 양식 115줄). '승인'이라는 낱말이 AGENTS.md 32회·.agent 75회·docs 80회·plans 31회로 문서 전체에 218회 나온다. 코드: src/app/page.tsx 234줄이 첫 화면이며 5단계(requirements·database·server·interface·verification)마다 요약 1·할 일 4개(총 20)·체크포인트 1(28~49자)·복사용 프롬프트 1(88·108·111·117·134자)을 담고 readOnly textarea로 보여 준다. DB 연결은 네 겹 — .env.example 25줄(앱 6543 transaction pooler·CLI 5432, URL에 ssl 옵션 금지), database-tls.ts 46줄(ssl*·uselibpqcompat 파라미터 제거, rejectUnauthorized:true, minVersion TLSv1.2, pool max 2·connect 5초·idle 10초), prisma-tls.ts 37줄(6543 거부·sslmode require·sslaccept strict·sslcert 경로), prisma-tls-relay.ts 108줄(macOS 전용: mkdtemp 0700 유닉스 소켓으로 Prisma CLI를 받아 SSLRequest 8바이트 0,0,0,8,4,210,22,47=80877103을 보내고 'S' 한 글자만 허용한 뒤 Node 검증 TLS로 이어 붙임), next.config.ts 20줄이 outputFileTracingIncludes로 certs/supabase-ca.crt를 함수 번들에 포함. CA는 Supabase Root 2021 CA 23줄, 유효 2021-04-28~2031-04-26. scripts/check-db.ts 159줄은 X509 유효기간을 먼저 확인하고 DATABASE_URL은 SELECT 1, DIRECT_URL은 prisma db pull --print로 읽기 전용 점검하며, 오류를 비밀번호·TLS·네트워크·시간초과·기타 5종의 고정 문구로만 바꿔 출력한다. 저장소가 스스로 적은 미검증: SUPABASE_SETUP의 '추가 검증 필요'(마이그레이션·읽기/쓰기, Linux 연결 미검증), VERCEL_DEPLOYMENT의 'Vercel 실제 배포와 DB 읽기·쓰기를 아직 검증하지 않았습니다', AUTHENTICATION의 '로그인 기능 구현되어 있지 않음'. 없는 것: 테스트 0·마이그레이션 0·.github 0·package.json 스크립트 15개 중 테스트 없음, 첫 화면은 DB 미사용. 라이브 페이지가 없는 템플릿이라 화면 검증 대신 클론 계측과 git 이력 대조로 확인했고, 이 환경에는 Node가 없어 npm install·build·db:validate는 실행하지 못했다.",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+            "width": 1200,
+            "height": 630
+          },
+          "author": {
+            "@type": "Person",
+            "name": "김강훈",
+            "alternateName": "KIM KANG-HOON",
+            "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+            "url": "https://skyman200.github.io/",
+            "sameAs": [
+              "https://orcid.org/0009-0004-5083-406X",
+              "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+              "https://www.linkedin.com/in/prof-kimkanghoon"
+            ]
+          },
+          "datePublished": "2026-11-24",
+          "dateModified": "2026-11-24",
+          "inLanguage": "ko",
+          "articleSection": "바이브 코딩 실전기",
+          "isPartOf": {
+            "@type": "CreativeWorkSeries",
+            "name": "바이브 코딩(Vibe Coding) 실전기",
+            "url": "https://skyman200.github.io/vibe-coding/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "김강훈 교수 · AI·교육혁신 칼럼",
+            "url": "https://skyman200.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://skyman200.github.io/vibe-coding/vibe-starter/"
+          },
+          "keywords": "바이브코딩, Vibe Coding, vibe-starter, 시작 저장소, 템플릿, 해커톤, Next.js 16.4.3, Supabase, Prisma 7, AGENTS.md, .agent, 코드 에이전트, 승인, TLS, CA 인증서, check-db, 부산 AI 전문가, 김강훈 교수",
+          "about": [
+            { "@type": "Thing", "name": "코드보다 지침을 먼저 쓰는 시작 저장소 — AGENTS.md 133줄과 .agent/ 8개 473줄" },
+            { "@type": "Thing", "name": "TLS 검증을 끄지 않으려고 쓴 108줄 — macOS Prisma CLI용 유닉스 소켓 릴레이" },
+            { "@type": "Thing", "name": "검증한 것과 안 한 것을 같은 문서에 적는 장부 — '추가 검증 필요'·'아직 검증하지 않았습니다'" }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://skyman200.github.io/vibe-coding/vibe-starter/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "김강훈 교수",
+              "item": "https://skyman200.github.io/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "바이브 코딩 실전기",
+              "item": "https://skyman200.github.io/vibe-coding/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "18편 — 본선 시작 저장소(vibe-starter)",
+              "item": "https://skyman200.github.io/vibe-coding/vibe-starter/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://skyman200.github.io/vibe-coding/vibe-starter/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "이 저장소로 앱이 바로 돌아가나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "첫 화면은 DB 없이 뜹니다. package.json의 스크립트 15개 중 dev·build·start가 있고, postinstall이 prisma generate를 돌립니다. 다만 DB 기능은 .env의 DATABASE_URL이 있어야 하고, 인증·CRUD 화면·테스트는 저장소에 없습니다. 저장소 자신도 docs/VERCEL_DEPLOYMENT.md에 '실제 Vercel 배포와 배포 주소에서의 DB 읽기·쓰기를 아직 검증하지 않았습니다'라고 적고 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "왜 코드보다 문서가 3.8배인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "마크다운 23개 2,601줄, TypeScript/TSX 678줄입니다. 이 저장소의 사용자가 사람 한 명이 아니라 팀과 그 팀의 AI 에이전트이기 때문입니다. 같은 규칙을 사람에게는 docs/로, 에이전트에게는 AGENTS.md와 .agent/로 나눠 썼고, '승인'이라는 낱말이 문서 전체에 218번 나옵니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "108줄짜리 TLS 릴레이는 무엇을 하나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "macOS에서만 동작합니다. Prisma의 마이그레이션 엔진이 macOS 인증서 정책으로 Supabase pooler 인증서를 거부하기 때문에, Prisma CLI는 권한 0700의 임시 폴더에 만든 유닉스 소켓으로 붙고, 이 릴레이가 대신 SSLRequest(80877103)를 보내 'S' 응답을 확인한 뒤 Node의 검증 TLS(rejectUnauthorized:true, TLSv1.2 이상)로 이어 붙입니다. TLS 검증을 끄는 대신 108줄을 쓴 선택입니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "이 저장소를 우리 팀 시작점으로 써도 되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "라이선스는 MIT이고, 저작권 고지는 원 제작자 progdper에게 있습니다. package.json의 author도 원 제작자이므로 docs/CUSTOMIZE_PROJECT.md의 안내대로 프로젝트 정보를 바꾸되 LICENSE의 MIT 고지는 보존해야 합니다. AGENTS.md에 '새 프로젝트의 package.json 작성자 정보는 승인 후 변경할 수 있지만 LICENSE와 원 제작자의 MIT 저작권·허가 고지는 보존한다'고 적혀 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "커밋이 4개뿐인데 개발 기록은 어디에 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "없습니다. 네 커밋의 메시지가 모두 '시작 저장소 + 시각'이라 왜 그렇게 했는지가 이력에 남아 있지 않습니다. 대신 결정의 이유는 docs/와 .agent/의 문장으로 남겼습니다. 이 저장소에서 이력은 개발 과정이 아니라 스냅숏 네 장이고, 기록의 역할은 문서가 대신합니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>18편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 18 · Team Starter Kit</p>
+        <h1>[바이브코딩 18편] 코드 678줄, 지침 2,601줄 — 본선 시작 저장소 vibe-starter의 4커밋</h1>
+        <p class="subhead">14팀이 이틀 동안 각자 저장소를 열 때, 팀이 갈라지지 않게 미리 심어 둔 것. Next.js 16.4.3과 Supabase, Prisma 7을 붙인 56개 파일보다 먼저 읽어야 할 것은 <code>AGENTS.md</code> 133줄과 <code>.agent/</code> 8개 473줄이었다. 이 글은 그 저장소를 클론해 줄을 세고, DB 연결의 네 겹과 실패해도 비밀을 흘리지 않는 점검 스크립트를 열고, 저장소가 스스로 “아직 검증하지 않았다”고 적어 둔 세 곳을 확인한다.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수·학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 24일</div>
+          <div><strong>읽는 시간</strong> 약 15분</div>
+        </div>
+
+        <p class="lede">2편에서 다룬 해커톤은 18팀 72명이 지원해 14팀이 본선에 올랐고, 본선은 이틀이었으며 결과물 제출 마감이 2026년 10월 30일 13시 30분이었다. 그 이틀 동안 각 팀이 만든 것은 자기 저장소다. 이번 편의 대상은 그 저장소들의 <b>출발점</b>, 공개 템플릿 <code>skyman200/vibe-starter</code>입니다.</p>
+        <p>결론부터 적겠습니다. 이 저장소는 제가 만든 것 중 <b>코드가 가장 적고 문서가 가장 많은</b> 저장소입니다. 추적 파일 56개 3,661줄 가운데 마크다운이 23개 2,601줄, TypeScript가 678줄입니다. 비율로는 <b>코드 1줄마다 지침 3.8줄</b>입니다. 그리고 이 저장소에서 가장 정교한 파일은 화면이 아니라 108줄짜리 TLS 릴레이였고, 가장 정직한 파일은 “아직 검증하지 않았습니다”라고 적힌 배포 문서였습니다.</p>
+
+        <div class="note">
+          <p><strong>이 글에서 쓰는 “실측”의 뜻</strong> — <code>gh repo clone skyman200/vibe-starter</code>로 받은 저장소에서 <code>git log</code>·<code>git ls-files</code>·<code>git show --stat</code>·<code>wc -l</code>로 센 값, 각 파일을 직접 읽고 문자열을 센 값, <code>gh repo view</code>로 확인한 공개 메타데이터입니다. 라이브 페이지가 없는 템플릿 저장소이고, 이 작업 환경에는 Node.js가 없어 <code>npm install</code>·<code>npm run build</code>·<code>npm run db:validate</code>는 <em>실행하지 못했습니다</em>. 그래서 이 글에는 “빌드가 통과한다” 같은 문장이 없습니다.</p>
+        </div>
+
+        <h2><span class="idx">1</span>이 저장소는 앱이 아니라 출발선이다</h2>
+        <p>저장소 설명란은 이렇게 시작합니다 — “DIT 바이브코딩 해커톤 본선 시작 저장소(Next.js · Supabase) — [Use this template]로 팀 저장소를 만든다”. 화면이 아니라 <b>행동</b>이 설명의 중심입니다. 팀은 이 저장소를 포크하는 게 아니라 <code>Use this template</code>으로 복사합니다. GitHub에서 템플릿 복사본은 포크로 집계되지 않습니다. 그래서 이 저장소의 <b>포크 0·스타 0</b>은 “아무도 안 썼다”는 뜻이 아니라 <b>쓰임을 셀 수 없다</b>는 뜻입니다. 실제로 공개 저장소를 검색해도 이 템플릿에서 나온 팀 저장소를 특정할 수 없었습니다. 이 저장소의 성과는 별 수로 증명되지 않습니다.</p>
+        <p>그래서 이 글은 성과 대신 <b>구조</b>를 봅니다. 팀이 처음 5분에 무엇을 읽게 되는지, 에이전트가 무엇을 하려다 멈추게 되는지, 어떤 실패가 미리 막혀 있는지. 시작 저장소의 품질은 그 세 가지로 갈립니다.</p>
+
+        <h2><span class="idx">2</span>규모 — 4커밋, 56파일, 3,661줄</h2>
+
+        <table>
+          <thead>
+            <tr><th>항목</th><th>실측값</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>저장소</td><td><code>skyman200/vibe-starter</code> · 공개 · <strong>템플릿</strong>(<code>is_template=true</code>) · 기본 브랜치 <code>main</code> · 홈페이지 URL 없음 · 포크 0 · 스타 0</td></tr>
+            <tr><td>일시</td><td>생성 <strong>2026-10-08 15:56 KST</strong> · 마지막 푸시 <strong>2026-10-28 11:27 KST</strong> (20일 19시간 31분)</td></tr>
+            <tr><td>이력</td><td>커밋 <strong>4개</strong> · 메시지가 네 개 모두 <code>시작 저장소 YYYY-MM-DD HH:mm KST</code></td></tr>
+            <tr><td>파일</td><td>추적 <strong>56개</strong> · 3,661줄(<code>package-lock.json</code> 9,189줄 제외) · 작업 트리 832KB · <code>.git</code> 384KB</td></tr>
+            <tr><td>구성</td><td>마크다운 23개 / TypeScript 9개 / TSX 2개 / JSON 6개 / SVG 5개 / 그 외 11개</td></tr>
+            <tr><td>비율</td><td>지침 md <strong>2,601줄</strong> : 코드 ts·tsx <strong>678줄</strong> : CSS 26줄 = <strong>3.83 : 1.00</strong></td></tr>
+            <tr><td>스택</td><td>Next.js <strong>16.4.3</strong> · React 19 · Prisma <strong>7</strong> · Tailwind 4.3.3 · Zod 4 · Node 24.x · 의존성 11개 + 개발 13개</td></tr>
+            <tr><td>스크립트</td><td><code>package.json</code> scripts <strong>15개</strong> — dev·build·start·postinstall·typecheck·lint·format·format:check·check·db:generate·db:validate·db:migrate:dev·db:migrate:deploy·db:studio·db:check <em>(테스트 없음)</em></td></tr>
+            <tr><td>인증서</td><td><code>certs/supabase-ca.crt</code> 23줄 — Supabase Root 2021 CA, 유효 <strong>2021-04-28 ~ 2031-04-26</strong></td></tr>
+            <tr><td>라이선스</td><td>MIT · <code>package.json</code> author도 원 제작자 <code>progdper</code></td></tr>
+            <tr><td>없는 것</td><td>테스트 0 · <code>prisma/migrations</code> 0 · <code>.github/</code> 0 · 인증 구현 0 · 배포 검증 0 · 라이브 주소 0</td></tr>
+          </tbody>
+        </table>
+
+        <p>숫자 하나만 기억한다면 <b>4</b>입니다. 16편의 앱은 658커밋이었고 13편의 키오스크는 33커밋이었습니다. 이 저장소는 커밋이 네 개입니다. 적게 만든 게 아니라, <b>여러 번 올린 것을 네 번만 남긴</b> 저장소입니다. 그 흔적이 다음 절에 있습니다.</p>
+
+        <h2><span class="idx">3</span>이력 대신 시각 — 커밋 네 개의 정체</h2>
+        <p>네 커밋의 메시지는 전부 <code>시작 저장소 2026-10-08 15:56 KST</code> 같은 형식입니다. 무엇을 왜 했는지가 한 줄도 없습니다. 대신 <code>git show --stat</code>이 각 스냅숏의 내용을 보여 줍니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>커밋</th><th>시각(KST)</th><th>내용</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>50d2b25</code></td><td>2026-10-08 15:56</td><td>6파일 +83줄 — <code>index.html</code> 18 · <code>style.css</code> 11 · <code>app.js</code> 2 · <code>data.js</code> 3 · README 38 · .gitignore 11. <strong>합 34줄짜리 정적 데모</strong></td></tr>
+            <tr><td><code>6b491d5</code></td><td>2026-10-09 10:44</td><td>11파일 +148/−29 — <code>server.js</code> 48줄과 <code>public/</code>(app.js 39·index.html 23·style.css 4) 추가, <code>package.json</code> 17줄 생성. <strong>Express 정적 서버</strong></td></tr>
+            <tr><td><code>fabc9dc</code></td><td>2026-10-28 10:45</td><td>61파일 <strong>+12,787/−152</strong> — Next.js·Prisma·Supabase 스택으로 <strong>전면 교체</strong>. <code>server.js</code>·<code>public/*</code>·<code>data/seed.json</code> 삭제, 마크다운 23개·<code>src/</code>·<code>prisma/</code>·<code>certs/</code>·<code>.agent/</code>·<code>docs/</code> 생성, <code>package-lock.json</code> 9,189줄 포함</td></tr>
+            <tr><td><code>b29f421</code></td><td>2026-10-28 11:27</td><td>1파일 <strong>+6줄</strong> — <code>prisma-tls-relay.ts</code>에 upstream close 처리와 <code>rejectUnauthorized: true</code> 강제</td></tr>
+          </tbody>
+        </table>
+
+        <p>이 이력은 개발 과정이 아니라 <b>스냅숏 네 장</b>입니다. 10월 8일 오후 3시 56분의 저장소는 34줄이었고, 다음 날 오전 10시 44분에 48줄짜리 서버가 붙었고, 10월 28일 오전 10시 45분에 12,787줄이 한 번에 들어왔습니다. 42분 뒤 마지막 6줄이 붙었습니다.</p>
+        <p>여기서 읽을 것이 두 가지 있습니다. 첫째, <b>10월 28일 11시 27분</b>이라는 시각입니다. 본선 결과물 제출 마감이 10월 30일 13시 30분이었으니, 마지막 커밋은 마감 이를 앞둔 오전입니다. 그 마지막 커밋이 고친 것은 기능이 아니라 <em>연결의 실패 경로</em>였습니다 — TLS 응답이 오기 전에 서버가 끊는 경우를 잡고, 환경 변수 <code>NODE_TLS_REJECT_UNAUTHORIZED=0</code>이 설정돼 있어도 검증을 끄지 못하게 못 박았습니다. 마감 직전에 사람이 손대는 곳이 기능이 아니라 안전장치라는 것은 꽤 자주 관찰되는 패턴입니다.</p>
+        <p>둘째, <b>이력이 하는 일을 문서가 대신한다</b>는 점입니다. 커밋 메시지에 이유가 없으니, 왜 <code>ssl</code> 옵션을 URL에서 지우는지, 왜 릴레이가 macOS에서만 도는지는 코드 주석과 <code>docs/</code>에만 있습니다. 이 저장소를 받은 팀은 <code>git log</code>를 읽어도 아무것도 배우지 못합니다. 배울 것이 문서에 몰려 있습니다. 이건 의도된 설계라기보다 <b>템플릿 배포 방식의 부작용</b>이고, 동시에 이 저장소의 성격을 가장 잘 보여 주는 사실입니다.</p>
+
+        <h2><span class="idx">4</span>파일 56개의 지도 — 지침 2,601줄, 코드 678줄</h2>
+
+        <table>
+          <thead>
+            <tr><th>묶음</th><th>파일</th><th>줄</th><th>누구를 위한 것인가</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>AGENTS.md</code></td><td>1</td><td>133</td><td>모든 에이전트 작업의 공통 규칙(6,312자, “승인” 32회)</td></tr>
+            <tr><td><code>.agent/</code></td><td>8</td><td>473</td><td>역할별 세부 지침 — 개발·DB·서버·화면·보안·배포·협업·오류</td></tr>
+            <tr><td><code>docs/</code></td><td>12</td><td>1,735</td><td>사람이 읽는 설치·연결·배포·인증·검증 안내</td></tr>
+            <tr><td><code>plans/</code></td><td>1</td><td>215</td><td>기능별 작업 계획 양식과 파일명 규칙</td></tr>
+            <tr><td>README·LICENSE</td><td>2</td><td>66</td><td>채워야 할 제출 양식(45줄) + MIT 고지(21줄)</td></tr>
+            <tr><td><code>src/</code></td><td>8</td><td>557</td><td>첫 화면 234줄 + DB·환경변수·TLS 5파일 255줄 + CSS·아이콘 38줄</td></tr>
+            <tr><td><code>scripts/</code></td><td>1</td><td>159</td><td>DB 읽기 전용 점검</td></tr>
+            <tr><td><code>prisma/</code>·설정</td><td>13</td><td>약 9,400</td><td>스키마 18줄 + 설정 8개 + <code>package-lock</code> 9,189줄</td></tr>
+          </tbody>
+        </table>
+
+        <p>이 표에서 눈에 걸리는 것은 <code>src/</code>가 557줄인데 <code>docs/</code>가 1,735줄이라는 점입니다. 화면 하나와 DB 연결 다섯 파일이 전부인 앱에 설명서가 세 배 붙어 있습니다. 이건 과잉이 아니라 <b>사용자가 두 명</b>이기 때문입니다. 한 명은 팀이고, 다른 한 명은 그 팀의 AI 에이전트입니다. 사람에게는 <code>docs/</code>, 에이전트에게는 <code>AGENTS.md</code>와 <code>.agent/</code>를 줍니다. 같은 규칙을 두 번 쓰는 대신, <b>읽는 주체에 맞는 문장</b>으로 나눠 썼습니다.</p>
+
+        <h2><span class="idx">5</span>AGENTS.md 133줄 — 에이전트에게 주는 다섯 가지</h2>
+        <p>이 파일은 지시문이지 설명문이 아닙니다. 첫 절부터 “이 절차는 <code>AGENTS.md</code> 자체와 <code>.agent/</code> 아래의 모든 지침 문서를 수정·추가하는 경우에 적용한다”로 시작합니다. <b>지침을 고치는 지침</b>이 맨 앞에 있습니다. 그리고 지침 변경은 제안까지만 하고, “사용자가 명확히 승인한 경우에만” 적용하라고 못 박습니다.</p>
+        <p>이어지는 절은 다섯 가지 일을 합니다.</p>
+        <ul>
+          <li><strong>프로젝트 목적을 한 문장으로 고정한다.</strong> “비개발자도 이해하기 쉬운 최소 Next.js 보일러플레이트를 유지한다. 요청하지 않은 예제 기능, 패키지, 복잡한 폴더 구조를 추가하지 않는다. 응답은 한국어로 작성하고 변경 이유와 영향을 쉬운 말로 설명한다.”</li>
+          <li><strong>상황별로 어떤 지침을 읽을지 매핑한다.</strong> 기능 개발, 화면·스타일, 서버, 오류 추적, 보안, DB, 배포, 협업 여덟 갈래에 각각 문서를 지정하고, “여러 영역에 걸치면 해당 문서를 모두 읽는다”고 붙입니다.</li>
+          <li><strong>작업 순서를 다섯 단계로 정한다.</strong> 요구사항 분석·계획 → DB 분석 → 서버 처리 → 화면 구현 → 연결·권한·동작 검증. 데이터 저장이 필요한 기능의 기본값이고, “화면만 바꾸는 작업에 DB 변경이나 서버 계층을 만들지 않는다”는 예외를 함께 답니다.</li>
+          <li><strong>승인의 경계를 그린다.</strong> 읽기 전용 확인은 진행, 수정·생성은 승인 뒤. 그리고 명시적 요청 없이는 절대 하지 않는 목록 — 파일 삭제·이동, 패키지 설치, lock·환경 변수·인증·권한·결제 변경, 마이그레이션 생성·실행, 실제 DB 데이터 변경, 배포, <code>Git commit·push·pull·merge·rebase·reset</code>.</li>
+          <li><strong>보안과 검증을 마지막에 묶는다.</strong> “비밀키, DB URL, 토큰, 실제 사용자 데이터를 코드·문서·로그·답변에 노출하지 않는다”, “비밀값 확인이 필요하면 전체 파일 출력 대신 변수 존재 여부 등 최소 정보만 확인한다”. 그리고 <code>npm run check</code>는 “타입·린트·포맷 검사이며 테스트나 실제 DB 연결 검증은 아니다”라고 스스로 한계를 적습니다.</li>
+        </ul>
+
+        <div class="note">
+          <p><strong>“승인”이라는 낱말이 218번</strong> — 지침 문서 전체에서 이 단어가 나오는 횟수를 세어 봤습니다. <code>AGENTS.md</code> 32회, <code>.agent/</code> 75회, <code>docs/</code> 80회, <code>plans/README.md</code> 31회. 합계 218회입니다. 2,601줄짜리 문서에서 열두 줄에 한 번꼴로 “승인”이 나옵니다. 이 저장소가 자동화를 가르치는 방식은 <b>금지 목록을 크게 쓰는 것</b>입니다.</p>
+        </div>
+
+        <p>여기에 재미있는 문장이 하나 있습니다. “문서 선택은 Codex가 이 안내에 따라 수행한다. <code>.agent/</code> 전체가 자동 로딩된다고 가정하지 않는다.” 에이전트에게 <b>자기 자신의 컨텍스트를 과신하지 말라</b>고 적어 둔 것입니다. 그리고 “상황별 문서를 읽었다는 이유로 변경이나 명령 실행이 승인된 것으로 간주하지 않는다”가 따라붙습니다. 읽는 것과 하는 것을 분리한 문장이고, 이 저장소 지침의 성격을 한 줄로 보여 줍니다.</p>
+
+        <h2><span class="idx">6</span>.agent/ 8개 — 역할로 쪼갠 지침, 가장 짧은 파일 16줄</h2>
+
+        <table>
+          <thead>
+            <tr><th>파일</th><th>줄</th><th>다루는 일</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>development.md</code></td><td>105</td><td>공통 순서, 계획 파일, 관심사 분리·DRY·과설계 방지</td></tr>
+            <tr><td><code>database.md</code></td><td>103</td><td>Prisma·Supabase, 모델·쿼리·권한·마이그레이션·KST 처리</td></tr>
+            <tr><td><code>deployment.md</code></td><td>56</td><td>Vercel 설정·환경 변수·배포 순서·검증</td></tr>
+            <tr><td><code>collaboration.md</code></td><td>55</td><td>브랜치, 팀 변경 반영, 업무분장·중복 검토</td></tr>
+            <tr><td><code>server.md</code></td><td>48</td><td>Server Action·Route Handler·입력 검증·캐시</td></tr>
+            <tr><td><code>security.md</code></td><td>46</td><td>비밀값·인증 경계·입력/출력·유출 대응</td></tr>
+            <tr><td><code>frontend.md</code></td><td>44</td><td>UI/UX·KRDS·폰트·폼 접근성·아토믹 디자인</td></tr>
+            <tr><td><code>troubleshooting.md</code></td><td>16</td><td>오류 재현·추적 순서</td></tr>
+          </tbody>
+        </table>
+
+        <p>가장 긴 두 파일이 <b>개발</b>과 <b>DB</b>입니다. 팀 프로젝트에서 실제로 사고가 나는 자리가 그 두 곳이라는 판단으로 읽힙니다. 그리고 가장 짧은 파일이 <b>오류 추적</b> 16줄입니다. 이 비대칭은 한계이기도 합니다. 오류 추적 지침 16줄에는 “로그가 없다는 이유만으로 정상이라고 판단하지 않는다” 같은 좋은 문장이 있지만, 나머지 일곱 문서에 비하면 급히 쓴 메모에 가깝습니다. 실제로 팀이 막히는 순간은 대개 오류 화면 앞인데, 그 순간에 꺼내 볼 문서가 가장 얇습니다.</p>
+        <p>지침을 역할로 쪼갠 이유는 <code>AGENTS.md</code>가 이미 설명합니다 — “<code>.agent/</code> 전체가 자동 로딩된다고 가정하지 않는다”. 모든 문서를 한 파일에 몰면 에이전트가 그중 무엇을 읽었는지 아무도 모릅니다. 여덟 개로 나누면 “지금 이 작업에는 database.md를 읽었다”고 말할 수 있게 됩니다. <b>읽었다는 사실을 확인 가능하게 만드는 분할</b>입니다.</p>
+
+        <h2><span class="idx">7</span>docs/ 12개 — 저장소가 스스로 적은 검증 장부</h2>
+        <p>이 저장소에서 제가 가장 오래 읽은 부분은 코드가 아니라 <code>docs/</code>의 검증 상태 절입니다. 스타터 킷 대부분은 “이렇게 하면 됩니다”로 끝나는데, 이 문서들은 <b>어디까지 확인했고 어디부터는 확인하지 못했는지</b>를 표로 남깁니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>문서</th><th>줄</th><th>스스로 적은 상태</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>SUPABASE_SETUP.md</code></td><td>356</td><td>“검증 완료” 3항(Windows 로컬에서 <code>SELECT 1</code>·CA·호스트명 검증, TLS 1.3, DIRECT_URL 접속, 테이블·데이터 무변경) + <strong>“추가 검증 필요” 2항</strong>(마이그레이션 적용·테이블 생성, 앱의 실제 읽기·쓰기). “Linux의 실제 DB 연결은 아직 검증하지 않았습니다”</td></tr>
+            <tr><td><code>SETUP.md</code></td><td>281</td><td>설치·구조·검사 명령. “기본 첫 화면은 DB를 사용하지 않는다”, Cache Components 설명에 “이 설정만으로 모든 Prisma 조회가 자동 캐시되는 것은 아니다”</td></tr>
+            <tr><td><code>CODEX_GUIDE.md</code></td><td>223</td><td>비개발자가 요청·승인·검증하는 방법, 계획 파일, 오류 전달 요령</td></tr>
+            <tr><td><code>AUTHENTICATION.md</code></td><td>170</td><td>“Supabase Auth 사용자와 현재 User 모델의 연결은 구현되어 있지 않습니다”, “가입·로그인·비밀번호 재설정 화면도 없습니다”</td></tr>
+            <tr><td><code>VERCEL_DEPLOYMENT.md</code></td><td>131</td><td><strong>“이 보일러플레이트는 실제 Vercel 배포와 배포 주소에서의 DB 읽기·쓰기를 아직 검증하지 않았습니다”</strong></td></tr>
+            <tr><td><code>GITHUB_ACTIONS.md</code></td><td>103</td><td>CI는 선택. “기본 <code>.github/</code> 폴더는 없으며 요청 없이 생성하지 않는다”</td></tr>
+            <tr><td><code>TROUBLESHOOTING.md</code></td><td>89</td><td>터미널·Console·Network·Vercel 로그를 구분해 보는 순서</td></tr>
+            <tr><td><code>VALIDATION.md</code></td><td>86</td><td>화면 검사는 안내, 서버는 재검사. “TypeScript 타입이나 클라이언트 검사 성공을 런타임 검증으로 간주하지 않는다”</td></tr>
+            <tr><td><code>CUSTOMIZE_PROJECT.md</code></td><td>85</td><td>이름·화면·제작자·라이선스 교체 절차</td></tr>
+            <tr><td><code>UI_UX.md</code></td><td>75</td><td>KRDS 참고 범위, “KRDS 참고를 이유로 전체 스타일을 일괄 교체하지 않는다”</td></tr>
+            <tr><td><code>FONTS.md</code></td><td>70</td><td>Geist 기본값, 무료 폰트 후보와 라이선스 확인</td></tr>
+            <tr><td><code>SECURITY.md</code></td><td>66</td><td>공개 값과 비밀값 구분, 유출 시 키 교체 순서</td></tr>
+          </tbody>
+        </table>
+
+        <p>이 표에서 가장 값진 줄은 “추가 검증 필요”와 “아직 검증하지 않았습니다”입니다. 스타터 킷을 받은 팀이 가장 위험한 순간은 <b>연결이 됐다는 말과 데이터가 저장된다는 말을 구분하지 못할 때</b>입니다. 이 저장소는 그 둘을 문서에서 갈라 놓습니다 — <code>SELECT 1</code>은 성공했고, 마이그레이션과 읽기·쓰기는 아직이다. 그리고 “로컬 연결 성공을 Vercel 배포 성공으로 기록하지 않는다”고 한 줄 더 붙입니다.</p>
+        <p>반대편도 정직하게 적어야 합니다. <b>이 장부는 저장소 자체에 대한 기록</b>입니다. 그것을 복사한 팀의 프로젝트가 잘 돌아간다는 뜻이 아니고, 문서도 그렇게 말합니다. “이를 복사한 프로젝트의 배포 성공을 의미하지 않으며, 각 프로젝트에서 별도로 확인해야 합니다.”</p>
+
+        <h2><span class="idx">8</span>DB 연결의 네 겹 — CA 파일 하나를 배포까지 데려가는 방법</h2>
+        <p>이 저장소에서 기술적으로 가장 밀도가 높은 부분은 화면이 아니라 <b>연결 코드 255줄</b>입니다. Supabase PostgreSQL에 붙는 일을 네 겹으로 나눠 놨습니다.</p>
+
+        <h3>첫째 겹 — 환경 변수 두 개와 “URL로 검증을 끄지 마세요”</h3>
+        <p><code>.env.example</code> 25줄은 앱용과 CLI용 주소를 분리합니다. 앱은 Transaction pooler(6543), Prisma CLI·마이그레이션은 Direct 또는 Session pooler(5432)입니다. 그리고 주석에 이렇게 적습니다 — “<code>sslmode</code>·<code>sslaccept</code>·<code>sslcert</code>·<code>sslrootcert</code> 등 TLS 옵션은 URL에 직접 추가하지 마세요. 이 프로젝트의 연결 코드가 TLS 옵션을 정리하고 검증을 유지하도록 강제합니다.”</p>
+
+        <h3>둘째 겹 — URL에서 TLS 옵션을 지우는 46줄</h3>
+        <p><code>src/lib/database-tls.ts</code>는 연결 문자열을 받아 <code>ssl</code>로 시작하는 모든 쿼리 파라미터와 <code>uselibpqcompat</code>을 지웁니다.</p>
+        <pre><code>// URL options must never replace the CA or disable hostname verification.
+for (const key of [...url.searchParams.keys()]) {
+  const normalized = key.toLowerCase();
+  if (normalized.startsWith('ssl') || normalized === 'uselibpqcompat') {
+    url.searchParams.delete(key);
+  }
+}</code></pre>
+        <p>그리고 풀 설정을 이렇게 고정합니다 — <code>ssl: { ca: readSupabaseCa(), rejectUnauthorized: true, minVersion: 'TLSv1.2' }</code>, <code>max: 2</code>, <code>connectionTimeoutMillis: 5_000</code>, <code>idleTimeoutMillis: 10_000</code>. 서버리스 환경에서 인스턴스마다 연결 두 개, 5초 안에 안 되면 실패, 10초 놀면 반납. 숫자가 아니라 <b>상한</b>을 정해 둔 것입니다. 누군가 <code>?sslmode=disable</code>을 붙여도 코드가 지우기 때문에 검증이 꺼지지 않습니다.</p>
+
+        <h3>셋째 겹 — pooler 주소를 거부하는 37줄</h3>
+        <p><code>src/lib/prisma-tls.ts</code>는 마이그레이션용 주소가 Transaction pooler(6543)이면 <em>실행 전에</em> 오류를 냅니다 — “<code>DIRECT_URL</code>에는 Transaction pooler가 아닌 Direct 또는 Session pooler 주소를 입력해 주세요.” 마이그레이션이 풀러를 통과하면 원인을 찾기 어려운 실패가 되기 때문에, 실패를 <b>친절한 문장으로 앞당긴</b> 것입니다. 그리고 Prisma 엔진은 node-postgres의 SSL 설정을 쓰지 않으므로, <code>sslmode=require</code>·<code>sslaccept=strict</code>·<code>sslcert</code> 경로를 URL에 직접 넣습니다.</p>
+
+        <h3>넷째 겹 — macOS에서만 도는 108줄짜리 릴레이</h3>
+        <p><code>src/lib/prisma-tls-relay.ts</code>는 이 저장소에서 가장 예상 밖의 파일입니다. 주석이 이유를 그대로 말합니다 — “Prisma’s migration engine checks TLS with the macOS certificate policy, which rejects the Supabase pooler certificate (no extended key usage, five-year validity) even with the correct CA.” 즉 CA가 맞아도 macOS 정책이 거부합니다. 선택지는 둘입니다. 검증을 끄거나, 검증을 유지한 채 우회하거나. 이 저장소는 후자를 골랐습니다.</p>
+        <pre><code>// PostgreSQL SSLRequest message: length 8, request code 80877103.
+const SSL_REQUEST = Buffer.from([0, 0, 0, 8, 4, 210, 22, 47]);</code></pre>
+        <p>동작은 이렇습니다. <code>mkdtempSync('/tmp/prisma-tls-')</code>로 권한 0700 폴더를 만들고(다른 사용자는 접속 불가), 그 안의 유닉스 소켓을 엽니다. Prisma CLI는 이 소켓에 평문 PostgreSQL로 붙습니다. 릴레이는 원격에 8바이트 SSLRequest를 보내고, 돌아온 응답이 정확히 한 글자 <code>S</code>(0x53)일 때만 TLS를 시작합니다. TLS는 Node가 <code>certs/supabase-ca.crt</code>로 호스트명까지 검증하고(<code>rejectUnauthorized: true</code>, TLS 1.2 이상, IP면 SNI 생략), 성공한 뒤에야 양쪽을 파이프로 잇습니다. 프로세스가 끝나면 임시 폴더를 지웁니다.</p>
+        <p>비판도 함께 적겠습니다. 이 108줄은 <b>macOS 분기에서만</b> 동작합니다(<code>process.platform === 'darwin'</code>). Windows·Linux에서는 CLI가 인증서 경로를 담은 URL로 직접 붙습니다. 즉 이 코드는 한 운영체제의 정책 차이를 메우는 <em>우회로</em>이고, 우회로는 언제든 낡습니다. Prisma나 macOS 정책이 바뀌면 이 파일은 조용히 필요 없어지거나 조용히 깨집니다. 그런데도 이 선택이 옳았던 이유는 분명합니다. <b>비개발자에게 “TLS 검증을 끄세요”라고 가르치지 않으려고</b> 108줄을 쓴 것입니다. 시작 저장소가 가르치는 첫 습관이 “검증 끄기”가 되면, 그 팀은 3일 뒤 운영에서 같은 습관을 반복합니다.</p>
+
+        <h3>다섯째 겹 — 인증서를 배포 번들에 넣는 20줄</h3>
+        <p><code>next.config.ts</code>에는 눈에 잘 안 띄지만 결정적인 두 줄이 있습니다.</p>
+        <pre><code>outputFileTracingIncludes: {
+  '/*': ['./certs/supabase-ca.crt'],
+},</code></pre>
+        <p>이게 없으면 서버리스 함수 번들에 CA 파일이 빠져 배포 환경에서만 <code>certs/supabase-ca.crt를 읽을 수 없습니다</code>가 납니다. 로컬에서는 잘 되고 배포에서만 깨지는, 가장 찾기 싫은 종류의 실패입니다. 여기에 <code>poweredByHeader: false</code>(서버 헤더로 프레임워크를 알리지 않음)와 <code>cacheComponents</code>·<code>partialPrefetching</code>이 함께 있습니다.</p>
+
+        <h2><span class="idx">9</span>check-db.ts 159줄 — 실패해도 비밀을 흘리지 않는 점검</h2>
+        <p><code>npm run db:check</code>가 부르는 <code>scripts/check-db.ts</code>는 이 저장소의 사상이 가장 압축된 파일입니다. 하는 일은 “연결되는지 보는 것”인데, 그 안에 안전 규칙이 네 개 들어 있습니다.</p>
+        <ul>
+          <li><strong>인증서를 먼저 검사한다.</strong> <code>new X509Certificate(readSupabaseCa())</code>로 CA 여부와 유효기간을 확인하고, 아니면 DB에 붙기 전에 멈춥니다. “공개 CA 형식·위치·유효기간을 확인하세요.”</li>
+          <li><strong>두 주소를 다른 방식으로 본다.</strong> <code>DATABASE_URL</code>은 앱과 같은 드라이버로 <code>SELECT 1</code>, <code>DIRECT_URL</code>은 <code>prisma db pull --print</code> — 스키마 파일도 DB도 쓰지 않는 읽기 전용 조회입니다. CLI는 셸이 아니라 <code>require.resolve</code>로 설치된 경로를 찾아 실행합니다(다운로드·OS별 바이너리 가정 없음).</li>
+          <li><strong>빈 DB를 정상으로 읽는다.</strong> <code>P4001</code>(조회할 테이블 없음)은 실패가 아니라 “Prisma CLI 접속 성공 (조회할 테이블 없음)”으로 처리합니다. 첫 마이그레이션 전 상태를 오류로 만들지 않습니다.</li>
+          <li><strong>오류를 다섯 문장으로만 바꾼다.</strong> 드라이버 오류에는 호스트·사용자·스키마 조각이 섞여 나옵니다. 이 스크립트는 원문을 출력하지 않고 다섯 갈래로 분류해 고정 문구만 냅니다 — 비밀번호·URL 인코딩, CA·TLS, 네트워크·방화벽, 시간 초과, 기타. 그리고 마지막 줄에 “테이블·데이터·마이그레이션·스키마 파일은 변경하지 않았습니다”를 찍습니다.</li>
+        </ul>
+        <p>이 파일이 하는 일은 사실 별것 아닙니다. 연결 확인입니다. 그러나 <b>실패했을 때 무엇을 말하지 않을지</b>를 코드로 정해 둔 점이 다릅니다. 비개발자가 오류 화면을 캡처해 채팅에 붙이는 것이 일상인 팀에서, 붙여도 되는 오류를 만드는 것은 기능입니다.</p>
+
+        <h2><span class="idx">10</span>첫 화면 234줄 — 앱이 아니라 순서</h2>
+        <p>템플릿을 복사한 팀이 <code>npm run dev</code>로 처음 보는 화면은 제품 화면이 아닙니다. <b>개발 순서 안내</b>입니다. <code>src/app/page.tsx</code> 234줄이 다섯 단계를 그립니다. 단계마다 요약 한 줄, 할 일 네 개(총 20개), 체크포인트 하나, 그리고 복사해서 그대로 붙여 넣을 프롬프트 하나입니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>단계</th><th>체크포인트</th><th>프롬프트</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>요구사항 분석·계획</td><td>“기능·범위·완료 기준이 분명하고, 계획 파일이 필요하면 작성자와 생성 범위를 확인했나요?”(49자)</td><td>134자 — “계획 초안을 보여 주세요… 아직 파일은 생성하거나 수정하지 마세요”</td></tr>
+            <tr><td>DB 분석</td><td>“모델 파일 수정과 실제 DB 마이그레이션을 구분했나요?”(30자)</td><td>117자 — “실제 DB 변경과 마이그레이션은 별도 승인 전 실행하지 마세요”</td></tr>
+            <tr><td>서버 처리</td><td>“허용된 사용자만 필요한 데이터를 처리할 수 있나요?”(28자)</td><td>108자 — “입력 검증, 권한 확인, DB 처리와 오류 응답을 포함하고”</td></tr>
+            <tr><td>화면 구현</td><td>“사용자가 다음 행동과 처리 결과를 쉽게 알 수 있나요?”(30자)</td><td>88자 — “로딩, 성공·오류와 데이터가 없는 상태를 포함하고”</td></tr>
+            <tr><td>연결·권한·동작 검증</td><td>“확인한 결과와 아직 확인하지 않은 범위가 구분되나요?”(29자)</td><td>111자 — “미검증 항목을 구분해 알려 주세요”</td></tr>
+          </tbody>
+        </table>
+
+        <p>프롬프트는 <b>읽기 전용 textarea</b>로 렌더됩니다. 복사하라는 뜻이고, 수정하라는 뜻이 아닙니다. 문장마다 “아직 파일은 생성하지 마세요”, “별도 승인 전 실행하지 마세요”, “미검증 항목을 구분해 알려 주세요”가 들어 있습니다. 다시 말해 첫 화면이 가르치는 것은 기능 목록이 아니라 <b>요청하는 말투</b>입니다. 이 시리즈에서 여러 번 확인한 것이 있습니다 — 비개발자가 AI에게 일을 맡길 때 결과를 가르는 것은 도구가 아니라 첫 문장입니다. 이 저장소는 그 첫 문장을 다섯 개 미리 써 둔 셈입니다.</p>
+
+        <h2><span class="idx">11</span>plans/ 215줄 — 계획 양식이 정한 세 가지</h2>
+        <p><code>plans/README.md</code>는 215줄이고, 그중 115줄이 복사해 쓰는 계획 양식입니다. 양식은 열 개 절 — 목표, 포함·제외 범위, 화면·사용 흐름, 현재 구조, 수정 대상 표, 작업 순서, 완료 기준, <b>승인 범위와 근거</b>, 진행 상태와 검증 결과, 변경 이력. 여기서 세 가지가 눈에 띕니다.</p>
+        <p><strong>첫째, 파일명이 시각과 작성자를 요구합니다.</strong> <code>YYYYMMDD-HHmmss-작성자-작업명.md</code>, 시각은 KST, 콜론은 금지(Windows 호환). 같은 초에 겹치면 짧은 식별자를 덧붙이고, <b>기존 파일을 덮어쓰지 않습니다</b>.</p>
+        <p><strong>둘째, 작성자를 추측하지 말라고 못 박습니다.</strong> “package.json의 author는 보일러플레이트 원 제작자 정보일 수 있으므로 자동 사용하지 않습니다”, “Git의 user.name은 GitHub 사용자명과 다를 수 있으므로 확인 없이 대체하지 않습니다”. 실제로 이 저장소의 author는 <code>progdper</code>입니다. 템플릿을 복사한 팀의 계획 파일에 원 제작자 이름이 박히는 사고를 문서가 미리 막습니다. 그리고 “에이전트가 파일을 대신 작성했다는 이유로 작성자에 codex를 넣지 않습니다”가 붙습니다.</p>
+        <p><strong>셋째, 승인과 검증을 네 층으로 분리합니다.</strong> 사용자 승인 / 구현 결과 / 검증 결과 / 실제 DB·배포 적용. “파일을 만들었다는 이유만으로 기능을 완료로 표시하지 않습니다. 검사 명령·성공 또는 실패·미검증 범위를 함께 남깁니다.” 계획의 체크 표시가 새 권한이 되지 않는다는 문장도 있습니다.</p>
+
+        <h2><span class="idx">12</span>본선 이틀과 이 저장소 — 마지막 커밋이 찍힌 시각</h2>
+        <p>2편에 적은 일정을 다시 가져오면, 행사는 2026년 9월 28일부터 10월 30일까지였고 본선은 14팀·2일, 결과물 제출 마감이 10월 30일 13시 30분, 코드 심사는 14팀×3회로 42회였습니다. 이 저장소의 마지막 커밋은 <b>10월 28일 11시 27분</b>, 마감 이를 앞둔 오전입니다. 그 커밋이 고친 6줄은 앞서 본 대로 TLS 릴레이의 실패 경로와 검증 강제였습니다.</p>
+        <p>여기서 조심할 것이 있습니다. <b>본선 팀들이 실제로 이 템플릿을 복사했는지는 확인할 수 없습니다.</b> 템플릿 복사본은 포크로 집계되지 않고, 공개 저장소를 검색해도 이 템플릿에서 나온 팀 저장소를 특정할 수 없었습니다. 저장소의 포크 0·스타 0은 그 사실의 증거가 아닙니다. 다만 저장소 설명과 마지막 커밋의 시각이 가리키는 것은 분명합니다 — 이 저장소는 <b>행사 중에 쓰이도록, 행사 중에 마지막 손질이 들어간</b> 물건입니다.</p>
+        <p>그리고 이 대목이 18편을 쓰는 이유이기도 합니다. 2편은 심사하는 쪽(플랫폼)의 기록이었고, 이번 편은 <b>심사받는 쪽이 처음 열게 되는 것</b>의 기록입니다. 해커톤의 품질은 심사위원이 몇 명인지보다, 참가자가 첫 5분에 무엇을 읽는지에서 갈립니다.</p>
+
+        <h2><span class="idx">13</span>없는 것 목록 — 이 저장소가 일부러 비워 둔 자리</h2>
+        <ul>
+          <li><strong>테스트 0개.</strong> 스크립트 15개에 test가 없습니다. <code>npm run check</code>는 타입·린트·포맷이고, 문서 스스로 “테스트나 실제 DB 연결 검증은 아니다”라고 밝힙니다. 이틀짜리 팀에게 테스트를 강요하지 않은 선택으로 읽히지만, 결과물 심사에서 테스트가 배점에 들어간다면 시작점이 그 항목을 가르쳐 주지 않는 셈입니다.</li>
+          <li><strong>마이그레이션 0개.</strong> <code>prisma/schema.prisma</code>는 18줄에 <code>User</code> 모델 하나(UUID id, 고유 email, 선택 name, 생성·수정 시각, <code>@@map("users")</code>)이고 <code>prisma/migrations</code> 폴더가 없습니다. 팀이 처음 <code>db:migrate:dev</code>를 실행할 때가 첫 마이그레이션입니다.</li>
+          <li><strong>CI 0개.</strong> <code>.github/</code>가 없습니다. <code>docs/GITHUB_ACTIONS.md</code> 103줄이 “필요할 때 도입하는 선택”으로 예시를 제공하고, AGENTS.md는 “요청 없이 생성하지 않는다”고 막습니다.</li>
+          <li><strong>인증 0개.</strong> <code>User</code> 모델은 있는데 비밀번호·세션 모델이 없고, Supabase Auth와의 연결도 없습니다. 문서는 이 사실을 숨기지 않고 선택지 비교(170줄)만 제공합니다.</li>
+          <li><strong>배포 검증 0개.</strong> 라이브 주소가 없고, 문서가 “아직 검증하지 않았습니다”라고 적습니다.</li>
+          <li><strong>README는 빈 양식입니다.</strong> 45줄에 “(앱 이름)”, 그리고 프로젝트 개요·주요 기능 표·기술 스택·실행 방법·<strong>AI 활용 내역</strong>·팀원 역할·아쉬운 점. 빈칸이 16개입니다. 특히 “AI 활용 내역”의 하위 항목이 인상적입니다 — “주요 프롬프트(그대로 붙여 넣기)”, “AI가 만든 것 / 사람이 고친 것”, “결과를 확인한 방법”. <b>README의 절반은 코드 설명이 아니라 심사자가 읽을 칸</b>입니다.</li>
+        </ul>
+        <p>이 목록은 흠이 아니라 <b>설계의 흔적</b>입니다. 스타터 킷이 모든 것을 넣으면 팀은 아무것도 결정하지 않습니다. 대신 비워 두면 팀이 결정합니다. 문제는 비워 둔 자리가 <em>README에 적혀 있지 않다</em>는 점입니다. 어디까지가 주어졌고 어디부터가 팀의 몫인지는 문서를 다 읽어야 알 수 있습니다.</p>
+
+        <h2><span class="idx">14</span>이 저장소가 남긴 세 문장</h2>
+        <blockquote>비밀키, DB URL, 토큰, 실제 사용자 데이터를 코드·문서·로그·답변에 노출하지 않는다.<cite>— AGENTS.md 「보안과 인코딩」</cite></blockquote>
+        <blockquote>파일을 만들었다는 이유만으로 기능을 완료로 표시하지 않습니다. 검사 명령·성공 또는 실패·미검증 범위를 함께 남깁니다.<cite>— plans/README.md 「승인과 완료 기록」</cite></blockquote>
+        <blockquote>이 보일러플레이트는 실제 Vercel 배포와 배포 주소에서의 DB 읽기·쓰기를 아직 검증하지 않았습니다.<cite>— docs/VERCEL_DEPLOYMENT.md 「현재 배포 검증 상태」</cite></blockquote>
+        <p>세 문장이 같은 것을 말합니다. <b>모르는 것을 아는 것처럼 쓰지 않는다.</b> 첫 문장은 사람에게, 둘째는 팀에게, 셋째는 자기 자신에게 하는 말입니다. 2,601줄짜리 문서에서 실제로 오래 남는 것은 기능 설명이 아니라 이 세 줄이라고 생각합니다.</p>
+
+        <h2><span class="idx">15</span>한계 — 지침이 코드보다 많으면 생기는 일</h2>
+        <ul>
+          <li><strong>지침도 썩습니다.</strong> 코드 1줄에 지침 3.8줄인 저장소는 코드를 고칠 때마다 문서를 함께 고쳐야 합니다. 그 규율이 깨지면 지침은 <em>틀린 안내</em>가 되고, 틀린 안내를 따르는 에이전트는 사람이 세운 규칙보다 위험합니다. AGENTS.md가 “실제 폴더 구조나 실행 명령이 문서와 달라진 경우” 지침 개선을 제안하라고 적어 둔 이유가 이것입니다.</li>
+          <li><strong>이력이 이유를 말하지 않습니다.</strong> 커밋 네 개의 메시지가 모두 시각입니다. 12,787줄이 한 커밋으로 들어온 순간, 팀은 무엇이 왜 바뀌었는지 <code>git log</code>로 알 수 없습니다. 이 저장소의 유일한 기록 수단은 문서입니다.</li>
+          <li><strong>릴레이는 우회로입니다.</strong> macOS 분기 108줄은 운영체제 정책이 바뀌면 함께 바뀌어야 합니다. 이 글에서 이 코드가 실제로 동작하는지 확인하지 못했습니다(이 환경에 Node가 없습니다).</li>
+          <li><strong>검증의 범위가 좁습니다.</strong> 저장소 자신이 밝힌 대로 Windows 로컬 연결만 확인됐고, Linux·Vercel·마이그레이션·읽기/쓰기는 미검증입니다. “검증 완료”라는 문구를 봤을 때 어디까지인지 반드시 옆줄을 읽어야 합니다.</li>
+          <li><strong>오류 추적 지침이 16줄입니다.</strong> 팀이 실제로 막히는 순간에 꺼내 볼 문서가 가장 얇습니다.</li>
+          <li><strong>쓰임을 셀 수 없습니다.</strong> 템플릿 복사본은 포크로 집계되지 않습니다. 이 저장소가 몇 팀의 첫 커밋이 되었는지는 GitHub 지표로 알 수 없습니다.</li>
+        </ul>
+
+        <h2><span class="idx">16</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>이 저장소로 앱이 바로 돌아가나요?</h3>
+          <p>첫 화면은 DB 없이 뜹니다. 스크립트 15개 중 <code>dev</code>·<code>build</code>·<code>start</code>가 있고 <code>postinstall</code>이 <code>prisma generate</code>를 돌립니다. 다만 DB 기능은 <code>.env</code>의 <code>DATABASE_URL</code>이 있어야 하고, 인증·CRUD 화면·테스트는 없습니다. 저장소도 “실제 Vercel 배포와 배포 주소에서의 DB 읽기·쓰기를 아직 검증하지 않았습니다”라고 적습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>왜 코드보다 문서가 3.8배인가요?</h3>
+          <p>사용자가 두 명이기 때문입니다. 한 명은 팀, 다른 한 명은 그 팀의 AI 에이전트입니다. 사람에게는 <code>docs/</code> 12개 1,735줄, 에이전트에게는 <code>AGENTS.md</code> 133줄과 <code>.agent/</code> 8개 473줄을 줍니다. 그 문서 전체에 “승인”이라는 낱말이 218번 나옵니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>108줄짜리 TLS 릴레이는 무엇을 하나요?</h3>
+          <p>macOS에서만 동작합니다. Prisma 마이그레이션 엔진이 macOS 인증서 정책으로 Supabase pooler 인증서를 거부하기 때문에, CLI는 권한 0700 임시 폴더의 유닉스 소켓에 붙고 릴레이가 대신 SSLRequest(80877103)를 보내 <code>S</code> 한 글자를 확인한 뒤 Node의 검증 TLS로 이어 붙입니다. 검증을 끄는 대신 108줄을 쓴 선택입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>우리 팀 시작점으로 써도 되나요?</h3>
+          <p>라이선스는 MIT이고 저작권 고지는 원 제작자 <code>progdper</code>에게 있습니다. <code>package.json</code>의 author도 원 제작자이므로, <code>docs/CUSTOMIZE_PROJECT.md</code>의 절차대로 프로젝트 정보를 바꾸되 LICENSE의 MIT 고지는 보존해야 합니다. AGENTS.md도 “작성자 정보는 승인 후 변경할 수 있지만 LICENSE와 원 제작자의 MIT 고지는 보존한다”고 적습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q5.</span>커밋이 4개뿐인데 개발 기록은 어디에 있나요?</h3>
+          <p>없습니다. 네 메시지가 모두 “시작 저장소 + 시각”이라 이유가 이력에 남지 않았습니다. 대신 결정의 이유는 <code>docs/</code>와 <code>.agent/</code>의 문장으로 남겼습니다. 이 저장소에서 이력은 개발 과정이 아니라 스냅숏 네 장이고, 기록의 역할은 문서가 대신합니다.</p>
+        </div>
+
+        <h2><span class="idx">17</span>에필로그 — 시작점의 품질은 첫 5분에 정해진다</h2>
+        <p>이 저장소를 다시 열면서 가장 오래 본 것은 <code>page.tsx</code>도, <code>AGENTS.md</code>도 아니었습니다. <b>10월 28일 11시 27분의 6줄</b>이었습니다. 마감 이를 앞두고 누군가 고친 것이 새 기능이 아니라 “응답이 오기 전에 끊기는 경우”와 “검증을 끄지 못하게”였다는 사실이, 이 저장소가 무엇을 중요하게 여겼는지 가장 정확하게 말해 줍니다.</p>
+        <p>1년 동안 시스템 22개를 만들면서 매번 느낀 것이 있습니다. 프로젝트는 대개 실력이 아니라 <b>시작점</b>에서 갈립니다. 첫 5분에 무엇을 읽고, 첫 실패에서 무엇을 배우고, 첫 화면에서 어떤 말투를 익히는지. 이 저장소는 그 5분을 위해 코드 678줄 옆에 지침 2,601줄을 두었습니다. 과한 것 같지만, 팀에게 남는 것이 화면이 아니라 습관이라면 과하지 않습니다.</p>
+        <blockquote>
+          좋은 시작 저장소는 답을 주지 않는다. 무엇을 물어야 하는지를 남긴다.
+        </blockquote>
+        <p>저장소는 <a href="https://github.com/skyman200/vibe-starter" target="_blank" rel="noopener">github.com/skyman200/vibe-starter</a>에 공개 템플릿으로 있습니다. 이 글의 커밋·파일·줄 수는 <code>git log</code>·<code>git show --stat</code>·<code>wc -l</code>로, 문자열 횟수는 파일에서 직접 세었고, 공개 메타데이터는 <code>gh repo view</code>로 확인했습니다. 이 환경에 Node.js가 없어 설치·빌드·DB 점검은 실행하지 못했으며, 저장소 자신도 Vercel 배포 검증을 하지 않았다고 적고 있습니다. 확인하지 못한 것은 확인하지 못했다고 적었습니다.</p>
+      </article>
+
+      <a class="next-ep" href="../aid-lab/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[17편] 배포한 것은 앱이 아니라 문장이다 — AID 실습장 aid-lab, 2커밋·1,088줄·프롬프트 15개·복사 버튼 24개</span>
+        <span class="d">8분 48초·2커밋·5파일 1,088줄의 워크숍 실습장 — 프롬프트 15개가 HTML 안의 pre 블록으로 들어 있고, '한 번에 복사'가 문장+자료를 844~2,525자로 붙여 준다. 36건 만족도 원자료의 평균 5개를 다시 계산한 값과 빈칸 1건이 만드는 3.94라는 함정, 재번호 커밋이 남긴 흔적 3개, 그리고 마감이 지난 라이브에서 만난 8건</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 교내 바이브코딩 해커톤의 심사·운영 플랫폼과 본선 시작 저장소를 직접 만들고 운영한다</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#시작저장소</span>
+        <span>#해커톤</span><span>#Nextjs</span><span>#Supabase</span>
+        <span>#Prisma</span><span>#AGENTS</span><span>#코드에이전트</span>
+        <span>#지침</span><span>#승인</span><span>#TLS</span>
+        <span>#CA인증서</span><span>#템플릿저장소</span>
+        <span>#부산AI전문가</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+      </div>
+    </main>
+  </body>
+</html>
