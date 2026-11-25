@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 19편] “코 코어” — AI가 발표자를 나무란 이유가 내 오디오 절단기였다 | 김강훈 교수</title>
+    <meta name="description" content="학생을 위한 발표 코칭 서비스 P-SPEAK를 클론해 계측했다. 23커밋·251파일·31,990줄(TypeScript 10,734·TSX 4,062·CSS 1,299·마크다운 1,333·SQL 740), 130일 중 커밋이 있는 날은 6일뿐이고 10월 7일 마지막 커밋 하나가 108파일 +3,928/−3,651로 AI를 브라우저에서 서버로 옮겼다. 이 글의 중심은 프롬프트가 아니라 오디오 절단기다. 6~12초 조각을 시간으로 자르면 ‘코 코어’ ‘운 동치료’가 나오고, 그 전사문을 읽은 AI 리포트가 발표자에게 말을 더듬었다고 감점을 준다. 쉼(하위 30% 음량)·250/150/80ms·바닥 −80dB로 자르는 48줄과 20ms 프레임 시뮬레이션 테스트 71줄, 브라우저 Web Speech와 서버 전사를 겹치는 SpeechTimeline 149줄, 필러를 독립 단어로만 세는 18+4개 목록과 발음 상한 98점, AI 4태스크(분당 15/30/40/5·리포트만 1크레딧·실패 시 환불)와 4초/12초/30자 게이팅, 36,000자 전사 예산·60장·55초 리포트, 비밀 4정규식 마스킹과 두 가지 fail-open, Supabase 무료 티어 일시정지로 로그인이 죽은 날의 health·keepalive, 181줄 경계 검사기와 예외 3건, 그리고 design.md=APPLE_DESIGN_SYSTEM.md(MD5 동일·내용은 RawBlock)·린트 로그 13,288줄·체크박스 25개 미체크·얼굴 분석 0줄 같은 유물까지. Node.js가 없어 빌드와 테스트 147개는 실행하지 못했고, 라이브 /api/health가 200을 돌려준 것만 확인했다." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, P-SPEAK, P-LIME, 발표 코칭, AI 코치, 음성 인식, 전사, 오디오 청킹, 필러, SpeechTimeline, Supabase, Vercel, 레이트리밋, 크레딧, fail-open, keepalive, 아키텍처 경계, vitest, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/p-speak/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/p-speak/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 19편] “코 코어” — AI가 발표자를 나무란 이유가 내 오디오 절단기였다" />
+    <meta property="og:description" content="31,990줄짜리 발표 코칭 앱에서 가장 중요한 코드는 프롬프트가 아니라 6~12초 오디오를 어디서 자를지 정하는 48줄이었다. 시간으로 자르면 ‘코 코어’가 되고, 그 전사문을 읽은 AI가 발표자에게 말을 더듬었다고 감점한다." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-25" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 19편] “코 코어” — AI가 발표자를 나무란 이유가 내 오디오 절단기였다" />
+    <meta name="twitter:description" content="23커밋·251파일·31,990줄. 130일 중 커밋이 있는 날은 6일. 10-07 한 커밋이 108파일 +3,928/−3,651로 AI를 서버로 옮겼다. 그리고 ‘코 코어’ — AI가 나무란 이유가 내 절단기였다. 48줄 규칙과 71줄 테스트, 필러 18+4, 분당 15/30/40/5, 36,000자 예산." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "Article",
+        "TechArticle"
+      ],
+      "@id": "https://skyman200.github.io/vibe-coding/p-speak/#article",
+      "headline": "[바이브코딩 19편] “코 코어” — AI가 발표자를 나무란 이유가 내 오디오 절단기였다",
+      "alternativeHeadline": "발표 코칭 서비스 P-SPEAK 계측 — AI를 서버로 옮긴 108파일, ‘코 코어’를 고친 48줄, 그리고 저장소에 남은 유물 일곱",
+      "description": "학생을 위한 발표 코칭 서비스 P-SPEAK를 클론해 계측했다. 23커밋·251파일·31,990줄(TypeScript 10,734·TSX 4,062·CSS 1,299·마크다운 1,333·SQL 740), 130일 중 커밋이 있는 날은 6일뿐이고 10월 7일 마지막 커밋 하나가 108파일 +3,928/−3,651로 AI를 브라우저에서 서버로 옮겼다. 이 글의 중심은 프롬프트가 아니라 오디오 절단기다. 6~12초 조각을 시간으로 자르면 ‘코 코어’ ‘운 동치료’가 나오고, 그 전사문을 읽은 AI 리포트가 발표자에게 말을 더듬었다고 감점을 준다. 쉼(하위 30% 음량)·250/150/80ms·바닥 −80dB로 자르는 48줄과 20ms 프레임 시뮬레이션 테스트 71줄, 브라우저 Web Speech와 서버 전사를 겹치는 SpeechTimeline 149줄, 필러를 독립 단어로만 세는 18+4개 목록과 발음 상한 98점, AI 4태스크(분당 15/30/40/5·리포트만 1크레딧·실패 시 환불)와 4초/12초/30자 게이팅, 36,000자 전사 예산·60장·55초 리포트, 비밀 4정규식 마스킹과 두 가지 fail-open, Supabase 무료 티어 일시정지로 로그인이 죽은 날의 health·keepalive, 181줄 경계 검사기와 예외 3건, 그리고 design.md=APPLE_DESIGN_SYSTEM.md(MD5 동일·내용은 RawBlock)·린트 로그 13,288줄·체크박스 25개 미체크·얼굴 분석 0줄 같은 유물까지. Node.js가 없어 빌드와 테스트 147개는 실행하지 못했고, 라이브 /api/health가 200을 돌려준 것만 확인했다.",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "alternateName": "KIM KANG-HOON",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0004-5083-406X",
+          "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+          "https://www.linkedin.com/in/prof-kimkanghoon"
+        ]
+      },
+      "datePublished": "2026-11-25",
+      "dateModified": "2026-11-25",
+      "inLanguage": "ko",
+      "articleSection": "바이브 코딩 실전기",
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "name": "바이브 코딩(Vibe Coding) 실전기",
+        "url": "https://skyman200.github.io/vibe-coding/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "김강훈 교수 · AI·교육혁신 칼럼",
+        "url": "https://skyman200.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://skyman200.github.io/vibe-coding/p-speak/"
+      },
+      "keywords": "바이브코딩, Vibe Coding, P-SPEAK, P-LIME, 발표 코칭, AI 코치, 음성 인식, 전사, 오디오 청킹, 필러, SpeechTimeline, Supabase, Vercel, 레이트리밋, 크레딧, fail-open, keepalive, 아키텍처 경계, vitest, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "‘코 코어’ 사고 — AI 평가를 고친 것은 프롬프트가 아니라 6~12초 오디오 절단 규칙 48줄"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI를 브라우저에서 서버로 옮긴 108파일 +3,928/−3,651 커밋과 단일 /api/ai 진입점"
+        },
+        {
+          "@type": "Thing",
+          "name": "학생 서비스의 실패 설계 — 로그인은 fail-closed 회피, 실시간 코치는 fail-open"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://skyman200.github.io/vibe-coding/p-speak/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "김강훈 교수",
+          "item": "https://skyman200.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "바이브 코딩 실전기",
+          "item": "https://skyman200.github.io/vibe-coding/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "19편 — 발표 코칭 서비스(P-SPEAK)",
+          "item": "https://skyman200.github.io/vibe-coding/p-speak/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://skyman200.github.io/vibe-coding/p-speak/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "왜 오디오를 6~12초로 자르나요? 통째로 보내면 안 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "발표 중 자막과 코칭이 말하는 동안 나와야 하기 때문입니다. 통째로 보내면 발표가 끝나야 결과가 옵니다. 6,000ms는 한 문장이 여러 조각으로 쪼개지지 않을 최소값, 12,000ms는 쉼이 없는 발표에서도 전사가 막히지 않을 상한입니다. 그 사이는 시간이 아니라 쉼이 결정하며, 이 구간 음량 범위의 하위 30%를 쉼으로 보고 250ms(9초 전)·150ms(11초 전)·80ms 순으로 기준을 낮춥니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "브라우저 음성인식과 서버 전사를 왜 둘 다 쓰나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "속도와 정확도가 반대이기 때문입니다. 브라우저 Web Speech는 즉시 나오지만 전문용어에 약하고, 서버 전사는 몇 초 늦지만 정확합니다. 먼저 브라우저 텍스트로 자막을 채우고 서버 전사가 도착하면 그 조각만 교체하며, 서버가 실패하거나 빈 결과면 브라우저 텍스트를 남깁니다. 이 규칙은 SpeechTimeline 149줄에 있고, 발화를 잃지 않는 것이 우선입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "크레딧은 왜 리포트에만 붙였나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "비용이 가장 큰 호출이 리포트이고 결과를 받는 순간이 명확하기 때문입니다. 코칭·전사·슬라이드 추출은 크레딧을 차감하지 않고, 리포트만 1장을 차감합니다. 하루 무료 크레딧은 5장이고 실패하면 refund_credits RPC로 돌려줍니다. 대신 코치는 4초마다 확인하되 마지막 호출에서 12초가 지나고 새 발화가 30자 이상일 때만 부르고, 슬라이드 키워드는 보고 있는 장만 뽑습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI가 발표자를 너무 혹독하게 평가하지 않나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "리포트 프롬프트에 ‘보통 수준은 60~75’, ‘근거 없이 후하게 주지 마라’, ‘음성인식 오탈자를 발표자의 잘못으로 세지 마라’를 함께 적었습니다. 문제는 혹독함보다 근거 없는 점수이므로, 여섯 범주 모두 1~2문장 근거와 대본 인용을 요구하고 여섯 범주 이름을 JSON 스키마 enum으로 고정했습니다. 계측 지표도 발음·억양 모두 상한이 98점입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "이 앱을 다른 학교에서도 쓸 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "구조는 학교에 묶여 있지 않습니다. AI는 OpenAI 호환 엔드포인트 하나, DB는 Supabase, 배포는 Vercel이면 됩니다. 다만 지금은 비공개 저장소이고 인증·크레딧·개인정보 동의 문구가 이 학교 기준이므로, 공개하려면 그 세 가지를 먼저 정리해야 합니다."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+  <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>19편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 19 · AI Presentation Coach</p>
+        <h1>[바이브코딩 19편] &ldquo;코 코어&rdquo; — AI가 발표자를 나무란 이유가 내 오디오 절단기였다</h1>
+        <p class="subhead">PDF 슬라이드를 올리면 발표를 듣고, 말하는 중에 옆에서 코칭하고, 끝나면 여섯 범주 리포트를 PDF&middot;HWPX로 내주는 앱 <code>P-SPEAK</code>. 23커밋&middot;251파일&middot;31,990줄을 열어 보니, 이 앱에서 가장 중요한 코드는 프롬프트가 아니라 <b>6~12초 오디오를 어디서 자를지 정하는 48줄</b>이었습니다.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수&middot;학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 25일</div>
+          <div><strong>읽는 시간</strong> 약 18분</div>
+        </div>
+
+        <p class="lede">지금까지 이 연재에서 다룬 것은 대개 <b>나를 위한 도구</b>였습니다. 강의계획서를 검사하고, 출결을 받고, 성과를 모으고, 해커톤을 운영하는 시스템. 이번 편은 다릅니다. <b>학생을 위한 서비스</b>입니다. 발표를 앞둔 사람이 PDF를 올리고, 실제로 말하고, 끝나면 리포트를 받습니다. 사용자가 있고, 로그인이 있고, 하루 다섯 번의 무료 크레딧이 있고, 그 크레딧 뒤에 실제 AI 요금이 붙어 있습니다.</p>
+        <p>결론부터 적겠습니다. 이 앱에서 가장 값비싼 교훈은 프롬프트 한 줄이 아니었습니다. <b>&ldquo;코 코어&rdquo;</b>였습니다. 발표 연습 녹음을 6~12초 단위로 잘라 서버에 보내는데, 그 절단이 단어 중간을 끊었습니다. &ldquo;코어&rdquo;가 &ldquo;코 코어&rdquo;로, &ldquo;운동치료&rdquo;가 &ldquo;운 동치료&rdquo;로 전사됐고, 그 전사문을 읽은 AI 리포트는 <b>발표자에게 말을 더듬었다고 감점</b>을 주었습니다. AI가 틀린 것이 아니라, 제가 잰 값이 틀렸습니다. 그 사실을 확인하고 고치는 데 든 코드는 71줄짜리 테스트 하나였습니다.</p>
+
+        <div class="note">
+          <p><strong>이 글에서 쓰는 &ldquo;실측&rdquo;의 뜻</strong> — <code>gh repo clone skyman200/p-speak</code>로 받은 비공개 저장소에서 <code>git log</code>&middot;<code>git ls-files</code>&middot;<code>git show --stat</code>&middot;<code>wc -l</code>로 센 값, 각 파일을 직접 읽고 문자열을 센 값입니다. 저장소가 비공개이고 실제 서비스라 <b>서비스 주소&middot;게이트웨이 주소&middot;키&middot;환경 변수 값은 이 글에 쓰지 않습니다.</b> 대신 오늘 <code>/api/health</code>가 <code>200</code>과 <code>supabase ok</code>를 돌려준 사실만 적습니다. 이 작업 환경에는 Node.js가 없어 <code>npm run build</code>&middot;<code>vitest run</code>&middot;<code>architecture:check</code>는 <em>실행하지 못했습니다</em>. 그래서 이 글에는 &ldquo;테스트 147개가 통과한다&rdquo; 같은 문장이 없습니다.</p>
+        </div>
+
+        <h2><span class="idx">1</span>이 앱이 하는 일 — 올리고, 말하고, 받는다</h2>
+        <p>흐름은 세 단계입니다. <b>올리기</b> — 발표용 PDF를 넣으면 pdf.js로 슬라이드를 그리고, 슬라이드마다 제목&middot;핵심 키워드 3개&middot;핵심 개념 2~3개를 뽑습니다. <b>말하기</b> — 마이크를 켜고 발표합니다. 화면 옆에는 지금 말한 속도(분당 어절), 필러 횟수, 슬라이드에 머문 시간이 뜨고, 12초에 한 번꼴로 AI 코치가 한 줄을 던집니다. 슬라이드의 핵심 키워드는 말하는 동안 하나씩 <b>취소선</b>이 그어집니다. <b>받기</b> — 끝나면 총평&middot;여섯 범주 점수&middot;슬라이드별 점수&middot;개선 제안 3~5개&middot;다음 연습 3단계가 담긴 리포트가 나오고, PDF&middot;HWPX&middot;JSON&middot;CSV로 내려받습니다.</p>
+        <p>연습 모드는 셋입니다. <code>timed</code>(페이스 조절), <code>keyword</code>(핵심 어휘), <code>expression</code>(전달력 강조). 모드는 프롬프트 안에서 우선순위를 바꿉니다. 같은 발표라도 페이스 모드에서는 시간 초과가 1순위 지적이고, 핵심 어휘 모드에서는 빠뜨린 키워드가 1순위입니다. 이 세 모드는 <code>server/ai/input.ts</code>와 리포트 생성 프롬프트가 <b>같은 문자열 상수</b>를 공유합니다. 모드 이름을 한 곳에서 바꾸면 코치와 리포트가 같이 움직입니다.</p>
+
+        <h2><span class="idx">2</span>규모 — 23커밋, 251파일, 31,990줄</h2>
+        <p>추적 파일 251개, <code>package-lock.json</code>과 이미지&middot;PDF를 뺀 텍스트가 31,990줄입니다. TypeScript 10,734줄, TSX 4,062줄, CSS 1,299줄, 마크다운 1,333줄, SQL 740줄. 커밋 23개의 누적 증감은 <b>+48,992 / &minus;6,125줄</b>입니다(lock 파일 변동 포함).</p>
+        <table>
+          <thead><tr><th>계층</th><th>파일</th><th>줄</th><th>맡는 것</th></tr></thead>
+          <tbody>
+            <tr><td>src/presentation</td><td>66</td><td>6,880</td><td>화면&middot;단계 조립(랜딩&middot;발표&middot;처리&middot;요약)</td></tr>
+            <tr><td>src/domain</td><td>18</td><td>1,220</td><td>필러&middot;속도&middot;억양&middot;리포트 모델</td></tr>
+            <tr><td>src/infrastructure</td><td>20</td><td>1,966</td><td>PDF&middot;오디오&middot;전사&middot;Supabase&middot;내보내기</td></tr>
+            <tr><td>src/shared</td><td>6</td><td>359</td><td>타입&middot;순수 유틸</td></tr>
+            <tr><td>server</td><td>20</td><td>1,368</td><td>AI 태스크&middot;인증&middot;크레딧&middot;레이트리밋</td></tr>
+            <tr><td>api</td><td>8</td><td>540</td><td>서버리스 함수 6개 경로</td></tr>
+            <tr><td>src/tests</td><td>36</td><td>1,703</td><td>테스트 147개 + setup</td></tr>
+            <tr><td>scripts</td><td>8</td><td>701</td><td>경계 검사&middot;보안 검사&middot;PDF 자산 동기화</td></tr>
+          </tbody>
+        </table>
+        <p>화면이 2배 이상 큰 것은 이 앱의 성격 때문입니다. 랜딩에는 파티클 캔버스와 스플래시가 붙어 있고(<code>PSpeakSplash.tsx</code> 307줄, <code>particlePhysics.ts</code> 125줄), 발표 화면은 슬라이드&middot;자막&middot;코치 패널&middot;키워드 오버레이를 동시에 그립니다. 반면 판단은 <code>domain</code>에 모아 두었습니다. 점수를 만드는 코드가 화면 안에 없기 때문에, 같은 규칙을 리포트&middot;PDF&middot;CSV가 함께 씁니다.</p>
+
+        <h2><span class="idx">3</span>이력 — 130일 중 6일에 몰린 커밋</h2>
+        <p>첫 커밋 2026년 5월 30일 09시 57분, 마지막 커밋 10월 7일 21시 10분. 130일입니다. 그런데 커밋이 있는 날은 <b>여섯 날뿐</b>입니다.</p>
+        <table>
+          <thead><tr><th>날짜</th><th>커밋</th><th>그날 한 일</th></tr></thead>
+          <tbody>
+            <tr><td>05-30</td><td>1</td><td>최초 커밋 — 앱 전체, 코드맵 스냅숏, 보안 문서 8개, 린트 로그 2개</td></tr>
+            <tr><td>06-20</td><td>7</td><td>키워드 취소선, 402 모듈화, 인증 레이트리밋 폴백, 오류 문구 매핑</td></tr>
+            <tr><td>06-21</td><td>9</td><td>슬라이드당 키워드 3개, pdf.js cmaps, 429 완화, 크레딧 스키마, 즉시 렌더</td></tr>
+            <tr><td>06-24</td><td>2</td><td>PDF&middot;HWPX 리포트 내보내기, kordoc 번들 자체 포함</td></tr>
+            <tr><td>07-11</td><td>3</td><td>Supabase 일시정지 복구(health&middot;keepalive), 자막 환각 차단, Whisper base</td></tr>
+            <tr><td>10-07</td><td>1</td><td>AI를 게이트웨이로 전환 — 108파일 +3,928 / &minus;3,651</td></tr>
+          </tbody>
+        </table>
+        <p>첫 커밋이 시작은 아닙니다. 그 커밋 안에 이미 <code>.codesight/CODESIGHT.md</code>(2026-04-19 14:28 스캔), <code>docs/design-provenance.md</code>(04-20), <code>docs/security/&hellip;status.md</code>(04-21), 그리고 회원가입 동의 버전 상수 <code>2026-04-21</code>이 들어 있습니다. 4월 19~21일에 다른 환경에서 만든 것을 5월 30일에 저장소로 옮긴 것입니다. 그래서 이 저장소의 이력은 &ldquo;개발 과정&rdquo;이 아니라 <b>작업한 날의 목록</b>에 가깝습니다. 6월 20~21일 이틀에 16커밋이 몰린 것도 그래서입니다. 그 이틀이 이 앱의 구조를 정한 날이었습니다.</p>
+
+        <h2><span class="idx">4</span>&ldquo;코 코어&rdquo; — 48줄이 발표자의 평판을 바꿨다</h2>
+        <p>서버 전사는 오디오를 통째로 받지 않습니다. 6~12초 단위로 잘라 보냅니다. 처음에는 시간이 되면 자르는 방식이었습니다. 그랬더니 전사 결과에 <b>&ldquo;코 코어&rdquo;</b>, <b>&ldquo;운 동치료&rdquo;</b>가 찍혔습니다. 단어 중간이 잘린 것입니다. 문제는 그다음입니다. 리포트 프롬프트는 전사문을 근거로 평가하고, &ldquo;같은 단어 반복을 줄이라&rdquo;는 감점 규칙도 있습니다. 발표자는 더듬지 않았는데 <b>AI가 더듬었다고 평가</b>했습니다.</p>
+        <p>그래서 자르는 기준을 &ldquo;시간&rdquo;에서 &ldquo;쉼&rdquo;으로 바꿨습니다. <code>src/infrastructure/audio/chunkPause.ts</code> 48줄이 그 규칙입니다.</p>
+        <table>
+          <thead><tr><th>규칙</th><th>값</th><th>이유</th></tr></thead>
+          <tbody>
+            <tr><td>최소 길이</td><td>6,000ms</td><td>이보다 짧으면 문장 하나가 여러 조각으로 쪼개진다</td></tr>
+            <tr><td>최대 길이</td><td>12,000ms</td><td>쉼이 없어도 여기서는 자른다(끊김 없는 발표 대비)</td></tr>
+            <tr><td>쉼 판정</td><td>이 구간 음량 범위의 하위 30%</td><td>방마다 다른 마이크 감도를 상대값으로 흡수</td></tr>
+            <tr><td>쉼 길이</td><td>250ms → 150ms → 80ms</td><td>9초 전 250ms(파열음 닫힘과 구분), 11초 전 150ms, 그 뒤 80ms</td></tr>
+            <tr><td>바닥값</td><td>&minus;80dB</td><td>노이즈 억제가 쉼을 0에 가깝게 눌러도 바닥을 끌어내리지 않게</td></tr>
+          </tbody>
+        </table>
+        <p>주석에 그대로 적어 두었습니다. &ldquo;고정 길이로 자르면 &lsquo;코 코어&rsquo; &lsquo;운 동치료&rsquo;가 나오고, 그러면 AI 리포트가 발표자가 더듬었다고 탓한다.&rdquo; 코드가 기억해야 할 것은 기능이 아니라 <b>한 번 당한 사고</b>입니다.</p>
+        <p>이 48줄에는 71줄짜리 테스트가 붙어 있습니다. 20ms 프레임으로 RMS를 먹여 가며 &ldquo;최소 길이 전에는 절대 자르지 않는다&rdquo;, &ldquo;최소 길이 뒤 첫 쉼에서 250ms에 자른다&rdquo;, &ldquo;쉼이 끝나면 다시 말이 시작된 것으로 본다&rdquo;를 재현합니다. 방 소음은 &minus;60dBFS, 말소리는 &minus;20dBFS로 고정한 시뮬레이션입니다. 마이크 없이 절단 시각을 검증하는 방법입니다.</p>
+        <blockquote>
+          AI가 이상하게 평가하면 프롬프트를 먼저 고치고 싶어진다. 그런데 이번에는 프롬프트가 아니라 <b>내가 AI에게 준 데이터</b>가 틀렸다.
+          <cite>chunkPause.ts를 쓰게 된 이유</cite>
+        </blockquote>
+
+        <h2><span class="idx">5</span>전사기는 두 개다 — 브라우저는 빨리, 서버는 정확하게</h2>
+        <p>발표 중 자막이 1초 늦으면 코칭이 아니라 방해입니다. 그래서 <b>브라우저 음성인식(Web Speech)</b>이 먼저 자막을 채우고, 6~12초 조각의 서버 전사가 도착하면 그 조각의 브라우저 텍스트를 <b>교체</b>합니다. 서버 전사가 실패하거나 빈 결과면 브라우저 텍스트를 그대로 남깁니다. 발화가 사라지는 일은 없습니다. 이 규칙은 <code>SpeechTimeline</code>(149줄)에 있습니다. 조각마다 <code>browserText</code>&middot;<code>serverText</code>&middot;<code>settled</code> 세 칸을 들고, 슬라이드별 &ldquo;말한 시간&rdquo;은 쉼을 빼고 셉니다.</p>
+        <p>서버 전사 모델은 벤치마크로 골랐습니다. 경량 GPT 계열은 오디오 입력 자체를 거부했습니다. Gemini 3.5 Flash에 추론을 끄면(&ldquo;reasoning off&rdquo;) 한국어 전문용어를 조각당 약 4초에 가장 정확하게 받아썼습니다. 대신 세 가지를 걸었습니다. <b>temperature 0</b>(전사는 창작이 아니므로), <b>용어 힌트</b>(슬라이드 제목과 핵심 키워드를 프롬프트에 넣어 &ldquo;베스&rdquo;를 &ldquo;VAS&rdquo;로, &ldquo;안전성&rdquo;을 &ldquo;안정성&rdquo;으로 바로잡되, 실제로 다른 단어는 건드리지 않게), <b>무음 표식 제거</b>(&ldquo;(무음)&rdquo; 같은 출력은 빈 문자열로).</p>
+
+        <h2><span class="idx">6</span>필러 세기 — 부분 문자열로 세면 &ldquo;어떻게&rdquo;가 필러가 된다</h2>
+        <p>한국어 필러를 <code>includes()</code>로 세면 &ldquo;어떻게&rdquo;의 &lsquo;어&rsquo;, &ldquo;다음&rdquo;의 &lsquo;음&rsquo;, &ldquo;그래서&rdquo;의 &lsquo;그&rsquo;가 전부 잡힙니다. 모든 발표가 필러 범벅이 됩니다. <code>detectFillers.ts</code> 29줄은 <b>독립된 단어일 때만</b> 셉니다. 목록은 두 종류입니다.</p>
+        <ul>
+          <li><b>항상 필러 18개</b> — 어&middot;어어&middot;음&middot;음음&middot;으음&middot;엄&middot;흠&middot;아&middot;에&middot;에또&middot;그니까&middot;그러니까&middot;뭐지&middot;뭐랄까&middot;이제&middot;막&middot;약간&middot;되게</li>
+          <li><b>쉼이 붙을 때만 4개</b> — 그&middot;저&middot;저기&middot;뭐. &ldquo;그 결과&rdquo;는 필러가 아니고 &ldquo;그&hellip;&rdquo; &ldquo;저,&rdquo; &ldquo;그 그&rdquo;는 필러입니다.</li>
+          <li><b>영어 8개</b> — uh&middot;um&middot;er&middot;ah&middot;like&middot;you know&middot;actually&middot;basically&middot;so</li>
+        </ul>
+        <p>점수는 이렇게 만듭니다. 발음 점수는 필러 비율 &times; 180을 최대 35점까지만 빼고, 20어절 미만이면 12점, 같은 단어가 바로 반복되면 8점을 더 뺍니다. 하한 35, 상한 98입니다. 억양 점수는 음높이 표준편차 &times; 1.2(최대 35) + 음량 표준편차 &times; 1.3(최대 20)에 기본 45를 더하고, 음높이 표준편차가 12 미만이면 단조로움으로 18점, 속도 표준편차가 40을 넘으면 8점을 뺍니다. 하한 30, 상한 98입니다. 재미있는 것은 <b>상한</b>입니다. 100점을 주지 않습니다. 이 지표는 마이크와 방에 따라 흔들리는 값이라, 만점을 주는 순간 거짓말이 됩니다.</p>
+
+        <h2><span class="idx">7</span>AI는 네 가지 일만 한다 — 그리고 대부분 무료다</h2>
+        <p>AI 호출은 서버 함수 <code>api/ai.ts</code> 한 곳으로 모읍니다. 요청 본문은 <code>{ task, input }</code> 네 글자로 시작하고, 태스크 정의는 <code>server/ai/tasks.ts</code> 40줄의 표 하나입니다.</p>
+        <table>
+          <thead><tr><th>task</th><th>하는 일</th><th>모델</th><th>분당 한도</th><th>크레딧</th></tr></thead>
+          <tbody>
+            <tr><td>coach</td><td>발표 중 실시간 코칭 한 줄</td><td>경량 GPT(gpt-5.4-mini)</td><td>15</td><td>차감 없음</td></tr>
+            <tr><td>transcribe</td><td>6~12초 오디오 전사</td><td>Gemini 3.5 Flash</td><td>30</td><td>차감 없음</td></tr>
+            <tr><td>extract</td><td>슬라이드 제목&middot;키워드 3&middot;개념</td><td>경량 GPT</td><td>40</td><td>차감 없음</td></tr>
+            <tr><td>report</td><td>종합 리포트</td><td>경량 GPT</td><td>5</td><td>1회 차감</td></tr>
+          </tbody>
+        </table>
+        <p>비용이 드는 것은 <b>리포트 하나뿐</b>입니다. 하루 무료 크레딧은 5장이고, 리포트가 실패하면 <code>refund_credits</code> RPC로 1장을 돌려줍니다. 코칭과 전사는 크레딧을 쓰지 않지만, 대신 호출 자체를 아낍니다.</p>
+        <ul>
+          <li><b>게이팅</b> — 코치는 4초마다 화면을 보지만, AI에는 <b>마지막 호출로부터 12초</b>가 지나고 <b>새 발화가 30자 이상</b> 쌓였을 때만 묻습니다(<code>useLiveCoach.ts</code>의 4,000 / 12,000 / 30 세 상수).</li>
+          <li><b>지연 추출</b> — 슬라이드 키워드는 업로드할 때 전부 뽑지 않고, 지금 보는 장과 다음 장만 뽑아 캐시합니다.</li>
+          <li><b>한 번에 배치</b> — 리포트는 방문한 모든 슬라이드를 한 번의 호출로 평가합니다. 발화가 없는 슬라이드는 아예 호출 대상에서 빠집니다.</li>
+          <li><b>폴백</b> — 리포트 호출이 실패하면 AI 없이 잰 값(속도&middot;필러&middot;키워드 커버리지)으로 결과지를 채웁니다. 화면은 비지 않습니다.</li>
+        </ul>
+
+        <h2><span class="idx">8</span>10월 7일 — AI를 브라우저에서 서버로 옮긴 108파일</h2>
+        <p>이 저장소에서 가장 큰 커밋은 마지막 커밋입니다. 2026년 10월 7일 21시 10분, <b>108개 파일 +3,928 / &minus;3,651줄</b>. 제목은 &ldquo;switch to AI-ONE for live coaching, transcription and report&rdquo;. 그 전까지 이 앱은 Gemini를 브라우저 가까이에서 불렀고, 전사용 Whisper 워커를 브라우저에 들고 있었습니다. 이 커밋이 지운 것을 세어 보면 이렇습니다.</p>
+        <table>
+          <thead><tr><th>지운 것</th><th>줄</th><th>대신 들어온 것</th><th>줄</th></tr></thead>
+          <tbody>
+            <tr><td>api/transcribe.ts</td><td>229</td><td>api/ai.ts (단일 진입점)</td><td>71</td></tr>
+            <tr><td>api/ai/generate.ts</td><td>109</td><td>server/ai/aiOneClient.ts</td><td>98</td></tr>
+            <tr><td>src/workers/whisper.worker.ts</td><td>125</td><td>server/ai/mediaTasks.ts</td><td>124</td></tr>
+            <tr><td>src/domain/ai/core.ts</td><td>164</td><td>server/ai/coachTask.ts</td><td>160</td></tr>
+            <tr><td>src/domain/ai/slideAnalysis.ts</td><td>229</td><td>server/ai/reportTask.ts</td><td>232</td></tr>
+            <tr><td>useRealtimeCoaching.ts</td><td>143</td><td>useLiveCoach.ts</td><td>89</td></tr>
+          </tbody>
+        </table>
+        <p>바뀐 것은 위치만이 아닙니다. <b>키가 브라우저에서 사라졌습니다.</b> 그 전에는 모델 호출에 필요한 자격 증명이 클라이언트 번들 쪽에 닿을 수 있었고, 지금은 <code>AI_API_KEY</code>가 서버 환경 변수에만 있고 브라우저는 자기 세션 토큰만 들고 <code>/api/ai</code>를 부릅니다. 서버는 그 토큰으로 사용자를 확인하고(<code>requireAuthenticatedUser</code>), 태스크별로 입력을 다시 검증하고(<code>server/ai/input.ts</code> 63줄), 한도를 확인하고, 크레딧을 차감하고, 실패하면 환불합니다. AI를 서버로 옮긴다는 결정은 보안 결정이면서 동시에 <b>비용&middot;한도&middot;품질을 한 곳에서 통제하겠다는 결정</b>이었습니다.</p>
+        <p>그 대가도 있습니다. 함수 하나가 60초까지 돌 수 있게 설정했고(<code>vercel.json</code>의 <code>maxDuration: 60</code>), 리포트는 55초에 스스로 끊깁니다. 브라우저에서 돌던 Whisper를 잃었기 때문에, 오프라인이 되면 서버 전사는 없고 브라우저 음성인식만 남습니다. 대신 조각이 12초로 짧아져 서버 왕복이 부담이 되지 않습니다.</p>
+
+        <h2><span class="idx">9</span>리포트 한 장의 예산 — 36,000자, 60장, 55초</h2>
+        <p>리포트 프롬프트에는 숫자가 여럿 박혀 있습니다. 이 숫자들이 이 기능의 설계도입니다.</p>
+        <ul>
+          <li><b>슬라이드 60장</b>까지 받습니다. 그 이상은 잘라 냅니다.</li>
+          <li><b>전사문 예산 36,000자</b> — 슬라이드 수로 나눠 장당 상한을 정합니다(최대 2,500자). 60장이면 장당 600자, 10장이면 2,500자. 긴 발표에서 뒤쪽 장이 굶지 않게 하는 방식입니다.</li>
+          <li><b>코칭 기록 40줄</b> — 발표 중 던진 한 줄들을 리포트가 다시 읽습니다. &ldquo;그때 그 지적을 왜 했는지&rdquo;를 결과지가 설명할 수 있는 근거입니다.</li>
+          <li><b>출력 9,000토큰, 제한 시간 55초</b> — 초과하면 504로 끊고, 클라이언트는 로컬 지표 폴백으로 갑니다.</li>
+          <li><b>여섯 범주</b> — 내용 구성&middot;논리 흐름&middot;전달 속도&middot;언어 표현&middot;핵심어 전달&middot;시간 관리. 스키마에서 <code>enum</code>으로 고정되어 있어 모델이 범주를 새로 만들 수 없습니다.</li>
+        </ul>
+        <p>프롬프트에 &ldquo;근거 없이 후하게 주지 마라(보통 수준은 60~75)&rdquo;고 적어 둔 것도 의도입니다. 학생에게 90점을 주는 AI는 친절하지만 쓸모가 없습니다. 모든 평가는 대본의 실제 표현을 짧게 인용해 근거를 대야 하고, 대본이 거의 없는 슬라이드는 낮게 평가하고 그 이유를 적게 했습니다. 음성인식 오탈자를 발표자의 잘못으로 세지 말라는 규칙도 같은 프롬프트에 있습니다. <b>AI에게 무엇을 하지 말지 적는 것</b>이 무엇을 하라고 적는 것보다 오래 갔습니다.</p>
+
+        <h2><span class="idx">10</span>로그에 비밀을 남기지 않는 네 개의 정규식</h2>
+        <p><code>server/http.ts</code> 46줄에는 <code>SECRET_PATTERNS</code> 네 개가 있습니다. Google API 키 형태(<code>AIza&hellip;</code> 20자 이상), <code>Bearer &lt;토큰&gt;</code>, <code>access_token</code>&middot;<code>password</code>&middot;<code>api_key</code>&middot;<code>secret</code> 같은 이름 뒤의 값, 그리고 JWT 세 마디(<code>eyJ&hellip;</code>). 오류를 남기기 전에 이 넷을 지웁니다. 운영 환경에서는 스택 대신 오류 이름과 메시지만 남깁니다. 로그는 JSON 한 줄로 찍습니다(<code>level</code>&middot;<code>timestamp</code>&middot;<code>scope</code>&middot;<code>message</code>&middot;<code>detail</code>).</p>
+        <p>같은 파일에 <b>일부러 실패를 열어 두는</b> 결정이 두 개 있습니다. 인증 레이트리밋은 DB 함수(<code>check_rate_limit</code>)를 먼저 부르지만, 그 함수가 없거나 DB가 죽으면 <b>메모리 카운터로 내려갑니다</b>(60초 5회). 주석의 이유는 &ldquo;중앙 제한기는 게이트가 아니라 의존성&rdquo;입니다. 중앙 제한기가 죽었다고 모든 사용자의 로그인을 막는 것이 더 큰 사고입니다. 반대로 AI 레이트리밋은 <b>fail open</b>입니다. 한도 확인이 실패해도 요청을 통과시킵니다. &ldquo;발표 도중에 코치가 멈추면 안 된다&rdquo;가 이유입니다. 두 결정 모두 <b>실패했을 때 누가 더 불편한가</b>를 기준으로 갈렸습니다. 로그인은 잠기면 안 되고, 코치는 발표 중에 멈추면 안 됩니다.</p>
+        <p>회원가입은 조금 더 엄격합니다. 비밀번호 8자 이상 + 특수문자, 이메일 소문자 정규화, 그리고 <b>개인정보 처리방침&middot;이용약관 동의를 서버에서 다시 검증</b>합니다(동의 버전 <code>2026-04-21</code>을 사용자 메타데이터에 남김). 성공 리다이렉트 주소도 허용 목록에 있는 출처만 씁니다. 화면에서 숨기는 것으로 끝내지 않고 서버에서 다시 확인하는 쪽을 택했습니다.</p>
+
+        <h2><span class="idx">11</span>무료 티어가 로그인을 죽인 날 — health와 keepalive</h2>
+        <p>7월 11일 00시 34분 커밋 제목은 &ldquo;recover Supabase auto-pause + prevent recurrence&rdquo;입니다. 무료 Supabase 프로젝트는 7일가량 활동이 없으면 스스로 일시정지하고, 그러면 호스트 DNS가 사라져 로그인이 <b>503</b>이 됩니다. 그때 추가된 것이 네 가지입니다.</p>
+        <ul>
+          <li><code>/api/health</code> 44줄 — Supabase 설정과 도달성을 확인해 <b>200 또는 503</b>을 돌려주는 무인증 준비 상태 점검. &ldquo;사용자가 로그인에 실패해서야 알게 되는&rdquo; 대신 &ldquo;몇 초 안에 아는&rdquo; 쪽으로 바꿨습니다.</li>
+          <li><code>/api/keepalive</code> 37줄 — 하루 한 번 실제 DB 쿼리(HEAD count)를 던져 비활동 타이머를 되돌립니다. <code>CRON_SECRET</code>이 있으면 <code>Authorization: Bearer</code>를 확인해 아무나 때릴 수 없게 했습니다.</li>
+          <li><code>vercel.json</code> 크론 — 매일 UTC 15시(한국 0시)에 keepalive 호출.</li>
+          <li><code>server/health/supabaseHealth.ts</code> 125줄 + 테스트 99줄 — 설정 누락&middot;형식 오류&middot;도달 실패를 구분해 상태로 만듭니다.</li>
+        </ul>
+        <p>이 사고는 이 앱에서 가장 값싼 수업이었습니다. 무료 인프라의 &ldquo;잠자기&rdquo;는 장애 목록에 없지만 실제로 사용자를 막습니다. 그래서 &ldquo;로그인이 안 된다&rdquo;는 문의를 받기 전에, 서버가 먼저 자기 상태를 말하게 해 두었습니다.</p>
+
+        <h2><span class="idx">12</span>네 겹의 방과 181줄의 경계 검사기</h2>
+        <p>소스는 <code>presentation &rarr; domain &rarr; infrastructure</code>, <code>shared</code>는 어디서나. 이 규칙은 <code>docs/architecture-rules.md</code> 146줄에 &ldquo;집&rdquo; 비유로 적혀 있습니다. 사람이 보는 방, 집이 돌아가게 하는 배선, 수도&middot;전기 연결, 여러 방에서 쓰는 공구. 그리고 규칙을 글로만 두지 않았습니다. <code>scripts/check-architecture-boundary.ts</code> 181줄이 import를 실제로 따라가며 위반을 찾습니다.</p>
+        <p>정직한 부분은 <b>예외 3건을 코드에 박아 둔 것</b>입니다. &ldquo;오디오 컨트롤러 &rarr; 랜딩 타입&rdquo;, &ldquo;PDF 렌더러 &rarr; 도메인 AI&rdquo;, &ldquo;전사 분석 &rarr; 발표 코치&rdquo;. 숨기지 않고 이름을 적어 두면, 나중에 이 셋을 지우는 것이 목표가 됩니다. 규칙을 어긴 채 모르는 것보다, 어긴 곳을 세어 두는 편이 낫습니다. 6월 20일 커밋이 이 검사기에 남긴 1줄 삭제도 같은 흐름입니다. 경계를 옮겼으니 예외 목록도 같이 줄인 것입니다.</p>
+
+        <h2><span class="idx">13</span>유물 목록 — 저장소가 과거를 들고 다니는 방식</h2>
+        <p>깨끗한 저장소는 없습니다. 이 저장소에는 지워지지 않은 것들이 있고, 그것들이 오히려 당시의 상태를 정확히 보여 줍니다.</p>
+        <table>
+          <thead><tr><th>유물</th><th>실측</th><th>지금 상태</th></tr></thead>
+          <tbody>
+            <tr><td><code>.codesight/</code></td><td>2026-04-19 14:28 스캔, 경로 2개&middot;컴포넌트 1개&middot;라이브러리 5개, &ldquo;대화당 6,700토큰 절약&rdquo;</td><td>지금은 경로 6개, 화면 파일 66개. 코드맵은 4월의 앱을 설명한다</td></tr>
+            <tr><td><code>lint-results.txt</code> &middot; <code>lint-src.txt</code></td><td>각 6,644줄, 합 13,288줄. &ldquo;6,617 problems (6,568 errors, 49 warnings)&rdquo;</td><td>빌드 산출물 번들까지 린트한 기록. .gitignore에 걸리지 않고 커밋됐다</td></tr>
+            <tr><td><code>worktree/</code> 5개</td><td>보안&middot;효율&middot;AI 호출 절감&middot;QA&middot;릴리스, TODO 5개 파일에 체크박스 25개</td><td>25개 모두 미체크. 계획의 뼈대만 남았고 실행은 커밋으로 했다</td></tr>
+            <tr><td><code>design.md</code> = <code>APPLE_DESIGN_SYSTEM.md</code></td><td>139줄, MD5 동일(<code>b8e446c5&hellip;</code>)</td><td>내용은 애플이 아니라 &ldquo;RawBlock&rdquo; 브루탈리즘 — 각진 모서리 금지, 그림자 금지, 3~5px 테두리</td></tr>
+            <tr><td><code>src/index.css</code></td><td>1,260줄, 토큰 69개, 클래스 84개, 팔레트 3종</td><td>&ldquo;둥근 모서리 금지&rdquo;인데 <code>border-radius</code>가 13곳에 남아 있다(0값 11곳)</td></tr>
+            <tr><td><code>metadata.json</code></td><td>&ldquo;얼굴 표정까지 분석&rdquo;이라 적고 카메라 권한을 요청</td><td>코드에 얼굴&middot;표정 분석은 한 줄도 없다. 카메라는 쓰지 않는다</td></tr>
+            <tr><td>앱 이름</td><td><code>react-example</code>(package.json)&middot;<code>P.Speak</code>(title)&middot;<code>P-LIME</code>(metadata)&middot;<code>P-SPEAK</code>(내보내는 파일명)&middot;<code>p-speak</code>(저장소)</td><td>이름이 다섯 개. 코드 안에서 가장 자주 쓰이는 것은 <code>P-LIME</code>이다</td></tr>
+          </tbody>
+        </table>
+        <p>이 중 <code>design.md</code>와 <code>APPLE_DESIGN_SYSTEM.md</code>가 바이트 단위로 같은 파일이라는 사실이 가장 재미있습니다. 파일 이름은 애플인데 내용은 애플의 정반대입니다. &ldquo;모서리를 둥글게 하지 않는다, 그림자를 쓰지 않는다, 계층은 테두리 두께로만 만든다.&rdquo; 디자인 시스템을 문서로 먼저 정하고, 그 문서를 복사해 두 이름으로 들고 다니다가, 실제로는 CSS 토큰에서 새 이름을 만들고 옛 이름을 <b>별칭으로 남겨</b> 한 번에 갈아엎지 않았습니다. 15개의 옛 색 이름(<code>--color-parchment</code>&middot;<code>--color-terracotta</code>&hellip;)이 지금 모두 흰색과 검정을 가리킵니다. 이름은 그대로 두고 값만 바꾸는 방식 — 리팩터링을 하루에 끝내지 않아도 화면이 깨지지 않는 방법입니다.</p>
+
+        <h2><span class="idx">14</span>테스트 147개 — 지키는 것과 지키지 못한 것</h2>
+        <p>테스트 파일 36개, 테스트 147개. 흥미로운 것은 <b>무엇을 테스트로 고정했는가</b>입니다.</p>
+        <ul>
+          <li><b>절단 시각</b> — 20ms 프레임 시뮬레이션으로 &ldquo;최소 6초 전에는 안 자른다&rdquo;를 고정(<code>chunkPause.test.ts</code> 71줄).</li>
+          <li><b>CSS 선언</b> — <code>index.css</code>를 파일로 읽어 <code>aspect-ratio: 16 / 9</code>&middot;<code>overflow: hidden</code>&middot;<code>position: fixed; z-index: 120</code> 같은 선언이 남아 있는지 검사합니다. 화면을 브라우저로 띄우지 않고 레이아웃 회귀를 잡는 방법입니다(3개 파일).</li>
+          <li><b>로그 마스킹</b> — 비밀 패턴이 실제로 지워지는지, 오류 문구가 계정 존재 여부를 흘리지 않는지.</li>
+          <li><b>태스크 계약</b> — 잘못된 입력이 400이 되는지, 한도가 태스크별로 맞는지, 크레딧이 실패 시 환불되는지.</li>
+          <li><b>전사 정리</b> — 모델이 코드블록&middot;따옴표&middot;&ldquo;(무음)&rdquo;을 붙여도 텍스트만 남기는지.</li>
+        </ul>
+        <p>그런데 이 147개가 <b>지금 통과하는지는 이 글에서 말할 수 없습니다.</b> 작업 환경에 Node.js가 없어 <code>npx vitest run</code>을 실행하지 못했습니다. 확인한 것은 저장소의 파일과 코드를 읽은 것, 그리고 오늘 <code>/api/health</code>가 <code>200</code>&middot;<code>supabase ok</code>를 돌려줬다는 사실입니다. 라이브 서비스가 살아 있다는 것과 테스트 147개가 통과한다는 것은 다른 이야기입니다.</p>
+
+        <h2><span class="idx">15</span>이 앱이 남긴 세 문장</h2>
+        <div class="item">
+          <h3><span class="sym">01</span> AI가 이상하면 내 데이터를 먼저 의심한다</h3>
+          <p>&ldquo;코 코어&rdquo;는 프롬프트를 고쳐서 해결할 수 없었습니다. 48줄의 절단 규칙과 71줄의 테스트가 해결했습니다. 모델을 바꾸는 일보다 <b>모델에게 주는 것을 재는 일</b>이 먼저였습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">02</span> 실패는 두 종류로 나눠 설계한다</h3>
+          <p>로그인은 잠기면 안 되고, 발표 코치는 멈추면 안 됩니다. 같은 &ldquo;fail open&rdquo;이라도 이유가 다르면 다른 곳에 적어야 합니다. 이 앱은 두 결정을 각각의 주석에 남겼습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">03</span> 지표에는 만점을 주지 않는다</h3>
+          <p>발음 98, 억양 98이 상한입니다. 마이크와 방에 따라 흔들리는 값을 100점으로 만들면 그 순간 지표가 거짓말을 시작합니다. 상한을 두는 것은 겸손이 아니라 정확성입니다.</p>
+        </div>
+
+        <h2><span class="idx">16</span>한계 — 이 글이 확인하지 못한 것</h2>
+        <ul>
+          <li><b>사용자 수와 실제 사용량</b> — 모릅니다. 저장소에는 분석 도구도, 방문 로그도 없습니다. 크레딧 테이블이 있다는 것과 누가 얼마나 썼다는 것은 다릅니다.</li>
+          <li><b>테스트 실행</b> — Node.js가 없어 147개를 돌리지 못했습니다. 빌드도 마찬가지입니다.</li>
+          <li><b>품질의 주관성</b> — AI 리포트 점수가 사람 평가와 맞는지는 확인하지 않았습니다. 이 앱에는 그 비교 데이터가 없습니다.</li>
+          <li><b>모바일 발표</b> — 마이크&middot;화면 회전 조합은 이 글에서 다루지 않았습니다. 코드에 분기(레이아웃 테스트 3개)가 있다는 것만 확인했습니다.</li>
+          <li><b>비공개 저장소</b> — 서비스 주소와 게이트웨이 주소는 쓰지 않았습니다. 재현하려면 같은 구조를 직접 세워야 합니다.</li>
+        </ul>
+
+        <h2><span class="idx">17</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1.</span>왜 오디오를 6~12초로 자르나요? 통째로 보내면 안 되나요?</h3>
+          <p>발표 중 자막과 코칭이 <b>말하는 동안</b> 나와야 하기 때문입니다. 통째로 보내면 발표가 끝나야 결과가 옵니다. 6초는 문장 하나가 여러 조각이 되지 않을 최소값이고, 12초는 쉼이 없는 발표에서도 전사가 막히지 않을 상한입니다. 그 사이는 시간이 아니라 &ldquo;쉼&rdquo;이 결정합니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2.</span>브라우저 음성인식과 서버 전사를 왜 둘 다 쓰나요?</h3>
+          <p>속도와 정확도가 서로 반대이기 때문입니다. 브라우저 인식은 즉시 나오지만 전문용어에 약하고, 서버 전사는 몇 초 늦지만 정확합니다. 먼저 브라우저 텍스트로 화면을 채우고, 서버 결과가 오면 그 조각만 교체합니다. 서버가 실패하면 브라우저 텍스트가 남습니다. 발화를 잃지 않는 것이 우선입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3.</span>크레딧은 왜 리포트에만 붙였나요?</h3>
+          <p>비용이 가장 큰 호출이 리포트이고, 사용자가 &ldquo;결과를 받는 순간&rdquo;이 명확하기 때문입니다. 코칭과 전사는 발표를 하려면 반드시 필요한 부품이라, 크레딧으로 막으면 앱 자체가 멈춥니다. 대신 호출 게이팅(12초&middot;30자)과 지연 추출로 횟수를 줄였습니다. 한도가 아니라 <b>설계</b>로 비용을 다스린 셈입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4.</span>AI가 발표자를 너무 혹독하게 평가하지 않나요?</h3>
+          <p>프롬프트에 &ldquo;보통 수준은 60~75&rdquo;, &ldquo;근거 없이 후하게 주지 마라&rdquo;, &ldquo;음성인식 오탈자를 발표자의 잘못으로 세지 마라&rdquo;를 함께 적었습니다. 혹독함보다 문제는 <b>근거 없는 점수</b>입니다. 그래서 모든 범주에 1~2문장 근거를 요구하고, 대본을 짧게 인용하게 했습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q5.</span>이 앱을 다른 학교에서도 쓸 수 있나요?</h3>
+          <p>구조는 학교에 묶여 있지 않습니다. AI는 OpenAI 호환 엔드포인트 하나만 있으면 되고, DB는 Supabase, 배포는 Vercel입니다. 다만 지금은 <b>비공개 저장소</b>이고, 인증&middot;크레딧&middot;동의 문구가 이 학교 기준으로 쓰여 있습니다. 공개할 때는 그 세 가지를 먼저 손봐야 합니다.</p>
+        </div>
+
+        <h2><span class="idx">18</span>에필로그 — 측정을 고치는 일이 제일 늦게 온다</h2>
+        <p>이 앱을 다시 열면서 가장 오래 본 파일은 리포트 프롬프트가 아니라 <code>chunkPause.ts</code> 48줄이었습니다. 기능을 하나도 늘리지 않는 코드입니다. 하는 일은 &ldquo;어디서 자를까&rdquo; 하나뿐입니다. 그런데 이 48줄이 없으면 AI는 정확해질수록 더 정확하게 틀립니다. 잘못 자른 데이터를 성실하게 평가하기 때문입니다.</p>
+        <p>발표 코치 앱을 만든 이유도 결국 이것입니다. 학생은 자기 발표를 정확히 못 봅니다. 빠른지 느린지, 필러가 몇 번인지, 슬라이드에 머문 시간이 얼마인지. 사람이 옆에서 재 주기에는 한 명당 한 번이 한계입니다. 기계가 재면 매번 잴 수 있습니다. 다만 그 기계가 <b>무엇을 재는지</b>는 만든 사람이 책임져야 합니다. &ldquo;코 코어&rdquo;는 그 책임을 잊으면 AI가 아니라 내가 학생을 잘못 평가한다는 것을 보여 준 사고였습니다.</p>
+        <blockquote>
+          좋은 AI 기능은 좋은 프롬프트에서 나오지 않는다. 좋은 측정에서 나온다.
+        </blockquote>
+        <p>이 글의 숫자는 <code>git log</code>&middot;<code>git show --stat</code>&middot;<code>wc -l</code>&middot;<code>git ls-files</code>로 세었고, 문자열 횟수와 규칙은 파일에서 직접 확인했습니다. 저장소는 비공개이며, 서비스 주소&middot;키&middot;게이트웨이는 쓰지 않았습니다. Node.js가 없어 빌드와 테스트 147개는 실행하지 못했고, 라이브 서비스의 <code>/api/health</code>가 200을 돌려준 것만 확인했습니다. 확인하지 못한 것은 확인하지 못했다고 적었습니다.</p>
+      </article>
+
+      <a class="next-ep" href="../vibe-starter/">
+        <span class="k">← 이전 편 읽기</span>
+        <span class="t">[18편] 코드 678줄, 지침 2,601줄 — 본선 시작 저장소 vibe-starter의 4커밋</span>
+        <span class="d">56개 파일·3,661줄, 커밋 4개, 메시지는 전부 '시작 저장소 + 시각'. 코드 1줄마다 지침 3.8줄이 붙은 저장소에서 가장 정교한 파일은 108줄짜리 macOS 전용 TLS 릴레이였고, 가장 정직한 파일은 '아직 검증하지 않았습니다'라고 적힌 배포 문서였다.</span>
+      </a>
+
+      <div class="author-bio">
+        <h3>저자 소개: 김강훈 교수</h3>
+        <p>• 동의과학대학교 물리치료과 교수·학과장</p>
+        <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+        <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+        <p>• 학생 발표 코칭 서비스 P-SPEAK를 직접 만들어 운영한다</p>
+        <p>• 전국 전문대학 교무학사관리자협의회 및 4년제 대학 교원 대상 AI 교육혁신 특강 강사</p>
+        <p>• 기술 자문 및 강연 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+        <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank" rel="noopener">skyman200.github.io/profcook</a></p>
+      </div>
+
+      <div class="tags">
+        <span>#바이브코딩</span><span>#VibeCoding</span><span>#발표코칭</span>
+        <span>#AI코치</span><span>#음성인식</span><span>#전사</span>
+        <span>#Supabase</span><span>#Vercel</span><span>#레이트리밋</span>
+        <span>#크레딧</span><span>#아키텍처</span><span>#테스트</span>
+        <span>#부산AI전문가</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+      </div>
+    </main>
+  </body>
+</html>
