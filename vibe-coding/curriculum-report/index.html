@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 20편] 표 162개, 행을 늘릴 수 있는 건 63개뿐 — 100쪽 한글 보고서를 코드로 채운 30커밋 | 김강훈 교수</title>
+    <meta name="description" content="52개 학과가 같은 양식의 「AI+역량기반 교육과정 결과보고서」를 10월 30일까지 내야 했다. 문서 렌더러를 새로 만드는 대신 물리치료과 완성본을 골든 템플릿으로 삼아 글자와 표 행만 갈아끼웠다. 2026-07-18~08-11 30커밋·355파일, TypeScript 22,921줄·TSX 13,551줄·Python 11,632줄. 골든 표 162개(31·1·130) 중 행 복제가 가능한 건 63개(38.9%), rowCnt 불일치 0. 불변식 8개, 품질 게이트 5관문, 잔재 검사('빈칸은 미완성이지만 남의 학과 값은 오류다'), 검증 룰 13개(오류 3·경고 10), AI에게 숫자를 맡기지 않은 설계와 approved=true로 무너진 승인 게이트, 운영 42학과 267행·명세서 892·학습목표 2,926·915행 소거, 비밀번호를 받지 않는 NDS 확장, AI가 쓴 코드를 AI가 리뷰한 BLOCK 판정과 그 뒤의 수정 5건, 그리고 지금 이 자리에서 돌린 엔진 테스트 91개(23.1초 통과). 웹 빌드와 테스트 116개는 Node.js가 없어 실행하지 못했다." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, HWPX, 한글 보고서 자동화, 골든 템플릿, 역주입, 표 수술, rowCnt, AI+역량기반 교육과정, 결과보고서, 붙임 8, 마이크로디그리, 검증 룰, Next.js, Drizzle, SQLite, Python, zipfile, ElementTree, 잔재 검사, 품질 게이트, NDS, 브라우저 확장, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/curriculum-report/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/curriculum-report/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 20편] 표 162개, 행을 늘릴 수 있는 건 63개뿐 — 100쪽 한글 보고서를 코드로 채운 30커밋" />
+    <meta property="og:description" content="골든 템플릿의 162개 표 중 63개만 행을 늘릴 수 있었다. 문서를 만드는 대신 수술한 이유, 불변식 8개, 품질 게이트 5관문, 그리고 '남의 학과 이름이 남는 일'을 막는 잔재 검사." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-26" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 20편] 162개 표 중 63개만 수술할 수 있었다" />
+    <meta name="twitter:description" content="30커밋·355파일·36,472줄. 100쪽 한글 보고서를 라이브러리로 만들지 않고, 완성본을 템플릿 삼아 글자와 표 행만 갈아끼웠다. rowCnt 불일치 0, 잔재 0, 엔진 테스트 91개 23.1초 통과 — 그리고 AI에게 숫자를 맡기지 않았지만 승인 게이트는 approved=true로 무너져 있었다." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "Article",
+        "TechArticle"
+      ],
+      "@id": "https://skyman200.github.io/vibe-coding/curriculum-report/#article",
+      "headline": "[바이브코딩 20편] 표 162개, 행을 늘릴 수 있는 건 63개뿐 — 100쪽 한글 보고서를 코드로 채운 30커밋",
+      "alternativeHeadline": "AI+역량기반 교육과정 결과보고서 생성기 계측 — 골든 템플릿 역주입, 162개 표 중 63개만 가능한 행 수술, 그리고 잔재 0을 지키는 검사",
+      "description": "52개 학과가 같은 양식의 「AI+역량기반 교육과정 결과보고서」를 10월 30일까지 내야 했다. 문서 렌더러를 새로 만드는 대신 물리치료과 완성본을 골든 템플릿으로 삼아 글자와 표 행만 갈아끼웠다. 2026-07-18~08-11 30커밋·355파일, TypeScript 22,921줄·TSX 13,551줄·Python 11,632줄. 골든 표 162개(31·1·130) 중 행 복제가 가능한 건 63개(38.9%), rowCnt 불일치 0. 불변식 8개, 품질 게이트 5관문, 잔재 검사, 검증 룰 13개(오류 3·경고 10), AI에게 숫자를 맡기지 않은 설계와 approved=true로 무너진 승인 게이트, 운영 42학과 267행·명세서 892·학습목표 2,926·915행 소거, 비밀번호를 받지 않는 NDS 확장, AI 리뷰의 BLOCK 판정과 수정 5건, 그리고 엔진 테스트 91개 23.1초 통과.",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "alternateName": "KIM KANG-HOON",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0004-5083-406X",
+          "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+          "https://www.linkedin.com/in/prof-kimkanghoon"
+        ]
+      },
+      "datePublished": "2026-11-26",
+      "dateModified": "2026-11-26",
+      "inLanguage": "ko",
+      "articleSection": "바이브 코딩 실전기",
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "name": "바이브 코딩(Vibe Coding) 실전기",
+        "url": "https://skyman200.github.io/vibe-coding/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "김강훈 교수 · AI·교육혁신 칼럼",
+        "url": "https://skyman200.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://skyman200.github.io/vibe-coding/curriculum-report/"
+      },
+      "keywords": "바이브코딩, HWPX, 한글 보고서 자동화, 골든 템플릿, 역주입, 표 수술, rowCnt, AI+역량기반 교육과정, 결과보고서, 검증 룰, Next.js, Drizzle, SQLite, Python, 잔재 검사, 품질 게이트, NDS, 김강훈, 김강훈 교수, 동의과학대학교",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "골든 템플릿 역주입 — 문서를 만들지 않고 완성본을 수술한 결정"
+        },
+        {
+          "@type": "Thing",
+          "name": "표 162개 중 63개만 행을 늘릴 수 있는 이유 — 병합 셀이 걸린 행"
+        },
+        {
+          "@type": "Thing",
+          "name": "빈칸보다 나쁜 것 — 다른 학과 값이 남는 잔재를 0으로 잡는 검사"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://skyman200.github.io/vibe-coding/curriculum-report/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "김강훈 교수",
+          "item": "https://skyman200.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "바이브 코딩 실전기",
+          "item": "https://skyman200.github.io/vibe-coding/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "20편 — 표 162개, 행을 늘릴 수 있는 건 63개뿐",
+          "item": "https://skyman200.github.io/vibe-coding/curriculum-report/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://skyman200.github.io/vibe-coding/curriculum-report/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "왜 파이썬 HWPX 라이브러리를 쓰지 않고 직접 만들었나?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "새 문서를 만드는 라이브러리는 있어도, 이미 결재 양식으로 굳은 100쪽 문서의 서식을 100% 유지한 채 값만 바꾸는 일은 다른 문제다. 표지 여백·글꼴·테두리·병합·머리말이 전부 그대로여야 심사에서 서식 위반이 없다. 그래서 zipfile과 ElementTree만으로 템플릿 조각 수술 엔진을 만들었고, Python 표준 라이브러리 외 의존성은 0이다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "표 162개 중 63개만 행을 늘릴 수 있다는 게 무슨 뜻인가?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "행 복제는 대상 행의 모든 셀이 1×1 병합 없는 셀이어야 안전하다. 병합(rowSpan·colSpan)이 걸린 행을 복제하면 cellAddr·rowAddr과 높이가 어긋나 한글에서 표가 깨진다. 골든 템플릿을 해부해 보니 162개 표 중 전 행이 1×1인 표가 63개(38.9%)였고, 나머지는 행 수술 대신 표 전체 생성이나 사전 변형 템플릿으로 처리했다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI가 쓴 숫자가 틀리면 어떻게 막았나?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "숫자는 AI에게 만들게 하지 않았다. 수치는 DB와 통계 API 원본에서 결정적으로 주입하고, 프롬프트에는 '제공된 표에 없는 숫자·통계·출처를 절대 지어내지 마십시오'를 고정 규칙으로 넣었다. 다만 설계서가 말한 '교수 승인 게이트'는 코드에서 approved=true로 저장되어 사실상 생성 즉시 문서에 반영되고, 검토는 수정 단계로 밀려 있었다. 이 글은 그 사실을 그대로 적는다."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+  <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>20편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 20 · Curriculum Report Engine</p>
+        <h1>[바이브코딩 20편] 표 162개, 행을 늘릴 수 있는 건 63개뿐 — 100쪽 한글 보고서를 코드로 채운 30커밋</h1>
+        <p class="subhead">52개 학과가 같은 양식의 「2027학년도 AI+역량기반 교육과정 개발 결과보고서」를 10월 30일까지 내야 했습니다. 문서를 새로 만드는 대신, 물리치료과 완성본 하나를 <b>골든 템플릿</b>으로 세우고 글자와 표 행만 갈아끼웠습니다. 그 결정이 만든 불변식 8개, 표 162개 가운데 행 복제가 가능한 <b>63개</b>, 그리고 <b>&ldquo;빈칸보다 나쁜 것&rdquo;</b>을 잡는 잔재 검사 이야기입니다.</p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수&middot;학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 26일</div>
+          <div><strong>읽는 시간</strong> 약 20분</div>
+        </div>
+
+        <p class="lede">이 연재의 스무 번째 편입니다. 1편에서 &ldquo;시스템 22종&rdquo;을 세어 본 뒤로, 저는 매번 같은 질문을 다른 시스템에 던져 왔습니다. <b>이 기능은 무엇이 어려워서, 어떤 문장으로 실패했는가.</b> 이번 편의 답은 지금까지와는 종류가 다릅니다. 여기서 어려운 것은 화면도, AI도, 배포도 아니었습니다. <b>표 하나를 한 줄 늘리는 일</b>이었습니다.</p>
+        <p>결론부터 적겠습니다. 이 시스템에서 가장 값비싼 코드는 3,591줄짜리 화면 조립기(spec-builder)가 아니라, <b>행을 복제해도 되는지 검사하는 두 함수 20줄</b>입니다. 병합된 셀이 하나라도 걸친 행을 복제하면 표의 주소 체계(<code>cellAddr</code>&middot;<code>rowAddr</code>)와 높이가 어긋나고, 그 순간 100쪽 문서는 한글에서 열리지 않습니다. 그래서 이 엔진은 &ldquo;할 수 있는 것&rdquo;보다 <b>&ldquo;하면 안 되는 것&rdquo;</b>을 먼저 코드로 적었습니다.</p>
+
+        <div class="note">
+          <p><strong>이 글에서 쓰는 &ldquo;실측&rdquo;의 뜻</strong> — 비공개 저장소 <code>skyman200/aidhub-curriculum-report</code>를 클론해 <code>git log</code>&middot;<code>git ls-files</code>&middot;<code>wc -l</code>로 센 값, 각 파일을 직접 읽고 문자열을 센 값입니다. 골든 템플릿의 표 개수와 <code>rowCnt</code> 일치는 이 글을 쓰는 자리에서 <code>python3 cli.py manifest</code>를 실제로 돌려 확인했고, 엔진 테스트도 <code>python3 -m unittest</code>로 <b>지금 실행해 91개 통과(23.1초)</b>를 확인했습니다. 반면 이 작업 환경에는 Node.js가 없어 <code>npm run build</code>와 웹 테스트 116개는 <em>실행하지 못했습니다.</em> 저장소가 비공개이고 실제 학내 업무에 쓰이는 시스템이라 <b>접속 주소&middot;계정&middot;키&middot;학과별 실제 데이터는 이 글에 쓰지 않습니다.</b></p>
+        </div>
+
+        <h2><span class="idx">01</span>이 시스템이 하는 일 — 100쪽 한글 파일, 52개 학과, 같은 마감</h2>
+        <p>2026학년도 전문대학 혁신지원사업으로 전 학과가 2027학년도에 적용할 AI+역량기반 교육과정을 개발하고, 그 결과를 정해진 서식(붙임 8)의 결과보고서로 제출해야 했습니다. 마감은 <b>2026년 10월 30일</b>. 한 학과당 분량은 표지&middot;제출문&middot;목차에 Ⅰ~Ⅴ장, [첨부] 회의록, [부록] 설문&middot;FGI까지 <b>100쪽급</b>이고, 표가 40여 개 들어갑니다.</p>
+        <p>문제는 이 문서가 <b>한글(HWPX)</b>이어야 한다는 점이었습니다. 워드나 PDF로 잘 만들어 제출하면 서식 위반입니다. 그리고 같은 데이터가 문서 안에서 <b>7~8개 표에 반복해서</b> 등장합니다. 교과목 하나가 교육과정표&middot;전후비교표&middot;신규&middot;폐지 목록&middot;역량분포 매트릭스&middot;명세서에 각각 다른 모양으로 나옵니다. 손으로 쓰면 반드시 어긋납니다. 실제로 기준이 된 완성본에서도 표마다 응답수 합계가 어긋나 있었고, 오타도 남아 있었습니다.</p>
+        <p>그래서 목표를 이렇게 정했습니다. <b>&ldquo;숫자는 기계가, 문장은 AI가, 승인은 교수가.&rdquo;</b> 수치와 표는 DB에서 결정적으로 계산하고, 서술문(SWOT&middot;개설 사유&middot;필요성)만 AI가 초안을 쓰고, 최종 반영은 교수가 합니다. 이 세 문장이 이후 모든 설계 판단의 기준이 됩니다.</p>
+
+        <h2><span class="idx">02</span>규모 — 30커밋, 355파일, 36,472줄</h2>
+        <p>먼저 숫자부터. 저장소를 클론해 센 값입니다.</p>
+        <table>
+          <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>커밋</td><td>30</td><td>2026-07-18 21:10 ~ 08-11 07:18 (KST)</td></tr>
+            <tr><td>추적 파일</td><td>355</td><td>템플릿&middot;참조 데이터 포함</td></tr>
+            <tr><td>TypeScript</td><td>109파일 22,921줄</td><td>웹 서버 로직&middot;룰&middot;HWPX spec 조립</td></tr>
+            <tr><td>TSX</td><td>65파일 13,551줄</td><td>화면 17개 라우트</td></tr>
+            <tr><td>Python</td><td>55파일 11,632줄</td><td>그중 HWPX 엔진 본체 9모듈+CLI 3,279줄</td></tr>
+            <tr><td>마크다운</td><td>15파일 4,200줄</td><td>설계서&middot;엔진 매뉴얼&middot;배포 문서</td></tr>
+            <tr><td>엔진 테스트</td><td>91개</td><td>오늘 실행 &rarr; <strong>23.1초에 전부 통과</strong></td></tr>
+            <tr><td>웹 테스트</td><td>12파일 116개</td><td>Node.js 부재로 <em>미실행</em></td></tr>
+          </tbody>
+        </table>
+        <p>TypeScript와 TSX를 합치면 <strong>36,472줄</strong>, Python까지 더하면 <strong>48,104줄</strong>입니다. 19편에서 다룬 발표 코칭 앱(31,990줄)보다 크지만, 성격은 정반대입니다. 그쪽은 사용자 한 명의 경험을 다듬는 서비스였고, 이쪽은 <b>같은 문서를 52번 찍어내는 인쇄기</b>입니다.</p>
+        <p>화면은 17개입니다. 대시보드, 학과 설정, 인물&middot;위원, 환경&middot;요구 분석, 목표&middot;역량, 교과목 그리드, 배점 매트릭스, 명세서, 디그리, 검증, 회의록&middot;부록, 생성 센터, 관리자&hellip; 보고서 목차와 1:1로 대응합니다. <b>화면 순서가 곧 문서 순서</b>입니다. 교수가 화면을 위에서 아래로 채우면 문서가 아래로 채워집니다.</p>
+
+        <h2><span class="idx">03</span>이력 — 25일 중 9일에 몰린 커밋, 그리고 16일의 침묵</h2>
+        <p>첫 커밋은 07-18 21:10, &ldquo;AI+역량기반 교육과정 결과보고서 생성기 (Next.js web + Python HWPX engine) 최초 커밋&rdquo;. 마지막은 08-11 07:18. 그 사이 25일 가운데 커밋이 있는 날은 <b>9일</b>입니다. 07-20부터 08-03까지 <b>16일은 커밋이 한 개도 없습니다.</b></p>
+        <p>두 덩어리로 나뉩니다. 첫째 덩어리(07-18~19, 9커밋)는 <b>골든 템플릿 수술이 되는지 증명하는 구간</b>입니다. 둘째 덩어리(08-04~11, 21커밋)는 <b>52개 학과에 실제로 돌리는 구간</b>입니다. 두 번째 덩어리의 커밋 메시지가 이 시스템의 성격을 그대로 말해 줍니다.</p>
+        <pre><code>08-04 19:50  fix(report): 비-물치 학과 보고서의 물리치료 골든 잔재 제거
+08-04 20:11  fix(report): 비-물치 학과 잔재 추가 제거 (SWOT 시사점·역량분포 분석·OLE 막대차트)
+08-04 20:23  fix(report): 비-물치 학과 잔재 마무리 (요구조사 상세·회의록·3과정 표기)
+08-06 20:49  feat: HWPX 전 학과 생성·검증 파이프라인 + 감사/잔재/골격 게이트
+08-08 06:41  fix: 실사용 4대 결함 — 학년·학기 자동분류·명세서 2026 폴백·외부평가 자동동기화·AI 다듬기 전면화
+08-08 09:57  feat(consulting): 붙임9 컨설팅 원문→지적사항·반영 AI 일괄. 운영 42학과 267행
+08-09 19:26  fix(hwpx): 골든 점검표 오타 교정 + Ⅳ장 디그리 이수체계표·구성표 자동 채움
+08-11 07:18  fix(hwpx): 전후비교표 잉여 빈 슬롯 걷어내기(915행 소거) + 평가 기타의견·반영내용 3키 주입</code></pre>
+        <p>보이십니까. 08-04 하루에만 &ldquo;잔재 제거&rdquo;가 세 번 올라갑니다. 처음 만든 것이 <b>틀린 문서를 아주 잘 만드는 프로그램</b>이었다는 뜻입니다. 그리고 마지막 커밋의 <b>&ldquo;915행 소거&rdquo;</b>는 기능 추가가 아니라 <b>남아 있던 것을 지운</b> 기록입니다. 이 시스템의 후반부는 만드는 일이 아니라 <b>지우는 일</b>이었습니다.</p>
+
+        <h2><span class="idx">04</span>첫 결정 — 문서를 만들지 않고 &lsquo;수술&rsquo;한다</h2>
+        <p>선택지는 둘이었습니다. 하나는 한글 문서 생성 라이브러리로 <b>처음부터 그리는 것</b>. 다른 하나는 <b>이미 완성된 문서를 템플릿으로 삼아 값만 바꾸는 것</b>.</p>
+        <p>처음부터 그리면 표지 여백, 글꼴, 문단 간격, 테두리 굵기, 셀 병합, 머리말&middot;꼬리말을 전부 코드로 재현해야 합니다. 그건 &ldquo;문서를 만드는 일&rdquo;이 아니라 &ldquo;한글 편집기를 다시 만드는 일&rdquo;에 가깝습니다. 그리고 조금만 어긋나도 <b>심사에서 서식 위반</b>입니다. 반대로 완성본을 템플릿으로 쓰면 서식은 <b>100% 보존</b>됩니다. 바꿀 것은 글자와 표 행뿐입니다.</p>
+        <blockquote>
+          골든 템플릿 역주입 — 완성본의 서식은 건드리지 않고, 내용만 프로그램으로 갈아끼운다. 문서 렌더러를 새로 만들지 않는다.
+          <cite>docs/DESIGN.md §1.3 해결 전략 3원칙 중 첫째</cite>
+        </blockquote>
+        <p>이 결정에는 대가가 따릅니다. <b>템플릿이 곧 스키마</b>가 됩니다. 템플릿에 없는 구조는 만들 수 없고, 템플릿의 표 모양이 바뀌면 코드가 깨집니다. 그래서 템플릿을 &ldquo;읽기 전용 원본&rdquo;으로 못 박고, 대신 <b>해부 매니페스트</b>를 만들었습니다. 표마다 위치&middot;크기&middot;셀 병합 지도&middot;자리표시자 좌표를 JSON으로 뽑아 두고, 코드는 그 지도만 봅니다.</p>
+        <p>엔진은 <code>JSON in &rarr; .hwpx out</code>입니다. 입력은 &ldquo;할 일 목록&rdquo;(spec)이고, 할 일은 <b>19종</b>입니다 — 글자 치환, 문단 교체, 문단 삭제, 표 채우기, 표 교체, 행 블록 복제, 행 블록 삭제, 행 높이 통일, 표 신규 생성, 셀 텍스트 주입, 블록 덧붙임, 표 삭제, 문단 복제, 이미지 삽입&middot;교체&middot;제거, 섹션 꼬리 자르기, 차트 제거, 본문 폰트 통일.</p>
+        <p>중요한 건 이 19종이 <b>전부 &ldquo;기존 조각을 복제하거나 지우는&rdquo; 동작</b>이라는 점입니다. 새로 그리는 것은 표 생성과 이미지 삽입 정도이고, 그것도 원본의 스타일 ID를 재참조합니다. 문서를 만드는 엔진이 아니라 <b>문서를 수술하는 엔진</b>입니다.</p>
+
+        <h2><span class="idx">05</span>해부 — 표 162개, 그중 63개만 행을 늘릴 수 있다</h2>
+        <p>골든 템플릿을 실제로 해부해 봤습니다. 이 글을 쓰는 자리에서 CLI를 그대로 돌린 결과입니다.</p>
+        <pre><code>$ python3 cli.py manifest --template templates/golden.hwpx --out manifest.json
+  section0: 31 tables
+  section1:  1 tables
+  section2: 130 tables
+  total: 162 tables, 63 all-1x1-rows, rowCnt mismatches: 0</code></pre>
+        <p>표 <strong>162개</strong>. 그중 <strong>모든 행의 모든 셀이 1×1(병합 없음)인 표가 63개</strong>입니다. <strong>38.9%</strong>. 나머지 99개 표는 행을 복제할 수 없습니다.</p>
+        <p>왜냐하면 한글의 표는 행 번호를 <b>두 곳에</b> 적어 두기 때문입니다. 표 전체의 행 수(<code>tbl@rowCnt</code>)와, 각 셀이 자기를 가리키는 좌표(<code>cellAddr@rowAddr</code>). 행을 하나 끼워 넣으면 뒤따르는 모든 행의 좌표를 다시 매기고, 표 높이(<code>hp:sz@height</code>)도 그만큼 늘려야 합니다. 병합된 셀이 걸려 있으면 그 셀의 <code>rowSpan</code>이 &ldquo;몇 행을 덮는지&rdquo;를 뜻하므로, 행이 늘어난 순간 덮는 범위가 어긋납니다. 한글은 이 불일치를 만나면 표를 그리지 못하거나 파일을 거부합니다.</p>
+        <p>그래서 엔진의 행 복제 함수는 시작부터 이렇게 되어 있습니다.</p>
+        <pre><code>def clone_row(self, row_index, texts=None):
+    """row_index 행을 딥카피해 바로 뒤에 삽입.
+    - 대상 행의 모든 셀이 1x1 span이어야 한다 (불변식 3).
+    - rowAddr 재번호 + rowCnt 갱신 + hp:sz height 가산 (불변식 2)."""
+    tr = rows[row_index]
+    self._require_1x1(tr, "clone source row", row_index)
+    self._check_no_span_covering(row_index)   # 위에서 내려온 병합이 걸치면 여기서 예외
+    clone = copy.deepcopy(tr)
+    ...
+    self._renumber_rows()
+    self._sync_row_cnt()
+    self._adjust_height(+self.row_height(tr))</code></pre>
+        <p>핵심은 <code>_check_no_span_covering</code>입니다. <b>복제하려는 행 자체는 1×1인데, 위쪽 행에서 내려온 병합이 이 행을 덮고 있는 경우</b>도 막습니다. 이 한 줄이 없으면 &ldquo;대상 행은 깨끗한데 표는 깨지는&rdquo; 가장 찾기 어려운 버그가 됩니다.</p>
+        <p>그래서 99개 표는 다른 방법을 씁니다. 미리 만들어 둔 변형 템플릿을 쓰거나(전공심화&middot;석사&middot;간호용 골든이 따로 있습니다), 표를 행 블록 단위로 통째 복제하거나(교육과정표처럼 &ldquo;학년 병합 셀 + 과목 행 + 소계 행&rdquo;이 한 덩어리인 표), 아예 <b>표를 새로 생성</b>합니다. 후자의 대표가 교과목 명세서입니다. 학습목표가 1~4개로 가변이고 열이 늘었다 줄었다 하니, 스캔 이미지로 들어 있던 명세서 자리를 <b>진짜 한글 표로 다시 그려</b> 넣었습니다.</p>
+        <div class="note">
+          <p><strong>숫자 하나가 설계를 바꿉니다</strong> — &ldquo;표 162개 중 63개만 행 수술 가능&rdquo;은 이 프로젝트에서 가장 중요한 제약이었습니다. 이걸 모르고 &ldquo;행 복제 엔진&rdquo;을 먼저 만들면, 60%의 표에서 실패하는 도구가 됩니다.</p>
+        </div>
+
+        <h2><span class="idx">06</span>불변식 8개 — 어기면 한글에서 파일이 열리지 않는다</h2>
+        <p>엔진 문서에는 &ldquo;반드시 지킬 것&rdquo;이 8개 적혀 있습니다. 코드 주석이 아니라 <b>설계 문서의 계약</b>입니다. 위반하면 결과물이 한글에서 깨집니다.</p>
+        <table>
+          <thead><tr><th>#</th><th>불변식</th><th>어겼을 때</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><code>mimetype</code>은 zip <strong>첫 엔트리 + 무압축(STORED)</strong></td><td>한글이 파일 형식을 인식하지 못함</td></tr>
+            <tr><td>2</td><td><code>rowCnt</code> == 실제 행 수, 행 좌표 재번호, 높이 보정</td><td>표가 깨지거나 잘림</td></tr>
+            <tr><td>3</td><td>행 복제&middot;삭제는 <strong>모든 셀이 1×1인 행만</strong></td><td>병합 범위 어긋남</td></tr>
+            <tr><td>4</td><td><strong>열 수술 금지</strong>(<code>colCnt</code>&middot;<code>colAddr</code> 불변)</td><td>열 폭&middot;정렬 전면 붕괴</td></tr>
+            <tr><td>5</td><td>치환은 <code>&lt;hp:t&gt;</code> 텍스트 노드만, 무차별 <code>str.replace</code> 금지</td><td>속성값까지 바뀌어 서식 파괴</td></tr>
+            <tr><td>6</td><td><strong>전체 XML 재직렬화 금지</strong> — 조각만 파싱해 재접합</td><td><code>xmlns</code> 탈락으로 전면 오류</td></tr>
+            <tr><td>7</td><td>미리보기(<code>PrvText</code>&middot;<code>PrvImage</code>) 제거</td><td>탐색기에 옛 학과 이름이 보임</td></tr>
+            <tr><td>8</td><td>생성 직후 품질 게이트 자동 실행, 실패 시 전달 금지</td><td>깨진 파일이 사용자에게 감</td></tr>
+          </tbody>
+        </table>
+        <p>가장 인상적인 것은 6번입니다. XML을 파싱해서 다시 쓰면(write) 네임스페이스 선언이 사라지거나 순서가 바뀌어 한글이 &ldquo;손상된 파일&rdquo;로 판정합니다. 그래서 이 엔진은 <b>전체를 파싱하지 않습니다.</b> 편집할 <code>&lt;hp:tbl&gt;</code> 조각만 정확히 잘라 ElementTree로 파싱하고, 고친 뒤 바이트 단위로 되붙입니다. 조각 밖은 <b>한 바이트도 바뀌지 않습니다.</b></p>
+        <p>1번도 그렇습니다. HWPX는 zip인데, 첫 엔트리가 <code>mimetype</code>이고 그것만 <b>무압축</b>이어야 합니다. 재패킹할 때 이 조건이 깨지면 한글이 열지 않습니다. 그래서 패키지 모듈은 원본의 엔트리 순서와 엔트리별 압축 방식을 <b>스트리밍 복사</b>로 보존하고, 새로 넣은 그림만 압축합니다.</p>
+
+        <h2><span class="idx">07</span>품질 게이트 — 다섯 관문을 지나야 사용자에게 간다</h2>
+        <p>생성 직후 자동으로 도는 검사가 다섯입니다.</p>
+        <ol>
+          <li><code>zipfile.testzip</code> — zip 무결성</li>
+          <li><code>mimetype</code>이 첫 엔트리 + 무압축 + 지정된 문자열</li>
+          <li>모든 XML성 엔트리(<code>.xml</code>&middot;<code>.hpf</code>&middot;<code>.rdf</code>)가 <b>well-formed</b></li>
+          <li>모든 섹션&middot;모든 표(중첩 표 포함)에서 <code>rowCnt</code> == 실제 행 수</li>
+          <li>치환 대상 텍스트가 <b>남아 있지 않은지</b>(금지어), 반드시 있어야 할 텍스트가 <b>있는지</b>(필수어)</li>
+        </ol>
+        <p>하나라도 실패하면 예외를 던지고 <b>exit 2</b>로 끝납니다. 사용자는 파일을 받지 못합니다. CLI 주석에 적힌 표현이 좋아서 그대로 옮깁니다. <em>&ldquo;통과분만 사용자에게 전달한다.&rdquo;</em></p>
+        <p>이건 기능이 아니라 <b>태도</b>입니다. 문서 생성기에서 가장 무서운 것은 &ldquo;실패&rdquo;가 아니라 <b>&ldquo;거의 맞는 파일&rdquo;</b>입니다. 100쪽 중 3쪽이 깨졌는데 열리기는 하는 파일은, 열리지 않는 파일보다 위험합니다. 교수는 그걸 제출합니다.</p>
+
+        <h2><span class="idx">08</span>&lsquo;빈칸보다 나쁜 것&rsquo; — 골든 잔재 검사</h2>
+        <p>이 프로젝트에서 제가 가장 자랑하는 부분입니다. 그리고 가장 늦게 배운 것이기도 합니다.</p>
+        <p>제네릭 골든(범용 템플릿)은 물리치료과 완성본에서 학과 특화 값만 지운 사본입니다. 그런데 코드는 <b>&ldquo;DB에 데이터가 있는 자리만&rdquo;</b> 채웁니다. 즉 <code>if (data) { 주입 }</code> 형태의 분기마다 <code>else</code> 가지가 빠지면, 그 자리에는 <b>물리치료과의 사실이 그대로 남습니다.</b></p>
+        <blockquote>
+          빈칸은 미완성이지만, 남의 학과 값은 오류다.
+          <cite>web/src/lib/hwpx/residue.ts</cite>
+        </blockquote>
+        <p>그래서 검사를 하나 더 만들었습니다. 골든에만 존재할 수 있는 어휘 목록(학과명&middot;골든 교수&middot;위원 이름&middot;협력기관&middot;골든 산문에 박힌 고유명사)을 고정하고, 생성된 문서의 <code>&lt;hp:t&gt;</code> 렌더 텍스트만 훑어 남은 어휘를 셉니다.</p>
+        <p>여기에 한 가지 장치가 더 있습니다. <b>그 보고서가 실제로 주입한 텍스트를 먼저 모아, 거기에 등장하는 어휘는 목록에서 뺍니다.</b> 물리치료과 본인 보고서이거나, 사용자가 직접 입력한 값은 잔재가 아니기 때문입니다. 이걸 빼지 않으면 오탐이 쏟아집니다. 나중에 커밋 하나가 <code>table_inserts</code>로 새로 만든 표의 텍스트도 &ldquo;주입한 어휘&rdquo;에 포함시켜 오탐을 없앴습니다. 그게 08-11의 <code>fix(residue)</code>입니다.</p>
+        <p>결과는 <code>{"total": 0, "terms": {}, "samples": []}</code>. 이 0이 아니면 그것은 곧 <b>spec-builder의 else 가지 누락 좌표</b>입니다. 검사가 버그 위치를 알려 주는 셈입니다.</p>
+
+        <h2><span class="idx">09</span>룰 13개 — 지침을 코드로 옮기되, 기본은 &lsquo;경고&rsquo;</h2>
+        <p>붙임 3 지침에는 학점&middot;시수&middot;디그리 구성 규칙이 있습니다. 이걸 코드로 옮기면 교수가 손으로 세지 않아도 됩니다. 설계서에는 R1~R11 열한 개였는데, 구현은 <strong>13개</strong>로 늘었습니다(오류 3&middot;경고 10). 늘어난 두 개(R12&middot;R13)는 지침이 아니라 <b>실사용에서 발견된 함정</b>입니다.</p>
+        <table>
+          <thead><tr><th>ID</th><th>규칙</th><th>수준</th></tr></thead>
+          <tbody>
+            <tr><td>R1</td><td>학기당 개설학점 13~21 (+ 미배치 과목 노출)</td><td>경고</td></tr>
+            <tr><td>R2</td><td>학제별 개설학점 상한(2년제 78 / 3년제 115 / 4년제 136 / 전공심화 / 석사 24)</td><td>경고</td></tr>
+            <tr><td>R3</td><td>전공 중 이론교과목 비중 30% 미만</td><td>경고</td></tr>
+            <tr><td>R4</td><td>전공 실습시수 70% 이상 — 미달 시 사유 입력 강제</td><td><strong>오류</strong></td></tr>
+            <tr><td>R5</td><td>마이크로디그리 11학점 / 나노 6학점</td><td><strong>오류</strong></td></tr>
+            <tr><td>R6</td><td>AI활용 교과목 = 4주 이상 AI 활용, 명세서 기재</td><td>경고</td></tr>
+            <tr><td>R7</td><td>학점/시수 1/1 원칙(외부기관 실습 예외)</td><td>경고</td></tr>
+            <tr><td>R8</td><td>명세서 반영률 합 = 100(출석 20 포함)</td><td><strong>오류</strong></td></tr>
+            <tr><td>R9</td><td>위원 구성: 현장전문가 2인 이상</td><td>경고</td></tr>
+            <tr><td>R10</td><td>FGI 5인 구성</td><td>경고</td></tr>
+            <tr><td>R11</td><td>교과목명 명명 규칙 린트(띄어쓰기&middot;로마숫자&middot;외래어)</td><td>경고</td></tr>
+            <tr><td>R12</td><td>개편 전공 과목 명세서 작성 여부 — 미작성 시 명세서 표가 빈칸으로 나감</td><td>경고</td></tr>
+            <tr><td>R13</td><td>명세서 학습목표 4개 이하(양식은 최대 4개)</td><td>경고</td></tr>
+          </tbody>
+        </table>
+        <p>설계 원칙이 하나 있습니다. <b>모든 룰은 &lsquo;경고&rsquo;로 시작하고, 사업단의 서면 확인을 받은 항목만 &lsquo;오류(생성 차단)&rsquo;로 승격</b>합니다. 잘못된 하드룰이 사용자를 막으면, 그 순간 이 시스템은 도구가 아니라 장애물이 됩니다. 반대로 오류 3개는 문서 자체가 성립하지 않는 항목입니다 — 디그리 학점 미달, 반영률 합 100 미달, 실습비율 미달에 사유도 없는 경우.</p>
+        <p>룰에는 회귀 테스트가 붙어 있습니다. <code>defs.test.ts</code> 하나에 <strong>35개</strong>. 그리고 파일 첫 주석에 이렇게 적혀 있습니다. <em>&ldquo;insane-review 수정건(#4 R4 사유게이트&middot;#5 R5&middot;#6 R8 스코핑&middot;#18 R1 미배치&middot;#19 R7/R10)을 집중 고정한다.&rdquo;</em> 룰이 리뷰 과정에서 다섯 번 고쳐졌고, 고쳐진 그 자리가 테스트로 박혀 있다는 뜻입니다.</p>
+
+        <h2><span class="idx">10</span>AI에게 숫자를 맡기지 않았다 — 그리고 무너진 승인 게이트</h2>
+        <p>설계서에는 &ldquo;환각 통제 4중 장치&rdquo;가 적혀 있습니다. ① LLM은 수치를 생성하지 않는다 ② 생성문의 숫자를 정규식으로 뽑아 원천 데이터와 대조한다 ③ 문장별 근거를 태깅한다 ④ 교수 승인 게이트를 통과해야 문서에 반영된다.</p>
+        <p>실제로 코드에 남아 있는 것은 ①과 일부 ③입니다. 프롬프트에 고정 규칙이 박혀 있습니다.</p>
+        <pre><code>"1. 제공된 통계표·출처·기준일에 있는 수치·연도·기관명만 사용하고,
+    표에 없는 숫자·통계·출처를 절대 지어내지 마십시오."</code></pre>
+        <p>수치는 KOSIS OpenAPI 원본에서 가져와 <b>스냅샷으로 DB에 저장</b>하고 표에 주입합니다. 마감 직전에 통계 API가 죽어도 문서는 만들어져야 하니까요. 반영률 배분&middot;평가방법&middot;교수법도 사전 마스터 목록 안에서만 고르게 했습니다. 목록 밖 값은 스키마 단계에서 막힙니다.</p>
+        <p>그런데 ④는 무너져 있었습니다. 코드를 열어 보니 AI 초안은 이렇게 저장됩니다.</p>
+        <pre><code>// approved=true 로 저장해 생성한 초안이 곧바로 문서에 반영된다(검토 후 각 화면에서 수정).
+.set({ content, aiGenerated: true, approved: true })</code></pre>
+        <p><code>aiGenerated</code>와 <code>approved</code>를 <b>동시에 true</b>로 넣습니다. 즉 &ldquo;AI가 썼다&rdquo;는 표시는 남지만 &ldquo;누가 승인했다&rdquo;는 절차는 사라집니다. 승인 게이트는 <b>생성 후 수정</b>으로 밀려 있습니다.</p>
+        <p>이게 왜 문제인지 솔직히 적겠습니다. 52개 학과, 마감 10월 30일, 교수들은 자기 일이 바쁩니다. &ldquo;검토 후 수정&rdquo;은 현실에서 <b>검토 없이 제출</b>이 되기 쉽습니다. 설계서가 옳았고 구현이 편의를 택했습니다. 이 글을 쓰면서 그 선택의 이유도 이해합니다 — 승인 대기열을 만들면 초안이 쌓여 아무도 문서를 완성하지 못했을 것입니다. 하지만 <b>그 trade-off를 문서에 적어 두지 않은 것</b>은 제 잘못입니다. 여기 적어 둡니다.</p>
+
+        <h2><span class="idx">11</span>실제로 돌린 흔적 — 42학과 267행, 명세서 892&middot;목표 2,926, 915행 소거</h2>
+        <p>이 시스템이 시험용 장난감이 아니었다는 증거는 커밋 메시지 안에 있습니다.</p>
+        <ul>
+          <li><strong>운영 42학과 267행</strong> — 붙임 9 컨설팅 원문을 읽어 &ldquo;지적사항&middot;반영내용&rdquo;을 AI로 일괄 채운 작업. 기존 행은 보존하고, 원문이 없으면 건너뜁니다.</li>
+          <li><strong>명세서 892&middot;학습목표 2,926</strong> — 강의계획서&middot;교육과정표&middot;교과목 엑셀을 병합해 만든 결과. 교수 한 명이 손으로 쓸 수 있는 양이 아닙니다.</li>
+          <li><strong>915행 소거</strong> — 전후비교표에 남아 있던 잉여 빈 슬롯을 걷어낸 기록. 지운 행이 1,000에 가깝습니다.</li>
+          <li><strong>컨설팅 원문 해석 13/15</strong> — 학과코드 별칭 해석 검증. 15건 중 13건 해석, 2건은 신설 학과라 원문 없음(null).</li>
+        </ul>
+        <p>여기서 배운 것은 <b>&ldquo;일괄 채우기&rdquo;가 일괄 검토보다 쉽다</b>는 사실입니다. 892개를 채우는 데 걸린 시간보다, 그 892개가 맞는지 확인하는 시간이 길었을 것입니다. 그래서 다음 커밋이 &ldquo;실사용 4대 결함&rdquo;이고, 그다음이 &ldquo;빈칸 계량 감사(audit_fillgaps)&rdquo;입니다. 채운 뒤에 <b>빈칸을 세는 도구</b>를 만든 순서가 정직합니다.</p>
+
+        <h2><span class="idx">12</span>비밀번호를 받지 않는 확장 — NDS 자동입력</h2>
+        <p>또 하나의 설계 결정. 교과목 명세서는 결국 교내 학사시스템(NDS)에도 입력해야 합니다. 웹앱에서 만든 명세서를 그 화면에 그대로 넣을 수 있으면 두 번 입력하지 않아도 됩니다.</p>
+        <p>가장 쉬운 방법은 웹앱이 교수님들의 NDS 비밀번호를 받아 대신 로그인하는 것입니다. <b>하지 않았습니다.</b> NDS 계정은 학사&middot;전자결재&middot;LMS&middot;포털&middot;메일을 여는 통합 계정입니다. 한 서버에 전 교수 계정이 쌓이면 유출 시 폭발 반경이 학교 전체가 됩니다.</p>
+        <blockquote>
+          이 확장은 비번을 아예 받지 않고, 교수 본인 세션에서 화면만 채운다 &rarr; 폭발 반경 0.
+          <cite>nds-extension/README.md</cite>
+        </blockquote>
+        <p>대신 크롬 확장을 만들었습니다. 웹앱에서 &ldquo;NDS로 보내기&rdquo;를 누르면 명세서 JSON이 <code>chrome.storage.local</code>로 넘어가고, 교수가 자기 브라우저에서 NDS에 로그인한 상태에서 &ldquo;명세서 채우기&rdquo;를 누르면 화면 필드가 채워집니다. 저장은 교수가 직접 누릅니다.</p>
+        <p>안전장치도 코드에 있습니다. ① NDS 화면에 열린 과목코드와 보낸 과목이 다르면 <b>채우기 거부</b> ② 과목을 선택하지 않았으면 거부 ③ 콤보박스에 없는 값은 <b>비우고 경고</b>(지어내지 않음) ④ 기본은 채우기만, 자동저장은 옵션. 7개 파일, JS 4개에 HTML 2개로 끝나는 작은 확장이지만, 이 4개 규칙이 없으면 &ldquo;남의 과목에 내 명세서가 들어가는&rdquo; 사고가 납니다.</p>
+
+        <h2><span class="idx">13</span>AI가 쓴 코드를 AI가 리뷰했다 — REQUEST CHANGES, 아키텍처 BLOCK</h2>
+        <p>저장소 안에 <code>.omo/evidence/</code>라는 폴더가 있습니다. 2026-07-19 22:43에 시작된 리뷰 노트가 들어 있습니다. 리뷰 대상은 그날 커밋되지 않은 변경 <b>26개 파일</b>(수정 16&middot;신규 10). 결론은 이랬습니다.</p>
+        <blockquote>
+          최종 판정: REQUEST CHANGES &middot; 아키텍처 상태: BLOCK
+          <cite>.omo/evidence/web-uncommitted-changes-code-review.md</cite>
+        </blockquote>
+        <p>지적 다섯 건 중 두 건이 &ldquo;높음&rdquo;이었습니다.</p>
+        <ul>
+          <li><strong>높음</strong> — 공개 평가 링크가 인증 없이 접근되고, 토큰만 있으면 제출이 곧바로 <b>공식 점검표 답변을 덮어쓴다.</b> 링크가 유출되면 평가 데이터가 오염됩니다.</li>
+          <li><strong>높음</strong> — 신규 컬럼&middot;테이블이 <b>일반 재배포 과정에서 자동 적용되지 않는다.</b> 컨테이너만 재시작하면 스키마 없는 채로 새 코드가 돕니다.</li>
+          <li><strong>중간</strong> — 외부평가 종합 평균이 <b>틀린다.</b> 문항별 평균을 다시 평균해서, 응답자 수가 다르면 실제 평균과 달라집니다(5,5,1 &rarr; 실제 3.7, 코드 3.0).</li>
+          <li><strong>중간</strong> — 연계 학과 가져오기가 <b>원자적이지 않다.</b> 중간 실패 시 일부만 복사된 상태가 남습니다.</li>
+          <li><strong>관찰</strong> — 외부위원 <b>이름&middot;소속&middot;의견이 AI 게이트웨이로</b> 전송됩니다.</li>
+        </ul>
+        <p>중요한 건 그 뒤입니다. 코드에 남은 흔적으로 확인되는 수정은 이렇습니다.</p>
+        <table>
+          <thead><tr><th>지적</th><th>수정 흔적</th></tr></thead>
+          <tbody>
+            <tr><td>공개 평가 링크</td><td>위원 1인당 <strong>일회용 초대 토큰</strong>(만료&middot;폐기&middot;사용 시각) 추가 — &ldquo;1인이 다수 위원을 가장하는 것 방지(#11)&rdquo;</td></tr>
+            <tr><td>스키마 자동 적용</td><td>기동 스크립트가 <code>db:push</code>를 먼저 실행. <strong>stdin을 <code>/dev/null</code>로 막아</strong> 파괴적 변경은 조용히 넘어가지 않고 <b>기동 실패</b>로 드러나게 함</td></tr>
+            <tr><td>평균 계산</td><td>문항별&middot;위원별 평균과 <b>전체 합계/응답수</b>를 분리</td></tr>
+            <tr><td>가져오기 원자성</td><td>가져올 보고서를 <b>명시적으로 선택</b>하도록 변경(최신 연도 암묵 선택 제거)</td></tr>
+            <tr><td>세션&middot;IP</td><td>비밀번호 변경 시 <code>sessionVersion</code> 증가로 기존 세션 일괄 무효화(#12), <code>pickClientIp</code> 순수함수 분리와 회귀 테스트(#13)</td></tr>
+          </tbody>
+        </table>
+        <p>그리고 <code>docker-entrypoint.sh</code>의 주석이 마음에 듭니다. <em>&ldquo;무단 데이터 삭제(<code>--force</code>)를 피하고, 컨테이너가 재기동 루프로 그 사실을 드러내 운영자가 백업 후 수동 적용하게 한다.&rdquo;</em> 실패를 숨기지 않고 <b>시끄럽게 실패</b>시키는 설계입니다.</p>
+        <p>여기서 솔직히 말하면, 저는 이 리뷰를 제가 한 줄씩 한 것이 아닙니다. 같은 AI에게 코드를 쓰게 하고, <b>다른 관점의 리뷰어 역할</b>로 다시 읽게 했습니다. 결과는 제가 혼자 읽었을 때보다 냉정했습니다. &ldquo;빌드와 타입 검사는 통과했지만 merge-blocking 위험이 있다&rdquo;는 문장을 제 코드에서 처음 본 순간이 이 프로젝트의 전환점입니다.</p>
+
+        <h2><span class="idx">14</span>지금 91개 테스트를 돌렸다 — 23.1초</h2>
+        <p>이 연재에서 저는 &ldquo;테스트가 통과한다&rdquo;는 문장을 함부로 쓰지 않았습니다. 15편 이후 계속 Node.js가 없어 실행을 못 했기 때문입니다. 이번에는 다릅니다. 엔진이 <b>Python 표준 라이브러리만</b> 쓰기 때문에, 이 작업 환경에서 그대로 돌릴 수 있었습니다.</p>
+        <pre><code>$ cd engine &amp;&amp; python3 -m unittest discover -s tests -t .
+...........................................................................................
+----------------------------------------------------------------------
+Ran 91 tests in 23.125s
+
+OK</code></pre>
+        <p>91개 통과, 23.1초. 테스트가 붙은 영역도 의미심장합니다. 표 삽입&middot;표 삭제&middot;행 블록 삭제&middot;문단 복제&middot;문단 삽입&middot;블록 덧붙임&middot;쪽 나눔&middot;섹션 자르기&middot;차트 제거&middot;텍스트 노드&middot;매니페스트&middot;생성 E2E — <b>전부 &ldquo;수술이 문서를 깨지 않는지&rdquo;를 확인하는 테스트</b>입니다. 기능 테스트가 아니라 <b>불변식 테스트</b>입니다.</p>
+        <p>반대로 웹 쪽 테스트 116개(12파일)는 돌리지 못했습니다. 이 환경에 Node.js가 없습니다. 그래서 이 글에는 &ldquo;웹 테스트 116개가 통과한다&rdquo;는 문장이 없습니다. 대신 그 테스트들이 <b>무엇을 고정하고 있는지</b>는 읽었습니다 — R1~R13 룰 35개, 잔재 검사, 초대 토큰, 세션&middot;IP, 설문 집계.</p>
+
+        <h2><span class="idx">15</span>이 앱이 남긴 세 문장</h2>
+        <div class="item">
+          <h3><span class="sym">01</span> 서식은 코드가 아니라 계약이다</h3>
+          <p>HWPX의 <code>rowCnt</code>&middot;<code>rowAddr</code>&middot;<code>mimetype</code>은 라이브러리가 대신 지켜 주지 않습니다. 문서를 다루는 코드를 쓴다면, 기능을 짜기 전에 <b>깨지면 안 되는 것의 목록</b>을 먼저 써야 합니다. 이 프로젝트에서 그 목록은 8줄이었고, 그 8줄이 48,104줄을 지탱했습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">02</span> 빈칸은 미완성, 남의 값은 오류</h3>
+          <p>템플릿 기반 생성기에서 가장 위험한 버그는 예외가 아니라 <b>조용한 잔재</b>입니다. 화면에는 아무 오류도 안 뜨고, 문서는 잘 열리고, 다른 학과 이름이 한 줄 남아 있습니다. 이걸 잡으려면 &ldquo;무엇이 남으면 안 되는지&rdquo;를 데이터로 정의하고, 생성 후 실물에서 세는 수밖에 없습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">03</span> 자동화의 마지막 단계는 &lsquo;지우기&rsquo;다</h3>
+          <p>마지막 커밋 세 개가 &ldquo;잔재 제거&rdquo;, &ldquo;오타 교정&rdquo;, &ldquo;915행 소거&rdquo;였습니다. 붙이는 일보다 걷어내는 일이 오래 걸립니다. 그리고 그 걷어내기가 <b>품질</b>입니다.</p>
+        </div>
+
+        <h2><span class="idx">16</span>한계 — 이 글이 확인하지 못한 것</h2>
+        <p>이 연재의 규칙대로, 확인한 것과 확인하지 못한 것을 나눠 적습니다.</p>
+        <ul>
+          <li><strong>웹 빌드&middot;웹 테스트 116개 미실행.</strong> Node.js 부재. 타입 오류가 없다는 것도 확인하지 못했습니다.</li>
+          <li><strong>실서비스 상태 미확인.</strong> 저장소가 비공개이고 학내 업무용이라 접속 주소를 글에 쓰지 않았습니다. 오늘 그 시스템이 살아 있는지, 52개 학과가 실제로 이 화면으로 제출했는지도 확인하지 않았습니다.</li>
+          <li><strong>마감 이후 이력이 없다.</strong> 설계서의 일정은 9월 파일럿&middot;10월 전 학과 오픈&middot;10-30 제출까지 이어지지만, 저장소의 마지막 커밋은 <b>08-11</b>입니다. 9~10월에 무슨 일이 있었는지(다른 저장소로 옮겼는지, 손으로 마무리했는지, 서버에서만 고쳤는지)는 이 저장소만으로 알 수 없습니다.</li>
+          <li><strong>&ldquo;최종본이 한글에서 완벽하다&rdquo;는 판정은 제 눈이 아닙니다.</strong> 품질 게이트는 구조&middot;무결성&middot;잔재를 봅니다. 조판의 미세한 어긋남은 결국 한글에서 열어 봐야 하고, 저장소에는 그 육안 관문을 돕는 도구(페이지 PNG 미리보기&middot;골든 대조&middot;빈 쪽 계량)만 있습니다.</li>
+          <li><strong>실데이터는 싣지 않았습니다.</strong> 참조 데이터에 학과&middot;교수&middot;교과목 정보가 들어 있지만, 이 글에는 수치(파일 수&middot;줄 수&middot;행 수)만 적었습니다.</li>
+        </ul>
+
+        <h2><span class="idx">17</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1</span>그냥 아래아한글 자동화(COM&middot;매크로)를 쓰면 되지 않나?</h3>
+          <p>서버에서 52개 학과가 동시에 돌려야 하고, 리눅스 컨테이너에서 돌아야 합니다. 한글 프로그램이 없는 환경에서 결정적으로 같은 결과를 내야 했기 때문에, 파일 형식 자체를 다루는 쪽을 택했습니다. 대신 서식의 최종 확인은 한글에서 해야 합니다. 그건 지금도 그렇습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2</span>표 63개만 행을 늘릴 수 있다면, 나머지는 어떻게 채웠나?</h3>
+          <p>세 가지로 나눴습니다. ① 사전 변형 템플릿(전공심화&middot;석사&middot;간호용 골든) ② 병합이 블록 안에서 닫히는 표는 <b>행 블록 단위 복제</b> ③ 열이 가변인 표(명세서&middot;배점 매트릭스)는 <b>표를 새로 생성</b>. ③의 경우 원본의 테두리&middot;글자 스타일 ID를 재참조해 &ldquo;한글에서 만든 표&rdquo;와 구별되지 않게 했습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3</span>AI는 결국 어디에 썼나?</h3>
+          <p>세 곳입니다. 서술 초안(SWOT&middot;사유&middot;필요성), 강의계획서&rarr;명세서 구조화, 컨설팅 원문&rarr;지적사항 정리. 셋 다 <b>숫자를 만들지 않는</b> 일입니다. 숫자는 DB와 통계 API가 만들고, AI는 문장만 씁니다. 이 분업이 이 시스템의 유일한 환각 방어선입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4</span>같은 방식을 다른 문서에 쓸 수 있나?</h3>
+          <p>됩니다. 조건은 하나입니다 — <b>완성본이 존재하고, 그 서식이 곧 표준일 때.</b> 정부&middot;학교 제출 서식이 그렇습니다. 반대로 서식이 자유로운 문서에는 오히려 독입니다. 템플릿이 스키마가 되는 순간, 템플릿에 없는 것을 만들 수 없게 되니까요.</p>
+        </div>
+
+        <h2><span class="idx">18</span>에필로그 — 20편을 닫으며, 다음에 무엇을 잴 것인가</h2>
+        <p>1편에서 저는 &ldquo;1년에 시스템 22종&rdquo;이라고 썼습니다. 그때는 개수가 자랑이었습니다. 20편을 쓰고 나니 개수는 의미가 없어졌습니다. 이 연재에서 진짜로 남은 것은 <b>실패의 문장들</b>입니다. &ldquo;코 코어&rdquo;, &ldquo;915행 소거&rdquo;, &ldquo;잔재 제거&rdquo;, &ldquo;REQUEST CHANGES&rdquo;, &ldquo;approved=true&rdquo;.</p>
+        <p>이 시스템은 제가 만든 것 중 가장 <b>재미없는</b> 프로그램입니다. 화면에 멋진 것이 없고, AI가 똑똑한 척하지도 않습니다. 대신 52명의 동료가 100쪽짜리 문서를 밤새 붙잡지 않게 하려고 만들었습니다. 그 목적에 얼마나 닿았는지는 위의 &ldquo;한계&rdquo; 절에 적은 대로 <b>아직 확인하지 못했습니다.</b> 9~10월에 실제로 몇 개 학과가 이 화면으로 제출했는지, 그 숫자를 다음에 재려고 합니다.</p>
+        <p>20편을 여기서 닫습니다. 다음 시리즈에서는 시스템 개수가 아니라 <b>사람이 줄어든 시간</b>을 세겠습니다. 그게 원래 목적이었으니까요.</p>
+
+        <div class="author-bio">
+          <h3>저자 소개: 김강훈 교수</h3>
+          <p>• 동의과학대학교 물리치료과 교수&middot;학과장</p>
+          <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+          <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+          <p>• 전국 전문대학 법인협의회 및 대학 교직원 대상 AI 활용 특강 강사</p>
+          <p>• 강의&middot;자문 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+          <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank">skyman200.github.io/profcook</a></p>
+        </div>
+
+        <a class="next-ep" href="../p-speak/">
+          <span class="k">이전 편 다시 읽기 →</span>
+          <span class="t">[19편] &ldquo;코 코어&rdquo; — AI가 발표자를 나무란 이유가 내 오디오 절단기였다</span>
+          <span class="d">23커밋&middot;251파일&middot;31,990줄의 발표 코칭 앱에서, 가장 중요한 코드는 프롬프트가 아니라 6~12초 오디오를 어디서 자를지 정하는 48줄이었다.</span>
+        </a>
+
+        <div class="tags">
+          <span>#인공지능</span><span>#바이브코딩</span><span>#VibeCoding</span><span>#HWPX</span>
+          <span>#한글자동화</span><span>#대학혁신</span><span>#교육과정</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
