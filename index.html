@@ -167,6 +167,25 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "@id": "https://skyman200.github.io/#intro-video",
+      "name": "AI 강의소개 영상 — 동의과학대학교 물리치료과",
+      "description": "김강훈 교수가 다음주 특강을 앞두고 만든 1분 56초 소개 영상. 물리치료과 실습실의 수업과 임상 장면, 직접 만든 시스템 화면을 담았다.",
+      "thumbnailUrl": ["https://skyman200.github.io/media/intro-ai-lecture.jpg"],
+      "uploadDate": "2026-11-26T18:58:03+09:00",
+      "duration": "PT1M56S",
+      "contentUrl": "https://skyman200.github.io/media/intro-ai-lecture.mp4",
+      "width": 720,
+      "height": 1280,
+      "inLanguage": "ko",
+      "publisher": { "@id": "https://skyman200.github.io/#person" },
+      "isPartOf": { "@id": "https://skyman200.github.io/#website" }
+    }
+    </script>
+
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -233,6 +252,18 @@
       .views__label { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(236,241,250,.26); }
       .views__num { font-size: 0.84rem; letter-spacing: 0.06em; color: rgba(236,241,250,.66); font-weight: 600; }
 
+      /* 소개 영상 — 세로 릴스(9:16)를 좌측에, 캡션을 우측에 */
+      .film { margin: 0 0 24px; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 26px; align-items: start; }
+      .film__video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: #000;
+        border: 1px solid rgba(236,241,250,.14); border-radius: 6px; }
+      .film__caption { padding-top: 2px; }
+      .film__kicker { display: block; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: rgba(236,241,250,.42); margin-bottom: 9px; }
+      .film__title { display: block; font-size: 1.04rem; font-weight: 700; color: #ecf1fa; line-height: 1.4; letter-spacing: -0.005em; word-break: keep-all; }
+      .film__meta { display: block; margin-top: 7px; font-size: 0.8rem; color: rgba(236,241,250,.5); font-variant-numeric: tabular-nums; }
+      .film__meta a { color: rgba(157,183,255,.9); text-decoration: none; border-bottom: 1px solid rgba(157,183,255,.35); }
+      .film__meta a:hover { border-color: rgba(157,183,255,.8); }
+      .film__desc { margin-top: 15px; font-size: 0.92rem; color: rgba(236,241,250,.8); word-break: keep-all; }
+
       @media (max-width: 620px) {
         body { padding: 9vh 18px 8vh; }
         .latest { display: block; }
@@ -246,6 +277,8 @@
         caption { padding-top: 12px; }
         ul.list li { display: block; }
         ul.list li .when { display: block; margin-bottom: 2px; }
+        .film { grid-template-columns: 1fr; gap: 18px; }
+        .film__video { width: 62%; max-width: 250px; margin: 0 auto; }
       }
     </style>
   </head>
@@ -312,6 +345,20 @@
 
       <section id="lectures">
         <h2>특강·연수</h2>
+        <figure class="film">
+          <video class="film__video" controls playsinline preload="metadata"
+                 poster="media/intro-ai-lecture.jpg" width="720" height="1280"
+                 aria-label="동의과학대학교 물리치료과 AI 강의소개 영상, 1분 56초">
+            <source src="media/intro-ai-lecture.mp4" type="video/mp4" />
+            이 브라우저에서는 영상이 재생되지 않습니다. <a href="media/intro-ai-lecture.mp4">MP4 파일 내려받기</a>
+          </video>
+          <figcaption class="film__caption">
+            <span class="film__kicker">소개 영상</span>
+            <span class="film__title">AI 강의소개 영상 — 동의과학대학교 물리치료과</span>
+            <span class="film__meta">1분 56초 · 2026.11.26 · <a href="https://www.instagram.com/reel/DgM1FxYgFvS/" target="_blank" rel="noopener">인스타그램 @pila_strong ↗</a></span>
+            <p class="film__desc">다음주 특강을 앞두고 만든 소개 영상. 물리치료과 실습실의 수업과 임상 장면, 직접 만든 시스템 화면이 PROF KIMCOOK 아이덴티티 안에서 1분 56초로 지나간다.</p>
+          </figcaption>
+        </figure>
         <p>대학의 교무·학사 담당자와 교원을 대상으로, 강의가 아니라 손으로 만드는 연수를 진행한다. 90분에서 반나절 사이에 참석자 각자가 자기 업무에 쓰는 앱 하나를 배포하고 끝낸다.</p>
         <ul class="list">
           <li><span class="when">2026.11</span><span>전국 전문대학 교무학사관리자 연수 — AI 기반 학사행정 혁신 특강</span></li>
