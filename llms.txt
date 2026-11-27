@@ -12,6 +12,7 @@
 
 - [홈 — 김강훈 · 부산 AI 전문가](https://skyman200.github.io/): 소개, 하는 일, 배포한 시스템 10종, 특강·연수, 언론 보도, FAQ
 - [바이브 코딩 실전기 — 시리즈 허브](https://skyman200.github.io/vibe-coding/): 1~21편 목차와 연재 배경
+- [무료 스타터 키트 — 대학 행정 × 센터 자동화 통합팩](https://skyman200.github.io/starter-kit/): 5일 실행표, Apps Script 템플릿 4종, 프롬프트 12개, 배포 전 체크리스트 10문항, 사전 진단 5문항 (무료, 신청 시 7일 안내 메일)
 - [프로필 — MOVE BUT BETTER](https://skyman200.github.io/profcook/): 경력·논문·인증·시스템 통합 프로필 (별도 저장소)
 - [근거 노트](https://skyman200.github.io/profcook/evidence/): 최신 논문 14편의 임상 적용 요약 (별도 저장소)
 

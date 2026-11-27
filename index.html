@@ -12,6 +12,7 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/funnel/funnel.css" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://skyman200.github.io/" />
@@ -162,6 +163,14 @@
             "@type": "Answer",
             "text": "아닙니다. 이 사이트의 김강훈은 부산 동의과학대학교 물리치료과 교수·학과장이자 DIT AI 허브센터 팀장인 물리치료학 박사 김강훈입니다. 드라마에 출연한 아역배우 김강훈과는 동명이인이며, 영문 표기는 Kanghoon Kim입니다."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "코딩을 몰라도 받을 수 있는 무료 자료가 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "있습니다. 김강훈 교수가 무료로 배포하는 《바이브코딩 실전 스타터 키트(대학 행정 × 센터 자동화 통합팩)》에 5일 실행표, Google Apps Script 템플릿 4종, 프롬프트 12개, 배포 전 체크리스트 10문항, 사전 진단 5문항이 담겨 있습니다. skyman200.github.io/starter-kit 에서 바로 열람하거나 이름과 이메일로 신청해 7일 안내 메일과 함께 받을 수 있습니다."
+          }
         }
       ]
     }
@@ -306,6 +315,7 @@
         <a href="#work">하는 일</a>
         <a href="#systems">배포한 시스템</a>
         <a href="#lectures">특강·연수</a>
+        <a href="#kit">무료 스타터 키트</a>
         <a href="#press">언론 보도</a>
         <a href="#faq">자주 묻는 질문</a>
       </nav>
@@ -365,6 +375,60 @@
         </ul>
       </section>
 
+      <section id="kit">
+        <h2>무료 스타터 키트</h2>
+        <p>1년 동안 대학 시스템 22종을 직접 배포하며 쓴 방법을, 그대로 복사해서 쓸 수 있게 정리했습니다. 대학 학사행정과 센터 운영을 한 팩에 담았습니다 — <strong>5일 실행표 · Apps Script 템플릿 4종 · 프롬프트 12개 · 배포 전 체크리스트 10문항</strong>.</p>
+        <div class="kit-panel">
+          <p class="kit-panel__kicker">5일 실행팩 · 대학 행정 × 센터 자동화</p>
+          <p class="kit-panel__title">김강훈 교수의 바이브코딩 실전 스타터 키트</p>
+          <ul class="kit-panel__list">
+            <li><span>5일 실행표</span>하루 15~30분, 합계 2시간 20분. 코딩을 몰라도 되고 설치도 없습니다.</li>
+            <li><span>템플릿 4종</span>제출 명부 대조 · 확인서 PDF 발급 · 전날 예약 알림 · 월 매출 요약 (Apps Script)</li>
+            <li><span>프롬프트 12개</span>판정 기준이 들어간 문장. 대괄호만 채우면 됩니다.</li>
+            <li><span>체크리스트 10문항</span>8개 이상 &ldquo;예&rdquo;가 아니면 배포하지 않는 기준.</li>
+          </ul>
+          <form class="funnel" data-funnel novalidate>
+            <div class="funnel__grid">
+              <div class="funnel__field">
+                <label class="funnel__label" for="fn-name">이름</label>
+                <input class="funnel__input" id="fn-name" name="name" type="text" placeholder="홍길동" autocomplete="name" maxlength="40" />
+              </div>
+              <div class="funnel__field">
+                <label class="funnel__label" for="fn-email">이메일</label>
+                <input class="funnel__input" id="fn-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" />
+              </div>
+              <div class="funnel__field">
+                <label class="funnel__label" for="fn-org">소속 유형</label>
+                <select class="funnel__select" id="fn-org" name="org">
+                  <option value="대학·기관">대학·기관</option>
+                  <option value="센터·병원">센터·병원</option>
+                  <option value="일반">일반</option>
+                </select>
+              </div>
+              <div class="funnel__field">
+                <label class="funnel__label" for="fn-interest">관심 분야</label>
+                <select class="funnel__select" id="fn-interest" name="interest">
+                  <option value="특강·워크숍">특강·워크숍</option>
+                  <option value="구축 외주">구축 외주</option>
+                  <option value="B2B 솔루션">B2B 솔루션</option>
+                </select>
+              </div>
+            </div>
+            <div class="funnel__hp" aria-hidden="true">
+              <label>website<input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <label class="funnel__check">
+              <input type="checkbox" name="consent" value="Y" />
+              <span>스타터 키트와 7일 안내 메일 수신에 동의합니다. 언제든 수신거부할 수 있습니다.</span>
+            </label>
+            <button class="funnel__submit" type="submit">스타터 키트 받기 →</button>
+            <p class="funnel__note">보내는 항목: 이름, 이메일, 소속 유형, 관심 분야. 쓰임: 자료 발송 및 안내 메일. 보관: 수신거부 또는 1년 경과 시 삭제. 광고성 메일은 보내지 않습니다.</p>
+            <p class="funnel__status" data-funnel-status hidden></p>
+          </form>
+          <p class="kit-panel__more"><a href="/starter-kit/">신청하지 않고 키트 먼저 보기 →</a></p>
+        </div>
+      </section>
+
       <section id="press">
         <h2>언론 보도</h2>
         <p>주로 대학 행정과 교육 현장에 AI를 어떻게 적용했는지에 대한 보도다. 특강 자리에서 반복해 강조하는 원칙은 하나다. 되돌릴 수 있는 업무는 AI에 맡기고, 최종 확인과 책임은 사람이 진다.</p>
@@ -389,9 +453,12 @@
         <p>동의과학대학교 DIT AI 허브센터 김강훈 팀장(교수)의 공식 이메일(cdi3477@dit.ac.kr)을 통해 대학 교원 맞춤형 AI 연수, 학사행정 AI 자동화 특강, 실전 바이브코딩 워크숍을 신청할 수 있습니다.</p>
         <h3>아역배우 김강훈과 같은 사람인가요?</h3>
         <p>아닙니다. 이 사이트의 김강훈은 부산 동의과학대학교 물리치료과 교수·학과장이자 DIT AI 허브센터 팀장인 물리치료학 박사 김강훈입니다. 드라마에 출연한 아역배우 김강훈과는 동명이인이며, 영문 표기는 Kanghoon Kim입니다.</p>
+        <h3>코딩을 몰라도 받을 수 있는 무료 자료가 있나요?</h3>
+        <p>있습니다. 김강훈 교수가 무료로 배포하는 《바이브코딩 실전 스타터 키트(대학 행정 × 센터 자동화 통합팩)》에 5일 실행표, Google Apps Script 템플릿 4종, 프롬프트 12개, 배포 전 체크리스트 10문항, 사전 진단 5문항이 담겨 있습니다. <a href="/starter-kit/">skyman200.github.io/starter-kit</a>에서 바로 열람하거나, 이름과 이메일로 신청해 7일 안내 메일과 함께 받을 수 있습니다.</p>
       </section>
 
       <nav class="links" aria-label="바로가기">
+        <a href="/starter-kit/"><strong>[무료 스타터 키트]</strong> 바이브코딩 실전 스타터 키트 — 5일 실행표 · Apps Script 템플릿 4종 · 프롬프트 12개 · 배포 전 체크리스트 10문항 (대학 행정 × 센터 자동화 통합팩)</a>
         <a href="vibe-coding/physio-dashboard/"><strong>[칼럼 21편]</strong> 태그 16개, 8시간 53분 — 데스크톱 앱을 만들었다가 스스로 부순 30커밋, 첫 커밋이 삽입의 94.2%·v2.0.0은 +25/−619·로컬 파서 284줄·꺼 버린 AI 폴백·아이폰 구독 200줄이 500으로 돌아온 이유</a>
         <a href="vibe-coding/curriculum-report/"><strong>[칼럼 20편]</strong> 표 162개, 행을 늘릴 수 있는 건 63개뿐 — 100쪽 한글 보고서를 코드로 채운 30커밋, 골든 템플릿 역주입·불변식 8개·품질 게이트 5관문·잔재 검사·룰 13개·엔진 테스트 91개 23.1초</a>
         <a href="vibe-coding/p-speak/"><strong>[칼럼 19편]</strong> "코 코어" — AI가 발표자를 나무란 이유가 내 오디오 절단기였다, 발표 코칭 P-SPEAK 23커밋·251파일·31,990줄, 108파일 AI 서버 이전과 쉼으로 자르는 48줄</a>
@@ -427,6 +494,8 @@
         <p>© 2026 김강훈 · 동의과학대학교 물리치료과 · 부산 · <a href="https://skyman200.github.io/profcook/">skyman200.github.io/profcook</a></p>
       </footer>
     </main>
+
+    <script src="/funnel/funnel.js"></script>
 
     <!-- 방문자 집계: abacus.jasoncameron.dev (무료 공개 JSON 카운터, skyman200.github.io 네임스페이스) -->
     <script>
