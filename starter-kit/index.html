@@ -196,18 +196,18 @@
       .diag__result a { font-weight: 700; }
 
       /* 신청 */
-      .apply { margin: 70px -66px -70px; padding: 46px 66px 54px; background: #0a0a0a; color: #ecf1fa; }
-      .apply h2 { border-top: 0; margin: 0 0 10px; padding: 0; color: #ecf1fa; font-size: 1.3rem; }
-      .apply .kicker { color: rgba(236, 241, 250, .5); }
+      .apply { margin: 54px -66px 0; padding: 46px 66px 54px; background: #0a0a0a; color: #ecf1fa; }
+      .apply .apply__title { font-size: 1.3rem; font-weight: 800; margin: 0 0 12px; color: #ecf1fa; letter-spacing: -.02em; line-height: 1.4; }
+      .apply .kicker { color: rgba(236, 241, 250, .5); margin-bottom: 10px; }
       .apply p { color: rgba(236, 241, 250, .78); font-size: .94rem; }
       .apply p strong { color: #fff; }
 
-      .foot { margin-top: 34px; font-size: .76rem; color: var(--muted); line-height: 1.8; }
+      .foot { margin-top: 40px; font-size: .76rem; color: var(--muted); line-height: 1.8; }
       .foot a { color: var(--muted); border-bottom-color: var(--rule); }
 
       @media (max-width: 820px) {
         .paper { margin: 18px 10px 40px; padding: 38px 24px 44px; }
-        .apply { margin: 44px -24px -44px; padding: 34px 24px 40px; }
+        .apply { margin: 40px -24px 0; padding: 34px 24px 40px; }
         .toc { columns: 1; }
         h2 { margin-top: 48px; }
         table { font-size: .84rem; }
@@ -664,7 +664,7 @@ function monthSummary() {
 
       <div class="apply" data-funnel-box>
         <p class="kicker" style="margin-bottom:10px">무료 신청</p>
-        <h2 style="margin:0 0 12px">스타터 키트와 7일 안내 메일 받기</h2>
+        <h3 class="apply__title" style="border:0;padding:0">스타터 키트와 7일 안내 메일 받기</h3>
         <p style="margin-bottom:18px">이름과 이메일만 있으면 됩니다. 광고성 메일은 보내지 않습니다.</p>
         <form class="funnel" data-funnel novalidate>
           <div class="funnel__grid">
