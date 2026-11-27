@@ -205,7 +205,7 @@
       .foot { margin-top: 40px; font-size: .76rem; color: var(--muted); line-height: 1.8; }
       .foot a { color: var(--muted); border-bottom-color: var(--rule); }
 
-      @media (max-width: 820px) {
+      @media screen and (max-width: 820px) {
         .paper { margin: 18px 10px 40px; padding: 38px 24px 44px; }
         .apply { margin: 40px -24px 0; padding: 34px 24px 40px; }
         .toc { columns: 1; }
@@ -221,7 +221,15 @@
       }
 
       @media print {
+        @page { margin: 16mm 14mm; }
         body { background: #fff; }
+        .toc { columns: 2; }
+        table { font-size: .78rem; }
+        thead { display: table-header-group; }
+        th { display: table-cell; }
+        tr { display: table-row; border: 0; }
+        td { display: table-cell; border-bottom: 1px solid #e2e2dd; padding: 6px 8px 6px 0; }
+        h1 { font-size: 2rem; }
         .sitebar, .copy, .apply, .no-print { display: none !important; }
         .paper { max-width: none; margin: 0; border: 0; padding: 0; box-shadow: none; }
         h2 { page-break-after: avoid; break-after: avoid; }
