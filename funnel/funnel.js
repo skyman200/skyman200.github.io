@@ -4,7 +4,7 @@
  * 비워 두면 메일 앱으로 신청서를 보내는 방식으로 동작합니다(접수 누락 없음).
  */
 window.FUNNEL_CONFIG = {
-  endpoint: '',
+  endpoint: 'https://script.google.com/macros/s/AKfycbyOfmAtGcmRTj2_OwlcFkZ3NFmdR1of8JrgAN8y3xw7wZZCuoohNF7KK6vK0zIte3uC3Q/exec',
   fallbackEmail: 'cdi3477@dit.ac.kr',
   kitUrl: '/starter-kit/'
 };
