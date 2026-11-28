@@ -1,6 +1,6 @@
 # 김강훈 (Kanghoon Kim) — 전체 프로필 · 부산 AI 전문가 · 동의과학대학교 교수
 
-> 이 문서는 https://skyman200.github.io/ 의 전체 텍스트판이다. 인물의 신원·학력·논문·인증·개발 시스템·강연·언론 보도와 함께, 이 사이트가 연재하는 《바이브 코딩 실전기》 1~17편의 요약을 담는다. 요약본은 https://skyman200.github.io/llms.txt 를 참조한다.
+> 이 문서는 https://skyman200.github.io/ 의 전체 텍스트판이다. 인물의 신원·학력·논문·인증·개발 시스템·강연·언론 보도와 함께, 이 사이트가 연재하는 《바이브 코딩 실전기》 1~22편의 요약을 담는다. 요약본은 https://skyman200.github.io/llms.txt 를 참조한다.
 
 ## 동명이인 구분 (Disambiguation)
 
@@ -229,6 +229,21 @@ AI를 끈 결정: 서버 `parseScheduleWithAI`는 Gemini→OpenAI→Grok 폴백�
 라이브: 홈 200·7,736바이트, 로그인 화면은 Google+이메일/비밀번호(코드의 네이버 버튼은 라이브 빌드에 없음), JS 6개 합 **1,725,578바이트**(index 599,631·firebase 647,978·react 164,499·ui 145,300·motion 117,801·utils 50,369)·CSS 156,760바이트, SPA 폴백으로 없는 경로도 200, PWA 아님. 배포 번들에서 `webcal`·`getCalendarFeed` 문자열 **0회** — 마지막 커밋의 기능은 라이브에 없다.
 남은 부채: 테스트 0개(CI는 빌드·릴리스만), 라우트에 없는 화면 3개 712줄(`CalendarPage` 589·`MembersPage` 109·`TodosPage` 14).
 검증 한계: 이 작업 환경에 Node.js가 없어 `npm run build`·`tsc` 미실행, 함수 5xx의 실제 원인 미확정, 아이폰 구독 미검증(.ics 수신·표시), v1.x 설치 파일을 실제로 설치해 보지 않음, 첫 커밋의 생성 프롬프트·소요 시간은 저장소에 없음.
+
+### 22편 — 보기가 다섯 개가 아니면 저장되지 않는다: AI 문항을 시험에 넣지 못하게 하는 4종 봇과 109커밋 (2026-11-28)
+https://skyman200.github.io/vibe-coding/physio-cbt/
+물리치료 국가시험을 준비하는 학생을 위한 CBT 시스템(저장소 `skyman200/physioexam`, 비공개, 패키지명 `cbt-exam-system` 0.1.0)을 13일 10시간 30분에 만든 기록. README는 없고, 첫 커밋 "Publish the CBT exam system so physioexam has a deployable baseline"(2026-05-07 22:03:03 KST)부터 마지막 05-21 08:33:31까지 커밋 109개, 추적 파일 153개, 커밋이 있는 날 14일(5월 14일만 빔), 하루 최다 26개(05-08).
+규모: 코드 26,293줄(TypeScript 50파일 13,985·JavaScript 33 6,444·TSX 21 5,597·Python 2 267), CSS 3파일 4,194줄(관리자 styles.css 2,711·AdminConsole.css 746·응시 734), SQL 12파일 755줄(마이그레이션 10개·CREATE TABLE 27문=테이블 26종), 문서 8파일 884줄(설계·운영 7개 514 + design.md 370). 앱별로 API 11,427·관리자 웹 10,856·도메인 패키지 1,396·응시 웹 1,127·로컬 Codex 에이전트 527·Vercel 컴패니언 324·스크립트 458줄. Hono Worker 하나에 엔드포인트 56개(GET 25·POST 24·PATCH 4·DELETE 2·PUT 1), 테이블은 시험 운영 7(exams·exam_sections·exam_attempts·attempt_answers·grading_results·proctor_events·appeals) · 문항 5 · 생성 파이프라인 5 + question_sources·question_import_errors · AI·감시 6(ai_grading_results·ai_feedback_cache·student_analytics_cache·bot_alerts·security_events·ocr_review_issues) · 나머지(subjects·source_documents_new). 테스트 29파일 197블록.
+중심은 생성이 아니라 거부: ① 시스템 프롬프트가 최상위 JSON 배열만·정확히 5개 보기(①~⑤)·단일 정답·모범답안+키워드 규칙·전 문항 해설을 강제 ② zod `generatedQuestionSchema` 재검증, 형태가 아니면 question_import_errors로 ③ DataQualityBot 147줄 — 빈 지문·보기 개수 5 아님·빈 보기·정답 키 누락/범위 위반(A~E·①~⑤·1~5만)·기존 지문 중복·실행 내 번호 중복·confidence low → 저장 거부 + bot_alerts critical ④ OCRReviewBot 139줄 — 번호 연속성·중복·보기 5개·라벨 순서 → ocr_review_issues(needs_review), 05-20 "Prevent unreviewed OCR items from reaching exams" 이후 검수 전 문항은 시험 구성 제외 ⑤ 주관식 모범답안·키워드 규칙 없으면 저장 시점 거부("Surface ungradeable answers at save time"·"Enforce gradeable short-answer rubrics").
+봇 4종 합 378줄: BugBot 43(경보 공통 출구, 클라이언트 오류 메시지 500자·스택 4,000자 절단), SecurityBot 49(SQL 인젝션·XSS 정규식, security_events 기록, medium 이상이면 BugBot 경보), DataQualityBot 147, OCRReviewBot 139. 05-20 "Harden bot alert ingestion"이 공개 오류 로그 엔드포인트 본문을 16,384바이트로 제한(초과 413).
+무료 티어 설계: Gemini 2.5 Flash Lite 기본, `DEFAULT_GEMINI_MAX_QUESTIONS_PER_RUN=2`·`MAX_RETRIES=4`·`RETRY_BASE_MS=1200`·`INTER_RUN_DELAY_MS=1200`, 요청 상한 30문항과 partPlans 장별 분할(05-16). OpenAI는 PDF 직접 입력, Ollama는 qwen2.5:7b-instruct JSON 형식. 운영 문서 명시 — "Gemini 한도는 API 키가 아니라 프로젝트 단위, 재시도는 할당량 천장을 없애지 않는다". 빈 결과는 성공이 아니라 failed(05-09·05-16).
+문서→문항: 1순위 pdftotext(-layout) 2순위 pdftoppm 300DPI+Tesseract 3순위 ocrmypdf. Python FastAPI 워커 193줄(deskew cv2.minAreaRect −45° 보정, 2단 분할, /health·/process-pdf·/job/{id} 상태·진행률)와 Node 로컬 서버 238줄 병존. 05-19 하루 OCR 커밋 10개, "pdftotext 최우선 전환"으로 한글 깨짐 해결.
+채점: 규칙 채점 packages/domain/src/grading.ts 95줄 — 객관식 정답 키 정확 일치, 주관식 키워드 규칙 전부 포함 시 규칙 점수·금지 표현 감점·0~배점 클램프, 판정마다 evidence(ruleId·label·matched·scoreDelta). 그 위에 aiGrading.ts 525줄 — 루브릭(criteria·met·points·comment)·해설(feedbackText·learningTips·keyConceptsMissed), 배치 채점·DB 캐시 우선·LLM 실패 시 키워드 채점 유지(그레이스풀 폴백), 응답 zod 재검증과 기본값 채움.
+응시 운영: 명부 CSV→토큰·초대코드(parseRosterCsv·buildRosterEntries), 학생 공개 경로 최소 권한(시험 코드·응시 생성·autosave·submit·proctor-event·이의제기·본인 피드백·본인 분석), 관리자 경로 x-api-key 없으면 401(라이브 확인), 응시 화면에 정답·해설 제거(stripAnswers, 첫날 P0 커밋 d47190f), 오프라인 답안 버퍼 3상태(draft·pending-submit·submitted), 3·2·1·GO 카운트다운, 종료+60초 봉인(isExamSealed), 탭 전환·진행률·마지막 활동으로 위험도(5분 이상 조용하면 idle, danger면 suspicious), 웹캠 미사용("감사 우선, 영상 우선 아님").
+문항분석: 난이도 지수(객관식 정답률, 주관식 배점 60% 이상)와 변별도 지수(총점 상위·하위 27%의 정답률 차), 너무 쉽거나 어려운 문항·변별도 낮은 문항·이의제기 몰린 문항·생성 실패 문항 플래그, 학생 개인 분석·학습 경로는 student_analytics_cache에 expires_at과 함께 저장. 커밋 109개 중 fix/prevent/tighten 계열 47개(43.1%), 한국어 메시지 8개, 05-19~20 이틀 31커밋(28%).
+디자인: design.md 370줄은 Ferrari 영감 시네마틱 에디토리얼(캔버스 #181818·Rosso Corsa #da291c·디스플레이 500·반경 0·8px 사다리), 05-15 커밋은 "trading-platform visual system" — 두 미학이 충돌한 자리는 표가 이겼다.
+라이브 실측(2026-11-28 16:34 KST): `/api/health` 200 `{"ok":true,"service":"cbt-exam-system-api"}`, `/api/health/check` 200(07:34:24Z), 관리자 콘솔 루트 200·398바이트(title "CBT 관리자"), 배포 JS 406,343바이트·CSS 50,036바이트, 번들에 '문항' 155회·'응시' 32회, `GET /api/subjects` 무키 401. vercel.json은 `@cbt/admin-web`만 빌드 — 응시 웹 별도 배포 경로는 미확인. 주소·계정·키·클라우드 식별자는 비공개 저장소 정책상 본문에 쓰지 않았다.
+한계: Node.js·npm 부재로 테스트 197개·tsc·워크스페이스 빌드 미실행, 실제 과목·문항·응시 데이터 미확인, 봇이 막은 비율 미집계, .doc 전용 비-LLM 파서 없음(운영 문서 자체 명시), CORS origin 전체 허용·관리자 단일 키, Codex 컴패니언은 로컬 127.0.0.1:8791 의존(프로덕션 오리진 차단).
 
 ## 학술 논문 (국제) — Journal of Physical Therapy Science 7편
 

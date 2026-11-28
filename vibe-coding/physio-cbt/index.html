@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>[바이브코딩 22편] 보기가 다섯 개가 아니면 저장되지 않는다 — AI 문항을 시험에 넣지 못하게 하는 4종 봇과 109커밋 | 김강훈 교수</title>
+    <meta name="description" content="물리치료 국가시험 대비 CBT 시스템 physioexam — 2026-05-07 22:03부터 13일 10시간 30분, 109커밋·153파일·26,293줄·테이블 26개·API 56개. Gemini 무료 티어에서 한 번에 2문항만 뽑고, 5지선다가 아니면 저장을 막고, OCR이 흘린 문항은 검수 전 시험에 못 들어간다. 채점은 산수가 하고 해설은 AI가 쓰며, 197개 테스트는 Node.js가 없어 이 글을 쓰는 자리에서 한 번도 돌리지 못했다." />
+    <meta name="keywords" content="바이브코딩, Vibe Coding, CBT, 국가시험, 물리치료사 국가고시, 문제은행, 문항 생성, Gemini, Cloudflare Workers, D1, Hono, OCR, Tesseract, FastAPI, OpenCV, 품질관리 봇, 변별도, 난이도, 루브릭 채점, 부산 AI 전문가, 김강훈, 김강훈 교수, 동의과학대학교" />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <link rel="canonical" href="https://skyman200.github.io/vibe-coding/physio-cbt/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://skyman200.github.io/vibe-coding/physio-cbt/" />
+    <meta property="og:site_name" content="김강훈 교수 · AI·교육혁신 칼럼" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="[바이브코딩 22편] 보기가 다섯 개가 아니면 저장되지 않는다 — AI 문항을 시험에 넣지 못하게 하는 4종 봇과 109커밋" />
+    <meta property="og:description" content="AI에게 문제를 만들게 하는 일은 쉬웠다. 어려운 것은 그 문제를 시험에 넣지 않는 일이었다. 5지선다·정답 1개·중복 0을 서버에서 강제하고, OCR이 흘린 번호는 '검수 필요'로 붙잡고, 채점은 산수로 하고 해설만 AI에게 맡긴 13일." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="김강훈 교수 · MOVE BUT BETTER" />
+    <meta property="article:published_time" content="2026-11-28" />
+    <meta property="article:author" content="김강훈" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[바이브코딩 22편] AI가 만든 문항을 시험에 넣지 못하게 하는 시스템" />
+    <meta name="twitter:description" content="109커밋·26,293줄·테이블 26개·API 56개. 보기 5개가 아니면 저장 불가, 정답이 하나가 아니면 저장 불가, OCR 번호가 끊기면 검수 대기. Gemini 무료 티어에서 한 번에 2문항, 197개 테스트는 아직 한 번도 못 돌렸다." />
+    <meta name="twitter:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "Article",
+        "TechArticle"
+      ],
+      "@id": "https://skyman200.github.io/vibe-coding/physio-cbt/#article",
+      "headline": "[바이브코딩 22편] 보기가 다섯 개가 아니면 저장되지 않는다 — AI 문항을 시험에 넣지 못하게 하는 4종 봇과 109커밋",
+      "alternativeHeadline": "물리치료 국가시험 대비 CBT 시스템 physioexam 계측 — 109커밋, 26,293줄, 테이블 26개, 4종 품질관리 봇, 그리고 한 번도 돌리지 못한 테스트 197개",
+      "description": "물리치료 국가시험 대비 CBT 시스템 physioexam — 2026-05-07 22:03부터 13일 10시간 30분, 109커밋·153파일·26,293줄·테이블 26개·API 56개. Gemini 무료 티어에서 한 번에 2문항만 뽑고, 5지선다가 아니면 저장을 막고, OCR이 흘린 문항은 검수 전 시험에 못 들어간다. 채점은 산수가 하고 해설은 AI가 쓰며, 197개 테스트는 Node.js가 없어 이 글을 쓰는 자리에서 한 번도 돌리지 못했다.",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "author": {
+        "@type": "Person",
+        "name": "김강훈",
+        "alternateName": "KIM KANG-HOON",
+        "jobTitle": "동의과학대학교 물리치료과 교수 및 학과장 / DIT AI 허브센터 팀장",
+        "url": "https://skyman200.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0004-5083-406X",
+          "https://scholar.google.com/citations?user=TOfGLNYAAAAJ",
+          "https://www.linkedin.com/in/prof-kimkanghoon"
+        ]
+      },
+      "datePublished": "2026-11-28",
+      "dateModified": "2026-11-28",
+      "inLanguage": "ko",
+      "articleSection": "바이브 코딩 실전기",
+      "isPartOf": {
+        "@type": "CreativeWorkSeries",
+        "name": "바이브 코딩(Vibe Coding) 실전기",
+        "url": "https://skyman200.github.io/vibe-coding/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "김강훈 교수 · AI·교육혁신 칼럼",
+        "url": "https://skyman200.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://skyman200.github.io/profcook/og-bull.jpg",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "AI가 만든 문항을 시험에 넣기 전에 서버가 거부하는 설계"
+        },
+        {
+          "@type": "Thing",
+          "name": "Gemini 무료 티어에서 문항 생성 파이프라인을 돌리는 제약"
+        },
+        {
+          "@type": "Thing",
+          "name": "규칙 기반 채점과 LLM 루브릭 채점의 역할 분담"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://skyman200.github.io/vibe-coding/physio-cbt/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "김강훈 교수",
+          "item": "https://skyman200.github.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "바이브 코딩 실전기",
+          "item": "https://skyman200.github.io/vibe-coding/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "22편 — 보기가 다섯 개가 아니면 저장되지 않는다",
+          "item": "https://skyman200.github.io/vibe-coding/physio-cbt/"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://skyman200.github.io/vibe-coding/physio-cbt/#webpage",
+      "url": "https://skyman200.github.io/vibe-coding/physio-cbt/",
+      "name": "바이브코딩 22편 — AI 문항을 시험에 넣지 못하게 하는 시스템",
+      "inLanguage": "ko",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "김강훈 교수 · AI·교육혁신 칼럼",
+        "url": "https://skyman200.github.io/"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://skyman200.github.io/profcook/og-bull.jpg"
+      },
+      "datePublished": "2026-11-28",
+      "dateModified": "2026-11-28"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://skyman200.github.io/vibe-coding/physio-cbt/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "AI가 만든 문항을 그대로 시험에 쓸 수 있나?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "이 시스템의 답은 '아니오'입니다. 서버가 저장 단계에서 보기 5개·정답 1개·중복 지문·번호 중복·낮은 신뢰도를 검사해 하나라도 걸리면 저장을 막고, OCR로 만든 문항은 검수 승인 전까지 시험 구성에서 제외합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "왜 한 번에 문항을 많이 만들지 않나?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gemini 무료 티어의 분당 한도 때문입니다. 실행 1회당 최대 2문항, 재시도 4회, 재시도 간격 1,200ms, 실행 간 지연 1,200ms가 기본값으로 박혀 있습니다. 요청은 최대 30문항까지 받지만, 실제 생성은 잘게 쪼개 반복합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "주관식 채점을 AI에게 맡기나?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "기본은 키워드 규칙 기반 부분점수입니다. 점수 근거가 문항마다 남고, LLM은 루브릭 평가와 해설을 덧붙이는 보조로만 쓰입니다. LLM이 실패하면 키워드 채점 결과가 그대로 남습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "테스트 197개는 통과했나?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "모릅니다. 저장소에 테스트 파일 29개와 테스트 블록 197개가 있지만, 이 글을 쓰는 작업 환경에 Node.js가 없어 실행하지 못했습니다. 본문에도 그대로 적었습니다."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+  <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ececee;
+        --body: rgba(236,236,238,.84);
+        --muted: rgba(236,236,238,.56);
+        --faint: rgba(236,236,238,.38);
+        --rule: rgba(236,236,238,.14);
+        --accent: #b7c2d4;
+        --paper: #0b0b0c;
+        --panel: #131316;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--paper); color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+        line-height: 1.85; -webkit-font-smoothing: antialiased;
+        padding: 48px 24px 120px; display: flex; justify-content: center;
+      }
+      .article-wrap { max-width: 720px; width: 100%; }
+      .crumb { font-size: 0.84rem; color: var(--faint); margin-bottom: 40px; }
+      .crumb a { color: var(--faint); text-decoration: none; border-bottom: 1px solid transparent; }
+      .crumb a:hover { color: var(--ink); border-color: var(--rule); }
+      .crumb span.sep { margin: 0 8px; color: rgba(236,236,238,.24); }
+      .kicker {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 22px;
+      }
+      h1 {
+        font-size: clamp(1.7rem, 4.6vw, 2.35rem); font-weight: 800;
+        line-height: 1.34; margin-bottom: 22px; letter-spacing: -0.02em;
+        word-break: keep-all;
+      }
+      .subhead { font-size: 1.08rem; color: var(--muted); margin-bottom: 34px; line-height: 1.75; word-break: keep-all; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 10px 22px;
+        padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+        margin-bottom: 8px; font-size: 0.88rem; color: var(--muted);
+      }
+      .meta strong { color: var(--ink); font-weight: 600; }
+      .lede { margin: 34px 0 8px; font-size: 1.06rem; color: var(--body); word-break: keep-all; }
+      .lede b { color: var(--ink); }
+      h2 {
+        font-size: 1.42rem; font-weight: 700; line-height: 1.45;
+        margin: 64px 0 20px; padding-top: 26px;
+        border-top: 1px solid var(--rule); letter-spacing: -0.01em; word-break: keep-all;
+      }
+      h2 .idx {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.78rem; color: var(--faint); letter-spacing: 0.12em;
+        display: block; margin-bottom: 8px; font-weight: 400;
+      }
+      h3 { font-size: 1.13rem; font-weight: 700; margin: 34px 0 12px; word-break: keep-all; }
+      p { margin-bottom: 20px; font-size: 1.02rem; color: var(--body); word-break: keep-all; }
+      blockquote {
+        margin: 32px 0; padding: 4px 0 4px 20px;
+        border-left: 2px solid var(--accent);
+        font-size: 1.06rem; color: var(--ink); word-break: keep-all;
+      }
+      blockquote cite { display: block; margin-top: 10px; font-size: 0.86rem; font-style: normal; color: var(--faint); }
+      ul, ol { margin: 0 0 24px 20px; color: var(--body); }
+      li { margin-bottom: 9px; font-size: 1rem; word-break: keep-all; }
+      strong { color: var(--ink); font-weight: 700; }
+      em { font-style: normal; color: var(--ink); }
+      code {
+        font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+        background: rgba(255,255,255,.06); padding: 2px 5px; border-radius: 3px;
+        font-size: 0.9em; color: var(--accent);
+      }
+      pre {
+        background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+        padding: 18px 20px; overflow-x: auto; margin: 24px 0 28px;
+      }
+      pre code {
+        background: none; padding: 0; color: rgba(236,236,238,.8);
+        font-size: 0.86rem; line-height: 1.7;
+      }
+      table { width: 100%; border-collapse: collapse; margin: 24px 0 30px; font-size: 0.94rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; word-break: keep-all; }
+      th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+      td { color: var(--body); }
+      td:first-child { color: var(--ink); white-space: nowrap; }
+      .note {
+        margin: 30px 0; padding: 18px 20px; background: var(--panel);
+        border: 1px solid var(--rule); border-radius: 6px;
+      }
+      .note p { margin: 0; font-size: 0.94rem; color: var(--muted); }
+      .item { margin: 0 0 26px; padding-left: 18px; border-left: 1px solid var(--rule); }
+      .item h3 { margin-top: 0; font-size: 1.05rem; }
+      .item p { margin-bottom: 0; font-size: 0.99rem; }
+      .item .sym { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+      .qa { margin-bottom: 28px; }
+      .qa h3 { margin-bottom: 8px; font-size: 1.04rem; }
+      .qa h3 span { color: var(--faint); font-family: ui-monospace, monospace; font-size: 0.86rem; margin-right: 8px; }
+      .qa p { margin-bottom: 0; font-size: 0.99rem; }
+      .author-bio { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--rule); }
+      .author-bio h3 { margin: 0 0 12px; font-size: 1.06rem; }
+      .author-bio p { font-size: 0.92rem; color: var(--muted); margin-bottom: 7px; }
+      .author-bio a { color: var(--accent); text-decoration: none; }
+      .next-ep {
+        display: block; margin-top: 44px; padding: 22px 24px;
+        border: 1px solid var(--rule); border-radius: 6px; text-decoration: none;
+        transition: border-color .2s ease, background .2s ease;
+      }
+      .next-ep:hover { border-color: rgba(236,236,238,.3); background: rgba(255,255,255,.02); }
+      .next-ep .k {
+        display: block; font-family: ui-monospace, monospace; font-size: 0.72rem;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 9px;
+      }
+      .next-ep .t { display: block; font-size: 1.02rem; font-weight: 700; color: var(--ink); line-height: 1.55; word-break: keep-all; }
+      .next-ep .d { display: block; margin-top: 7px; font-size: 0.9rem; color: var(--muted); word-break: keep-all; }
+      .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 36px; font-size: 0.82rem; color: var(--faint); }
+      a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 560px) {
+        body { padding: 32px 18px 96px; }
+        td:first-child { white-space: normal; }
+      }
+    </style>
+      <link rel="stylesheet" href="/funnel/funnel.css?v=20261128c" />
+  </head>
+  <body>
+    <main class="article-wrap">
+      <nav class="crumb" aria-label="현재 위치">
+        <a href="../../">김강훈 교수</a><span class="sep">/</span><a href="../">바이브 코딩 실전기</a><span class="sep">/</span><span>22편</span>
+      </nav>
+
+      <article>
+        <p class="kicker">Vibe Coding Case 22 · National Exam CBT</p>
+        <h1>[바이브코딩 22편] 보기가 다섯 개가 아니면 저장되지 않는다 — AI 문항을 시험에 넣지 못하게 하는 4종 봇과 109커밋</h1>
+        <p class="subhead">물리치료 국가시험을 준비하는 학생을 위한 CBT 시스템을 13일 10시간 동안 만들었습니다. 이 글의 주인공은 AI가 만든 문제가 아니라, <b>AI가 만든 문제를 시험에 넣지 못하게 막는 장치</b>입니다. 보기 5개·정답 1개·중복 0을 서버가 강제하고, OCR이 번호를 흘리면 '검수 필요'로 붙잡고, 채점은 산수로 하고 해설만 AI에게 맡겼습니다 — 그리고 <b>테스트 197개는 아직 한 번도 돌리지 못했습니다.</b></p>
+
+        <div class="meta">
+          <div><strong>작성자</strong> 김강훈 교수 (동의과학대학교 물리치료과 교수&middot;학과장 / DIT AI 허브센터 팀장)</div>
+          <div><strong>발행일</strong> 2026년 11월 28일</div>
+          <div><strong>읽는 시간</strong> 약 21분</div>
+        </div>
+
+        <p class="lede">이 연재의 스물두 번째 편입니다. 지난 21편에서 저는 &ldquo;배포하지 않은 기능은 기능이 아니다&rdquo;라고 썼습니다. 이번 편은 그 문장의 반대편에서 시작합니다. 저장소 <code>skyman200/physioexam</code>은 <b>109개 커밋·153개 파일·26,293줄</b>이고, 그중 절반 가까운 <b>47개 커밋이 &ldquo;고치는&rdquo; 커밋</b>입니다. 만드는 시간보다 <b>막는 시간</b>이 길었던 프로젝트입니다.</p>
+        <p>왜 막아야 했는지부터 적겠습니다. 물리치료사 국가시험은 5지선다이고, 정답은 하나이고, 문항 번호는 1번부터 끊김 없이 이어집니다. 교과서 PDF에서 문항을 뽑아 쓰는 일은 원래도 오래 걸렸지만, 이제는 AI가 10초 만에 &ldquo;그럴듯한&rdquo; 문항 30개를 만들어 줍니다. 문제는 그 30개 중 몇 개가 <b>실제로 시험에 넣을 수 있는 문항인지</b>를 사람이 다시 전수 검사해야 한다는 것입니다. 저는 그 검사를 사람이 아니라 <b>저장 경로</b>에 붙였습니다.</p>
+
+        <div class="note">
+          <p><strong>이 글에서 쓰는 &ldquo;실측&rdquo;의 뜻</strong> — 비공개 저장소 <code>skyman200/physioexam</code>을 클론해 <code>git log</code>&middot;<code>git ls-files</code>&middot;파일 계수로 센 값과, 각 파일을 직접 읽고 문자열을 센 값입니다. 라이브 상태는 이 글을 쓰는 자리(2026-11-28 16:34 KST)에서 <code>curl</code>로 직접 확인한 HTTP 상태 코드입니다. 이 작업 환경에는 <b>Node.js와 npm이 없어</b> <code>npm test</code>&middot;<code>npm run build</code>&middot;<code>tsc</code>를 실행하지 못했습니다 — 테스트 197개와 타입 검사 결과는 <em>모릅니다.</em> 저장소가 비공개이고 관리자 콘솔이 로그인 뒤에 있으므로 <b>접속 주소&middot;계정&middot;키&middot;클라우드 리소스 식별자</b>는 이 글에 쓰지 않습니다. 학생 이름&middot;학번&middot;성적 같은 실제 데이터도 쓰지 않았습니다.</p>
+        </div>
+
+        <h2><span class="idx">01</span>이 시스템이 하는 일 — 교실 밖의 세 개 화면</h2>
+        <p>이름은 <b>국가시험 대비 CBT 시스템</b>(패키지명 <code>cbt-exam-system</code>, 0.1.0). 화면은 세 개입니다. 관리자 콘솔, 응시 화면, 그리고 그 둘이 부르는 API입니다.</p>
+        <table>
+          <thead><tr><th>화면</th><th>하는 일</th></tr></thead>
+          <tbody>
+            <tr><td>관리자 콘솔</td><td>과목 관리, 문항은행, 시험 설계(블루프린트), 명부 업로드, 응시 모니터링, 제출 결과·이의제기, 문항분석, 봇 대시보드, AI 채점·피드백, 인쇄용 시험지</td></tr>
+            <tr><td>응시 화면</td><td>시험 코드로 입장, 카운트다운, 문항 이동, 자동저장, 오프라인 답안 버퍼, 제출, 감독 이벤트 기록, 이의제기, 채점 후 해설</td></tr>
+            <tr><td>API</td><td>Cloudflare Worker 하나에 <b>엔드포인트 56개</b>(GET 25&middot;POST 24&middot;PATCH 4&middot;DELETE 2&middot;PUT 1), D1 데이터베이스 <b>테이블 26종</b></td></tr>
+          </tbody>
+        </table>
+        <p>테이블 26개는 크게 네 묶음입니다. <b>시험 운영</b>(<code>exams</code>&middot;<code>exam_sections</code>&middot;<code>exam_attempts</code>&middot;<code>attempt_answers</code>&middot;<code>grading_results</code>&middot;<code>proctor_events</code>&middot;<code>appeals</code>), <b>문항</b>(<code>questions</code>&middot;<code>question_bank_items</code>&middot;<code>question_options</code>&middot;<code>question_version_history</code>&middot;<code>subjects</code>), <b>생성 파이프라인</b>(<code>question_generation_jobs</code>&middot;<code>question_generation_runs</code>&middot;<code>source_documents</code>&middot;<code>document_extraction_jobs</code>&middot;<code>document_segments</code>&middot;<code>question_sources</code>&middot;<code>question_import_errors</code>), <b>AI&middot;감시</b>(<code>ai_grading_results</code>&middot;<code>ai_feedback_cache</code>&middot;<code>student_analytics_cache</code>&middot;<code>bot_alerts</code>&middot;<code>security_events</code>&middot;<code>ocr_review_issues</code>).</p>
+        <p>이 중 제가 가장 오래 붙잡고 있었던 세 개는 <code>question_sources</code>(이 문항이 어느 문서 몇 쪽에서 왔는가), <code>ocr_review_issues</code>(OCR이 의심스럽다고 표시한 지점), <code>question_version_history</code>(문항을 고친 이력)입니다. 셋 다 <b>문항 자체가 아니라 문항을 둘러싼 의심</b>을 저장하는 테이블입니다. 이 시스템의 성격은 그 세 테이블에 다 들어 있습니다.</p>
+
+        <h2><span class="idx">02</span>규모 — 109커밋, 13일 10시간 30분</h2>
+        <p>먼저 숫자부터. 저장소를 클론해 센 값입니다.</p>
+        <table>
+          <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>커밋</td><td>109</td><td>2026-05-07 22:03 ~ 05-21 08:33 (KST)</td></tr>
+            <tr><td>기간</td><td>13일 10시간 30분</td><td>커밋이 있는 날 14일 / 하루 최다 26개(05-08)</td></tr>
+            <tr><td>추적 파일</td><td>153</td><td>lock 파일&middot;이미지 포함</td></tr>
+            <tr><td>TypeScript</td><td>50파일 13,985줄</td><td>API&middot;도메인&middot;설정</td></tr>
+            <tr><td>JavaScript</td><td>33파일 6,444줄</td><td>테스트 29파일 포함</td></tr>
+            <tr><td>TSX</td><td>21파일 5,597줄</td><td>관리자 화면 13개&middot;응시 화면</td></tr>
+            <tr><td>코드 합계</td><td><strong>26,293줄</strong></td><td>TS+JS+TSX+Python</td></tr>
+            <tr><td>CSS</td><td>3파일 4,194줄</td><td>관리자 2,711+746, 응시 734</td></tr>
+            <tr><td>SQL</td><td>12파일 755줄</td><td>마이그레이션 10개, <code>CREATE TABLE</code> 27문(테이블 26종)</td></tr>
+            <tr><td>문서</td><td>8파일 884줄</td><td>설계&middot;운영 문서 7개 514줄 + <code>design.md</code> 370줄</td></tr>
+            <tr><td>테스트</td><td>29파일 197블록</td><td>실행하지 못함(아래 14절)</td></tr>
+          </tbody>
+        </table>
+        <p>앱별로 나누면 이렇습니다. API <b>11,427줄</b>, 관리자 웹 <b>10,856줄</b>, 도메인 패키지 <b>1,396줄</b>, 응시 웹 <b>1,127줄</b>, 로컬 Codex 에이전트 527줄, Vercel 컴패니언 324줄, 스크립트 458줄. <b>API와 화면이 거의 1대 1</b>입니다. 이건 칭찬할 일이 아닙니다. 화면이 API를 그대로 반영한다는 뜻이고, 그만큼 화면 쪽에 로직이 없다는 뜻입니다. 뒤에서 한계로 다시 적겠습니다.</p>
+        <p>README는 없습니다. 첫 커밋 메시지가 &ldquo;Publish the CBT exam system so physioexam has a deployable baseline&rdquo;이고, 그날 밤 22:03부터 5월 21일 08:33까지 <b>거의 매일</b> 커밋이 올라갔습니다. 5월 14일만 비어 있습니다.</p>
+
+        <h2><span class="idx">03</span>중심은 생성이 아니라 거부다 — 문항이 저장되는 다섯 관문</h2>
+        <p>AI에게 문항을 만들게 하는 일은 이 프로젝트에서 가장 쉬운 부분이었습니다. 어려운 것은 <b>저장</b>입니다. 문항 하나가 데이터베이스에 들어가기까지 다섯 개의 관문을 지납니다.</p>
+        <div class="item">
+          <h3><span class="sym">01</span> 프롬프트 — 최상위 JSON 배열만</h3>
+          <p>시스템 프롬프트는 모델에게 마크다운도, 설명문도, <code>{"questions": [...]}</code> 같은 래퍼 객체도 쓰지 말고 <b>최상위 JSON 배열</b>만 돌려달라고 강제합니다. 문항은 정확히 5개 보기(<code>①</code>~<code>⑤</code>)를 가진 단일 정답 객관식과, 모범답안&middot;키워드 부분점수 규칙을 가진 주관식의 혼합이고, 모든 문항에 해설이 붙습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">02</span> 스키마 — zod로 한 번 더</h3>
+          <p>응답은 <code>generatedQuestionSchema</code>로 검증합니다. 모델이 JSON을 조금 흘려도 여기서 형태가 잡히고, 형태가 아니면 문항이 아니라 <b>오류 기록</b>(<code>question_import_errors</code>)으로 남습니다. 5월 18일 커밋 &ldquo;Constrain AI JSON with runtime schemas&rdquo;가 이 단계를 만든 커밋입니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">03</span> 데이터 품질 봇 — 저장 자체를 막는다</h3>
+          <p><code>DataQualityBot</code>이 지문 빈칸, 보기 개수(5개가 아니면 차단), 빈 보기, 정답 키 누락&middot;범위 위반(A~E, ①~⑤, 1~5만 허용), 기존 지문 중복, 같은 실행 안의 번호 중복, 모델이 스스로 낮춘 신뢰도(<code>low</code>)를 검사합니다. 차단 사유가 하나라도 있으면 저장을 거부하고 <code>bot_alerts</code>에 <b>critical</b>로 기록합니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">04</span> OCR 검수 — 번호가 끊기면 시험에 못 들어간다</h3>
+          <p>PDF에서 뽑은 문항은 번호 연속성, 번호 중복, 보기 5개, 보기 라벨 순서를 <code>OCRReviewBot</code>이 봅니다. 지적이 있으면 <code>ocr_review_issues</code>에 <code>needs_review</code>로 쌓이고, 5월 20일 커밋 &ldquo;Prevent unreviewed OCR items from reaching exams&rdquo; 이후 <b>검수 전 문항은 시험 구성에서 빠집니다.</b></p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">05</span> 시험 조립 — 채점할 수 없는 문항은 저장 시점에 거부</h3>
+          <p>주관식에 모범답안이 없거나 키워드 규칙이 비어 있으면 <b>저장할 때</b> 막습니다(&ldquo;Surface ungradeable answers at save time&rdquo;, &ldquo;Enforce gradeable short-answer rubrics&rdquo; — 둘 다 5월 20일). 나중에 채점 단계에서 터지는 것보다, 지금 저장이 안 되는 편이 낫습니다.</p>
+        </div>
+        <blockquote>
+          AI가 만든 코드에서 가장 값비싼 부분은 기능이 아니라 거부입니다. 기능은 요청하면 나오지만, 거부는 &ldquo;무엇이 잘못된 것인지&rdquo;를 내가 먼저 정의해야 나옵니다.
+          <cite>— 5월 19~20일 커밋 로그를 다시 읽으며</cite>
+        </blockquote>
+
+        <h2><span class="idx">04</span>무료 티어에서 문항을 뽑는 법 — 한 번에 2문항</h2>
+        <p>이 파이프라인에는 이상한 숫자가 박혀 있습니다. 실행 1회당 <b>최대 2문항</b>, 재시도 <b>4회</b>, 재시도 기본 간격 <b>1,200ms</b>, 실행 간 지연 <b>1,200ms</b>. 무료 Gemini 티어의 분당 한도를 넘지 않으려고 제가 직접 정한 값이고, <code>questionGeneration.ts</code>의 기본값으로 남아 있습니다.</p>
+        <pre><code>const DEFAULT_GEMINI_MAX_RETRIES = 4;
+const DEFAULT_GEMINI_RETRY_BASE_MS = 1200;
+const DEFAULT_GEMINI_INTER_RUN_DELAY_MS = 1200;
+const DEFAULT_GEMINI_MAX_QUESTIONS_PER_RUN = 2;</code></pre>
+        <p>그래서 화면에서 &ldquo;30문항&rdquo;을 요청해도 실제로는 잘게 쪼개 반복합니다. 요청 상한은 30문항(<code>getRequestedQuestionCount</code>)이고, 목차별 계획(<code>partPlans</code>)을 주면 장별 문항 수까지 나눠 생성합니다. 5월 16일 커밋 &ldquo;Support per-part question generation counts&quot;가 그 기능입니다.</p>
+        <p>운영 문서에는 이렇게 적어 두었습니다. &ldquo;Gemini의 한도는 API 키가 아니라 <b>프로젝트 단위</b>로 걸린다. 재시도는 일시적 스파이크를 완화할 뿐 <b>할당량 천장을 없애지 않는다.</b>&rdquo; 그리고 기본 모델을 <code>gemini-2.5-flash-lite</code>로 둔 이유도 적어 두었습니다 — 대량&middot;저비용 생성에는 무거운 모델보다 이쪽이 안전하다는 판단입니다. 그 위에 OpenAI(직접 PDF 입력 가능)와 로컬 Ollama(<code>qwen2.5:7b-instruct</code>, JSON 스키마 형식)를 같은 인터페이스 뒤에 두었습니다. <b>키가 없으면 수동 출제는 여전히 됩니다.</b> LLM은 &ldquo;자동 생성&rdquo;에만 필요한 부품입니다.</p>
+        <div class="note">
+          <p><strong>실패를 기록하는 방식</strong> — 빈 결과는 성공이 아닙니다. 5월 9일 &ldquo;Fail empty question generation runs&quot;, 5월 16일 &ldquo;Reject empty question generation results&quot;. 모델이 &ldquo;문항 0개&rdquo;를 돌려주면 잡은 <code>failed</code>로 끝나고, 화면에는 왜 끝났는지가 남습니다. AI 기능에서 가장 흔한 거짓말은 <b>성공했다고 표시되는 실패</b>입니다.</p>
+        </div>
+
+        <h2><span class="idx">05</span>문서에서 문항을 꺼내는 순서 — 텍스트가 먼저, OCR이 나중</h2>
+        <p>가장 많이 고친 부분입니다. 5월 19일 하루에만 OCR 관련 커밋이 10개입니다. 결론부터 적으면 <b>PDF에 텍스트가 있으면 OCR을 쓰지 않습니다.</b></p>
+        <ol>
+          <li><b>1순위 <code>pdftotext</code></b> — PDF 안에 심어진 텍스트 레이어를 <code>-layout</code> 옵션으로 무손실 추출합니다. 한글이 깨지지 않고 빠릅니다.</li>
+          <li><b>2순위 <code>pdftoppm</code> + Tesseract</b> — 스캔 이미지 PDF만 여기로 옵니다. <b>300 DPI</b>로 렌더한 뒤 OCR합니다. 250 DPI에서 한글이 깨져 올린 값입니다.</li>
+          <li><b>3순위 <code>ocrmypdf</code></b> — 앞의 두 도구가 없을 때의 폴백.</li>
+        </ol>
+        <p>스캔본을 다루는 쪽은 Python으로 따로 떼었습니다. FastAPI 워커 <b>193줄</b>이 하는 일은 세 가지입니다. <b>기울기 보정</b>(<code>cv2.minAreaRect</code>로 각도를 재고, −45°를 넘는 값은 90° 보정), <b>2단 분할</b>(세로로 나뉜 시험지 레이아웃을 좌&middot;우로 잘라 읽기 순서를 맞춤), 그리고 작업 상태 조회(<code>/job/{id}</code>: 상태&middot;진행률&middot;메시지). 관리자 화면은 폴링으로 진행률을 봅니다. 같은 일을 하는 Node 로컬 서버(<code>local-ocr-server.js</code> 238줄)도 남아 있어서, Python 없이도 돌릴 수 있습니다.</p>
+        <p>여기서 얻은 교훈은 기술이 아니라 <b>순서</b>입니다. 처음에는 &ldquo;스캔이든 아니든 OCR&rdquo;이었고, 그 결과는 깨진 한글과 잘린 보기였습니다. 순서를 바꾸자 같은 문서에서 문항이 나왔습니다. 5월 19일 커밋 메시지에 그대로 남아 있습니다 — &ldquo;PDF 텍스트 추출을 pdftotext(내장 텍스트 무손실 추출) 최우선으로 전환 — Tesseract OCR 한글 깨짐 근본 해결&rdquo;.</p>
+
+        <h2><span class="idx">06</span>봇 네 마리, 378줄 — 감시를 사람이 아니라 코드에 맡긴 이유</h2>
+        <p>5월 20일 오전 10시 39분, 커밋 하나에 봇 네 개가 들어왔습니다. 합쳐서 <b>378줄</b>입니다. 적은 줄임에도 이 프로젝트에서 가장 중요한 코드라고 생각합니다.</p>
+        <table>
+          <thead><tr><th>봇</th><th>줄</th><th>하는 일</th></tr></thead>
+          <tbody>
+            <tr><td>BugBot</td><td>43</td><td>경보의 공통 출구. 클라이언트 JS 오류(메시지 500자&middot;스택 4,000자로 절단)와 서버 오류를 <code>bot_alerts</code>에 적재</td></tr>
+            <tr><td>SecurityBot</td><td>49</td><td>요청 본문에서 SQL 인젝션&middot;XSS 패턴을 정규식으로 탐지, <code>security_events</code> 기록 후 medium 이상이면 경보</td></tr>
+            <tr><td>DataQualityBot</td><td>147</td><td>문항 6종 검사(빈 지문&middot;보기 5개&middot;정답 범위&middot;중복 지문&middot;번호 중복&middot;낮은 신뢰도) 후 저장 차단</td></tr>
+            <tr><td>OCRReviewBot</td><td>139</td><td>OCR 결과의 번호 연속성&middot;중복&middot;보기 수&middot;라벨 순서 검사, <code>ocr_review_issues</code>에 검수 항목 생성</td></tr>
+          </tbody>
+        </table>
+        <p>이 넷은 서로를 부릅니다. DataQualityBot과 OCRReviewBot은 문제를 찾으면 BugBot으로 경보를 올리고, SecurityBot도 medium 이상이면 BugBot에 넘깁니다. 그래서 관리자 화면에는 <b>하나의 알림함</b>만 있으면 됩니다. 출처가 다르고 심각도가 다른 사건이 한 줄씩 쌓입니다.</p>
+        <p>5월 20일 저녁 17:40에 &ldquo;Harden bot alert ingestion&quot;이라는 커밋이 하나 더 붙습니다. 클라이언트가 보내는 오류 로그는 <b>공개 엔드포인트</b>이므로, 본문 크기를 16,384바이트로 제한하고 초과하면 413으로 끊습니다. 로그를 받는 문은 좁게 열어야 합니다. 이 문으로 들어온 본문도 SecurityBot의 검사 대상입니다.</p>
+
+        <h2><span class="idx">07</span>채점은 산수, 해설은 AI</h2>
+        <p>주관식 채점을 AI에 통째로 맡기면 <b>같은 답안이 어제는 3점, 오늘은 2점</b>이 됩니다. 국가시험을 준비하는 학생에게 그런 채점은 쓸 수 없습니다. 그래서 기본 채점기는 도메인 패키지의 순수 함수 <b>95줄</b>입니다.</p>
+        <ul>
+          <li>객관식은 <b>정답 키와 정확히 일치</b>할 때만 배점. 부분점수 없음.</li>
+          <li>주관식은 키워드 규칙마다 &ldquo;그 규칙의 키워드가 <b>모두</b> 답안에 있으면&rdquo; 규칙 점수를 더하고, 금지 표현이 있으면 감점합니다. 총점은 0과 배점 사이로 자릅니다.</li>
+          <li>모든 판정에 <code>evidence</code>가 붙습니다 — 규칙 ID, 라벨, 일치 여부, 점수 증감. <b>&ldquo;왜 2점인지&rdquo;가 데이터로 남습니다.</b></li>
+        </ul>
+        <p>AI는 그 위에 얹습니다. <code>aiGrading.ts</code> <b>525줄</b>이 루브릭 평가(<code>criteria</code>&middot;<code>met</code>&middot;<code>points</code>&middot;<code>comment</code>)와 해설(<code>feedbackText</code>&middot;<code>learningTips</code>&middot;<code>keyConceptsMissed</code>)을 만듭니다. 세 가지 원칙이 코드 주석에 그대로 적혀 있습니다.</p>
+        <blockquote>
+          배치 채점: 한 번의 LLM 호출로 전체 주관식 일괄 처리 / 캐시 우선: 피드백은 DB에 저장하고 같은 요청은 캐시 반환 / 그레이스풀 폴백: LLM 실패 시 키워드 채점 유지
+        </blockquote>
+        <p>이 원칙이 실제로 값을 합니다. Gemini가 503을 돌려줘도 학생은 <b>키워드 채점 결과와 해설 캐시</b>를 받습니다. 응답은 zod로 다시 검증하고, 형태가 깨진 항목은 기본값으로 채웁니다(점수 0, 근거 &ldquo;AI 채점 근거가 제공되지 않았습니다&rdquo;). <b>AI가 죽어도 채점은 죽지 않습니다.</b> 무료 티어를 쓰는 시스템에서 이건 선택이 아니라 설계 조건입니다.</p>
+
+        <h2><span class="idx">08</span>시험은 문항이 아니라 운영이다</h2>
+        <p>시험 당일 아침에 문제가 되는 것은 문항이 아니라 사람입니다. 시험 코드를 모르는 학생, 와이파이가 끊긴 학생, 뒤로 갔다가 답안이 날아간 학생. 그래서 응시 쪽에 다음을 넣었습니다.</p>
+        <ul>
+          <li><b>명부와 토큰</b> — 학생 ID&middot;이름&middot;이메일 CSV를 올리면 응시 토큰과 초대 코드를 만들어 붙입니다. 초대 링크와 CSV를 내려받아 배포할 수 있습니다.</li>
+          <li><b>공개 API의 최소 권한</b> — 학생이 부르는 경로는 시험 코드 조회, 응시 생성, 자동저장, 제출, 감독 이벤트, 이의제기, 본인 피드백뿐입니다. 관리자 경로는 <code>x-api-key</code>가 없으면 <b>401</b>입니다.</li>
+          <li><b>답안 가리기</b> — 응시 화면에 내려가는 시험 객체에서 정답과 해설을 제거합니다(<code>stripAnswers</code>). 첫날 밤 P0 보안 커밋(<code>d47190f</code>)이 이 일을 했습니다.</li>
+          <li><b>오프라인 답안 버퍼</b> — 브라우저 저장소에 <code>draft</code>&middot;<code>pending-submit</code>&middot;<code>submitted</code> 세 상태로 답안을 남깁니다. 네트워크가 끊기면 배너가 뜨고, 복구되면 버퍼에서 이어서 제출합니다.</li>
+          <li><b>카운트다운과 봉인</b> — 시작 전 3&middot;2&middot;1&middot;GO를 세고, 종료 시각 +60초가 지나면 시험이 봉인되어 새 응시를 받지 않습니다.</li>
+          <li><b>감독은 영상이 아니라 기록</b> — 탭 전환(<code>visibility-hidden</code>&middot;<code>window-blur</code>) 횟수, 진행률, 마지막 활동 시각을 모아 학생 타일마다 위험도를 계산합니다. 5분 이상 조용하면 <code>idle</code>, 위험이 높으면 <code>suspicious</code>. 웹캠은 쓰지 않습니다.</li>
+        </ul>
+        <p>설계 문서의 문장을 그대로 옮기면 &ldquo;무료 티어 안전성이 실시간 기능보다 우선한다 / 자동저장은 묶어서 굵게 / 주관식 채점은 규칙 기반이고 설명 가능해야 한다 / 부정행위 대응은 <b>감사 우선, 영상 우선이 아니다</b>&rdquo;입니다. 22쪽짜리 설계 문서는 아니고 22줄입니다. 그 22줄이 이 프로젝트의 헌법이었습니다.</p>
+        <h2><span class="idx">09</span>문항분석 — 상위 27%와 하위 27%</h2>
+        <p>시험이 끝나면 진짜 일이 시작됩니다. 좋은 문항과 나쁜 문항을 갈라야 다음 시험이 나아집니다. 이 시스템은 문항분석을 <b>고전검사이론</b>의 방식으로 계산합니다.</p>
+        <ul>
+          <li><b>난이도 지수</b> — 문항별 정답률. 객관식은 정답 키와 일치한 응시 수, 주관식은 배점의 60% 이상 받은 응시 수로 셉니다.</li>
+          <li><b>변별도 지수</b> — 총점 상위 <b>27%</b>와 하위 <b>27%</b>를 잘라, 두 집단의 정답률 차이를 봅니다. 상위권이 맞히고 하위권이 틀리는 문항이 좋은 문항입니다.</li>
+          <li><b>품질 신호</b> — 너무 쉽거나 너무 어려운 문항, 변별도가 낮은 문항, 이의제기가 몰린 문항, 생성에 실패한 문항에 표시를 답니다.</li>
+        </ul>
+        <p>27%라는 숫자는 제가 임의로 고른 값이 아닙니다. 문항분석에서 상&middot;하위 집단을 나눌 때 관행적으로 쓰는 비율이고, 응시 인원이 적을 때 상위 50%로 자르면 변별도가 납작해지기 때문에 이 값을 유지했습니다. 여기에 <b>학생 개인 분석</b>과 <b>학습 경로</b>가 붙습니다. 학생은 자기 취약 영역과 다음에 볼 문항을 받고, 그 결과는 <code>student_analytics_cache</code>에 만료 시각과 함께 저장됩니다.</p>
+        <p>이 절이 이 프로젝트에서 제가 가장 애정하는 부분입니다. AI가 문항을 만들어 주는 시대에 교수가 여전히 가치를 만들 수 있는 자리는 <b>문항의 품질을 재는 일</b>이기 때문입니다. 생성은 넘겨줄 수 있어도, 무엇이 좋은 문항인지 정하는 일은 넘겨줄 수 없습니다.</p>
+
+        <h2><span class="idx">10</span>109개 커밋의 성격 — 47개가 &ldquo;고치는&rdquo; 커밋</h2>
+        <p>커밋 메시지를 세어 봤습니다. <code>fix</code>&middot;<code>수정</code>&middot;<code>오류</code>&middot;<code>버그</code>&middot;<code>Prevent</code>&middot;<code>Avoid</code>&middot;<code>Reject</code>&middot;<code>Tighten</code>&middot;<code>Harden</code>&middot;<code>Clarify</code> 같은 단어가 들어간 커밋이 <b>47개</b>입니다(43.1%). 한국어로 쓴 메시지는 8개뿐이고 나머지는 영어입니다. 도구가 만든 요약형 메시지가 대부분이라, 영어 메시지의 밀도가 높은 것은 이 프로젝트의 특징입니다.</p>
+        <table>
+          <thead><tr><th>날짜</th><th>커밋</th><th>그날의 성격</th></tr></thead>
+          <tbody>
+            <tr><td>05-07</td><td>7</td><td>배포 기준선, 응시 화면 공개, P0 보안(정답 제거&middot;관리자 인증&middot;토큰)</td></tr>
+            <tr><td>05-08</td><td>26</td><td>과목 관리, Tesseract 연동, AI 지능&middot;커맨드 센터, 한글화, 접근성(id&middot;name)</td></tr>
+            <tr><td>05-09</td><td>11</td><td>생성 잡 상태, 문항은행 정리, 인쇄용 시험지, 제출 검토 우선</td></tr>
+            <tr><td>05-10~13</td><td>9</td><td>분석 결정 노출, 성적 피드백, 대면 시험 시작 조율</td></tr>
+            <tr><td>05-15~18</td><td>24</td><td>운영 신뢰성, 트레이딩풍 시각 시스템, 인쇄 안정화, 블루프린트 조립</td></tr>
+            <tr><td>05-19</td><td>14</td><td>OCR 대수술 — pdftotext 우선, 300 DPI, 번호 분절 복구, 옵션 키 A~E 정규화</td></tr>
+            <tr><td>05-20</td><td>17</td><td>검수 게이트, 채점 가능성 강제, Python OCR 워커, 봇 4종, Codex 컴패니언</td></tr>
+            <tr><td>05-21</td><td>1</td><td>컴패니언 폴백 산출물 정리</td></tr>
+          </tbody>
+        </table>
+        <p>이 표에서 읽어야 할 것은 <b>5월 19일과 20일</b>입니다. 이틀에 31커밋, 전체의 28%가 몰려 있습니다. 그 전까지의 시스템은 &ldquo;문항을 만들고 시험을 보는&rdquo; 시스템이었고, 이 이틀 뒤에 &ldquo;문항을 <b>믿을 수 있는지 판정하는</b>&rdquo; 시스템이 됐습니다. 기능은 앞에서 다 만들었는데, 쓸 수 있게 만든 것은 뒤의 이틀입니다.</p>
+
+        <h2><span class="idx">11</span>라이브 실측 — 살아 있는 것과 아닌 것</h2>
+        <p>이 글을 쓰는 자리(2026-11-28 16:34 KST)에서 직접 확인한 값입니다. 저장소가 비공개이고 관리자 콘솔이 로그인 뒤에 있어 주소는 적지 않습니다.</p>
+        <table>
+          <thead><tr><th>확인</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>API 상태</td><td><code>/api/health</code> → <b>HTTP 200</b>, <code>{"ok":true,"service":"cbt-exam-system-api"}</code></td></tr>
+            <tr><td>API 시각 응답</td><td><code>/api/health/check</code> → <b>HTTP 200</b>, 서버 시각 2026-11-28T07:34:24Z</td></tr>
+            <tr><td>관리자 콘솔</td><td>루트 → <b>HTTP 200</b>, 398바이트 정적 HTML, <code>&lt;title&gt;CBT 관리자&lt;/title&gt;</code></td></tr>
+            <tr><td>배포 번들</td><td>JS <b>406,343바이트</b>, CSS <b>50,036바이트</b></td></tr>
+            <tr><td>응시 화면 포함</td><td>번들 문자열에 &ldquo;문항&rdquo; <b>155회</b>, &ldquo;응시&rdquo; <b>32회</b> — 관리자 빌드에 응시 화면이 함께 들어 있다</td></tr>
+            <tr><td>관리자 경로 인증</td><td><code>GET /api/subjects</code> (키 없음) → <b>HTTP 401</b></td></tr>
+          </tbody>
+        </table>
+        <p>여기서 정직하게 짚어야 할 것이 있습니다. 배포 설정 파일(<code>vercel.json</code>)은 <b>관리자 앱만 빌드</b>합니다(<code>npm run build --workspace=@cbt/admin-web</code>). 응시 웹(<code>apps/student-web</code>)은 저장소에 따로 있고 자체 Vite 설정도 있지만, 이 설정으로는 배포되지 않습니다. 즉 지금 라이브에서 학생이 보는 응시 화면은 <b>관리자 빌드 안에 들어 있는 응시 컴포넌트</b>입니다. 의도한 구조인지, 아니면 배포 설정이 뒤처진 것인지는 저장소만으로 단정할 수 없습니다. 21편에서 &ldquo;마지막 커밋이 배포되지 않았다&rdquo;고 썼던 것과 같은 종류의 구멍이 여기에도 있습니다.</p>
+
+        <h2><span class="idx">12</span>디자인 문서는 페라리, 커밋은 트레이딩 플랫폼</h2>
+        <p><code>design.md</code> 370줄은 &ldquo;Ferrari에서 영감을 받은 시네마틱 에디토리얼 시스템&rdquo;입니다. 근검정 캔버스(<code>#181818</code>), 단일 액센트 로소 코르사(<code>#da291c</code>), 디스플레이 굵기 500 고정, 모서리 반경 0, 8px 간격 사다리(<code>4/8/16/24/32/48/64/96/128</code>). 그리고 &ldquo;시험 응시 중에는 화려하게 만들지 말 것&rdquo;이라는 제품 적응 규칙까지 적혀 있습니다.</p>
+        <p>그런데 5월 15일 커밋은 &ldquo;Give CBT surfaces a trading-platform visual system&quot;입니다. 디자인 문서는 페라리라고 하는데, 커밋은 트레이딩 플랫폼이라고 합니다. 둘 다 맞습니다. 관리자 화면에는 <b>숫자가 많고</b>, 숫자가 많은 화면은 결국 트레이딩 플랫폼처럼 생깁니다. 결국 남은 것은 <code>styles.css</code> <b>2,711줄</b>과 <code>AdminConsole.css</code> 746줄, 응시 화면 734줄입니다. 시네마틱 에디토리얼은 &ldquo;여백과 활자&rdquo;로, 트레이딩 플랫폼은 &ldquo;표와 숫자&rdquo;로 구현됐고, 두 문서가 충돌한 자리는 대부분 표가 이겼습니다.</p>
+        <p>이 경험은 제게 익숙합니다. 11월에 카드뉴스를 만들며 &ldquo;디자인 AI 슬롭이 심하다&rdquo;는 질책을 두 번 받았습니다. 네온 그라데이션과 알록달록한 배지가 문제였습니다. <b>디자인 문서를 먼저 쓰는 것</b>은 그 실수를 줄이는 가장 값싼 방법입니다. 이 시스템은 그걸 370줄로 먼저 해 두었고, 그래서 화면이 최소한 &ldquo;AI가 만든 티&rdquo;는 나지 않습니다.</p>
+
+        <h2><span class="idx">13</span>이 시스템이 남긴 세 문장</h2>
+        <div class="item">
+          <h3><span class="sym">01</span> AI 시대의 품질은 프롬프트가 아니라 스키마에 있다</h3>
+          <p>프롬프트를 아무리 정교하게 써도 모델은 흘립니다. 그래서 이 시스템은 프롬프트&middot;zod 스키마&middot;품질 봇&middot;저장 차단&middot;검수 게이트 다섯 겹을 두었습니다. 다섯 겹 중 네 겹은 <b>AI가 아니라 코드</b>입니다. 생성 품질을 올리는 가장 확실한 방법은 생성기가 아니라 <b>거부기</b>를 잘 만드는 것이었습니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">02</span> 무료 티어는 제약이 아니라 설계 조건이다</h3>
+          <p>한 번에 2문항, 재시도 4회, 1.2초 간격. 이 숫자들은 기능을 줄였지만 시스템을 살렸습니다. 유료 결제 없이도 매일 문항을 쌓을 수 있었고, 무엇보다 <b>실패해도 채점이 멈추지 않는</b> 구조를 강제로 만들었습니다. 제약을 숨기면 나중에 청구서로 돌아옵니다.</p>
+        </div>
+        <div class="item">
+          <h3><span class="sym">03</span> 시험 시스템의 정답은 문항이 아니라 절차다</h3>
+          <p>학생이 기억하는 것은 &ldquo;시험이 안 끊겼다&rdquo;는 사실입니다. 그래서 오프라인 답안 버퍼, 자동저장, 봉인, 토큰, 401이 이 시스템의 절반입니다. 문항은 AI가 만들어도 되지만, <b>시험 당일의 절차는 사람이 정해야</b> 합니다.</p>
+        </div>
+
+        <h2><span class="idx">14</span>한계 — 이 글이 확인하지 못한 것</h2>
+        <p>이 연재의 규칙대로, 확인한 것과 확인하지 못한 것을 나눠 적습니다.</p>
+        <ul>
+          <li><strong>테스트 197개 미실행.</strong> 이 환경에 Node.js&middot;npm이 없습니다. <code>npm test</code>는 <code>node --experimental-strip-types --test</code>로 29개 테스트 파일을 돌리도록 짜여 있지만, 한 번도 실행하지 못했습니다. &ldquo;테스트가 통과한다&rdquo;고 쓸 수 없습니다.</li>
+          <li><strong>타입 검사&middot;빌드 미실행.</strong> <code>tsc -b</code>와 워크스페이스 빌드를 돌리지 못했습니다. 라이브 번들이 존재한다는 사실만이 빌드가 어느 시점에 성공했다는 증거입니다.</li>
+          <li><strong>실제 데이터 미확인.</strong> 라이브 API는 상태 확인만 했습니다. 실제 과목 수, 문항 수, 응시 인원, 학생 개인정보는 조회하지 않았고 이 글에도 쓰지 않았습니다.</li>
+          <li><strong>AI 생성 품질의 합격률 미측정.</strong> 봇이 몇 %를 막았는지, 생성된 문항 중 실제 시험에 쓸 수 있는 비율이 얼마인지 저장소에는 집계가 없습니다. <b>가장 알고 싶은 숫자</b>인데 없습니다.</li>
+          <li><strong>구형 <code>.doc</code> 파서 없음.</strong> 운영 문서가 스스로 적어 둔 한계입니다. DOCX는 업로드되지만 전용 비-LLM 파서가 없어 제공자 파싱 품질에 의존합니다.</li>
+          <li><strong>CORS 전체 허용.</strong> Worker의 CORS는 <code>origin: &quot;*&quot;</code>입니다. 관리자 경로는 키로 막지만, 키 하나를 공유하는 구조입니다. 학교 밖에 공개하는 서비스라면 도메인 제한과 키 회전이 필요합니다.</li>
+          <li><strong>Codex 컴패니언의 로컬 의존.</strong> 관리자 화면의 &ldquo;문항 품질&middot;운영 진단&middot;수정 제안&middot;테스트 제안&rdquo;은 로컬 에이전트(<code>127.0.0.1:8791</code>)를 부릅니다. 프로덕션 오리진에서는 차단되고, Vercel 경로로 옮긴 흔적은 있으나 실제 동작은 확인하지 않았습니다.</li>
+          <li><strong>응시 웹의 배포 경로.</strong> 11절에 적은 대로 <code>vercel.json</code>은 관리자 앱만 빌드합니다. 응시 화면이 별도 배포되는지 확인하지 못했습니다.</li>
+        </ul>
+
+        <h2><span class="idx">15</span>Q&amp;A</h2>
+        <div class="qa">
+          <h3><span>Q1</span>AI가 만든 문항을 그대로 시험에 쓸 수 있나?</h3>
+          <p>이 시스템의 답은 &ldquo;아니오&rdquo;입니다. 서버가 저장 단계에서 보기 5개&middot;정답 1개&middot;중복 지문&middot;번호 중복&middot;낮은 신뢰도를 검사해 하나라도 걸리면 저장을 막고, OCR로 만든 문항은 <b>검수 승인 전까지 시험 구성에서 제외</b>합니다. AI는 초안을 만들고, 시험에 들어가는 결정은 사람이 검수 화면에서 합니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q2</span>왜 한 번에 문항을 많이 만들지 않나?</h3>
+          <p>Gemini 무료 티어의 분당 한도 때문입니다. 실행 1회당 최대 2문항, 재시도 4회, 1,200ms 간격이 기본값입니다. 요청은 30문항까지 받지만 잘게 쪼개 반복합니다. OpenAI나 로컬 Ollama로 바꾸면 같은 코드에서 상한을 올릴 수 있습니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q3</span>주관식 채점을 AI에게 맡기나?</h3>
+          <p>기본은 키워드 규칙 기반 부분점수입니다. 점수 근거가 문항마다 남고, LLM은 루브릭 평가와 해설을 덧붙이는 보조로만 쓰입니다. LLM이 실패하면 키워드 채점 결과가 그대로 남습니다. 채점의 최종 책임을 모델에 넘기지 않는 것이 이 설계의 원칙입니다.</p>
+        </div>
+        <div class="qa">
+          <h3><span>Q4</span>같은 방식으로 학과 시험 시스템을 만들 계획이면 무엇부터 봐야 하나?</h3>
+          <p>셋입니다. ① <b>채점 규칙을 먼저 문서로</b> — 키워드&middot;금지어&middot;배점이 정해지지 않으면 AI 채점도 검증할 수 없습니다. ② <b>거부 조건을 코드로</b> — 보기 개수&middot;정답 범위&middot;중복은 사람이 아니라 저장 경로가 막아야 합니다. ③ <b>시험 당일 절차를 기능으로</b> — 오프라인 버퍼와 자동저장은 &ldquo;있으면 좋은 것&rdquo;이 아니라 시험의 일부입니다.</p>
+        </div>
+
+        <h2><span class="idx">16</span>에필로그 — 22편을 닫으며</h2>
+        <p>1편에서 저는 &ldquo;1년에 시스템 22종&rdquo;이라고 썼습니다. 이번 편이 그 22종 중 <b>가장 조용한 시스템</b>입니다. 화려한 데모도 없고, 눈에 보이는 애니메이션도 없고, 관리자 로그인 화면 뒤에서 대부분의 일이 일어납니다.</p>
+        <p>그런데 이 13일이 제게 남긴 것은 분명합니다. <b>AI가 잘하는 일은 초안이고, 사람이 해야 하는 일은 기준</b>이라는 것. 보기 5개, 정답 1개, 번호 연속, 중복 0 — 이 네 줄의 규칙을 코드로 옮기는 데 109커밋이 걸렸고, 그중 47개가 고치는 커밋이었습니다.</p>
+        <p>다음 편에서는 이 시스템의 미완을 정리해 보려 합니다 — 테스트 197개를 실제로 돌리고, 봇이 막은 비율을 집계하고, 응시 웹의 배포 경로를 하나로 정리하는 일. 그리고 마지막으로, <b>이 시스템이 학생의 합격률을 몇 퍼센트 올렸는지</b>를 재는 일. 줄 수가 아니라 사람이 합격한 숫자를 세는 것이, 이 연재를 계속 쓰는 이유입니다.</p>
+
+      <a class="kit-cta" href="/starter-kit/">
+        <span class="k">무료 스타터 키트</span>
+        <span class="t">이 글에서 쓴 방식을 그대로 복사할 수 있게 정리했습니다 — 대학 행정 × 센터 자동화 5일 실행팩</span>
+        <span class="d">5일 실행표 · Apps Script 템플릿 4종 · 프롬프트 12개 · 배포 전 체크리스트 10문항. 이름과 이메일로 신청하면 30일 안내 메일로 이어집니다.</span>
+        <span class="go">실행팩 받기 →</span>
+      </a>
+
+        <p class="kit-next">없애고 싶은 업무가 이미 한 가지로 정해져 있다면 — <a href="/apply/">상담·프로젝트 신청서</a> (먼저 거절하는 경우를 적어 두었습니다)</p>
+
+        <div class="author-bio">
+          <h3>저자 소개: 김강훈 교수</h3>
+          <p>• 동의과학대학교 물리치료과 교수&middot;학과장</p>
+          <p>• 동의과학대학교 DIT AI 허브센터 팀장 (AID 사업 총괄)</p>
+          <p>• 부산가톨릭대학교 물리치료학 박사 / 체코 DNS 국제 인증 강사</p>
+          <p>• 전국 전문대학 법인협의회 및 대학 교직원 대상 AI 활용 특강 강사</p>
+          <p>• 강의&middot;자문 문의: <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a></p>
+          <p>• 전체 포트폴리오: <a href="https://skyman200.github.io/profcook/" target="_blank">skyman200.github.io/profcook</a></p>
+        </div>
+
+        <a class="next-ep" href="../physio-dashboard/">
+          <span class="k">이전 편 다시 읽기 →</span>
+          <span class="t">[21편] 태그 16개, 8시간 53분 — 데스크톱 앱을 만들었다가 스스로 부순 30커밋</span>
+          <span class="d">학과 협업 캘린더 dphysio, 첫 커밋이 전체 삽입의 94.2%, 남은 29커밋은 3,451줄을 더하고 2,113줄을 지웠다. Electron과 Tauri로 감싼 앱은 서명 키와 8시간 53분 싸운 끝에 16번째 태그에서 스스로를 부쉈고, 진짜 기능은 밤 11시에 시작됐다.</span>
+        </a>
+
+        <div class="tags">
+          <span>#인공지능</span><span>#바이브코딩</span><span>#VibeCoding</span><span>#CBT</span>
+          <span>#국가시험</span><span>#문제은행</span><span>#CloudflareWorkers</span><span>#에듀테크</span><span>#동의과학대학교</span><span>#김강훈교수</span>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

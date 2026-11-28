@@ -326,10 +326,16 @@
         <span class="d">52개 학과가 같은 양식의 결과보고서를 10-30까지 내야 했다. 문서를 새로 만들지 않고 물리치료과 완성본을 골든 템플릿으로 세워 글자와 표 행만 갈아끼운 30커밋·355파일·36,472줄 — 162개 표 중 행 복제가 가능한 63개(38.9%)와 rowCnt 불일치 0, 불변식 8개, 품질 게이트 5관문, ‘빈칸은 미완성이지만 남의 학과 값은 오류다’를 0으로 잡는 잔재 검사, 룰 13개(오류 3·경고 10), 숫자를 AI에게 맡기지 않은 설계와 approved=true로 무너진 승인 게이트, 운영 42학과 267행·명세서 892·목표 2,926·915행 소거, 비밀번호를 받지 않는 NDS 확장, AI 리뷰의 BLOCK과 수정 5건, 그리고 지금 돌린 엔진 테스트 91개 23.1초</span>
       </a>
 
-      <a class="next-ep" href="physio-dashboard/" style="margin-top: 14px; border-color: rgba(183,194,212,.55); background: rgba(183,194,212,.09);">
-        <span class="k" style="color: #dfe4ec;">연재 21편 읽기 (최신) →</span>
+      <a class="next-ep" href="physio-dashboard/" style="margin-top: 14px; border-color: rgba(183,194,212,.4); background: rgba(183,194,212,.06);">
+        <span class="k" style="color: #b7c2d4;">연재 21편 읽기 →</span>
         <span class="t">[21편] 태그 16개, 8시간 53분 — 데스크톱 앱을 만들었다가 스스로 부순 30커밋</span>
         <span class="d">학과 협업 캘린더 dphysio, 30커밋·275파일·2만 7,752줄 — 첫 커밋 하나가 267파일 56,214줄로 전체 삽입의 94.2%, 남은 29커밋은 3,451줄을 더하고 2,113줄을 지웠다. Electron과 Tauri로 감싼 데스크톱 앱은 서명 키와 8시간 53분 싸운 끝에 16번째 태그에서 스스로를 부쉈고(v2.0.0은 +25/−619), 진짜 기능은 밤 11시에 시작됐다. 한국어 로컬 파서 284줄, 'AI logic disabled by user request'로 끈 AI 폴백, 한 단어만 바뀌어도 학습을 제안하는 스마트 사전, 아이폰 캘린더 구독 200줄 — 그리고 실측에서 그 200줄이 500으로 돌아온 이유, 라이브 번들에 남지 않은 마지막 커밋, 테스트 0개와 라우트에 없는 화면 712줄</span>
+      </a>
+
+      <a class="next-ep" href="physio-cbt/" style="margin-top: 14px; border-color: rgba(183,194,212,.55); background: rgba(183,194,212,.09);">
+        <span class="k" style="color: #dfe4ec;">연재 22편 읽기 (최신) →</span>
+        <span class="t">[22편] 보기가 다섯 개가 아니면 저장되지 않는다 — AI 문항을 시험에 넣지 못하게 하는 4종 봇과 109커밋</span>
+        <span class="d">물리치료 국가시험 대비 CBT 시스템 physioexam, 13일 10시간 30분·109커밋·153파일·26,293줄 — 테이블 26개·API 56개·마이그레이션 10개. Gemini 무료 티어에서 한 번에 2문항·재시도 4회·1,200ms 간격, 요청은 30문항까지 쪼개 반복. 5지선다·정답 1개·중복 지문·번호 중복·낮은 신뢰도는 저장 자체를 차단하고, OCR이 번호를 흘린 문항은 검수 전까지 시험 구성에서 빠진다. pdftotext 우선·300 DPI·기울기 보정·2단 분할, 봇 4종 378줄(BugBot·SecurityBot·DataQualityBot·OCRReviewBot), 규칙 채점 95줄 위에 얹은 LLM 루브릭과 캐시·키워드 폴백, 오프라인 답안 버퍼 세 상태, 상·하위 27% 변별도, 47개가 '고치는' 커밋. 그리고 Node.js가 없어 한 번도 돌리지 못한 테스트 197개</span>
       </a>
 
       <a class="kit-cta" href="/starter-kit/">
