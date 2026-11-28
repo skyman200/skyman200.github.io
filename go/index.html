@@ -99,9 +99,20 @@
       }
       .foot a { color: var(--muted); border-bottom-color: rgba(110, 110, 100, .3); }
 
+      .funnel__field { margin-bottom: 13px; }
+
       @media (min-width: 700px) {
         .wrap { padding: 54px 22px 72px; }
         .card { padding: 26px 26px 24px; }
+      }
+      @media (max-width: 420px) {
+        .wrap { padding: 22px 20px 44px; }
+        h1 { font-size: 1.52rem; margin: 10px 0 15px; }
+        .promise { margin-bottom: 20px; }
+        .promise li { padding: 9px 0; font-size: .92rem; }
+        .card { padding: 18px 16px 16px; }
+        .card__sub { margin-bottom: 14px; }
+        .funnel__field { margin-bottom: 12px; }
       }
     </style>
   </head>
