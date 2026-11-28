@@ -176,6 +176,97 @@
 .funnel details summary { cursor: pointer; color: rgba(236, 241, 250, .62); }
 .funnel details p { margin: 10px 0 0; font-size: .8rem; color: rgba(236, 241, 250, .45); }
 
+/* ── 제출 완료 블록 (2단계: 마크업을 클래스로 분리해 밝은 배경에서도 씀) ── */
+.funnel__done-kicker {
+  margin: 0;
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(157, 183, 255, .9);
+}
+.funnel__done-title {
+  margin: 10px 0 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #ecf1fa;
+  word-break: keep-all;
+}
+.funnel__done-text {
+  margin: 0 0 16px;
+  font-size: .94rem;
+  line-height: 1.75;
+  color: rgba(236, 241, 250, .75);
+  word-break: keep-all;
+}
+.funnel__done-text b { color: #ecf1fa; }
+.funnel__done-text--muted { font-size: .88rem; color: rgba(236, 241, 250, .55); }
+.funnel__done-text a { color: rgba(157, 183, 255, .95); }
+.funnel__done-action { margin: 0 0 14px; }
+.funnel__done-action a { text-decoration: none; }
+
+/* ── 종이(밝은) 배경용 테마 : <form class="funnel funnel--light"> ── */
+.funnel--light .funnel__label { color: #6e6e64; }
+.funnel--light .funnel__input,
+.funnel--light .funnel__select,
+.funnel--light .funnel__textarea {
+  background: #fff;
+  border: 1px solid #cfccc1;
+  border-radius: 3px;
+  color: #14140f;
+}
+.funnel--light .funnel__select {
+  background-image: linear-gradient(45deg, transparent 50%, #6e6e64 50%),
+                    linear-gradient(135deg, #6e6e64 50%, transparent 50%);
+  background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  background-color: #fff;
+}
+.funnel--light .funnel__select option { background: #fff; color: #14140f; }
+.funnel--light .funnel__input::placeholder,
+.funnel--light .funnel__textarea::placeholder { color: #a3a096; }
+.funnel--light .funnel__input:focus,
+.funnel--light .funnel__select:focus,
+.funnel--light .funnel__textarea:focus { border-color: #14140f; background: #fff; outline: 2px solid rgba(20, 20, 15, .12); outline-offset: 1px; }
+.funnel--light .funnel__check { color: #55554c; }
+.funnel--light .funnel__check a { color: #1b4fd8; border-bottom-color: rgba(27, 79, 216, .35); }
+.funnel--light .funnel__check input { accent-color: #14140f; }
+.funnel--light .funnel__submit { background: #14140f; color: #fbfaf7; border-radius: 3px; }
+.funnel--light .funnel__note { color: #7d7a70; }
+.funnel--light .funnel__status { color: #14140f; }
+.funnel--light .funnel__status--error { color: #a3301c; }
+.funnel--light .funnel__status a { color: #1b4fd8; }
+.funnel--light .funnel__done-kicker { color: #8a877c; }
+.funnel--light .funnel__done-title { color: #14140f; }
+.funnel--light .funnel__done-text { color: #45453c; }
+.funnel--light .funnel__done-text b { color: #14140f; }
+.funnel--light .funnel__done-text a { color: #1b4fd8; }
+.funnel--light .funnel__done-text--muted { color: #706d63; }
+.funnel--light .funnel__req { color: #a3301c; }
+
+.funnel__textarea {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(236, 241, 250, .18);
+  border-radius: 6px;
+  color: #ecf1fa;
+  font: inherit;
+  font-size: .95rem;
+  padding: 12px 13px;
+  line-height: 1.65;
+  min-height: 96px;
+  resize: vertical;
+  transition: border-color .18s ease, background .18s ease;
+}
+.funnel__textarea:focus { outline: none; border-color: rgba(157, 183, 255, .85); }
+.funnel__req { color: #ffb4a2; font-weight: 700; margin-left: 2px; }
+.funnel__help { margin: 7px 0 0; font-size: .78rem; line-height: 1.65; color: rgba(236, 241, 250, .45); word-break: keep-all; }
+.funnel--light .funnel__help { color: #8a877c; }
+
 @media (max-width: 620px) {
   .funnel__grid { grid-template-columns: 1fr; }
   .funnel__submit { width: 100%; justify-content: center; }

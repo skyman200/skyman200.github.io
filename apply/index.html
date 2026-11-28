@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>상담·프로젝트 신청 — 먼저 거절하는 신청서 | 김강훈</title>
+    <meta name="description" content="대학·기관의 행정 자동화, 센터·병원의 예약·기록 시스템, 기업 업무 자동화를 맡기 전에 먼저 확인하는 신청서. 아이디어만 있거나 무료 시안을 원하시는 분은 신청하지 마세요. 김강훈 교수가 직접 읽고 영업일 3일 안에 회신합니다." />
+    <meta name="author" content="김강훈 (KIM KANG-HOON)" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://skyman200.github.io/apply/" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://skyman200.github.io/apply/" />
+    <meta property="og:site_name" content="김강훈 · 상담·프로젝트 신청" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="이 신청서는 거절하기 위해 만들었습니다" />
+    <meta property="og:description" content="먼저 해당되지 않는 경우를 적었습니다. 남는 신청서만 제가 직접 읽고 영업일 3일 안에 회신합니다." />
+    <meta property="og:image" content="https://skyman200.github.io/profcook/og-bull.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="stylesheet" href="/funnel/funnel.css?v=20261128" />
+    <style>
+      :root {
+        --paper: #fbfaf7;
+        --edge: #e6e3db;
+        --ink: #14140f;
+        --ink-soft: #45453c;
+        --muted: #6e6e64;
+        --rule: #d9d6cc;
+        --rule-soft: #e8e5dc;
+        --link: #1b4fd8;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--edge);
+        color: var(--ink);
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Malgun Gothic", sans-serif;
+        line-height: 1.78;
+        -webkit-font-smoothing: antialiased;
+        word-break: keep-all;
+      }
+      a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(27, 79, 216, .28); }
+      a:hover { border-bottom-color: var(--link); }
+
+      .sitebar { background: #0a0a0a; color: #ecf1fa; font-size: .76rem; letter-spacing: .05em; }
+      .sitebar__in {
+        max-width: 1040px; margin: 0 auto; padding: 12px 22px;
+        display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; align-items: center;
+      }
+      .sitebar a { color: rgba(236, 241, 250, .7); border: 0; }
+      .sitebar a:hover { color: #fff; }
+      .sitebar__id { letter-spacing: .18em; text-transform: uppercase; font-weight: 700; color: rgba(236, 241, 250, .45); font-size: .68rem; }
+
+      .paper {
+        max-width: 760px; margin: 30px auto 70px; background: var(--paper);
+        border: 1px solid var(--rule); padding: 48px 42px 54px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, .04);
+      }
+
+      .eyebrow { font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+      h1 { font-size: clamp(1.6rem, 5.2vw, 2.35rem); font-weight: 800; line-height: 1.26; letter-spacing: -.035em; margin: 12px 0 18px; }
+      .lede { font-size: 1rem; line-height: 1.85; color: var(--ink-soft); }
+      .lede strong { color: var(--ink); }
+      .metaline {
+        display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 24px 0 0; padding: 14px 0;
+        border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule);
+        font-size: .82rem; color: var(--muted);
+      }
+      .metaline strong { color: var(--ink); }
+
+      h2 {
+        font-size: 1.16rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.45;
+        margin: 46px 0 12px; padding-top: 18px; border-top: 1px solid var(--ink);
+      }
+      h2 .num { font-size: .7rem; letter-spacing: .16em; color: var(--muted); font-weight: 700; margin-right: 10px; vertical-align: 2px; }
+      h3 { font-size: .98rem; font-weight: 700; margin: 20px 0 6px; }
+      p { font-size: .94rem; line-height: 1.85; color: var(--ink-soft); margin-bottom: 12px; }
+      p strong { color: var(--ink); }
+
+      .no { list-style: none; margin: 18px 0 0; border-top: 1px solid var(--rule); }
+      .no li { padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: .92rem; line-height: 1.75; color: var(--ink-soft); }
+      .no li b { display: block; color: var(--ink); font-size: .96rem; margin-bottom: 2px; }
+      .no li b::before { content: "✕"; font-size: .74rem; color: #a3301c; margin-right: 8px; vertical-align: 1px; }
+
+      .yes { list-style: none; margin: 16px 0 0; }
+      .yes li { position: relative; padding: 8px 0 8px 22px; font-size: .92rem; line-height: 1.75; }
+      .yes li::before { content: "→"; position: absolute; left: 0; color: var(--muted); }
+
+      table { width: 100%; border-collapse: collapse; margin: 16px 0 4px; font-size: .87rem; }
+      caption { caption-side: top; text-align: left; font-size: .76rem; color: var(--muted); padding-bottom: 6px; }
+      th, td { text-align: left; vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--rule-soft); line-height: 1.65; }
+      thead th { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--ink); }
+      td strong { color: var(--ink); }
+
+      .steps { list-style: none; margin: 16px 0 0; counter-reset: s; }
+      .steps li { position: relative; padding: 10px 0 10px 30px; font-size: .92rem; line-height: 1.75; border-bottom: 1px solid var(--rule-soft); counter-increment: s; }
+      .steps li::before { content: counter(s); position: absolute; left: 0; top: 11px; font-size: .7rem; font-weight: 700; color: var(--muted); }
+      .steps li strong { color: var(--ink); }
+
+      .formblock {
+        margin: 40px -42px 0; padding: 40px 42px 44px;
+        background: #0a0a0a; color: #ecf1fa;
+      }
+      .formblock__kicker { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(157, 183, 255, .9); font-weight: 700; }
+      .formblock__title { font-size: 1.28rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.4; color: #ecf1fa; margin: 8px 0 8px; }
+      .formblock__sub { font-size: .9rem; line-height: 1.75; color: rgba(236, 241, 250, .7); margin-bottom: 22px; }
+
+      .foot { margin-top: 30px; font-size: .8rem; line-height: 1.8; color: var(--muted); }
+      .foot a { color: var(--muted); border-bottom-color: rgba(110, 110, 100, .3); }
+
+      @media (max-width: 700px) {
+        .paper { margin: 18px 12px 40px; padding: 34px 22px 40px; }
+        .formblock { margin: 32px -22px 0; padding: 30px 22px 34px; }
+        table, thead, tbody, tr, th, td { display: block; width: auto; }
+        thead { display: none; }
+        tr { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+        td { border: 0; padding: 2px 0; }
+        td::before { content: attr(data-th) " · "; font-size: .72rem; letter-spacing: .06em; color: var(--muted); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sitebar">
+      <div class="sitebar__in">
+        <span class="sitebar__id">김강훈 · 상담 신청</span>
+        <span><a href="/">교수 홈</a> · <a href="/starter-kit/">5일 실행팩</a> · <a href="/vibe-coding/">실전기</a></span>
+      </div>
+    </div>
+
+    <main class="paper">
+      <p class="eyebrow">상담 · 프로젝트 신청</p>
+      <h1>이 신청서는<br />거절하기 위해 만들었습니다.</h1>
+      <p class="lede">
+        제게 오는 신청서의 절반은 <strong>제가 도울 수 없는 일</strong>입니다. 아이디어만 있는 단계, 무료로 먼저 만들어 보자는 요청, 예산을 정할 사람이 빠진 요청. 그런 신청서에 정중한 회신을 쓰는 데 쓰는 시간이, 실제로 만들 수 있는 사람에게 쓸 시간을 깎습니다.
+      </p>
+      <p class="lede">그래서 순서를 뒤집었습니다. <strong>해당되지 않는 경우를 먼저 적고</strong>, 남는 신청서만 읽습니다. 30초면 자신이 어디에 있는지 알 수 있습니다.</p>
+
+      <div class="metaline">
+        <span><strong>회신</strong> 영업일 3일 이내</span>
+        <span><strong>형태</strong> 90분 특강 · 업무 자동화 외주 · B2B 대시보드</span>
+        <span><strong>비용</strong> 범위를 듣고 최소 구성으로 회신</span>
+      </div>
+
+      <h2><span class="num">01</span>신청하지 마세요</h2>
+      <p>아래 셋 중 하나라도 해당되면, 지금은 신청서를 쓰지 않으셔도 됩니다. 대신 <a href="/starter-kit/">5일 실행팩</a>을 먼저 받으시면 같은 자리에서 막히지 않습니다.</p>
+      <ul class="no">
+        <li><b>"AI로 뭔가 될 것 같은데" 단계입니다.</b>무엇을 없애고 싶은지 한 문장으로 적을 수 없다면, 아직 만들 것이 정해지지 않은 것입니다. 이 상태에서 만든 결과물은 쓰이지 않습니다. 실행팩 1일차가 그 한 문장을 만드는 일입니다.</li>
+        <li><b>무료로 먼저 만들어 보자는 요청입니다.</b>견본 시안, 샘플 화면, "일단 한 번 보여 주시면"은 하지 않습니다. 대신 5일 실행팩과 실전기 21편에 실제 화면과 숫자가 모두 공개돼 있습니다. 그것으로 판단하시고, 맞으면 신청해 주세요.</li>
+        <li><b>예산과 일정을 정할 사람이 빠져 있습니다.</b>"견적부터 받아 보고 결재를 올리겠다"는 요청은 대개 두 달을 기다리다 끝납니다. 결정권자와 함께 읽으실 수 있을 때 신청해 주세요.</li>
+      </ul>
+
+      <h2><span class="num">02</span>이런 신청서를 기다립니다</h2>
+      <ul class="yes">
+        <li><strong>없애고 싶은 반복 업무가 한 가지로 정해져 있다.</strong> "매주 월요일 아침, 지난주 예약 명단과 노쇼를 대조해 문자를 보낸다"처럼.</li>
+        <li><strong>지금 걸리는 시간을 숫자로 말할 수 있다.</strong> "한 번에 40분, 주 2회" 정도면 충분합니다.</li>
+        <li><strong>시트나 문서를 직접 만들 수 있는 권한이 있다.</strong> 자동화는 권한 있는 사람이 직접 만들 때 가장 빠릅니다.</li>
+        <li><strong>한 번 만들면 매 학기·매달 다시 쓴다.</strong> 일회성 행사라면 도구보다 진행 방식이 먼저입니다.</li>
+      </ul>
+
+      <h2><span class="num">03</span>세 가지 트랙</h2>
+      <table>
+        <caption>기간은 지금까지 제가 실제로 쓴 시간을 기준으로 잡았습니다. 비용은 신청서의 예산 범위를 읽고 그 안에서 가능한 최소 구성으로 회신합니다.</caption>
+        <thead>
+          <tr><th scope="col">트랙</th><th scope="col">무엇을 하는가</th><th scope="col">기간·형태</th><th scope="col">끝나면 남는 것</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="트랙"><strong>90분 실습 특강</strong></td>
+            <td data-th="무엇을">대학·기관·병원 담당자가 각자 자기 업무용 앱 하나를 만들고 배포합니다. 강의가 아니라 실습입니다.</td>
+            <td data-th="기간">90분 (반나절 확장 가능) · 20~40명</td>
+            <td data-th="남는 것">기관 자체 템플릿, 참석자별 결과 링크</td>
+          </tr>
+          <tr>
+            <td data-th="트랙"><strong>업무 자동화 외주</strong></td>
+            <td data-th="무엇을">반복 업무 하나를 골라 시트·Apps Script·웹앱으로 실제 돌아가게 만듭니다. 예: 제출 명부 대조, 확인서 PDF 발급, 전날 예약 알림, 월 매출 요약.</td>
+            <td data-th="기간">2~4주 · 업무 1개</td>
+            <td data-th="남는 것">돌아가는 자동화 + 인수 문서(누가 고쳐도 되는 구조)</td>
+          </tr>
+          <tr>
+            <td data-th="트랙"><strong>B2B 대시보드 납품</strong></td>
+            <td data-th="무엇을">센터·병원·사업체의 예약·기록·매출을 한 화면으로. 직원이 쓰는 화면과 관리자가 보는 숫자를 함께 만듭니다.</td>
+            <td data-th="기간">6~8주 · 화면 3~5개</td>
+            <td data-th="남는 것">운영 화면 + 관리자 교육 + 데이터 구조 문서</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2><span class="num">04</span>접수한 뒤에 벌어지는 일</h2>
+      <ol class="steps">
+        <li><strong>영업일 3일 안에 제가 직접 회신합니다.</strong> 자동 응답이 아닙니다. 가능한 범위, 대략의 일정, 다음 순서만 짧게 적습니다.</li>
+        <li><strong>30분 통화 한 번.</strong> 지금 쓰는 화면과 실제로 손이 가는 지점을 봅니다. 여기서 하지 않는 편이 나은 경우도 말씀드립니다.</li>
+        <li><strong>A4 한 장 제안.</strong> 범위 · 일정 · 비용 · <strong>하지 않을 것</strong>을 한 장에 적습니다. 그 장이 계약의 기준이 됩니다.</li>
+      </ol>
+
+      <div class="formblock" id="form" data-funnel-box>
+        <p class="formblock__kicker">신청서 · 4분</p>
+        <p class="formblock__title">해당되는 분만 남겨 주세요</p>
+        <p class="formblock__sub">적어 주신 내용은 제가 직접 읽습니다. 이 신청서로 결제나 계약이 생기지 않습니다.</p>
+
+        <form class="funnel" data-funnel data-funnel-type="apply" novalidate>
+          <div class="funnel__grid">
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-name">이름 <span class="funnel__req">*</span></label>
+              <input class="funnel__input" id="ap-name" name="name" type="text" placeholder="홍길동" autocomplete="name" maxlength="40" />
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-phone">연락처 <span class="funnel__req">*</span></label>
+              <input class="funnel__input" id="ap-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel" maxlength="20" />
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-email">이메일 <span class="funnel__req">*</span></label>
+              <input class="funnel__input" id="ap-email" name="email" type="email" inputmode="email" placeholder="name@example.com" autocomplete="email" />
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-orgname">소속명</label>
+              <input class="funnel__input" id="ap-orgname" name="orgname" type="text" placeholder="동의과학대학교 교무처" autocomplete="organization" maxlength="80" />
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-org">소속 유형 <span class="funnel__req">*</span></label>
+              <select class="funnel__select" id="ap-org" name="org">
+                <option value="">선택해 주세요</option>
+                <option value="대학·기관">대학·기관</option>
+                <option value="센터·병원">센터·병원</option>
+                <option value="기업">기업</option>
+                <option value="개인사업체">개인사업체</option>
+                <option value="일반">그 외</option>
+              </select>
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-track">희망 트랙 <span class="funnel__req">*</span></label>
+              <select class="funnel__select" id="ap-track" name="track">
+                <option value="">선택해 주세요</option>
+                <option value="90분 실습 특강">90분 실습 특강</option>
+                <option value="업무 자동화 외주">업무 자동화 외주</option>
+                <option value="B2B 대시보드 납품">B2B 대시보드 납품</option>
+              </select>
+            </div>
+            <div class="funnel__field funnel__field--wide">
+              <label class="funnel__label" for="ap-task">가장 먼저 없애고 싶은 반복 업무 <span class="funnel__req">*</span></label>
+              <textarea class="funnel__textarea" id="ap-task" name="task" rows="4" maxlength="600"
+                placeholder="누가 · 무엇을 · 얼마나 자주 · 지금은 어떤 도구로 하는지 한 문단으로 적어 주세요."></textarea>
+              <p class="funnel__help">예: &ldquo;조교가 매 학기 초 37개 학과 강의계획서를 열어 AI 4주 반영 여부를 눈으로 세고, 미비한 학과에 메일을 보낸다. 학기당 약 3주가 걸린다.&rdquo;</p>
+            </div>
+            <div class="funnel__field funnel__field--wide">
+              <label class="funnel__label" for="ap-metric">지금 걸리는 시간</label>
+              <input class="funnel__input" id="ap-metric" name="metric" type="text" placeholder="예: 한 번에 40분, 주 2회 / 학기당 3주" maxlength="120" />
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-timing">희망 시기 <span class="funnel__req">*</span></label>
+              <select class="funnel__select" id="ap-timing" name="timing">
+                <option value="">선택해 주세요</option>
+                <option value="2주 안">2주 안</option>
+                <option value="1개월 안">1개월 안</option>
+                <option value="분기 안(3개월)">분기 안(3개월)</option>
+                <option value="올해 안">올해 안</option>
+                <option value="미정">아직 미정</option>
+              </select>
+            </div>
+            <div class="funnel__field">
+              <label class="funnel__label" for="ap-budget">예산 범위</label>
+              <select class="funnel__select" id="ap-budget" name="budget">
+                <option value="">선택해 주세요</option>
+                <option value="300만 원 이하">300만 원 이하</option>
+                <option value="300~700만 원">300~700만 원</option>
+                <option value="700~1,500만 원">700~1,500만 원</option>
+                <option value="1,500만 원 이상">1,500만 원 이상</option>
+                <option value="미정">아직 미정 — 범위부터 상의</option>
+              </select>
+              <p class="funnel__help">금액을 확정하는 항목이 아닙니다. 범위만 알려 주시면 그 안에서 가능한 최소 구성을 먼저 회신드립니다.</p>
+            </div>
+          </div>
+
+          <div class="funnel__hp" aria-hidden="true">
+            <label>website<input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <label class="funnel__check">
+            <input type="checkbox" name="consent" value="Y" />
+            <span>신청서 검토와 회신을 위한 개인정보(이름·연락처·이메일·소속·업무 내용) 수집·이용에 동의합니다. 보관 1년, 요청 시 즉시 삭제합니다.</span>
+          </label>
+          <button class="funnel__submit" type="submit">신청서 보내기 →</button>
+          <p class="funnel__note">회신은 영업일 3일 이내에 적어 주신 연락처로 드립니다. 광고·영업 연락은 보내지 않습니다.</p>
+          <p class="funnel__status" data-funnel-status hidden></p>
+        </form>
+      </div>
+
+      <p class="foot">
+        김강훈 — 동의과학대학교 물리치료과 교수·학과장, DIT AI 허브센터 팀장. 1년 동안 대학·임상 현장에 시스템 22종을 직접 만들어 배포했습니다. 신청 없이 먼저 확인하시려면 <a href="/starter-kit/">5일 실행팩</a>과 <a href="/vibe-coding/">바이브 코딩 실전기</a>(1~21편)에 실제 숫자와 화면이 그대로 있습니다. 급한 문의는 <a href="mailto:cdi3477@dit.ac.kr">cdi3477@dit.ac.kr</a>.
+      </p>
+    </main>
+
+    <script src="/funnel/funnel.js"></script>
+  </body>
+</html>

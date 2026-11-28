@@ -1,13 +1,16 @@
 /**
- * 김강훈 교수 · 인피니티 퍼널 1단계 백엔드
+ * 김강훈 교수 · 인피니티 퍼널 백엔드 (1단계 + 2단계)
  * 인피니티퍼널_DB  —  skyman200.github.io 신청 폼 → 시트 저장 → 1·3·5·7일차 메일 자동 발송
+ *                     /apply/ 상담·프로젝트 신청 → 상담신청 탭 저장 → 관리자 알림
  *
  * 최초 1회: 편집기에서 setup() 실행 → 권한 승인 → 배포(웹앱, 액세스: 모든 사용자)
  * 이후      : 시간 기반 트리거(processSequence, 매시)가 3·5·7일차 메일을 보냅니다.
+ *             코드를 새 버전으로 바꿨다면 setup() 을 한 번 다시 실행하세요(기존 행은 그대로, 새 탭·설정 항목만 추가).
  *
  * 시트 구조
  *   DB       일시 | 이름 | 이메일 | 소속유형 | 관심분야 | 유입경로 | 시퀀스단계 | 상태 | 최근발송 | 메모
- *   설정     발신자이름 · 회신주소 · 사이트주소 · 스타터키트주소 · 5일차영상주소 · 7일차진단주소 · 관리자메일 · 관리자알림 · 시퀀스발송시각
+ *   상담신청  일시 | 이름 | 이메일 | 연락처 | 소속유형 | 소속명 | 희망트랙 | 반복업무 | 지금걸리는시간 | 희망시기 | 예산범위 | 유입경로 | 상태 | 메모
+ *   설정     발신자이름 · 회신주소 · 사이트주소 · 스타터키트주소 · 5일차영상주소 · 7일차진단주소 · 관리자메일 · 관리자알림 · 상담알림 · 시퀀스발송시각
  *   발송로그  일시 | 이메일 | 단계 | 제목 | 결과
  */
 
@@ -16,26 +19,39 @@ var TZ = 'Asia/Seoul';
 var SHEET_ID_KEY = 'FUNNEL_SHEET_ID';
 
 var TAB_DB = 'DB';
+var TAB_APPLY = '상담신청';
 var TAB_SET = '설정';
 var TAB_LOG = '발송로그';
 
 var DB_HEADERS = ['일시', '이름', '이메일', '소속유형', '관심분야', '유입경로', '시퀀스단계', '상태', '최근발송', '메모'];
+var APPLY_HEADERS = ['일시', '이름', '이메일', '연락처', '소속유형', '소속명', '희망트랙', '반복업무', '지금걸리는시간', '희망시기', '예산범위', '유입경로', '상태', '메모'];
 var LOG_HEADERS = ['일시', '이메일', '단계', '제목', '결과'];
 
-var ORG_TYPES = ['대학·기관', '센터·병원', '일반'];
+var ORG_TYPES = ['대학·기관', '센터·병원', '기업', '개인사업체', '일반'];
 var INTERESTS = ['특강·워크숍', '구축 외주', 'B2B 솔루션'];
+var TRACKS = ['90분 실습 특강', '업무 자동화 외주', 'B2B 대시보드 납품'];
+var APPLY_STATUS = ['신규', '회신완료', '상담중', '진행', '보류', '거절'];
 
+/**
+ * 스팸 방지 메모 — 2026-11-28 1일차 테스트 메일이 Gmail 스팸함으로 들어간 뒤 고친 값입니다.
+ * 핵심은 하나입니다. Apps Script 는 '배포한 계정' 주소로 메일을 보냅니다.
+ * 회신주소를 그 주소와 같게 두면 From/Reply-To 도메인이 일치합니다.
+ * 권장: ptkanghoon@gmail.com 계정으로 배포 + 회신주소도 ptkanghoon@gmail.com (Gmail→Gmail).
+ * 학교 계정으로 배포한다면 회신주소를 그 계정(cdi3477@aicode.dit.ac.kr)으로 맞추세요.
+ */
 var DEFAULT_SETTINGS = [
   ['발신자이름', '김강훈'],
-  ['회신주소', 'cdi3477@dit.ac.kr'],
+  ['회신주소', 'ptkanghoon@gmail.com'],
   ['사이트주소', 'https://skyman200.github.io/'],
   ['스타터키트주소', 'https://skyman200.github.io/starter-kit/'],
   ['5일차영상주소', ''],
   ['7일차진단주소', 'https://skyman200.github.io/starter-kit/#diagnosis'],
   ['관리자메일', 'cdi3477@dit.ac.kr'],
   ['관리자알림', 'Y'],
+  ['상담알림', 'Y'],
   ['시퀀스발송시각', '9'],
-  ['안내', '위 값을 고치면 다음 발송부터 그대로 반영됩니다. 5일차영상주소를 비워 두면 5일차 메일은 영상 없이 나갑니다.']
+  ['안내', '위 값을 고치면 다음 발송부터 그대로 반영됩니다. 5일차영상주소를 비워 두면 5일차 메일은 영상 없이 나갑니다.'],
+  ['스팸방지', '회신주소는 이 웹앱을 배포한 계정 주소와 같아야 합니다(From/Reply-To 도메인 일치). 권장: ptkanghoon@gmail.com으로 배포하고 회신주소도 같은 주소. 제목·본문은 짧은 편지형으로 유지하세요.']
 ];
 
 /* ───────────────────────────── 설치 ───────────────────────────── */
@@ -107,6 +123,26 @@ function ensureTabs_(ss) {
   set.setFrozenRows(1);
   setWidths_(set, [160, 460]);
 
+  // 2단계 — 상담·프로젝트 신청(고관여자) 탭
+  var ap = getOrCreateTab_(ss, TAB_APPLY);
+  if (ap.getLastRow() === 0) {
+    ap.getRange(1, 1, 1, APPLY_HEADERS.length).setValues([APPLY_HEADERS]);
+  }
+  styleHeader_(ap, APPLY_HEADERS.length);
+  ap.setFrozenRows(1);
+  setWidths_(ap, [150, 90, 220, 130, 100, 160, 150, 300, 120, 110, 110, 240, 90, 180]);
+  ap.getRange('A2:A2000').setNumberFormat('yyyy-mm-dd hh:mm');
+  ap.getRange('E2:E2000').setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(ORG_TYPES, true).setAllowInvalid(true).build()
+  );
+  ap.getRange('G2:G2000').setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(TRACKS, true).setAllowInvalid(true).build()
+  );
+  ap.getRange('H2:H2000').setWrap(true);
+  ap.getRange('M2:M2000').setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(APPLY_STATUS, true).setAllowInvalid(true).build()
+  );
+
   var log = getOrCreateTab_(ss, TAB_LOG);
   if (log.getLastRow() === 0) {
     log.getRange(1, 1, 1, LOG_HEADERS.length).setValues([LOG_HEADERS]);
@@ -115,6 +151,9 @@ function ensureTabs_(ss) {
   log.setFrozenRows(1);
   setWidths_(log, [150, 220, 60, 340, 200]);
   log.getRange('A2:A2000').setNumberFormat('yyyy-mm-dd hh:mm');
+
+  // 스팸 패치로 늘어난 설정 항목을 기존 시트에도 채워 넣습니다(기존 값은 건드리지 않음).
+  ensureSettingsRows_(set);
 
   // 만들자마자 생기는 기본 탭(시트1)은 정리
   ss.getSheets().forEach(function (s) {
@@ -125,6 +164,21 @@ function ensureTabs_(ss) {
 
 function getOrCreateTab_(ss, name) {
   return ss.getSheetByName(name) || ss.insertSheet(name);
+}
+
+function ensureSettingsRows_(sh) {
+  var last = sh.getLastRow();
+  var have = {};
+  if (last >= 2) {
+    sh.getRange(2, 1, last - 1, 1).getValues().forEach(function (r) {
+      if (r[0]) have[String(r[0]).trim()] = true;
+    });
+  }
+  var missing = DEFAULT_SETTINGS.filter(function (r) { return !have[r[0]]; });
+  if (missing.length) {
+    sh.getRange(sh.getLastRow() + 1, 1, missing.length, 2).setValues(missing);
+    Logger.log('설정 항목 추가: ' + missing.map(function (r) { return r[0]; }).join(', '));
+  }
 }
 
 function styleHeader_(sh, cols) {
@@ -166,6 +220,9 @@ function doPost(e) {
     var data = parsePayload_(e);
 
     if (data.website) return json_({ ok: true, skipped: 'spam' }); // 허니팟
+
+    // 2단계 — /apply/ 상담·프로젝트 신청은 별도 탭에 받습니다.
+    if (String(data.type || '').toLowerCase() === 'apply') return handleApply_(data);
 
     var name = clean_(data.name).slice(0, 40);
     var email = clean_(data.email).toLowerCase();
@@ -256,8 +313,89 @@ function doPost(e) {
 }
 
 /**
+ * 2단계 — 상담·프로젝트 신청 접수.
+ * /apply/ 폼이 type:'apply' 로 보낸 내용을 상담신청 탭에 한 줄로 남기고 관리자에게 알립니다.
+ * 신청자에게는 시퀀스 메일을 보내지 않습니다(이미 DB에 있는 사람이면 그 시퀀스가 따로 돕니다).
+ */
+function handleApply_(data) {
+  var name = clean_(data.name).slice(0, 40);
+  var email = clean_(data.email).toLowerCase();
+  var phone = clean_(data.phone).slice(0, 30);
+  var org = pick_(clean_(data.org), ORG_TYPES, '일반');
+  var orgname = clean_(data.orgname).slice(0, 80);
+  var track = pick_(clean_(data.track), TRACKS, '');
+  var task = clean_(data.task).slice(0, 600);
+  var metric = clean_(data.metric).slice(0, 120);
+  var timing = clean_(data.timing).slice(0, 40);
+  var budget = clean_(data.budget).slice(0, 60);
+  var source = clean_(data.source).slice(0, 300) || '직접 입력';
+  var consent = clean_(data.consent);
+
+  if (!name) return json_({ ok: false, error: 'name' });
+  if (!isEmail_(email)) return json_({ ok: false, error: 'email' });
+  if (!phone) return json_({ ok: false, error: 'phone' });
+  if (!track) return json_({ ok: false, error: 'track' });
+  if (task.length < 10) return json_({ ok: false, error: 'task' });
+  if (!timing) return json_({ ok: false, error: 'timing' });
+  if (consent !== 'Y') return json_({ ok: false, error: 'consent' });
+
+  var ss = openSheet_();
+  var ap = ss.getSheetByName(TAB_APPLY) || getOrCreateTab_(ss, TAB_APPLY);
+  if (ap.getLastRow() === 0) ap.getRange(1, 1, 1, APPLY_HEADERS.length).setValues([APPLY_HEADERS]);
+
+  var now = new Date();
+  var settings = getSettings_();
+
+  var last = ap.getLastRow();
+  var rows = last > 1 ? ap.getRange(2, 1, last - 1, APPLY_HEADERS.length).getValues() : [];
+  var seen = 0;
+  for (var i = 0; i < rows.length; i++) {
+    if (String(rows[i][2]).toLowerCase() === email) seen++;
+  }
+  var memo = seen ? '재신청 ' + stamp_(now) + ' (' + seen + '번째 접수)' : '';
+
+  ap.appendRow([now, name, email, phone, org, orgname, track, task, metric, timing, budget, source, '신규', memo]);
+  log_(now, email, 'apply', '상담신청 — ' + track, '접수');
+
+  if (String(settings['상담알림'] || 'Y').toUpperCase() === 'Y') {
+    try {
+      var lines = [
+        stamp_(now) + ' 상담·프로젝트 신청이 들어왔습니다.',
+        '',
+        '이름: ' + name + (seen ? ' (재신청 ' + seen + '회)' : ''),
+        '연락처: ' + phone,
+        '이메일: ' + email,
+        '소속: ' + org + (orgname ? ' / ' + orgname : ''),
+        '희망 트랙: ' + track,
+        '희망 시기: ' + timing,
+        '예산 범위: ' + (budget || '미정'),
+        '',
+        '[가장 먼저 없애고 싶은 반복 업무]',
+        task,
+        '',
+        '[지금 걸리는 시간]',
+        metric || '미기재',
+        '',
+        '유입경로: ' + source,
+        '시트: ' + ss.getUrl()
+      ];
+      MailApp.sendEmail({
+        to: settings['관리자메일'] || settings['회신주소'],
+        replyTo: email,
+        subject: '[상담신청] ' + name + ' · ' + track + (orgname ? ' · ' + orgname : ''),
+        body: lines.join('\n')
+      });
+    } catch (err) {
+      Logger.log('상담 알림 실패: ' + err);
+    }
+  }
+
+  return json_({ ok: true, apply: true, again: seen > 0 });
+}
+
+/**
  * 상태 확인(GET)과 수신거부 링크 처리.
- *   ?action=health  → { ok, count }
+ *   ?action=health  → { ok, count, apply }
  *   ?unsub=이메일&t=토큰 → 수신거부
  */
 function doGet(e) {
@@ -285,8 +423,15 @@ function doGet(e) {
     return html_('수신거부가 완료되었습니다.', '이 주소로는 더 이상 안내 메일을 보내지 않습니다. 다시 받으시려면 사이트에서 같은 이메일로 신청하시면 됩니다.');
   }
 
-  var sh = openSheet_().getSheetByName(TAB_DB);
-  return json_({ ok: true, service: '인피니티퍼널', rows: Math.max(0, sh.getLastRow() - 1) });
+  var ss = openSheet_();
+  var db = ss.getSheetByName(TAB_DB);
+  var ap = ss.getSheetByName(TAB_APPLY);
+  return json_({
+    ok: true,
+    service: '인피니티퍼널',
+    rows: Math.max(0, db.getLastRow() - 1),
+    apply: ap ? Math.max(0, ap.getLastRow() - 1) : 0
+  });
 }
 
 /* ───────────────────────────── 시퀀스 발송 ───────────────────────────── */
@@ -371,13 +516,8 @@ function sendStage_(stage, ctx) {
 }
 
 function subjectOf_(stage) {
-  var map = {
-    1: '[1일차] 김강훈입니다 — 신청하신 5일 실행팩을 보냅니다',
-    3: '[3일차] 759개 과목, 52개 학과 — 같은 일을 두 번 하지 않게 만든 방법',
-    5: '[5일차] 따라 하지 마세요, 베끼세요 — 프롬프트 12개 중 3개',
-    7: '[7일차] 이 키트가 당신에게 맞지 않는 경우'
-  };
-  return map[stage] || '김강훈 · 바이브코딩 스타터 키트';
+  if (typeof subjectFor_ === 'function') return subjectFor_(stage);
+  return '김강훈 · 바이브코딩 스타터 키트';
 }
 
 /** 1일차 발송이 실패한 사람을 다시 보내려면 실행합니다. */
